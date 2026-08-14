@@ -105,6 +105,14 @@ h1 span{color:var(--foil)}
   font-family:var(--display);font-size:64px;
 }
 .photo .fallback small{font-family:var(--body);font-size:11px;font-weight:700;max-width:80%;text-align:center}
+.photo-credit{
+  position:absolute;left:0;right:0;bottom:0;
+  background:linear-gradient(0deg,rgba(0,0,0,0.7),rgba(0,0,0,0));
+  color:#fff;font-family:var(--body);font-size:9px;font-weight:600;letter-spacing:.2px;
+  padding:12px 6px 3px;text-align:center;direction:ltr;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  pointer-events:none;
+}
 .sticker-num{
   position:absolute;top:-12px;left:-12px;background:var(--foil);color:#3B2C08;
   font-family:var(--score);font-weight:700;font-size:13px;
@@ -264,3 +272,35 @@ h1 span{color:var(--foil)}
 .mp-mode-title{font-family:var(--display);font-size:15px;color:var(--ink);text-transform:uppercase}
 .mp-mode-desc{font-family:var(--body);font-size:11px;color:var(--ink-soft);text-align:center}
 #mpRoomCode{font-family:var(--score);color:var(--foil);letter-spacing:2px}
+
+/* ---------- language picker ---------- */
+.lang-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.lang-card{
+  background:var(--card);border-radius:14px;padding:14px 8px;border:3px solid var(--foil);
+  display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;
+  box-shadow:0 8px 20px rgba(0,0,0,0.35), 0 2px 0 var(--foil-deep);
+}
+.lang-card:active{transform:scale(0.96)}
+.lang-card.active{background:var(--foil);border-color:var(--foil-deep)}
+.lang-flag{font-size:26px}
+.lang-name{font-family:var(--body);font-size:13px;font-weight:800;color:var(--ink)}
+
+/* ---------- direction-aware nav arrows ---------- */
+.dir-arrow{display:inline-block}
+[dir="rtl"] .dir-arrow{transform:scaleX(-1)}
+[dir="rtl"] .sticker-num{left:auto;right:-12px}
+
+/* ---------- language picker ---------- */
+.lang-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0}
+.lang-card{
+  display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;
+  background:var(--chalk);border:2px solid var(--card-edge);cursor:pointer;
+  font-family:var(--body);font-weight:800;font-size:13px;color:var(--ink);
+}
+.lang-card.selected{background:var(--foil);border-color:var(--foil-deep);color:#3B2C08}
+.lang-card .flag{font-size:18px}
+
+/* ---------- RTL (whole app, when Hebrew/Arabic selected) ---------- */
+html[dir="rtl"] .game-topbar{flex-direction:row-reverse}
+html[dir="rtl"] .sb-value.coins::before,
+html[dir="rtl"] .sb-value.stars::before{margin-right:0;margin-left:5px}

@@ -9,6 +9,7 @@ import {
 import { UNLOCK_MODE, STARS_PER_UNLOCK } from "./config.js";
 import { loadPhoto as loadPhotoInto, prefetchPhotos } from "./photo.js";
 import { showScreen } from "./screens.js";
+import { t, onLangChange } from "./i18n/index.js";
 
 const $ = (id) => document.getElementById(id);
 
@@ -39,8 +40,8 @@ function renderHome() {
 }
 
 function lockHint(index) {
-  if (UNLOCK_MODE === "sequential") return "Finish previous pack";
-  return index * STARS_PER_UNLOCK + "★ to unlock";
+  if (UNLOCK_MODE === "sequential") return t("home.finishPrevious");
+  return t("home.starsToUnlock", { n: index * STARS_PER_UNLOCK });
 }
 
 function renderPackGrid() {
@@ -202,7 +203,7 @@ function updateHintButtons() {
     const bought = ps.hintsBought.includes(n);
     btn.classList.toggle("bought", bought);
     btn.disabled = bought || locked;
-    btn.querySelector(".h-cost").textContent = bought ? "✓ Bought" : "● " + HINT_COSTS[n];
+    btn.querySelector(".h-cost").textContent = bought ? t("hint.bought") : "● " + HINT_COSTS[n];
   });
 }
 
@@ -210,7 +211,7 @@ function buyHint(n) {
   const ps = currentPackState();
   if (locked || ps.hintsBought.includes(n)) return;
   if (ctx.state.coins < HINT_COSTS[n]) {
-    toast("Not enough coins — solve players to earn more!");
+    toast(t("game.notEnoughCoins"));
     return;
   }
   ctx.state.coins -= HINT_COSTS[n];
@@ -276,14 +277,14 @@ function winRound(revealed) {
   ps.stars[ps.levelIndex] = stars;
 
   const p = currentPlayerData();
-  $("mTitle").textContent = revealed ? "Revealed 💡" : "GOAL! ⚽";
+  $("mTitle").textContent = revealed ? t("win.revealed") : t("win.goal");
   $("mName").textContent = p.wiki;
   $("mRewards").innerHTML =
     "+<b>" + reward.points + "</b> pts &nbsp;·&nbsp; +<b>" + reward.coins + "</b> coins &nbsp;·&nbsp; " + "★".repeat(stars);
 
   const pack = currentPack();
   const isLast = ps.levelIndex >= pack.players.length - 1;
-  $("nextBtn").textContent = isLast ? "See Results →" : "Next Player →";
+  $("nextBtn").textContent = isLast ? t("win.seeResults") : t("win.nextPlayer");
 
   ctx.persist();
   setTimeout(() => {
@@ -318,11 +319,11 @@ function showPackComplete() {
 
 /* ---------- reset ---------- */
 async function resetProgress() {
-  if (!confirm("Reset progress for " + currentPack().name + "? Level and stars for this pack will start over.")) return;
+  if (!confirm(t("game.resetConfirm", { pack: currentPack().name }))) return;
   resetPackProgress(ctx.state, currentPackId);
   ctx.persist();
   buildRound();
-  toast("Pack progress reset");
+  toast(t("game.resetToast"));
 }
 
 /* ============================================================
@@ -363,5 +364,9 @@ export function init(context) {
     $("packCompleteOverlay").classList.remove("show");
     showHome();
   });
-  $("settingsBtn").addEventListener("click", () => toast("Settings coming soon"));
+  $("settingsBtn").addEventListener("click", () => toast(t("home.settingsSoon")));
+
+  onLangChange(() => {
+    if (currentPackId === null) renderHome();
+  });
 }

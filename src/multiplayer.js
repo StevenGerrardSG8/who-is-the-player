@@ -1,6 +1,7 @@
 import { shuffle, buildBankLetters, checkAnswer } from "./game.js";
 import { loadPhoto, prefetchPhotos } from "./photo.js";
 import { showScreen } from "./screens.js";
+import { t } from "./i18n/index.js";
 
 const $ = (id) => document.getElementById(id);
 const MP_POINTS = 100;
@@ -73,7 +74,7 @@ function showSetup() {
 function startGame() {
   const names = playerNames.map((n) => n.trim()).filter(Boolean);
   if (names.length < MIN_PLAYERS) {
-    alert("Add at least " + MIN_PLAYERS + " player names.");
+    alert(t("mp.needMinPlayers", { n: MIN_PLAYERS }));
     return;
   }
   const packId = $("mpPackSelect").value;
@@ -137,7 +138,7 @@ function renderScoreboard() {
       );
     })
     .join("");
-  $("mpRoundLabel").textContent = "Round " + currentTurn().round + "/" + game.rounds;
+  $("mpRoundLabel").textContent = t("mp.round", { round: currentTurn().round, total: game.rounds });
 }
 
 function escapeHtml(s) {
@@ -149,7 +150,7 @@ function buildTurn() {
   const p = currentTarget();
   $("mpSticker").classList.remove("win");
   $("mpStickerNum").textContent = "#" + (game.turnIndex + 1);
-  $("mpTurnBanner").textContent = currentPlayer().name + "'s turn";
+  $("mpTurnBanner").textContent = t("mp.turnOf", { name: currentPlayer().name });
   $("mpAnswer").classList.remove("correct", "wrong", "small", "tiny");
 
   const answerEl = $("mpAnswer");
@@ -253,7 +254,9 @@ function showResults() {
   const topScore = ranked[0].score;
   const winners = ranked.filter((p) => p.score === topScore);
   $("mpWinnerName").textContent =
-    winners.length > 1 ? winners.map((p) => p.name).join(" & ") + " tie!" : winners[0].name + " wins!";
+    winners.length > 1
+      ? t("mp.tie", { names: winners.map((p) => p.name).join(" & ") })
+      : t("mp.wins", { name: winners[0].name });
   $("mpFinalScores").innerHTML = ranked
     .map((p, i) => '<div class="mp-final-row">#' + (i + 1) + " " + escapeHtml(p.name) + " — <b>" + p.score + "</b> pts</div>")
     .join("");

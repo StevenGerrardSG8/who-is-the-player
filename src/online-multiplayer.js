@@ -6,6 +6,7 @@
 import { buildBankLetters, checkAnswer } from "./game.js";
 import { loadPhoto, prefetchPhotos } from "./photo.js";
 import { showScreen } from "./screens.js";
+import { t } from "./i18n/index.js";
 
 const $ = (id) => document.getElementById(id);
 const MP_POINTS = 100;
@@ -93,7 +94,7 @@ function hostRoom() {
 
 function attemptHost(tries) {
   if (tries >= 6) {
-    $("mpOnlineError").textContent = "Couldn't create a room — check your connection and try again.";
+    $("mpOnlineError").textContent = t("online.couldntCreate");
     return;
   }
   const code = genRoomCode();
@@ -103,7 +104,7 @@ function attemptHost(tries) {
     $("mpOnlineChoice").style.display = "none";
     $("mpOnlineLobby").style.display = "";
     $("mpRoomCode").textContent = code;
-    $("mpLobbyStatus").textContent = "Waiting for opponent… share this code: " + code;
+    $("mpLobbyStatus").textContent = t("online.waitingShare", { code });
   });
   p.on("error", (err) => {
     if (err.type === "unavailable-id") {
@@ -123,7 +124,7 @@ function joinRoom() {
   myName = $("mpOnlineNameInput").value.trim() || "Guest";
   const code = $("mpJoinCodeInput").value.trim().toUpperCase();
   if (!code) {
-    $("mpOnlineError").textContent = "Enter a room code.";
+    $("mpOnlineError").textContent = t("online.enterCode");
     return;
   }
   myPlayerIdx = 1;
@@ -137,11 +138,11 @@ function joinRoom() {
       $("mpOnlineChoice").style.display = "none";
       $("mpOnlineLobby").style.display = "";
       $("mpRoomCode").textContent = code;
-      $("mpLobbyStatus").textContent = "Connected! Waiting for the host to start…";
+      $("mpLobbyStatus").textContent = t("online.connectedWaiting");
     });
   });
   p.on("error", (err) => {
-    $("mpOnlineError").textContent = "Couldn't connect — check the code and try again (" + err.type + ").";
+    $("mpOnlineError").textContent = t("online.couldntConnect", { err: err.type });
   });
 }
 
@@ -149,7 +150,7 @@ function wireConnection() {
   conn.on("data", handleMessage);
   conn.on("close", () => {
     if (game) {
-      alert((peerName || "Your opponent") + " disconnected.");
+      alert(t("online.opponentDisconnected", { name: peerName || "Opponent" }));
       quitToHome();
     }
   });
@@ -162,18 +163,18 @@ function handleMessage(msg) {
   if (msg.type === "hello") {
     peerName = msg.name;
     conn.send({ type: "welcome", name: myName });
-    $("mpLobbyStatus").textContent = peerName + " joined! Pick a pack and hit Start.";
+    $("mpLobbyStatus").textContent = t("online.joinedPickPack", { name: peerName });
     $("mpOnlineConfig").style.display = "";
     $("mpOnlineStartBtn").style.display = "";
   } else if (msg.type === "welcome") {
     peerName = msg.name;
-    $("mpLobbyStatus").textContent = "Connected to " + peerName + " — waiting for them to start…";
+    $("mpLobbyStatus").textContent = t("online.connectedTo", { name: peerName });
   } else if (msg.type === "start") {
     startFromNetwork(msg);
   } else if (msg.type === "result") {
     applyResult(msg.points, false);
   } else if (msg.type === "quit") {
-    alert((peerName || "Your opponent") + " left the game.");
+    alert(t("online.opponentLeft", { name: peerName || "Opponent" }));
     quitToHome();
   }
 }
@@ -231,7 +232,7 @@ function renderScoreboard() {
       );
     })
     .join("");
-  $("mpoRoundLabel").textContent = "Round " + game.turns[game.turnIndex].round + "/" + game.rounds;
+  $("mpoRoundLabel").textContent = t("mp.round", { round: game.turns[game.turnIndex].round, total: game.rounds });
 }
 
 function buildTurn() {
@@ -240,7 +241,7 @@ function buildTurn() {
   $("mpoSticker").classList.remove("win");
   $("mpoStickerNum").textContent = "#" + (game.turnIndex + 1);
   const turnPlayerName = game.players[game.turns[game.turnIndex].playerIdx].name;
-  $("mpoTurnBanner").textContent = isMyTurn() ? "Your turn!" : turnPlayerName + "'s turn";
+  $("mpoTurnBanner").textContent = isMyTurn() ? t("online.yourTurn") : t("mp.turnOf", { name: turnPlayerName });
   $("mpoAnswer").classList.remove("correct", "wrong");
 
   const answerEl = $("mpoAnswer");
@@ -344,7 +345,9 @@ function showResults() {
   const topScore = ranked[0].score;
   const winners = ranked.filter((p) => p.score === topScore);
   $("mpoWinnerName").textContent =
-    winners.length > 1 ? winners.map((p) => p.name).join(" & ") + " tie!" : winners[0].name + " wins!";
+    winners.length > 1
+      ? t("mp.tie", { names: winners.map((p) => p.name).join(" & ") })
+      : t("mp.wins", { name: winners[0].name });
   $("mpoFinalScores").innerHTML = ranked
     .map((p, i) => '<div class="mp-final-row">#' + (i + 1) + " " + escapeHtml(p.name) + " — <b>" + p.score + "</b> pts</div>")
     .join("");

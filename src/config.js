@@ -50,3 +50,4 @@ export const REVEAL_COINS = 5;
 export const NO_HINT_BONUS = 50;
 
 export const STORAGE_KEY = "wtp-progress-v2";
+export const LANG_STORAGE_KEY = "wtp-lang-v1";

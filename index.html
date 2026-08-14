@@ -11,14 +11,24 @@
 </head>
 <body>
 
+<!-- ============ LANGUAGE PICKER (first launch) ============ -->
+<div class="overlay" id="langPickerOverlay">
+  <div class="modal">
+    <h2 id="langPickTitle">Choose your language</h2>
+    <p class="subtitle" id="langPickSubtitle">You can change this later in Settings</p>
+    <div class="lang-grid" id="langGrid"></div>
+    <button class="btn-main" id="langContinueBtn">Continue</button>
+  </div>
+</div>
+
 <!-- ============ HOME SCREEN ============ -->
 <div class="wrap" id="screenHome">
-  <h1>Who's The <span>Player</span>?</h1>
-  <p class="subtitle">Pick a pack &amp; name the footballers</p>
+  <h1 id="homeTitle">Who's The <span>Player</span>?</h1>
+  <p class="subtitle" id="homeSubtitle">Pick a pack &amp; name the footballers</p>
 
   <div class="totals">
-    <div class="sb-item"><span class="sb-label">Coins</span><span class="sb-value coins" id="homeCoins">100</span></div>
-    <div class="sb-item"><span class="sb-label">Total Stars</span><span class="sb-value stars" id="homeStars">0</span></div>
+    <div class="sb-item"><span class="sb-label" id="homeCoinsLabel">Coins</span><span class="sb-value coins" id="homeCoins">100</span></div>
+    <div class="sb-item"><span class="sb-label" id="homeStarsLabel">Total Stars</span><span class="sb-value stars" id="homeStars">0</span></div>
   </div>
 
   <div class="pack-grid" id="packGrid"></div>
@@ -26,27 +36,28 @@
   <div class="footer">
     <button class="link-btn" id="multiplayerBtn">🎉 Multiplayer</button>
     <button class="link-btn" id="settingsBtn">Settings</button>
+    <button class="link-btn" id="languageBtn">🌐 Language</button>
   </div>
 </div>
 
 <!-- ============ MULTIPLAYER MODE CHOICE ============ -->
 <div class="wrap" id="screenMpMode" style="display:none">
   <div class="game-topbar">
-    <button class="back-btn" id="mpModeBackBtn">← Packs</button>
-    <div class="pack-name">Multiplayer</div>
+    <button class="back-btn" id="mpModeBackBtn"><span class="back-arrow">←</span> <span id="mpModeBackLabel">Packs</span></button>
+    <div class="pack-name" id="mpModeCrumb">Multiplayer</div>
   </div>
-  <h1>Party <span>Mode</span></h1>
-  <p class="subtitle">Choose how you want to play</p>
+  <h1><span id="mpModeTitle1">Party</span> <span id="mpModeTitle2">Mode</span></h1>
+  <p class="subtitle" id="mpModeSubtitle">Choose how you want to play</p>
   <div class="mp-mode-grid">
     <button class="mp-mode-card" id="mpModeLocalBtn">
       <div class="mp-mode-icon">📱</div>
-      <div class="mp-mode-title">Local</div>
-      <div class="mp-mode-desc">Pass one device around the room</div>
+      <div class="mp-mode-title" id="mpModeLocalTitle">Local</div>
+      <div class="mp-mode-desc" id="mpModeLocalDesc">Pass one device around the room</div>
     </button>
     <button class="mp-mode-card" id="mpModeOnlineBtn">
       <div class="mp-mode-icon">🌐</div>
-      <div class="mp-mode-title">Online</div>
-      <div class="mp-mode-desc">Two players, two separate devices</div>
+      <div class="mp-mode-title" id="mpModeOnlineTitle">Online</div>
+      <div class="mp-mode-desc" id="mpModeOnlineDesc">Two players, two separate devices</div>
     </button>
   </div>
 </div>
@@ -54,13 +65,13 @@
 <!-- ============ ONLINE MULTIPLAYER: LOBBY ============ -->
 <div class="wrap" id="screenMpOnline" style="display:none">
   <div class="game-topbar">
-    <button class="back-btn" id="mpOnlineBackBtn">← Packs</button>
-    <div class="pack-name">Online Multiplayer</div>
+    <button class="back-btn" id="mpOnlineBackBtn"><span class="back-arrow">←</span> <span id="mpOnlineBackLabel">Packs</span></button>
+    <div class="pack-name" id="mpOnlineCrumb">Online Multiplayer</div>
   </div>
 
   <div id="mpOnlineChoice">
-    <h1>Play <span>Online</span></h1>
-    <p class="subtitle">Host a room, or join one with a code</p>
+    <h1><span id="onlineTitle1">Play</span> <span id="onlineTitle2">Online</span></h1>
+    <p class="subtitle" id="onlineSubtitle">Host a room, or join one with a code</p>
     <div class="mp-players">
       <input type="text" id="mpOnlineNameInput" placeholder="Your name" maxlength="16">
     </div>
@@ -74,11 +85,11 @@
   </div>
 
   <div id="mpOnlineLobby" style="display:none">
-    <h1>Room <span id="mpRoomCode">----</span></h1>
+    <h1><span id="onlineRoomLabel">Room</span> <span id="mpRoomCode">----</span></h1>
     <p class="subtitle" id="mpLobbyStatus">Waiting for opponent…</p>
     <div class="mp-config" id="mpOnlineConfig" style="display:none">
-      <label>Pack <select id="mpOnlinePackSelect"></select></label>
-      <label>Rounds per player <input type="number" id="mpOnlineRoundsInput" min="1" max="20" value="5"></label>
+      <label><span id="onlinePackLabel">Pack</span> <select id="mpOnlinePackSelect"></select></label>
+      <label><span id="onlineRoundsLabel">Rounds per player</span> <input type="number" id="mpOnlineRoundsInput" min="1" max="20" value="5"></label>
     </div>
     <button class="btn-main" id="mpOnlineStartBtn" style="display:none">Start</button>
   </div>
@@ -87,7 +98,7 @@
 <!-- ============ ONLINE MULTIPLAYER: GAME ============ -->
 <div class="wrap" id="screenMpoGame" style="display:none">
   <div class="game-topbar">
-    <button class="back-btn" id="mpoQuitBtn">← Quit</button>
+    <button class="back-btn" id="mpoQuitBtn"><span class="back-arrow">←</span> <span id="mpoQuitLabel">Quit</span></button>
     <div class="pack-name" id="mpoRoundLabel">Round 1/5</div>
   </div>
 
@@ -111,7 +122,7 @@
 
 <div class="overlay" id="mpoResultsOverlay">
   <div class="modal">
-    <h2>Game Over! 🏆</h2>
+    <h2 id="mpoGameOverTitle">Game Over! 🏆</h2>
     <div class="m-name" id="mpoWinnerName"></div>
     <div id="mpoFinalScores"></div>
     <button class="btn-main" id="mpoPlayAgainBtn">Back to Home</button>
@@ -121,18 +132,18 @@
 <!-- ============ MULTIPLAYER SETUP ============ -->
 <div class="wrap" id="screenMpSetup" style="display:none">
   <div class="game-topbar">
-    <button class="back-btn" id="mpBackBtn">← Packs</button>
-    <div class="pack-name">Multiplayer</div>
+    <button class="back-btn" id="mpBackBtn"><span class="back-arrow">←</span> <span id="mpBackLabel">Packs</span></button>
+    <div class="pack-name" id="mpSetupCrumb">Multiplayer</div>
   </div>
-  <h1>Party <span>Mode</span></h1>
-  <p class="subtitle">Add players, pick a pack, take turns</p>
+  <h1><span id="mpSetupTitle1">Party</span> <span id="mpSetupTitle2">Mode</span></h1>
+  <p class="subtitle" id="mpSetupSubtitle">Add players, pick a pack, take turns</p>
 
   <div class="mp-players" id="mpPlayerList"></div>
   <button class="link-btn" id="mpAddPlayerBtn">+ Add Player</button>
 
   <div class="mp-config">
-    <label>Pack <select id="mpPackSelect"></select></label>
-    <label>Rounds per player <input type="number" id="mpRoundsInput" min="1" max="20" value="5"></label>
+    <label><span id="mpPackLabel">Pack</span> <select id="mpPackSelect"></select></label>
+    <label><span id="mpRoundsLabel">Rounds per player</span> <input type="number" id="mpRoundsInput" min="1" max="20" value="5"></label>
   </div>
 
   <button class="btn-main" id="mpStartBtn">Start</button>
@@ -141,7 +152,7 @@
 <!-- ============ MULTIPLAYER GAME ============ -->
 <div class="wrap" id="screenMpGame" style="display:none">
   <div class="game-topbar">
-    <button class="back-btn" id="mpQuitBtn">← Quit</button>
+    <button class="back-btn" id="mpQuitBtn"><span class="back-arrow">←</span> <span id="mpQuitLabel">Quit</span></button>
     <div class="pack-name" id="mpRoundLabel">Round 1/5</div>
   </div>
 
@@ -165,7 +176,7 @@
 
 <div class="overlay" id="mpResultsOverlay">
   <div class="modal">
-    <h2>Game Over! 🏆</h2>
+    <h2 id="mpGameOverTitle">Game Over! 🏆</h2>
     <div class="m-name" id="mpWinnerName"></div>
     <div id="mpFinalScores"></div>
     <button class="btn-main" id="mpPlayAgainBtn">Back to Home</button>
@@ -175,14 +186,14 @@
 <!-- ============ GAME SCREEN ============ -->
 <div class="wrap" id="screenGame" style="display:none">
   <div class="game-topbar">
-    <button class="back-btn" id="backBtn">← Packs</button>
+    <button class="back-btn" id="backBtn"><span class="back-arrow">←</span> <span id="backBtnLabel">Packs</span></button>
     <div class="pack-name" id="gamePackName">Premier League</div>
   </div>
 
   <div class="scoreboard">
-    <div class="sb-item"><span class="sb-label">Level</span><span class="sb-value" id="sbLevel">1/30</span></div>
-    <div class="sb-item"><span class="sb-label">Score</span><span class="sb-value" id="sbScore">0</span></div>
-    <div class="sb-item"><span class="sb-label">Coins</span><span class="sb-value coins" id="sbCoins">100</span></div>
+    <div class="sb-item"><span class="sb-label" id="sbLevelLabel">Level</span><span class="sb-value" id="sbLevel">1/30</span></div>
+    <div class="sb-item"><span class="sb-label" id="sbScoreLabel">Score</span><span class="sb-value" id="sbScore">0</span></div>
+    <div class="sb-item"><span class="sb-label" id="sbCoinsLabel">Coins</span><span class="sb-value coins" id="sbCoins">100</span></div>
   </div>
 
   <div class="sticker" id="sticker">
@@ -198,18 +209,18 @@
 
   <div class="hints">
     <button class="hint" id="hint1">
-      <span class="h-icon">🧭</span><span class="h-name">Position &amp; Country</span><span class="h-cost">● 15</span>
+      <span class="h-icon">🧭</span><span class="h-name" id="hint1Label">Position &amp; Country</span><span class="h-cost">● 15</span>
     </button>
     <button class="hint" id="hint2">
-      <span class="h-icon">📋</span><span class="h-name">Career Clubs</span><span class="h-cost">● 30</span>
+      <span class="h-icon">📋</span><span class="h-name" id="hint2Label">Career Clubs</span><span class="h-cost">● 30</span>
     </button>
     <button class="hint" id="hint3">
-      <span class="h-icon">💡</span><span class="h-name">Reveal Name</span><span class="h-cost">● 60</span>
+      <span class="h-icon">💡</span><span class="h-name" id="hint3Label">Reveal Name</span><span class="h-cost">● 60</span>
     </button>
   </div>
 
   <div class="career" id="careerPanel">
-    <h3>Senior Career</h3>
+    <h3 id="careerTitle">Senior Career</h3>
     <table id="careerTable"></table>
   </div>
 
@@ -229,7 +240,7 @@
 
 <div class="overlay" id="packCompleteOverlay">
   <div class="modal">
-    <h2>Pack Complete! 🏆</h2>
+    <h2 id="packCompleteTitle">Pack Complete! 🏆</h2>
     <div class="m-name" id="pcPackName"></div>
     <div class="m-rewards" id="pcStars"></div>
     <button class="btn-main" id="pcHomeBtn">Back to Packs</button>
