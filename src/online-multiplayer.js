@@ -1,8 +1,8 @@
 // Real cross-device multiplayer for exactly 2 players, using PeerJS
 // (WebRTC data channel, free public signaling broker — no account/server
 // needed). The host generates a short room code; the guest connects to it.
-// Game state (deck/turns) is agreed once at "start" and then only turn
-// RESULTS are sent over the wire, so both sides stay in lockstep.
+// Both players race the same target each round; the host is the sole
+// authority on who answered first (see reportAttempt/resolveRound).
 import { buildBankLetters, checkAnswer } from "./game.js";
 import { loadPhoto, prefetchPhotos } from "./photo.js";
 import { showScreen } from "./screens.js";
@@ -22,10 +22,13 @@ let myName = "";
 let peerName = "";
 let myPlayerIdx = 0; // 0 = host, 1 = guest
 
-let game = null; // {players:[{name,score}], deck:[player,...], turns:[{playerIdx,round}], turnIndex, rounds}
+let game = null; // {players:[{name,score}], deck:[player,...], roundIndex, rounds}
 let tiles = [];
 let slots = [];
 let locked = false;
+let roundDecided = false;
+let hostGaveUp = false;
+let guestGaveUp = false;
 
 function escapeHtml(s) {
   return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -171,8 +174,10 @@ function handleMessage(msg) {
     $("mpLobbyStatus").textContent = t("online.connectedTo", { name: peerName });
   } else if (msg.type === "start") {
     startFromNetwork(msg);
-  } else if (msg.type === "result") {
-    applyResult(msg.points, false);
+  } else if (msg.type === "attempt") {
+    handlePeerAttempt(msg.correct);
+  } else if (msg.type === "roundResult") {
+    applyRoundResult(msg.winnerIdx);
   } else if (msg.type === "quit") {
     alert(t("online.opponentLeft", { name: peerName || "Opponent" }));
     quitToHome();
@@ -183,65 +188,56 @@ function hostStart() {
   const packId = $("mpOnlinePackSelect").value;
   const pack = packs[packId];
   const rounds = Math.max(1, Math.min(20, parseInt($("mpOnlineRoundsInput").value, 10) || 5));
-  const totalTurns = 2 * rounds;
-  const deckIndices = buildDeckIndices(pack.players.length, totalTurns);
-  const turns = [];
-  for (let r = 0; r < rounds; r++) for (let p2 = 0; p2 < 2; p2++) turns.push({ playerIdx: p2, round: r + 1 });
+  const deckIndices = buildDeckIndices(pack.players.length, rounds);
   const names = [myName, peerName];
 
   conn.send({ type: "start", packId, rounds, deckIndices, names });
-  beginGame(packId, deckIndices, turns, names, rounds);
+  beginGame(packId, deckIndices, names, rounds);
 }
 
 function startFromNetwork(msg) {
-  const turns = [];
-  for (let r = 0; r < msg.rounds; r++) for (let p2 = 0; p2 < 2; p2++) turns.push({ playerIdx: p2, round: r + 1 });
-  beginGame(msg.packId, msg.deckIndices, turns, msg.names, msg.rounds);
+  beginGame(msg.packId, msg.deckIndices, msg.names, msg.rounds);
 }
 
-function beginGame(packId, deckIndices, turns, names, rounds) {
+function beginGame(packId, deckIndices, names, rounds) {
   const pack = packs[packId];
   game = {
     players: names.map((n) => ({ name: n, score: 0 })),
     deck: deckIndices.map((i) => pack.players[i]),
-    turns,
-    turnIndex: 0,
+    roundIndex: 0,
     rounds,
   };
   showScreen("screenMpoGame");
-  buildTurn();
+  buildRound();
 }
 
 /* ============================================================
    IN-GAME
 ============================================================ */
-function isMyTurn() {
-  return game.turns[game.turnIndex].playerIdx === myPlayerIdx;
-}
-
 function renderScoreboard() {
   const el = $("mpoScoreboard");
   el.innerHTML = game.players
-    .map((p, i) => {
-      const active = i === game.turns[game.turnIndex].playerIdx;
+    .map((p) => {
       return (
-        '<div class="mp-score-chip' + (active ? " active" : "") + '">' +
+        '<div class="mp-score-chip">' +
         '<span class="mp-score-name">' + escapeHtml(p.name) + "</span>" +
         '<span class="mp-score-value">' + p.score + "</span>" +
         "</div>"
       );
     })
     .join("");
-  $("mpoRoundLabel").textContent = t("mp.round", { round: game.turns[game.turnIndex].round, total: game.rounds });
+  $("mpoRoundLabel").textContent = t("mp.round", { round: game.roundIndex + 1, total: game.rounds });
 }
 
-function buildTurn() {
-  locked = !isMyTurn();
-  const p = game.deck[game.turnIndex];
+function buildRound() {
+  locked = false;
+  roundDecided = false;
+  hostGaveUp = false;
+  guestGaveUp = false;
+  const p = game.deck[game.roundIndex];
   $("mpoSticker").classList.remove("win");
-  $("mpoStickerNum").textContent = "#" + (game.turnIndex + 1);
-  const turnPlayerName = game.players[game.turns[game.turnIndex].playerIdx].name;
-  $("mpoTurnBanner").textContent = isMyTurn() ? t("online.yourTurn") : t("mp.turnOf", { name: turnPlayerName });
+  $("mpoStickerNum").textContent = "#" + (game.roundIndex + 1);
+  $("mpoTurnBanner").textContent = t("mp.raceBanner");
   $("mpoAnswer").classList.remove("correct", "wrong");
 
   const answerEl = $("mpoAnswer");
@@ -274,10 +270,8 @@ function buildTurn() {
     return tileObj;
   });
 
-  $("mpoSkipBtn").style.display = isMyTurn() ? "" : "none";
-
   loadPhoto(p, $("mpoPhoto"));
-  prefetchPhotos(game.deck.slice(game.turnIndex + 1, game.turnIndex + 3));
+  prefetchPhotos(game.deck.slice(game.roundIndex + 1, game.roundIndex + 3));
   renderScoreboard();
 }
 
@@ -305,9 +299,11 @@ function removeFromSlot(slot) {
 }
 
 function checkNow() {
+  if (locked) return;
   const guess = slots.map((s) => tiles[s.tileIdx].char).join("");
-  if (checkAnswer(guess, game.deck[game.turnIndex].answer)) {
-    applyResult(MP_POINTS, true);
+  if (checkAnswer(guess, game.deck[game.roundIndex].answer)) {
+    locked = true;
+    reportAttempt(true);
   } else {
     $("mpoAnswer").classList.add("wrong");
     setTimeout(() => $("mpoAnswer").classList.remove("wrong"), 600);
@@ -316,27 +312,74 @@ function checkNow() {
 
 function skipTurn() {
   if (locked) return;
-  applyResult(0, true);
+  locked = true;
+  reportAttempt(false);
 }
 
-function applyResult(points, sendToNet) {
+// Host is the single authority that decides who won a round — its own
+// correctness check has zero network latency, so ties resolve in the
+// host's favor; acceptable for a casual 2-player game with no server.
+function reportAttempt(correct) {
+  if (myPlayerIdx === 0) {
+    if (correct) {
+      resolveRound(0);
+    } else {
+      hostGaveUp = true;
+      if (guestGaveUp) resolveRound(null);
+    }
+  } else if (conn) {
+    conn.send({ type: "attempt", correct });
+  }
+}
+
+function handlePeerAttempt(correct) {
+  if (correct) {
+    if (!roundDecided) resolveRound(1);
+  } else {
+    guestGaveUp = true;
+    if (hostGaveUp) resolveRound(null);
+  }
+}
+
+function resolveRound(winnerIdx) {
+  if (roundDecided) return;
+  roundDecided = true;
+  if (winnerIdx !== null) game.players[winnerIdx].score += MP_POINTS;
+  if (conn) conn.send({ type: "roundResult", winnerIdx });
+  showRoundOutcome(winnerIdx);
+}
+
+function applyRoundResult(winnerIdx) {
+  if (roundDecided) return;
+  roundDecided = true;
+  if (winnerIdx !== null) game.players[winnerIdx].score += MP_POINTS;
+  showRoundOutcome(winnerIdx);
+}
+
+function showRoundOutcome(winnerIdx) {
   locked = true;
-  const idx = game.turns[game.turnIndex].playerIdx;
-  game.players[idx].score += points;
-  $("mpoAnswer").classList.add(points > 0 ? "correct" : "wrong");
+  if (winnerIdx === null) {
+    $("mpoAnswer").classList.add("wrong");
+    $("mpoTurnBanner").textContent = t("online.roundSkipped");
+  } else if (winnerIdx === myPlayerIdx) {
+    $("mpoAnswer").classList.add("correct");
+    $("mpoTurnBanner").textContent = t("online.youGotIt");
+  } else {
+    $("mpoAnswer").classList.add("wrong");
+    $("mpoTurnBanner").textContent = t("online.opponentGotIt", { name: game.players[winnerIdx].name });
+  }
   $("mpoSticker").classList.add("win");
   renderScoreboard();
-  if (sendToNet && conn) conn.send({ type: "result", points });
-  setTimeout(advanceTurn, 700);
+  setTimeout(advanceRound, 900);
 }
 
-function advanceTurn() {
-  game.turnIndex += 1;
-  if (game.turnIndex >= game.turns.length) {
+function advanceRound() {
+  game.roundIndex += 1;
+  if (game.roundIndex >= game.rounds) {
     showResults();
     return;
   }
-  buildTurn();
+  buildRound();
 }
 
 function showResults() {

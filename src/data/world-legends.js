@@ -1370,6 +1370,1363 @@ export default {
         ["1989–1992", "Karlsruher SC"],
         ["1992–2007", "Bayern Munich"]
       ]
+    },
+    {
+      answer: "DI STEFANO",
+      wiki: "Alfredo Di Stéfano",
+      pos: "Forward",
+      country: "🇦🇷 Argentina",
+      career: [
+        ["1945–1949", "River Plate"],
+        ["1949–1953", "Millonarios"],
+        ["1953–1964", "Real Madrid"],
+        ["1964–1966", "Espanyol"]
+      ]
+    },
+    {
+      answer: "MULLER",
+      wiki: "Gerd Müller",
+      pos: "Forward",
+      country: "🇩🇪 Germany",
+      career: [
+        ["1963–1964", "TSV 1861 Nördlingen"],
+        ["1964–1979", "Bayern Munich"],
+        ["1979–1981", "Fort Lauderdale Strikers"]
+      ]
+    },
+    {
+      answer: "YASHIN",
+      wiki: "Lev Yashin",
+      pos: "Goalkeeper",
+      country: "🇷🇺 Soviet Union",
+      career: [["1950–1970", "Dynamo Moscow"]]
+    },
+    {
+      answer: "BOBBY CHARLTON",
+      wiki: "Bobby Charlton",
+      pos: "Midfielder",
+      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+      career: [
+        ["1956–1973", "Manchester United"],
+        ["1974–1975", "Preston North End"]
+      ]
+    },
+    {
+      answer: "MOORE",
+      wiki: "Bobby Moore",
+      pos: "Defender",
+      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+      career: [
+        ["1958–1974", "West Ham United"],
+        ["1974–1977", "Fulham"]
+      ]
+    },
+    {
+      answer: "BANKS",
+      wiki: "Gordon Banks",
+      pos: "Goalkeeper",
+      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+      career: [
+        ["1958–1959", "Chesterfield"],
+        ["1959–1967", "Leicester City"],
+        ["1967–1973", "Stoke City"],
+        ["1977–1978", "Fort Lauderdale Strikers"]
+      ]
+    },
+    {
+      answer: "HURST",
+      wiki: "Geoff Hurst",
+      pos: "Forward",
+      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+      career: [
+        ["1958–1972", "West Ham United"],
+        ["1972–1975", "Stoke City"],
+        ["1975–1976", "West Bromwich Albion"],
+        ["1976", "Seattle Sounders"]
+      ]
+    },
+    {
+      answer: "GULLIT",
+      wiki: "Ruud Gullit",
+      pos: "Midfielder",
+      country: "🇳🇱 Netherlands",
+      career: [
+        ["1979–1982", "HFC Haarlem"],
+        ["1982–1985", "Feyenoord"],
+        ["1985–1987", "PSV Eindhoven"],
+        ["1987–1993", "AC Milan"],
+        ["1993–1995", "Sampdoria"],
+        ["1995–1998", "Chelsea"]
+      ]
+    },
+    {
+      answer: "RONALDINHO",
+      wiki: "Ronaldinho",
+      pos: "Forward",
+      country: "🇧🇷 Brazil",
+      career: [
+        ["1998–2001", "Grêmio"],
+        ["2001–2003", "Paris Saint-Germain"],
+        ["2003–2008", "Barcelona"],
+        ["2008–2011", "AC Milan"],
+        ["2011–2012", "Flamengo"],
+        ["2012–2014", "Atlético Mineiro"],
+        ["2014–2015", "Querétaro"],
+        ["2015", "Fluminense"]
+      ]
+    },
+    {
+      answer: "RIJKAARD",
+      wiki: "Frank Rijkaard",
+      pos: "Midfielder",
+      country: "🇳🇱 Netherlands",
+      career: [
+        ["1980–1987", "Ajax"],
+        ["1987–1988", "Real Zaragoza"],
+        ["1988–1993", "AC Milan"],
+        ["1993–1995", "Ajax"]
+      ]
+    },
+    {
+      answer: "DALGLISH",
+      wiki: "Kenny Dalglish",
+      pos: "Forward",
+      country: "🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland",
+      career: [
+        ["1969–1977", "Celtic"],
+        ["1977–1990", "Liverpool"]
+      ]
+    },
+    {
+      answer: "LAW",
+      wiki: "Denis Law",
+      pos: "Forward",
+      country: "🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland",
+      career: [
+        ["1956–1960", "Huddersfield Town"],
+        ["1960–1961", "Manchester City"],
+        ["1961–1962", "Torino"],
+        ["1962–1973", "Manchester United"],
+        ["1973–1974", "Manchester City"]
+      ]
+    },
+    {
+      answer: "RUSH",
+      wiki: "Ian Rush",
+      pos: "Forward",
+      country: "🇬🇧 Wales",
+      career: [
+        ["1980–1987", "Liverpool"],
+        ["1987–1988", "Juventus"],
+        ["1988–1996", "Liverpool"],
+        ["1996–1997", "Leeds United"],
+        ["1997–1998", "Newcastle United"],
+        ["1998–1999", "Wrexham"]
+      ]
+    },
+    {
+      answer: "KEANE",
+      wiki: "Roy Keane",
+      pos: "Midfielder",
+      country: "🇮🇪 Republic of Ireland",
+      career: [
+        ["1990–1993", "Nottingham Forest"],
+        ["1993–2005", "Manchester United"],
+        ["2005–2006", "Celtic"]
+      ]
+    },
+    {
+      answer: "GASCOIGNE",
+      wiki: "Paul Gascoigne",
+      pos: "Midfielder",
+      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+      career: [
+        ["1985–1988", "Newcastle United"],
+        ["1988–1992", "Tottenham Hotspur"],
+        ["1992–1995", "Lazio"],
+        ["1995–1998", "Rangers"],
+        ["1998–2000", "Middlesbrough"],
+        ["2000–2002", "Everton"]
+      ]
+    },
+    {
+      answer: "SHILTON",
+      wiki: "Peter Shilton",
+      pos: "Goalkeeper",
+      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+      career: [
+        ["1966–1974", "Leicester City"],
+        ["1974–1977", "Stoke City"],
+        ["1977–1982", "Nottingham Forest"],
+        ["1982–1987", "Southampton"],
+        ["1987–1992", "Derby County"],
+        ["1992–1995", "Plymouth Argyle"]
+      ]
+    },
+    {
+      answer: "LINEKER",
+      wiki: "Gary Lineker",
+      pos: "Forward",
+      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+      career: [
+        ["1978–1985", "Leicester City"],
+        ["1985–1986", "Everton"],
+        ["1986–1989", "Barcelona"],
+        ["1989–1992", "Tottenham Hotspur"],
+        ["1992–1994", "Nagoya Grampus Eight"]
+      ]
+    },
+    {
+      answer: "ROONEY",
+      wiki: "Wayne Rooney",
+      pos: "Forward",
+      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+      career: [
+        ["2002–2004", "Everton"],
+        ["2004–2017", "Manchester United"],
+        ["2017–2018", "Everton"],
+        ["2018–2019", "D.C. United"],
+        ["2020–2021", "Derby County"]
+      ]
+    },
+    {
+      answer: "TERRY",
+      wiki: "John Terry",
+      pos: "Defender",
+      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+      career: [
+        ["1998–2017", "Chelsea"],
+        ["2017–2018", "Aston Villa"]
+      ]
+    },
+    {
+      answer: "FERDINAND",
+      wiki: "Rio Ferdinand",
+      pos: "Defender",
+      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+      career: [
+        ["1995–2000", "West Ham United"],
+        ["2000–2002", "Leeds United"],
+        ["2002–2014", "Manchester United"],
+        ["2014–2015", "Queens Park Rangers"]
+      ]
+    },
+    {
+      answer: "COLE",
+      wiki: "Ashley Cole",
+      pos: "Defender",
+      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+      career: [
+        ["1999–2006", "Arsenal"],
+        ["2006–2014", "Chelsea"],
+        ["2014–2016", "Roma"],
+        ["2016–2018", "LA Galaxy"]
+      ]
+    },
+    {
+      answer: "SCHOLES",
+      wiki: "Paul Scholes",
+      pos: "Midfielder",
+      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+      career: [["1993–2013", "Manchester United"]]
+    },
+    {
+      answer: "NEVILLE",
+      wiki: "Gary Neville",
+      pos: "Defender",
+      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+      career: [["1992–2011", "Manchester United"]]
+    },
+    {
+      answer: "LAUDRUP",
+      wiki: "Michael Laudrup",
+      pos: "Midfielder",
+      country: "🇩🇰 Denmark",
+      career: [
+        ["1982–1983", "Brøndby"],
+        ["1983–1985", "Lazio"],
+        ["1985–1989", "Juventus"],
+        ["1989–1994", "Barcelona"],
+        ["1994–1996", "Real Madrid"],
+        ["1996–1997", "Vissel Kobe"],
+        ["1997–1998", "Ajax"]
+      ]
+    },
+    {
+      answer: "BOBAN",
+      wiki: "Zvonimir Boban",
+      pos: "Midfielder",
+      country: "🇭🇷 Croatia",
+      career: [
+        ["1985–1991", "Dinamo Zagreb"],
+        ["1991–2001", "AC Milan"]
+      ]
+    },
+    {
+      answer: "SUKER",
+      wiki: "Davor Šuker",
+      pos: "Forward",
+      country: "🇭🇷 Croatia",
+      career: [
+        ["1984–1989", "NK Osijek"],
+        ["1989–1991", "Dinamo Zagreb"],
+        ["1991–1996", "Sevilla"],
+        ["1996–1999", "Real Madrid"],
+        ["1999–2000", "Arsenal"],
+        ["2000–2001", "West Ham United"],
+        ["2001–2003", "1860 Munich"]
+      ]
+    },
+    {
+      answer: "SAVICEVIC",
+      wiki: "Dejan Savićević",
+      pos: "Forward",
+      country: "🇲🇪 Montenegro",
+      career: [
+        ["1983–1988", "Budućnost"],
+        ["1988–1992", "Red Star Belgrade"],
+        ["1992–1998", "AC Milan"],
+        ["1999–2001", "Rapid Wien"]
+      ]
+    },
+    {
+      answer: "MIJATOVIC",
+      wiki: "Predrag Mijatović",
+      pos: "Forward",
+      country: "🇲🇪 Montenegro",
+      career: [
+        ["1987–1989", "Budućnost Titograd"],
+        ["1990–1993", "Partizan"],
+        ["1993–1996", "Valencia"],
+        ["1996–1999", "Real Madrid"],
+        ["1999–2002", "Fiorentina"],
+        ["2002–2003", "Levante"]
+      ]
+    },
+    {
+      answer: "PROSINECKI",
+      wiki: "Robert Prosinečki",
+      pos: "Midfielder",
+      country: "🇭🇷 Croatia",
+      career: [
+        ["1986–1987", "Dinamo Zagreb"],
+        ["1987–1991", "Red Star Belgrade"],
+        ["1991–1995", "Real Madrid"],
+        ["1995–1996", "Barcelona"],
+        ["1996–1997", "Sevilla"],
+        ["1997–2000", "Croatia Zagreb"],
+        ["2000–2001", "Standard Liège"],
+        ["2001–2002", "Portsmouth"]
+      ]
+    },
+    {
+      answer: "BONIEK",
+      wiki: "Zbigniew Boniek",
+      pos: "Forward",
+      country: "🇵🇱 Poland",
+      career: [
+        ["1973–1975", "Zawisza Bydgoszcz"],
+        ["1975–1982", "Widzew Łódź"],
+        ["1982–1985", "Juventus"],
+        ["1985–1988", "Roma"]
+      ]
+    },
+    {
+      answer: "SEELER",
+      wiki: "Uwe Seeler",
+      pos: "Forward",
+      country: "🇩🇪 Germany",
+      career: [["1953–1972", "Hamburger SV"]]
+    },
+    {
+      answer: "MAIER",
+      wiki: "Sepp Maier",
+      pos: "Goalkeeper",
+      country: "🇩🇪 Germany",
+      career: [["1962–1980", "Bayern Munich"]]
+    },
+    {
+      answer: "BREITNER",
+      wiki: "Paul Breitner",
+      pos: "Defender",
+      country: "🇩🇪 Germany",
+      career: [
+        ["1970–1974", "Bayern Munich"],
+        ["1974–1977", "Real Madrid"],
+        ["1977–1978", "Eintracht Braunschweig"],
+        ["1978–1983", "Bayern Munich"]
+      ]
+    },
+    {
+      answer: "KOEMAN",
+      wiki: "Ronald Koeman",
+      pos: "Defender",
+      country: "🇳🇱 Netherlands",
+      career: [
+        ["1980–1983", "Groningen"],
+        ["1983–1986", "Ajax"],
+        ["1986–1989", "PSV Eindhoven"],
+        ["1989–1995", "Barcelona"],
+        ["1995–1997", "Feyenoord"]
+      ]
+    },
+    {
+      answer: "KEMPES",
+      wiki: "Mario Kempes",
+      pos: "Forward",
+      country: "🇦🇷 Argentina",
+      career: [
+        ["1974–1976", "Rosario Central"],
+        ["1976–1981", "Valencia"],
+        ["1981–1982", "River Plate"],
+        ["1982–1984", "Valencia"],
+        ["1984–1986", "Hércules"]
+      ]
+    },
+    {
+      answer: "PASSARELLA",
+      wiki: "Daniel Passarella",
+      pos: "Defender",
+      country: "🇦🇷 Argentina",
+      career: [
+        ["1973–1982", "River Plate"],
+        ["1982–1986", "Fiorentina"],
+        ["1986–1988", "Inter Milan"],
+        ["1988–1989", "River Plate"]
+      ]
+    },
+    {
+      answer: "REDONDO",
+      wiki: "Fernando Redondo",
+      pos: "Midfielder",
+      country: "🇦🇷 Argentina",
+      career: [
+        ["1985–1990", "Argentinos Juniors"],
+        ["1990–1994", "Tenerife"],
+        ["1994–2000", "Real Madrid"],
+        ["2000–2004", "AC Milan"]
+      ]
+    },
+    {
+      answer: "RIQUELME",
+      wiki: "Juan Román Riquelme",
+      pos: "Midfielder",
+      country: "🇦🇷 Argentina",
+      career: [
+        ["1996–2002", "Boca Juniors"],
+        ["2002–2003", "Barcelona"],
+        ["2003–2007", "Villarreal"],
+        ["2007–2014", "Boca Juniors"],
+        ["2014–2015", "Argentinos Juniors"]
+      ]
+    },
+    {
+      answer: "CRESPO",
+      wiki: "Hernán Crespo",
+      pos: "Forward",
+      country: "🇦🇷 Argentina",
+      career: [
+        ["1993–1996", "River Plate"],
+        ["1996–2000", "Parma"],
+        ["2000–2002", "Lazio"],
+        ["2002–2003", "Inter Milan"],
+        ["2003–2008", "Chelsea"],
+        ["2008–2009", "Inter Milan"],
+        ["2009–2010", "Genoa"],
+        ["2010–2012", "Parma"]
+      ]
+    },
+    {
+      answer: "JAIRZINHO",
+      wiki: "Jairzinho",
+      pos: "Forward",
+      country: "🇧🇷 Brazil",
+      career: [
+        ["1962–1974", "Botafogo"],
+        ["1974–1975", "Marseille"],
+        ["1976", "Cruzeiro"],
+        ["1977", "Portuguesa"]
+      ]
+    },
+    {
+      answer: "RIVELINO",
+      wiki: "Rivellino",
+      pos: "Midfielder",
+      country: "🇧🇷 Brazil",
+      career: [
+        ["1965–1974", "Corinthians"],
+        ["1975–1978", "Fluminense"],
+        ["1978–1981", "Al-Hilal"]
+      ]
+    },
+    {
+      answer: "DJALMA SANTOS",
+      wiki: "Djalma Santos",
+      pos: "Defender",
+      country: "🇧🇷 Brazil",
+      career: [
+        ["1948–1959", "Portuguesa"],
+        ["1959–1968", "Palmeiras"],
+        ["1969–1970", "Atlético Paranaense"]
+      ]
+    },
+    {
+      answer: "NILTON SANTOS",
+      wiki: "Nílton Santos",
+      pos: "Defender",
+      country: "🇧🇷 Brazil",
+      career: [["1948–1964", "Botafogo"]]
+    },
+    {
+      answer: "CARECA",
+      wiki: "Careca",
+      pos: "Forward",
+      country: "🇧🇷 Brazil",
+      career: [
+        ["1978–1982", "Guarani"],
+        ["1983–1987", "São Paulo"],
+        ["1987–1993", "Napoli"],
+        ["1993–1996", "Kashiwa Reysol"]
+      ]
+    },
+    {
+      answer: "TAFFAREL",
+      wiki: "Taffarel",
+      pos: "Goalkeeper",
+      country: "🇧🇷 Brazil",
+      career: [
+        ["1985–1990", "Internacional"],
+        ["1990–1993", "Parma"],
+        ["1993–1994", "Reggiana"],
+        ["1995–1998", "Atlético Mineiro"],
+        ["1998–2001", "Galatasaray"],
+        ["2001–2003", "Parma"]
+      ]
+    },
+    {
+      answer: "FALCAO",
+      wiki: "Paulo Roberto Falcão",
+      pos: "Midfielder",
+      country: "🇧🇷 Brazil",
+      career: [
+        ["1972–1980", "Internacional"],
+        ["1980–1985", "Roma"],
+        ["1985–1986", "São Paulo"]
+      ]
+    },
+    {
+      answer: "LEONIDAS",
+      wiki: "Leônidas da Silva",
+      pos: "Forward",
+      country: "🇧🇷 Brazil",
+      career: [
+        ["1931–1932", "Bonsucesso"],
+        ["1933", "Peñarol"],
+        ["1934", "Vasco da Gama"],
+        ["1935–1936", "Botafogo"],
+        ["1936–1942", "Flamengo"],
+        ["1943–1950", "São Paulo"]
+      ]
+    },
+    {
+      answer: "ZOFF",
+      wiki: "Dino Zoff",
+      pos: "Goalkeeper",
+      country: "🇮🇹 Italy",
+      career: [
+        ["1961–1963", "Udinese"],
+        ["1963–1967", "Mantova"],
+        ["1967–1972", "Napoli"],
+        ["1972–1983", "Juventus"]
+      ]
+    },
+    {
+      answer: "ROSSI",
+      wiki: "Paolo Rossi",
+      pos: "Forward",
+      country: "🇮🇹 Italy",
+      career: [
+        ["1976–1980", "Vicenza"],
+        ["1981–1985", "Juventus"],
+        ["1985–1986", "AC Milan"],
+        ["1986–1987", "Hellas Verona"]
+      ]
+    },
+    {
+      answer: "ADRIANO",
+      wiki: "Adriano (footballer, born 1982)",
+      pos: "Forward",
+      country: "🇧🇷 Brazil",
+      career: [
+        ["2000–2001", "Flamengo"],
+        ["2001–2002", "Inter Milan"],
+        ["2002–2004", "Parma"],
+        ["2004–2009", "Inter Milan"],
+        ["2009–2010", "Flamengo"]
+      ]
+    },
+    {
+      answer: "RIVA",
+      wiki: "Gigi Riva",
+      pos: "Forward",
+      country: "🇮🇹 Italy",
+      career: [
+        ["1962–1963", "Legnano"],
+        ["1963–1976", "Cagliari"]
+      ]
+    },
+    {
+      answer: "MAZZOLA",
+      wiki: "Sandro Mazzola",
+      pos: "Forward",
+      country: "🇮🇹 Italy",
+      career: [["1960–1977", "Inter Milan"]]
+    },
+    {
+      answer: "FACCHETTI",
+      wiki: "Giacinto Facchetti",
+      pos: "Defender",
+      country: "🇮🇹 Italy",
+      career: [["1960–1978", "Inter Milan"]]
+    },
+    {
+      answer: "MEAZZA",
+      wiki: "Giuseppe Meazza",
+      pos: "Forward",
+      country: "🇮🇹 Italy",
+      career: [
+        ["1927–1940", "Inter Milan"],
+        ["1940–1942", "AC Milan"],
+        ["1942–1943", "Juventus"]
+      ]
+    },
+    {
+      answer: "BUTRAGUENO",
+      wiki: "Emilio Butragueño",
+      pos: "Forward",
+      country: "🇪🇸 Spain",
+      career: [
+        ["1984–1995", "Real Madrid"],
+        ["1995–1998", "Atlético Celaya"]
+      ]
+    },
+    {
+      answer: "ZUBIZARRETA",
+      wiki: "Andoni Zubizarreta",
+      pos: "Goalkeeper",
+      country: "🇪🇸 Spain",
+      career: [
+        ["1981–1986", "Athletic Bilbao"],
+        ["1986–1994", "Barcelona"],
+        ["1994–1998", "Valencia"]
+      ]
+    },
+    {
+      answer: "SUKUR",
+      wiki: "Hakan Şükür",
+      pos: "Forward",
+      country: "🇹🇷 Turkey",
+      career: [
+        ["1990–1992", "Bursaspor"],
+        ["1992–2000", "Galatasaray"],
+        ["2000–2002", "Inter Milan"],
+        ["2002–2003", "Blackburn Rovers"],
+        ["2003–2008", "Galatasaray"]
+      ]
+    },
+    {
+      answer: "DAEI",
+      wiki: "Ali Daei",
+      pos: "Forward",
+      country: "🇮🇷 Iran",
+      career: [
+        ["1990–1994", "Bank Tejarat"],
+        ["1994–1996", "Persepolis"],
+        ["1996–1997", "Al Sadd"],
+        ["1997–1998", "Arminia Bielefeld"],
+        ["1998–1999", "Bayern Munich"],
+        ["1999–2002", "Hertha BSC"],
+        ["2002–2003", "Al Shabab"]
+      ]
+    },
+    {
+      answer: "CHA BUM KUN",
+      wiki: "Cha Bum-kun",
+      pos: "Forward",
+      country: "🇰🇷 South Korea",
+      career: [
+        ["1979–1983", "Eintracht Frankfurt"],
+        ["1983–1989", "Bayer Leverkusen"]
+      ]
+    },
+    {
+      answer: "CHILAVERT",
+      wiki: "José Luis Chilavert",
+      pos: "Goalkeeper",
+      country: "🇵🇾 Paraguay",
+      career: [
+        ["1985–1988", "San Lorenzo"],
+        ["1988–1991", "Real Zaragoza"],
+        ["1991–2000", "Vélez Sarsfield"],
+        ["2000–2002", "Strasbourg"],
+        ["2002–2003", "Peñarol"],
+        ["2003–2004", "Vélez Sarsfield"]
+      ]
+    },
+    {
+      answer: "VALDERRAMA",
+      wiki: "Carlos Valderrama",
+      pos: "Midfielder",
+      country: "🇨🇴 Colombia",
+      career: [
+        ["1980–1984", "Unión Magdalena"],
+        ["1984–1985", "Millonarios"],
+        ["1985–1987", "Deportivo Cali"],
+        ["1987–1991", "Montpellier"],
+        ["1991–1992", "Real Valladolid"],
+        ["1993–1995", "Atlético Junior"],
+        ["1995–1997", "Tampa Bay Mutiny"],
+        ["1997–1999", "Miami Fusion"],
+        ["1999–2001", "Tampa Bay Mutiny"],
+        ["2001–2002", "Colorado Rapids"]
+      ]
+    },
+    {
+      answer: "CUBILLAS",
+      wiki: "Teófilo Cubillas",
+      pos: "Midfielder",
+      country: "🇵🇪 Peru",
+      career: [
+        ["1966–1972", "Alianza Lima"],
+        ["1973", "FC Basel"],
+        ["1974–1977", "Porto"],
+        ["1977–1978", "Alianza Lima"],
+        ["1979–1983", "Fort Lauderdale Strikers"]
+      ]
+    },
+    {
+      answer: "ZAMORANO",
+      wiki: "Iván Zamorano",
+      pos: "Forward",
+      country: "🇨🇱 Chile",
+      career: [
+        ["1988–1990", "St. Gallen"],
+        ["1990–1992", "Sevilla"],
+        ["1992–1996", "Real Madrid"],
+        ["1996–2001", "Inter Milan"],
+        ["2001–2003", "América"]
+      ]
+    },
+    {
+      answer: "SALAS",
+      wiki: "Marcelo Salas",
+      pos: "Forward",
+      country: "🇨🇱 Chile",
+      career: [
+        ["1993–1996", "Universidad de Chile"],
+        ["1996–1998", "River Plate"],
+        ["1998–2001", "Lazio"],
+        ["2001–2003", "Juventus"],
+        ["2003–2005", "River Plate"],
+        ["2005–2008", "Universidad de Chile"]
+      ]
+    },
+    {
+      answer: "FIGUEROA",
+      wiki: "Elías Figueroa",
+      pos: "Defender",
+      country: "🇨🇱 Chile",
+      career: [
+        ["1964–1966", "Santiago Wanderers"],
+        ["1967–1972", "Peñarol"],
+        ["1972–1976", "Internacional"],
+        ["1977–1980", "Palestino"]
+      ]
+    },
+    {
+      answer: "HUGO SANCHEZ",
+      wiki: "Hugo Sánchez",
+      pos: "Forward",
+      country: "🇲🇽 Mexico",
+      career: [
+        ["1976–1981", "Pumas UNAM"],
+        ["1981–1985", "Atlético Madrid"],
+        ["1985–1992", "Real Madrid"],
+        ["1992–1993", "Club América"],
+        ["1993–1994", "Rayo Vallecano"],
+        ["1994–1995", "Atlante"]
+      ]
+    },
+    {
+      answer: "MARQUEZ",
+      wiki: "Rafael Márquez",
+      pos: "Defender",
+      country: "🇲🇽 Mexico",
+      career: [
+        ["1996–1999", "Atlas"],
+        ["1999–2003", "Monaco"],
+        ["2003–2010", "Barcelona"],
+        ["2010–2012", "New York Red Bulls"],
+        ["2012–2014", "León"],
+        ["2014–2015", "Hellas Verona"],
+        ["2016–2018", "Atlas"]
+      ]
+    },
+    {
+      answer: "BLANCO",
+      wiki: "Cuauhtémoc Blanco",
+      pos: "Forward",
+      country: "🇲🇽 Mexico",
+      career: [
+        ["1992–2007", "Club América"],
+        ["2007–2009", "Chicago Fire"],
+        ["2010", "Veracruz"],
+        ["2010–2011", "Irapuato"],
+        ["2011–2013", "Dorados de Sinaloa"],
+        ["2013–2014", "Lobos BUAP"],
+        ["2014–2015", "Club Puebla"]
+      ]
+    },
+    {
+      answer: "OKOCHA",
+      wiki: "Jay-Jay Okocha",
+      pos: "Midfielder",
+      country: "🇳🇬 Nigeria",
+      career: [
+        ["1990–1992", "Borussia Neunkirchen"],
+        ["1992–1996", "Eintracht Frankfurt"],
+        ["1996–1998", "Fenerbahçe"],
+        ["1998–2002", "Paris Saint-Germain"],
+        ["2002–2006", "Bolton Wanderers"],
+        ["2006–2007", "Qatar SC"],
+        ["2007–2008", "Hull City"]
+      ]
+    },
+    {
+      answer: "KANU",
+      wiki: "Nwankwo Kanu",
+      pos: "Forward",
+      country: "🇳🇬 Nigeria",
+      career: [
+        ["1993–1996", "Ajax"],
+        ["1996–1999", "Inter Milan"],
+        ["1999–2004", "Arsenal"],
+        ["2004–2006", "West Bromwich Albion"],
+        ["2006–2012", "Portsmouth"]
+      ]
+    },
+    {
+      answer: "DIOUF",
+      wiki: "El Hadji Diouf",
+      pos: "Forward",
+      country: "🇸🇳 Senegal",
+      career: [
+        ["1999–2000", "Rennes"],
+        ["2000–2002", "Lens"],
+        ["2002–2005", "Liverpool"],
+        ["2005–2008", "Bolton Wanderers"],
+        ["2008–2009", "Sunderland"],
+        ["2009–2011", "Blackburn Rovers"]
+      ]
+    },
+    {
+      answer: "MADJER",
+      wiki: "Rabah Madjer",
+      pos: "Forward",
+      country: "🇩🇿 Algeria",
+      career: [
+        ["1978–1983", "NA Hussein Dey"],
+        ["1983–1985", "Racing Paris"],
+        ["1985–1991", "Porto"],
+        ["1991–1992", "Qatar SC"]
+      ]
+    },
+    {
+      answer: "ABOUTRIKA",
+      wiki: "Mohamed Aboutrika",
+      pos: "Midfielder",
+      country: "🇪🇬 Egypt",
+      career: [
+        ["1997–2003", "Tersana"],
+        ["2004–2013", "Al Ahly"]
+      ]
+    },
+    {
+      answer: "FRANCESCOLI",
+      wiki: "Enzo Francescoli",
+      pos: "Midfielder",
+      country: "🇺🇾 Uruguay",
+      career: [
+        ["1980–1982", "Montevideo Wanderers"],
+        ["1983–1986", "River Plate"],
+        ["1986–1989", "Racing Paris"],
+        ["1989–1990", "Marseille"],
+        ["1990–1993", "Cagliari"],
+        ["1993–1994", "Torino"],
+        ["1994–1998", "River Plate"]
+      ]
+    },
+    {
+      answer: "ELKJAER",
+      wiki: "Preben Elkjær",
+      pos: "Forward",
+      country: "🇩🇰 Denmark",
+      career: [
+        ["1976–1978", "1. FC Köln"],
+        ["1978–1984", "Lokeren"],
+        ["1984–1988", "Hellas Verona"],
+        ["1988–1990", "Vejle Boldklub"]
+      ]
+    },
+    {
+      answer: "CEULEMANS",
+      wiki: "Jan Ceulemans",
+      pos: "Midfielder",
+      country: "🇧🇪 Belgium",
+      career: [
+        ["1974–1978", "Lierse"],
+        ["1978–1992", "Club Brugge"]
+      ]
+    },
+    {
+      answer: "SCIFO",
+      wiki: "Enzo Scifo",
+      pos: "Midfielder",
+      country: "🇧🇪 Belgium",
+      career: [
+        ["1983–1987", "Anderlecht"],
+        ["1987–1988", "Inter Milan"],
+        ["1988–1989", "Bordeaux"],
+        ["1989–1991", "Auxerre"],
+        ["1991–1993", "Torino"],
+        ["1993–1997", "Monaco"],
+        ["1997–2000", "Anderlecht"]
+      ]
+    },
+    {
+      answer: "SINDELAR",
+      wiki: "Matthias Sindelar",
+      pos: "Forward",
+      country: "🇦🇹 Austria",
+      career: [
+        ["1921–1924", "Hertha Vienna"],
+        ["1924–1939", "Austria Wien"]
+      ]
+    },
+    {
+      answer: "PROHASKA",
+      wiki: "Herbert Prohaska",
+      pos: "Midfielder",
+      country: "🇦🇹 Austria",
+      career: [
+        ["1972–1980", "Austria Wien"],
+        ["1980–1982", "Inter Milan"],
+        ["1982–1983", "Roma"],
+        ["1983–1989", "Austria Wien"]
+      ]
+    },
+    {
+      answer: "PANENKA",
+      wiki: "Antonín Panenka",
+      pos: "Midfielder",
+      country: "🇨🇿 Czechoslovakia",
+      career: [
+        ["1967–1981", "Bohemians Prague"],
+        ["1981–1985", "Rapid Wien"]
+      ]
+    },
+    {
+      answer: "MASOPUST",
+      wiki: "Josef Masopust",
+      pos: "Midfielder",
+      country: "🇨🇿 Czechoslovakia",
+      career: [
+        ["1952–1968", "Dukla Prague"],
+        ["1968–1970", "Crossing Molenbeek"]
+      ]
+    },
+    {
+      answer: "DZAJIC",
+      wiki: "Dragan Džajić",
+      pos: "Forward",
+      country: "🇷🇸 Serbia",
+      career: [
+        ["1963–1975", "Red Star Belgrade"],
+        ["1975–1977", "Bastia"],
+        ["1977–1978", "Red Star Belgrade"]
+      ]
+    },
+    {
+      answer: "BLOKHIN",
+      wiki: "Oleg Blokhin",
+      pos: "Forward",
+      country: "🇺🇦 Ukraine",
+      career: [
+        ["1969–1988", "Dynamo Kyiv"],
+        ["1988–1989", "Vorwärts Steyr"],
+        ["1989–1990", "Aris Limassol"]
+      ]
+    },
+    {
+      answer: "BELANOV",
+      wiki: "Igor Belanov",
+      pos: "Forward",
+      country: "🇺🇦 Ukraine",
+      career: [
+        ["1981–1985", "Chornomorets Odesa"],
+        ["1985–1989", "Dynamo Kyiv"],
+        ["1989–1991", "Borussia Mönchengladbach"],
+        ["1991–1995", "Eintracht Braunschweig"]
+      ]
+    },
+    {
+      answer: "LATO",
+      wiki: "Grzegorz Lato",
+      pos: "Forward",
+      country: "🇵🇱 Poland",
+      career: [
+        ["1966–1980", "Stal Mielec"],
+        ["1980–1982", "Lokeren"],
+        ["1982–1984", "Atlante"]
+      ]
+    },
+    {
+      answer: "LUBANSKI",
+      wiki: "Włodzimierz Lubański",
+      pos: "Forward",
+      country: "🇵🇱 Poland",
+      career: [
+        ["1963–1975", "Górnik Zabrze"],
+        ["1975–1982", "Lokeren"],
+        ["1982–1983", "Valenciennes"],
+        ["1983–1985", "Stade Quimpérois"]
+      ]
+    },
+    {
+      answer: "TRESOR",
+      wiki: "Marius Trésor",
+      pos: "Defender",
+      country: "🇫🇷 France",
+      career: [
+        ["1969–1972", "AC Ajaccio"],
+        ["1972–1980", "Marseille"],
+        ["1980–1984", "Bordeaux"]
+      ]
+    },
+    {
+      answer: "SCARONE",
+      wiki: "Héctor Scarone",
+      pos: "Forward",
+      country: "🇺🇾 Uruguay",
+      career: [
+        ["1917–1931", "Nacional"],
+        ["1931–1932", "Inter Milan"],
+        ["1932–1934", "Palermo"],
+        ["1934–1939", "Nacional"]
+      ]
+    },
+    {
+      answer: "VARELA",
+      wiki: "Obdulio Varela",
+      pos: "Defender",
+      country: "🇺🇾 Uruguay",
+      career: [
+        ["1938–1943", "Montevideo Wanderers"],
+        ["1943–1955", "Peñarol"]
+      ]
+    },
+    {
+      answer: "GHIGGIA",
+      wiki: "Alcides Ghiggia",
+      pos: "Forward",
+      country: "🇺🇾 Uruguay",
+      career: [
+        ["1948–1953", "Peñarol"],
+        ["1954–1961", "Roma"],
+        ["1961–1962", "AC Milan"],
+        ["1963–1967", "Danubio"]
+      ]
+    },
+    {
+      answer: "LARSSON",
+      wiki: "Henrik Larsson",
+      pos: "Forward",
+      country: "🇸🇪 Sweden",
+      career: [
+        ["1992–1993", "Helsingborgs IF"],
+        ["1993–1997", "Feyenoord"],
+        ["1997–2004", "Celtic"],
+        ["2004–2006", "Barcelona"],
+        ["2006–2009", "Helsingborgs IF"]
+      ]
+    },
+    {
+      answer: "NORDAHL",
+      wiki: "Gunnar Nordahl",
+      pos: "Forward",
+      country: "🇸🇪 Sweden",
+      career: [
+        ["1944–1949", "IFK Norrköping"],
+        ["1949–1956", "AC Milan"],
+        ["1956–1958", "Roma"]
+      ]
+    },
+    {
+      answer: "JACK CHARLTON",
+      wiki: "Jack Charlton",
+      pos: "Defender",
+      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+      career: [["1952–1973", "Leeds United"]]
+    },
+    {
+      answer: "BROOKING",
+      wiki: "Trevor Brooking",
+      pos: "Midfielder",
+      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+      career: [["1966–1984", "West Ham United"]]
+    },
+    {
+      answer: "PUSKAS",
+      wiki: "Ferenc Puskás",
+      pos: "Forward",
+      country: "🇭🇺 Hungary",
+      career: [
+        ["1943–1956", "Budapest Honvéd"],
+        ["1958–1966", "Real Madrid"]
+      ]
+    },
+    {
+      answer: "MATTHEWS",
+      wiki: "Stanley Matthews",
+      pos: "Forward",
+      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+      career: [
+        ["1932–1947", "Stoke City"],
+        ["1947–1961", "Blackpool"],
+        ["1961–1965", "Stoke City"]
+      ]
+    },
+    {
+      answer: "KEEGAN",
+      wiki: "Kevin Keegan",
+      pos: "Forward",
+      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+      career: [
+        ["1968–1971", "Scunthorpe United"],
+        ["1971–1977", "Liverpool"],
+        ["1977–1980", "Hamburger SV"],
+        ["1980–1982", "Southampton"],
+        ["1982–1984", "Newcastle United"]
+      ]
+    },
+    {
+      answer: "JOHN CHARLES",
+      wiki: "John Charles",
+      pos: "Forward",
+      country: "🏴󠁧󠁢󠁷󠁬󠁳󠁿 Wales",
+      career: [
+        ["1949–1957", "Leeds United"],
+        ["1957–1962", "Juventus"],
+        ["1962", "Leeds United"],
+        ["1962–1963", "Roma"],
+        ["1963–1966", "Cardiff City"],
+        ["1966–1971", "Hereford United"]
+      ]
+    },
+    {
+      answer: "GENTO",
+      wiki: "Paco Gento",
+      pos: "Forward",
+      country: "🇪🇸 Spain",
+      career: [
+        ["1952–1953", "Racing Santander"],
+        ["1953–1971", "Real Madrid"]
+      ]
+    },
+    {
+      answer: "KUBALA",
+      wiki: "László Kubala",
+      pos: "Forward",
+      country: "🇪🇸 Spain",
+      career: [
+        ["1946–1949", "Ferencváros"],
+        ["1950–1961", "Barcelona"],
+        ["1961–1963", "Espanyol"],
+        ["1966–1967", "Zürich"]
+      ]
+    },
+    {
+      answer: "SIVORI",
+      wiki: "Omar Sívori",
+      pos: "Forward",
+      country: "🇦🇷 Argentina",
+      career: [
+        ["1954–1957", "River Plate"],
+        ["1957–1965", "Juventus"],
+        ["1965–1969", "Napoli"]
+      ]
+    },
+    {
+      answer: "SCHIAFFINO",
+      wiki: "Juan Alberto Schiaffino",
+      pos: "Forward",
+      country: "🇺🇾 Uruguay",
+      career: [
+        ["1943–1954", "Peñarol"],
+        ["1954–1960", "AC Milan"],
+        ["1960–1962", "Roma"]
+      ]
+    },
+    {
+      answer: "FILLOL",
+      wiki: "Ubaldo Fillol",
+      pos: "Goalkeeper",
+      country: "🇦🇷 Argentina",
+      career: [
+        ["1968–1971", "Quilmes"],
+        ["1971–1973", "Racing Club"],
+        ["1973–1983", "River Plate"],
+        ["1983–1984", "Argentinos Juniors"],
+        ["1984–1985", "Flamengo"],
+        ["1985–1986", "Atlético Madrid"],
+        ["1986–1989", "Racing Club"],
+        ["1989–1991", "Vélez Sarsfield"]
+      ]
+    },
+    {
+      answer: "ARDILES",
+      wiki: "Osvaldo Ardiles",
+      pos: "Midfielder",
+      country: "🇦🇷 Argentina",
+      career: [
+        ["1973", "Instituto"],
+        ["1974", "Belgrano"],
+        ["1975–1978", "Huracán"],
+        ["1978–1988", "Tottenham Hotspur"],
+        ["1988", "Blackburn Rovers"],
+        ["1988–1989", "Queens Park Rangers"],
+        ["1989", "Fort Lauderdale Strikers"],
+        ["1989–1991", "Swindon Town"]
+      ]
+    },
+    {
+      answer: "NASAZZI",
+      wiki: "José Nasazzi",
+      pos: "Defender",
+      country: "🇺🇾 Uruguay",
+      career: [
+        ["1922–1933", "Bella Vista"],
+        ["1933–1937", "Nacional"]
+      ]
+    },
+    {
+      answer: "ZAGALLO",
+      wiki: "Mário Zagallo",
+      pos: "Forward",
+      country: "🇧🇷 Brazil",
+      career: [
+        ["1951–1958", "Flamengo"],
+        ["1958–1965", "Botafogo"]
+      ]
+    },
+    {
+      answer: "DIDI",
+      wiki: "Didi (footballer, born 1928)",
+      pos: "Midfielder",
+      country: "🇧🇷 Brazil",
+      career: [
+        ["1947–1949", "Madureira"],
+        ["1949–1956", "Fluminense"],
+        ["1956–1959", "Botafogo"],
+        ["1959–1960", "Real Madrid"],
+        ["1960–1962", "Botafogo"],
+        ["1962–1964", "Sporting Cristal"],
+        ["1964–1965", "Botafogo"]
+      ]
+    },
+    {
+      answer: "BELLINI",
+      wiki: "Hilderaldo Bellini",
+      pos: "Defender",
+      country: "🇧🇷 Brazil",
+      career: [
+        ["1952–1962", "Vasco da Gama"],
+        ["1962–1967", "São Paulo"],
+        ["1968–1969", "Atlético Paranaense"]
+      ]
+    },
+    {
+      answer: "ZIZINHO",
+      wiki: "Zizinho",
+      pos: "Midfielder",
+      country: "🇧🇷 Brazil",
+      career: [
+        ["1939–1950", "Flamengo"],
+        ["1950–1957", "Bangu"],
+        ["1957–1960", "São Paulo"],
+        ["1961", "Audax Italiano"]
+      ]
+    },
+    {
+      answer: "YAYA TOURE",
+      wiki: "Yaya Touré",
+      pos: "Midfielder",
+      country: "🇨🇮 Ivory Coast",
+      career: [
+        ["2001–2003", "Beveren"],
+        ["2003–2005", "Metalurh Donetsk"],
+        ["2005–2006", "Olympiacos"],
+        ["2006–2007", "Monaco"],
+        ["2007–2010", "Barcelona"],
+        ["2010–2018", "Manchester City"],
+        ["2018", "Olympiacos"],
+        ["2019", "Qingdao Huanghai"]
+      ]
+    },
+    {
+      answer: "NKONO",
+      wiki: "Thomas N'Kono",
+      pos: "Goalkeeper",
+      country: "🇨🇲 Cameroon",
+      career: [
+        ["1974–1982", "Canon Yaoundé"],
+        ["1982–1990", "Espanyol"],
+        ["1994–1997", "Club Bolívar"]
+      ]
+    },
+    {
+      answer: "MIHAJLOVIC",
+      wiki: "Siniša Mihajlović",
+      pos: "Defender",
+      country: "🇷🇸 Serbia",
+      career: [
+        ["1986–1988", "Borovo"],
+        ["1988–1990", "Vojvodina"],
+        ["1991–1992", "Red Star Belgrade"],
+        ["1992–1994", "Roma"],
+        ["1994–1998", "Sampdoria"],
+        ["1998–2004", "Lazio"],
+        ["2004–2006", "Inter Milan"]
+      ]
+    },
+    {
+      answer: "ALBERT",
+      wiki: "Flórián Albert",
+      pos: "Forward",
+      country: "🇭🇺 Hungary",
+      career: [["1958–1974", "Ferencváros"]]
+    },
+    {
+      answer: "GROSICS",
+      wiki: "Gyula Grosics",
+      pos: "Goalkeeper",
+      country: "🇭🇺 Hungary",
+      career: [
+        ["1945–1947", "Dorogi Bányász"],
+        ["1947–1949", "MATEOSZ Budapest"],
+        ["1950–1956", "Budapest Honvéd"],
+        ["1956–1962", "Tatabánya Bányász"]
+      ]
     }
   ]
 };

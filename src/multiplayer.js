@@ -14,10 +14,11 @@ let onExit = null;
 
 let playerNames = ["", ""];
 
-let game = null; // { players:[{name,score}], deck:[player,...], turns:[{playerIdx}], turnIndex, packName }
+let game = null; // { players:[{name,score}], deck:[player,...], roundIndex, rounds, packName }
 let tiles = [];
 let slots = [];
 let locked = false;
+let awaitingWinner = false;
 
 /* ============================================================
    SETUP SCREEN
@@ -81,25 +82,18 @@ function startGame() {
   const pack = packs[packId];
   const rounds = Math.max(1, Math.min(20, parseInt($("mpRoundsInput").value, 10) || 5));
 
-  const totalTurns = names.length * rounds;
-  const deck = buildDeck(pack.players, totalTurns);
-
-  const turns = [];
-  for (let r = 0; r < rounds; r++) {
-    for (let p = 0; p < names.length; p++) turns.push({ playerIdx: p, round: r + 1 });
-  }
+  const deck = buildDeck(pack.players, rounds);
 
   game = {
     players: names.map((name) => ({ name, score: 0 })),
     deck,
-    turns,
-    turnIndex: 0,
+    roundIndex: 0,
     rounds,
     packName: pack.name,
   };
 
   showScreen("screenMpGame");
-  buildTurn();
+  buildRound();
 }
 
 function buildDeck(players, count) {
@@ -115,42 +109,36 @@ function buildDeck(players, count) {
 /* ============================================================
    IN-GAME
 ============================================================ */
-function currentTurn() {
-  return game.turns[game.turnIndex];
-}
-function currentPlayer() {
-  return game.players[currentTurn().playerIdx];
-}
 function currentTarget() {
-  return game.deck[game.turnIndex];
+  return game.deck[game.roundIndex];
 }
 
 function renderScoreboard() {
   const el = $("mpScoreboard");
   el.innerHTML = game.players
     .map((p, i) => {
-      const active = i === currentTurn().playerIdx;
       return (
-        '<div class="mp-score-chip' + (active ? " active" : "") + '">' +
+        '<div class="mp-score-chip' + (awaitingWinner ? " tappable" : "") + '" data-idx="' + i + '">' +
         '<span class="mp-score-name">' + escapeHtml(p.name) + "</span>" +
         '<span class="mp-score-value">' + p.score + "</span>" +
         "</div>"
       );
     })
     .join("");
-  $("mpRoundLabel").textContent = t("mp.round", { round: currentTurn().round, total: game.rounds });
+  $("mpRoundLabel").textContent = t("mp.round", { round: game.roundIndex + 1, total: game.rounds });
 }
 
 function escapeHtml(s) {
   return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
 
-function buildTurn() {
+function buildRound() {
   locked = false;
+  awaitingWinner = false;
   const p = currentTarget();
   $("mpSticker").classList.remove("win");
-  $("mpStickerNum").textContent = "#" + (game.turnIndex + 1);
-  $("mpTurnBanner").textContent = t("mp.turnOf", { name: currentPlayer().name });
+  $("mpStickerNum").textContent = "#" + (game.roundIndex + 1);
+  $("mpTurnBanner").textContent = t("mp.raceBanner");
   $("mpAnswer").classList.remove("correct", "wrong", "small", "tiny");
 
   const answerEl = $("mpAnswer");
@@ -188,7 +176,7 @@ function buildTurn() {
   });
 
   loadPhoto(p, $("mpPhoto"));
-  prefetchPhotos(game.deck.slice(game.turnIndex + 1, game.turnIndex + 3));
+  prefetchPhotos(game.deck.slice(game.roundIndex + 1, game.roundIndex + 3));
   renderScoreboard();
 }
 
@@ -218,34 +206,45 @@ function removeFromSlot(slot) {
 function checkNow() {
   const guess = slots.map((s) => tiles[s.tileIdx].char).join("");
   if (checkAnswer(guess, currentTarget().answer)) {
-    scoreTurn(MP_POINTS);
+    onCorrectGuess();
   } else {
     $("mpAnswer").classList.add("wrong");
     setTimeout(() => $("mpAnswer").classList.remove("wrong"), 600);
   }
 }
 
-function skipTurn() {
-  if (locked) return;
-  scoreTurn(0);
+function onCorrectGuess() {
+  locked = true;
+  awaitingWinner = true;
+  $("mpAnswer").classList.add("correct");
+  $("mpTurnBanner").textContent = t("mp.tapWinner");
+  renderScoreboard();
 }
 
-function scoreTurn(points) {
-  locked = true;
-  currentPlayer().score += points;
-  $("mpAnswer").classList.add(points > 0 ? "correct" : "wrong");
+function awardPoint(idx) {
+  if (!awaitingWinner) return;
+  awaitingWinner = false;
+  game.players[idx].score += MP_POINTS;
   $("mpSticker").classList.add("win");
   renderScoreboard();
-  setTimeout(advanceTurn, 700);
+  setTimeout(advanceRound, 700);
 }
 
-function advanceTurn() {
-  game.turnIndex += 1;
-  if (game.turnIndex >= game.turns.length) {
+function skipTurn() {
+  if (locked) return;
+  locked = true;
+  $("mpSticker").classList.add("win");
+  setTimeout(advanceRound, 500);
+}
+
+function advanceRound() {
+  awaitingWinner = false;
+  game.roundIndex += 1;
+  if (game.roundIndex >= game.rounds) {
     showResults();
     return;
   }
-  buildTurn();
+  buildRound();
 }
 
 function showResults() {
@@ -290,6 +289,11 @@ export function init(context) {
     if (onExit) onExit();
   });
   $("mpSkipBtn").addEventListener("click", skipTurn);
+  $("mpScoreboard").addEventListener("click", (e) => {
+    const chip = e.target.closest(".mp-score-chip");
+    if (!chip || !awaitingWinner) return;
+    awardPoint(parseInt(chip.dataset.idx, 10));
+  });
   $("mpQuitBtn").addEventListener("click", quitToHome);
   $("mpPlayAgainBtn").addEventListener("click", quitToHome);
 }
