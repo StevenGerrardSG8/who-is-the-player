@@ -218,6 +218,7 @@ h1 span{color:var(--foil)}
 .btn-main:active{transform:translateY(3px);box-shadow:0 1px 0 var(--pitch-dark)}
 
 .footer{display:flex;justify-content:center;gap:16px;margin-top:6px}
+.home-toolbar{display:flex;justify-content:center;gap:16px;margin:-2px 0 -4px}
 .link-btn{background:none;border:0;color:#7FA98E;font-size:11px;cursor:pointer;text-decoration:underline;font-family:var(--body)}
 
 .toast{

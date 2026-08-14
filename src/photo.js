@@ -29,8 +29,16 @@ function fileNameFromUrl(url) {
   return decodeURIComponent(m[1].replace(/^\d+px-/, ""));
 }
 
+// Some Commons extmetadata fields (e.g. the "Unknown author" template) embed
+// a hidden duplicate span for machine parsing — strip that out first, or a
+// naive tag strip concatenates it with the visible copy ("Unknown authorUnknown author").
 function stripHtml(html) {
-  return html ? html.replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim() : "";
+  if (!html) return "";
+  return html
+    .replace(/<span[^>]*display:\s*none[^>]*>[\s\S]*?<\/span>/gi, "")
+    .replace(/<[^>]*>/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function formatCredit(extmetadata) {
