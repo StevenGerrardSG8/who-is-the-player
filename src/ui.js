@@ -9,7 +9,8 @@ import {
 import { UNLOCK_MODE, STARS_PER_UNLOCK } from "./config.js";
 import { loadPhoto as loadPhotoInto, prefetchPhotos } from "./photo.js";
 import { showScreen } from "./screens.js";
-import { t, onLangChange } from "./i18n/index.js";
+import { t, getLang, onLangChange } from "./i18n/index.js";
+import { resolvePlayer } from "./i18n/content/index.js";
 
 const $ = (id) => document.getElementById(id);
 
@@ -19,6 +20,7 @@ let tiles = [];
 let slots = [];
 let locked = false;
 let toastTimer;
+let resolved = null; // current round's player, resolved for the active UI language
 
 function currentPack() {
   return ctx.packs[currentPackId];
@@ -106,6 +108,8 @@ function renderScoreboard() {
 function buildRound() {
   const p = currentPlayerData();
   const ps = currentPackState();
+  const pack = currentPack();
+  resolved = resolvePlayer(p, getLang(), pack);
   locked = false;
   ps.hintsBought = ps.hintsBought || [];
   $("sticker").classList.remove("win");
@@ -114,17 +118,16 @@ function buildRound() {
   $("careerPanel").classList.remove("show");
   $("careerTable").innerHTML = "";
 
-  const pack = currentPack();
   const answerEl = $("answer");
   answerEl.innerHTML = "";
   answerEl.classList.remove("correct", "wrong", "small", "tiny", "rtl");
-  answerEl.classList.toggle("rtl", !!pack.rtl);
-  const letters = p.answer.replace(/ /g, "").length;
+  answerEl.classList.toggle("rtl", !!resolved.rtl);
+  const letters = resolved.answer.replace(/ /g, "").length;
   if (letters >= 12) answerEl.classList.add("tiny");
   else if (letters >= 9) answerEl.classList.add("small");
 
   slots = [];
-  p.answer.split(" ").forEach((word) => {
+  resolved.answer.split(" ").forEach((word) => {
     const w = document.createElement("div");
     w.className = "word";
     word.split("").forEach((ch) => {
@@ -138,10 +141,10 @@ function buildRound() {
     answerEl.appendChild(w);
   });
 
-  const bankLetters = buildBankLetters(p.answer, pack.alphabet);
+  const bankLetters = buildBankLetters(resolved.answer, resolved.alphabet);
   const bankEl = $("bank");
   bankEl.innerHTML = "";
-  bankEl.classList.toggle("rtl", !!pack.rtl);
+  bankEl.classList.toggle("rtl", !!resolved.rtl);
   tiles = bankLetters.map((ch) => {
     const b = document.createElement("button");
     b.className = "tile";
@@ -187,7 +190,7 @@ function removeFromSlot(slot) {
 
 function checkAnswerNow() {
   const guess = slots.map((s) => tiles[s.tileIdx].char).join("");
-  if (checkAnswer(guess, currentPlayerData().answer)) {
+  if (checkAnswer(guess, resolved.answer)) {
     winRound(false);
   } else {
     $("answer").classList.add("wrong");
@@ -225,13 +228,11 @@ function buyHint(n) {
 }
 
 function showClueChips() {
-  const p = currentPlayerData();
-  $("clueChips").innerHTML = '<span class="chip">' + p.pos + '</span><span class="chip">' + p.country + "</span>";
+  $("clueChips").innerHTML = '<span class="chip">' + resolved.pos + '</span><span class="chip">' + resolved.country + "</span>";
 }
 
 function showCareer() {
-  const p = currentPlayerData();
-  $("careerTable").innerHTML = p.career
+  $("careerTable").innerHTML = resolved.career
     .map((row) => '<tr><td class="years">' + row[0] + '</td><td class="club">' + row[1] + "</td></tr>")
     .join("");
   $("careerPanel").classList.add("show");
@@ -247,7 +248,7 @@ function revealName() {
       s.el.classList.remove("filled");
     }
   });
-  const target = currentPlayerData().answer.replace(/ /g, "").split("");
+  const target = resolved.answer.replace(/ /g, "").split("");
   target.forEach((ch, i) => {
     const tile = tiles.find((t) => !t.used && t.char === ch);
     if (tile) {
@@ -368,5 +369,6 @@ export function init(context) {
 
   onLangChange(() => {
     if (currentPackId === null) renderHome();
+    else buildRound();
   });
 }

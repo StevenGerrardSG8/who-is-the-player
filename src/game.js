@@ -9,6 +9,9 @@ import {
 
 export const LATIN_ALPHABET = "ABCDEFGHIJKLMNOPRSTUVYZ";
 export const HEBREW_ALPHABET = "אבגדהוזחטיכלמנסעפצקרשת";
+export const ARABIC_ALPHABET = "ابتثجحخدذرزسشصضطظعغفقكلمنهوي";
+export const CYRILLIC_ALPHABET = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЭЮЯ";
+export const GREEK_ALPHABET = "ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ";
 
 export function shuffle(arr) {
   for (let i = arr.length - 1; i > 0; i--) {

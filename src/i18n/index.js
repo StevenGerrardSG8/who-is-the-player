@@ -8,6 +8,12 @@ import de from "./de.js";
 import it from "./it.js";
 import ru from "./ru.js";
 import tr from "./tr.js";
+import nl from "./nl.js";
+import pl from "./pl.js";
+import el from "./el.js";
+import ja from "./ja.js";
+import ko from "./ko.js";
+import zh from "./zh.js";
 import { storage } from "../storage.js";
 import { LANG_STORAGE_KEY } from "../config.js";
 
@@ -22,9 +28,15 @@ export const LANGUAGES = [
   { code: "it", label: "Italiano", flag: "🇮🇹", rtl: false },
   { code: "ru", label: "Русский", flag: "🇷🇺", rtl: false },
   { code: "tr", label: "Türkçe", flag: "🇹🇷", rtl: false },
+  { code: "nl", label: "Nederlands", flag: "🇳🇱", rtl: false },
+  { code: "pl", label: "Polski", flag: "🇵🇱", rtl: false },
+  { code: "el", label: "Ελληνικά", flag: "🇬🇷", rtl: false },
+  { code: "ja", label: "日本語", flag: "🇯🇵", rtl: false },
+  { code: "ko", label: "한국어", flag: "🇰🇷", rtl: false },
+  { code: "zh", label: "中文", flag: "🇨🇳", rtl: false },
 ];
 
-const DICTS = { en, he, ar, es, fr, pt, de, it, ru, tr };
+const DICTS = { en, he, ar, es, fr, pt, de, it, ru, tr, nl, pl, el, ja, ko, zh };
 
 let currentLang = "en";
 let listeners = [];
