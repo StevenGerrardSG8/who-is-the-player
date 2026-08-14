@@ -270,32 +270,11 @@ export default {
       career: [["1966–1978","Bayern Munich"],["1978–1979","SV Casino Salzburg"],["1980","SV Sandhausen"],["1980–1985","TSV Mindelheim"]]
     },
     {
-      answer: "KAPELLMANN",
-      wiki: "Jupp Kapellmann",
-      pos: "Midfielder",
-      country: "🇩🇪 Germany",
-      career: [["1968–1970","Alemannia Aachen"],["1970–1973","1. FC Köln"],["1973–1979","Bayern Munich"],["1979–1981","TSV 1860 Munich"]]
-    },
-    {
-      answer: "DURNBERGER",
-      wiki: "Bernd Dürnberger",
-      pos: "Midfielder",
-      country: "🇩🇪 Germany",
-      career: [["1972–1985","Bayern Munich"]]
-    },
-    {
       answer: "ZOBEL",
       wiki: "Rainer Zobel",
       pos: "Midfielder",
       country: "🇩🇪 Germany",
       career: [["1968–1970","Hannover 96"],["1970–1976","Bayern Munich"],["1976–1977","Lüneburger SK"]]
-    },
-    {
-      answer: "BJORN ANDERSSON",
-      wiki: "Björn Andersson (footballer, born 1951)",
-      pos: "Defender",
-      country: "🇸🇪 Sweden",
-      career: [["1970–1974","Östers IF"],["1974–1977","Bayern Munich"],["1977–1979","Östers IF"],["1980–1981","Markaryds IF"],["1982–1984","Vallentuna BK"]]
     },
     {
       answer: "NEUER",
@@ -466,13 +445,6 @@ export default {
       career: [["1952–1953","Centese"],["1953–1954","Bondenese"],["1954–1963","Fiorentina"],["1963–1968","Inter Milan"],["1968–1969","Juventus"],["1969–1973","Unione Valdinievole"]]
     },
     {
-      answer: "JULIO CESAR",
-      wiki: "Júlio César (footballer, born 1979)",
-      pos: "Goalkeeper",
-      country: "🇧🇷 Brazil",
-      career: [["1997–2003","Flamengo"],["2003–2005","Chievo"],["2005–2012","Inter Milan"],["2012–2015","Queens Park Rangers"],["2015–2016","Benfica"],["2016–2018","Flamengo"]]
-    },
-    {
       answer: "ZANETTI",
       wiki: "Javier Zanetti",
       pos: "Defender",
@@ -492,13 +464,6 @@ export default {
       pos: "Defender",
       country: "🇦🇷 Argentina",
       career: [["1996","Newell's Old Boys"],["1997–2000","Boca Juniors"],["2000–2004","Roma"],["2004–2005","Real Madrid"],["2005–2014","Inter Milan"],["2014–2015","Basel"]]
-    },
-    {
-      answer: "MAICON",
-      wiki: "Maicon",
-      pos: "Defender",
-      country: "🇧🇷 Brazil",
-      career: [["2001–2002","Cruzeiro"],["2002–2004","Monaco"],["2004–2012","Inter Milan"],["2012–2014","Manchester City"],["2014","Roma"],["2015","Sampdoria"]]
     },
     {
       answer: "CAMBIASSO",
@@ -646,13 +611,6 @@ export default {
       pos: "Midfielder",
       country: "🇪🇸 Spain",
       career: [["2018–2019","UD Las Palmas B"],["2019–2020","Las Palmas"],["2020–","Barcelona"]]
-    },
-    {
-      answer: "GAVI",
-      wiki: "Gavi",
-      pos: "Midfielder",
-      country: "🇪🇸 Spain",
-      career: [["2021–","Barcelona"]]
     },
     {
       answer: "LAMINE YAMAL",
@@ -1222,25 +1180,11 @@ export default {
       career: [["1997–2000","Estoril Praia"],["2000–2002","Vitória de Setúbal"],["2002–2004","Porto"],["2004–2013","Chelsea"]]
     },
     {
-      answer: "NUNO VALENTE",
-      wiki: "Nuno Valente",
-      pos: "Defender",
-      country: "🇵🇹 Portugal",
-      career: [["1993–1999","Sporting CP"],["1999–2002","União Leiria"],["2002–2005","Porto"],["2005–2009","Everton"]]
-    },
-    {
       answer: "MANICHE",
       wiki: "Maniche",
       pos: "Midfielder",
       country: "🇵🇹 Portugal",
       career: [["1995–1996","Benfica"],["1996–1999","Alverca"],["1999–2002","Benfica"],["2002–2005","Porto"],["2005–2006","Dynamo Moscow"],["2006–2009","Atlético Madrid"],["2009–2010","1. FC Köln"],["2010–2011","Sporting CP"]]
-    },
-    {
-      answer: "JORGE COSTA",
-      wiki: "Jorge Costa",
-      pos: "Defender",
-      country: "🇵🇹 Portugal",
-      career: [["1990–2005","Porto"],["2005–2006","Standard Liège"]]
     },
     {
       answer: "KAKA",
@@ -1453,27 +1397,6 @@ export default {
       career: [["1970–1979","Birmingham City"],["1979–1981","Nottingham Forest"],["1981–1982","Manchester City"],["1982–1986","Sampdoria"],["1986–1987","Atalanta"],["1987–1988","Rangers"],["1988–1990","Queens Park Rangers"],["1990–1994","Sheffield Wednesday"]]
     },
     {
-      answer: "KENNY BURNS",
-      wiki: "Kenny Burns",
-      pos: "Defender",
-      country: "🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland",
-      career: [["1971–1977","Birmingham City"],["1977–1981","Nottingham Forest"],["1981–1984","Leeds United"],["1984–1985","Derby County"],["1984–1985","Notts County"],["1985–1986","Barnsley"]]
-    },
-    {
-      answer: "LARRY LLOYD",
-      wiki: "Larry Lloyd",
-      pos: "Defender",
-      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
-      career: [["1967–1969","Bristol Rovers"],["1969–1974","Liverpool"],["1974–1976","Coventry City"],["1976–1981","Nottingham Forest"],["1981–1983","Wigan Athletic"]]
-    },
-    {
-      answer: "WOODCOCK",
-      wiki: "Tony Woodcock (footballer)",
-      pos: "Forward",
-      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
-      career: [["1974–1979","Nottingham Forest"],["1979–1982","1. FC Köln"],["1982–1986","Arsenal"],["1986–1988","1. FC Köln"],["1988–1990","Fortuna Köln"]]
-    },
-    {
       answer: "MARTIN ONEILL",
       wiki: "Martin O'Neill",
       pos: "Midfielder",
@@ -1493,13 +1416,6 @@ export default {
       pos: "Midfielder",
       country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
       career: [["1968–1971","Manchester City"],["1971–1973","Leyton Orient"],["1973–1981","Nottingham Forest"],["1981–1982","Sunderland"],["1982–1987","Nottingham Forest"]]
-    },
-    {
-      answer: "FRANK CLARK",
-      wiki: "Frank Clark (footballer)",
-      pos: "Defender",
-      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
-      career: [["1962–1975","Newcastle United"],["1975–1979","Nottingham Forest"]]
     },
     {
       answer: "BILLY MCNEILL",
@@ -1523,20 +1439,6 @@ export default {
       career: [["1961–1978","Celtic"],["1978","Houston Hurricane"],["1978–1981","Celtic"]]
     },
     {
-      answer: "BERTIE AULD",
-      wiki: "Bertie Auld",
-      pos: "Midfielder",
-      country: "🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland",
-      career: [["1955–1961","Celtic"],["1961–1965","Birmingham City"],["1965–1971","Celtic"],["1971–1973","Hibernian"]]
-    },
-    {
-      answer: "RONNIE SIMPSON",
-      wiki: "Ronnie Simpson",
-      pos: "Goalkeeper",
-      country: "🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland",
-      career: [["1946–1950","Queen's Park"],["1950–1951","Third Lanark"],["1951–1960","Newcastle United"],["1960–1964","Hibernian"],["1964–1970","Celtic"]]
-    },
-    {
       answer: "TOMMY GEMMELL",
       wiki: "Tommy Gemmell",
       pos: "Defender",
@@ -1556,27 +1458,6 @@ export default {
       pos: "Forward",
       country: "🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland",
       career: [["1958–1959","Stenhousemuir"],["1959–1961","Raith Rovers"],["1961–1966","Heart of Midlothian"],["1966–1971","Celtic"],["1971–1972","Crystal Palace"],["1972–1975","Dumbarton"]]
-    },
-    {
-      answer: "STEVE CHALMERS",
-      wiki: "Stevie Chalmers",
-      pos: "Forward",
-      country: "🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland",
-      career: [["1959–1971","Celtic"],["1971–1972","Greenock Morton"],["1972–1975","Partick Thistle"]]
-    },
-    {
-      answer: "JOHN CLARK",
-      wiki: "John Clark (footballer, born 1941)",
-      pos: "Defender",
-      country: "🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland",
-      career: [["1958–1971","Celtic"],["1971–1973","Greenock Morton"]]
-    },
-    {
-      answer: "JIM CRAIG",
-      wiki: "Jim Craig (Scottish footballer)",
-      pos: "Defender",
-      country: "🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland",
-      career: [["1965–1972","Celtic"],["1972–1974","Sheffield Wednesday"],["1974–1975","Waterford"]]
     },
     {
       answer: "WIRTZ",

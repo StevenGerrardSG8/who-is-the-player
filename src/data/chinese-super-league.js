@@ -152,9 +152,6 @@ export default {
     {answer:"LIU JIAHUI", wiki:"Liu Jiahui (footballer)", pos:"Defender", country:"🇨🇳 China", career:[["2021–","Henan FC"],["2024","Nanjing City (loan)"],["2025","Jiangxi Dingnan United (loan)"]]},
     {answer:"ZHONG YIHAO", wiki:"Zhong Yihao", pos:"Forward", country:"🇨🇳 China", career:[["2015–2017","Qingdao Jonoon"],["2018–2021","Guangzhou FC"],["2022–","Henan FC"]]},
     {answer:"NAN SONG", wiki:"Nan Song (footballer)", pos:"Midfielder", country:"🇨🇳 China", career:[["2016–2020","Bucheon FC 1995"],["2021","Sichuan Jiuniu"],["2022","Chongqing Liangjiang Athletic"],["2022–2026","Shenzhen Peng City"],["2026–","Qingdao West Coast"]]},
-    {answer:"WANG GENGRUI", wiki:"Wang Gengrui", pos:"Defender", country:"🇨🇳 China", career:[["2026–","Qingdao West Coast"]]},
-    {answer:"ZHAO YINGJIE", wiki:"Zhao Yingjie", pos:"Midfielder", country:"🇨🇳 China", career:[["2011–2023","Tianjin Jinmen Tiger"],["2024","Cangzhou Mighty Lions"],["2025","Changchun Yatai"],["2026–","Shenzhen Juniors"]]},
     {answer:"DING HAIFENG", wiki:"Ding Haifeng", pos:"Defender", country:"🇨🇳 China", career:[["2011","Beijing Guoan"],["2012–2013","Shenzhen Ruby"],["2014–2015","Liaoning Whowin"],["2016–2017","Hebei China Fortune"],["2018–2019","Guangzhou R&F"],["2020–2022","Hebei FC"],["2023","Shijiazhuang Gongfu"],["2024","Tianjin Jinmen Tiger"],["2024","Henan FC (loan)"],["2025–","Qingdao West Coast"]]},
-    {answer:"LIU ZHICHENG", wiki:"Liu Zhicheng", pos:"Defender", country:"🇨🇳 China", career:[["2026–","Qingdao West Coast"]]},
   ]
 }

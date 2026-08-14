@@ -207,13 +207,6 @@ export default {
       career: [["1950–1970","Dynamo Moscow"]]
     },
     {
-      answer: "MATTHEWS",
-      wiki: "Stanley Matthews",
-      pos: "Forward",
-      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
-      career: [["1932–1947","Stoke City"],["1947–1961","Blackpool"],["1961–1965","Stoke City"]]
-    },
-    {
       answer: "BONMATI",
       wiki: "Aitana Bonmatí",
       pos: "Midfielder",

@@ -1953,19 +1953,6 @@ export default {
       ]
     },
     {
-      answer: "ADRIANO",
-      wiki: "Adriano (footballer, born 1982)",
-      pos: "Forward",
-      country: "🇧🇷 Brazil",
-      career: [
-        ["2000–2001", "Flamengo"],
-        ["2001–2002", "Inter Milan"],
-        ["2002–2004", "Parma"],
-        ["2004–2009", "Inter Milan"],
-        ["2009–2010", "Flamengo"]
-      ]
-    },
-    {
       answer: "RIVA",
       wiki: "Gigi Riva",
       pos: "Forward",
@@ -2493,17 +2480,6 @@ export default {
       career: [
         ["1943–1956", "Budapest Honvéd"],
         ["1958–1966", "Real Madrid"]
-      ]
-    },
-    {
-      answer: "MATTHEWS",
-      wiki: "Stanley Matthews",
-      pos: "Forward",
-      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
-      career: [
-        ["1932–1947", "Stoke City"],
-        ["1947–1961", "Blackpool"],
-        ["1961–1965", "Stoke City"]
       ]
     },
     {

@@ -151,13 +151,6 @@ export default {
       career: [["1990","Tyresö FF"],["1992","Orlando Lions Women"],["1994","Tyresö FF"]]
     },
     {
-      answer: "SUN WEN",
-      wiki: "Sun Wen (footballer)",
-      pos: "Forward",
-      country: "🇨🇳 China",
-      career: [["1989–2000","Shanghai"],["2001–2002","Atlanta Beat"],["2003","Shanghai SVA"]]
-    },
-    {
       answer: "HARDER",
       wiki: "Pernille Harder",
       pos: "Forward",
@@ -212,13 +205,6 @@ export default {
       pos: "Midfielder",
       country: "🇯🇵 Japan",
       career: [["1999–2000","Nippon TV Beleza"],["2001–2008","Okayama Yunogo Belle"],["2009","Los Angeles Sol"],["2010","Saint Louis Athletica"],["2010–2016","Okayama Yunogo Belle"]]
-    },
-    {
-      answer: "WIEGMANN",
-      wiki: "Bettina Wiegmann",
-      pos: "Midfielder",
-      country: "🇩🇪 Germany",
-      career: [["1988–2001","1. FC Köln"],["2001–2002","Boston Breakers"],["2003","1. FC Köln"]]
     },
     {
       answer: "FITSCHEN",
@@ -506,13 +492,6 @@ export default {
       pos: "Midfielder",
       country: "🇳🇴 Norway",
       career: [["1997–2008","Kolbotn"],["2009","Stabæk"],["2010","FC Gold Pride"],["2011–2013","Vålerenga"],["2014","Stabæk"],["2015–2017","Kolbotn"]]
-    },
-    {
-      answer: "ESPESETH",
-      wiki: "Gro Espeseth",
-      pos: "Defender",
-      country: "🇳🇴 Norway",
-      career: [["1991–1998","IL Sandviken"],["1999–2000","Trondheims Ørn"],["2001","New York Power"],["2007","IL Sandviken"]]
     },
     {
       answer: "SCHELIN",
@@ -900,13 +879,6 @@ export default {
       career: [["2016–2017","Dalian Quanjian"],["2018–2019","Paris Saint-Germain"],["2022–2023","Racing Louisville"],["2024–2025","Tottenham Hotspur"],["2025–","Wuhan Jiangda"]]
     },
     {
-      answer: "MA XIAOXU",
-      wiki: "Ma Xiaoxu",
-      pos: "Forward",
-      country: "🇨🇳 China",
-      career: [["2003–2006","Dalian Shide"],["2007","Umeå IK"],["2007–2018","Dalian Quanjian"],["2019–2022","Beijing BG Phoenix"]]
-    },
-    {
       answer: "LI YING",
       wiki: "Li Ying (footballer, born 1993)",
       pos: "Forward",
@@ -1220,13 +1192,6 @@ export default {
       pos: "Forward",
       country: "🇳🇬 Nigeria",
       career: [["2010–2012","Delta Queens"],["2012–2013","Rossiyanka"],["2013–2014","VfL Wolfsburg"],["2014–2020","Guingamp"],["2020–2022","Dijon"]]
-    },
-    {
-      answer: "ORDEGA",
-      wiki: "Francisca Ordega",
-      pos: "Forward",
-      country: "🇳🇬 Nigeria",
-      career: [["2011–2012","Rivers Angels"],["2012–2013","WFC Rossiyanka"],["2013–2014","Piteå IF"],["2015–2018","Washington Spirit"],["2019–2021","Shanghai Shengli"],["2021","Levante"],["2021–2025","CSKA Moscow"],["2025–","Al-Ittihad"]]
     },
     {
       answer: "CHIKWELU",

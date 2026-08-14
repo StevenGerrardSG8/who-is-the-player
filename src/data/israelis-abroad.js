@@ -221,13 +221,6 @@ export default {
       career: [["2007–2010","Barcelona"],["2010–2012","Manchester City"],["2012","Brighton & Hove Albion"],["2012–2013","Racing Santander"],["2013–2014","Granada"],["2014","RCD Mallorca"],["2014–2015","Hapoel Tel Aviv"],["2015–2016","Sabadell"],["2018","Kairat"],["2019–2021","Politehnica Iași"],["2021","Crema"]]
     },
     {
-      answer: "TAMIR COHEN",
-      wiki: "Tamir Cohen",
-      pos: "Midfielder",
-      country: "🇮🇱 Israel",
-      career: [["2002–2007","Maccabi Tel Aviv"],["2007–2008","Maccabi Netanya"],["2008–2011","Bolton Wanderers"],["2011–2013","Maccabi Haifa"],["2013–2014","Hapoel Ra'anana"]]
-    },
-    {
       answer: "PERETZ",
       wiki: "Daniel Peretz",
       pos: "Goalkeeper",
@@ -247,13 +240,6 @@ export default {
       pos: "Midfielder",
       country: "🇮🇱 Israel",
       career: [["2004–2011","Maccabi Haifa"],["2011–2018","Club Brugge"],["2018–2021","Royal Antwerp"],["2021–2023","Anderlecht"],["2023–2025","Maccabi Haifa"]]
-    },
-    {
-      answer: "PIZANTI",
-      wiki: "David Pizanti",
-      pos: "Defender",
-      country: "🇮🇱 Israel",
-      career: [["1979–1985","Maccabi Netanya"],["1985–1987","1. FC Köln"],["1987","Hapoel Tel Aviv"],["1987–1989","Queens Park Rangers"],["1989–1991","Maccabi Netanya"],["1991–1992","Hapoel Tzafririm Holon"],["1992–1993","Hapoel Haifa"],["1994–1995","Hapoel Petah Tikva"],["1995–1996","Ironi Rishon LeZion"]]
     },
     {
       answer: "SPIEGLER",
@@ -291,13 +277,6 @@ export default {
       career: [["2006–2009","Maccabi Netanya"],["2009–2011","Hapoel Tel Aviv"],["2011–2013","1. FC Kaiserslautern"],["2013–2014","Hapoel Tel Aviv"],["2014–2015","Nantes"],["2015–2016","Maccabi Haifa"],["2016–2018","Beitar Jerusalem"],["2018–2021","Maccabi Tel Aviv"],["2021–2023","Hapoel Be'er Sheva"],["2023–2024","Hapoel Petah Tikva"]]
     },
     {
-      answer: "KINDA",
-      wiki: "Gadi Kinda",
-      pos: "Midfielder",
-      country: "🇮🇱 Israel",
-      career: [["2011–2019","F.C. Ashdod"],["2019–2021","Beitar Jerusalem"],["2021–2023","Sporting Kansas City"],["2024–2025","Maccabi Haifa"]]
-    },
-    {
       answer: "TURGEMAN",
       wiki: "Dor Turgeman",
       pos: "Forward",
@@ -305,32 +284,11 @@ export default {
       career: [["2020–2025","Maccabi Tel Aviv"],["2025–","New England Revolution"]]
     },
     {
-      answer: "ABD ELHAMED",
-      wiki: "Hatem Abd Elhamed",
-      pos: "Defender",
-      country: "🇮🇱 Israel",
-      career: [["2010–2011","Maccabi Tel Aviv"],["2011–2015","F.C. Ashdod"],["2015–2017","K.A.A. Gent"],["2017–2019","Hapoel Be'er Sheva"],["2019–2021","Celtic"],["2021–2023","Hapoel Be'er Sheva"],["2023–2024","Hapoel Haifa"],["2025–","Bnei Sakhnin"]]
-    },
-    {
-      answer: "ABU HANNA",
-      wiki: "Joel Abu Hanna",
-      pos: "Defender",
-      country: "🇮🇱 Israel",
-      career: [["2016–2017","Bayer Leverkusen"],["2017–2018","1. FC Kaiserslautern"],["2018–2019","1. FC Magdeburg"],["2019–2021","Zorya Luhansk"],["2021–2023","Legia Warsaw"],["2023–2024","Maccabi Netanya"],["2025–2026","Levadiakos"],["2026–","VfL Osnabrück"]]
-    },
-    {
       answer: "KHALAILI",
       wiki: "Anan Khalaili",
       pos: "Forward",
       country: "🇮🇱 Israel",
       career: [["2023–2024","Maccabi Haifa"],["2024–","Union Saint-Gilloise"]]
-    },
-    {
-      answer: "YEHEZKEL",
-      wiki: "Sagiv Yehezkel",
-      pos: "Defender",
-      country: "🇮🇱 Israel",
-      career: [["2014–2016","Hapoel Tel Aviv"],["2016–2019","Maccabi Tel Aviv"],["2019–2021","F.C. Ashdod"],["2021–2023","Hapoel Be'er Sheva"],["2023–2024","Antalyaspor"],["2024–","Maccabi Tel Aviv"]]
     },
     {
       answer: "SABA",
@@ -396,39 +354,11 @@ export default {
       career: [["2005–2008","Maccabi Haifa"],["2008–2011","Maccabi Tel Aviv"],["2011–2013","Standard Liège"],["2013–2017","Hapoel Be'er Sheva"],["2017–2018","Maccabi Haifa"],["2018–2019","Beitar Jerusalem"],["2019–2020","Hapoel Tel Aviv"]]
     },
     {
-      answer: "PODGOREANU",
-      wiki: "Suf Podgoreanu",
-      pos: "Forward",
-      country: "🇮🇱 Israel",
-      career: [["2019–2020","Maccabi Haifa"],["2020–2021","Roma"],["2021–2022","Spezia"],["2022–2024","Maccabi Haifa"],["2024–2025","Heracles Almelo"],["2026–","Kortrijk"]]
-    },
-    {
       answer: "KANICHOWSKY",
       wiki: "Gabi Kanichowsky",
       pos: "Midfielder",
       country: "🇮🇱 Israel",
       career: [["2015–2018","Maccabi Tel Aviv"],["2018–2021","Maccabi Netanya"],["2021–2025","Maccabi Tel Aviv"],["2025–","Ferencváros"]]
-    },
-    {
-      answer: "NACHMIAS",
-      wiki: "Idan Nachmias",
-      pos: "Defender",
-      country: "🇮🇱 Israel",
-      career: [["2017–2021","Ironi Kiryat Shmona"],["2021–2025","Maccabi Tel Aviv"],["2025–","Ludogorets Razgrad"]]
-    },
-    {
-      answer: "BALTAXA",
-      wiki: "Matan Baltaxa",
-      pos: "Defender",
-      country: "🇮🇱 Israel",
-      career: [["2013–2017","Hapoel Petah Tikva"],["2017–2022","Maccabi Tel Aviv"],["2022–2024","Austria Wien"],["2024","Maccabi Tel Aviv"],["2024–","Hapoel Be'er Sheva"]]
-    },
-    {
-      answer: "LEIDNER",
-      wiki: "Doron Leidner",
-      pos: "Defender",
-      country: "🇮🇱 Israel",
-      career: [["2020–2022","Hapoel Tel Aviv"],["2022–2026","Olympiacos"],["2023","Austria Wien"],["2024–2025","Zürich"],["2025–","Hapoel Tel Aviv"]]
     },
     {
       answer: "KLAIMAN",
@@ -494,13 +424,6 @@ export default {
       career: [["2020–2022","1899 Hoffenheim"],["2020–2021","ADO Den Haag"],["2021–2022","Admira Wacker"],["2023–2025","Bnei Sakhnin"],["2025–","Maccabi Bnei Reineh"]]
     },
     {
-      answer: "IVANIR",
-      wiki: "Motti Ivanir",
-      pos: "Midfielder",
-      country: "🇮🇱 Israel",
-      career: [["1981–1986","Maccabi Tel Aviv"],["1986–1988","Roda JC"],["1988–1990","Maccabi Tel Aviv"],["1990–1991","Maccabi Netanya"],["1991–1992","Bnei Yehuda"]]
-    },
-    {
       answer: "MIZRAHI",
       wiki: "Alon Mizrahi",
       pos: "Forward",
@@ -515,39 +438,11 @@ export default {
       career: [["2001–2004","Hapoel Ra'anana"],["2004–2007","Hapoel Petah Tikva"],["2007–2008","Bnei Yehuda"],["2008–2009","Maccabi Netanya"],["2009–2012","Terek Grozny"],["2012–2014","Hapoel Tel Aviv"],["2014–2015","Beitar Jerusalem"],["2015–2016","Maccabi Netanya"]]
     },
     {
-      answer: "HARAZI",
-      wiki: "Ronen Harazi",
-      pos: "Forward",
-      country: "🇮🇱 Israel",
-      career: [["1986–1992","Hapoel Ramat Gan"],["1992–1997","Beitar Jerusalem"],["1997–1998","UD Salamanca"],["1998–1999","Bursaspor"],["1999–2001","Hapoel Tel Aviv"]]
-    },
-    {
       answer: "ALBERMAN",
       wiki: "Gal Alberman",
       pos: "Midfielder",
       country: "🇮🇱 Israel",
       career: [["2000–2005","Maccabi Petah Tikva"],["2005","Tenerife"],["2006–2008","Beitar Jerusalem"],["2008–2010","Borussia Mönchengladbach"],["2010–2017","Maccabi Tel Aviv"],["2017–2019","Maccabi Haifa"]]
-    },
-    {
-      answer: "ROTNER",
-      wiki: "Karol Rotner",
-      pos: "Defender",
-      country: "🇮🇱 Israel",
-      career: [["1965–1973","Maccabi Haifa"],["1973","New York Cosmos"]]
-    },
-    {
-      answer: "SCHNEIDER",
-      wiki: "Rony Schneider",
-      pos: "Forward",
-      country: "🇮🇱 Israel",
-      career: [["1978","New York Arrows"],["1979","Rochester Lancers"]]
-    },
-    {
-      answer: "ALON",
-      wiki: "Benny Alon",
-      pos: "Midfielder",
-      country: "🇮🇱 Israel",
-      career: [["1975–1977","Hapoel Haifa"],["1975–1977","Chicago Sting"]]
     },
     {
       answer: "GHADIR",
@@ -571,25 +466,11 @@ export default {
       career: [["2006–2009","Hapoel Petah Tikva"],["2009–2011","AEL"],["2011–2013","Ironi Kiryat Shmona"],["2013–2016","Maccabi Haifa"],["2016–2017","Beitar Jerusalem"],["2017–2018","Hapoel Ra'anana"],["2018–2020","Ironi Kiryat Shmona"]]
     },
     {
-      answer: "ZOABI",
-      wiki: "Karem Zoabi",
-      pos: "Forward",
-      country: "🇮🇱 Israel",
-      career: [["2019–2024","Hapoel Jerusalem"],["2024–","Rio Ave"]]
-    },
-    {
       answer: "LAVI",
       wiki: "Neta Lavi",
       pos: "Midfielder",
       country: "🇮🇱 Israel",
       career: [["2015–2023","Maccabi Haifa"],["2023–2025","Gamba Osaka"],["2025–","Machida Zelvia"]]
-    },
-    {
-      answer: "LEVI",
-      wiki: "Rafi Levi",
-      pos: "Forward",
-      country: "🇮🇱 Israel",
-      career: [["1954–1960","Maccabi Tel Aviv"],["1960","Highlands Park"],["1960–1961","Maccabi Tel Aviv"],["1961–1963","Sydney Hakoah"],["1964–1965","Highlands Park"],["1965–1966","Maccabi Tel Aviv"],["1966–1972","Highlands Park"],["1973","Hapoel Ra'anana"]]
     },
     {
       answer: "VOLLACH",
@@ -604,41 +485,6 @@ export default {
       pos: "Goalkeeper",
       country: "🇮🇱 Israel",
       career: [["1984–1987","Maccabi Tel Aviv"],["1987–1988","Maccabi Haifa"],["1988–1989","Beitar Jerusalem"],["1989–1991","Rangers"],["1991–1992","Maccabi Yavne"],["1992–1993","Beitar Tel Aviv"],["1993–1995","Ironi Ashdod"],["1995–1996","Bnei Yehuda"],["1996–1999","Maccabi Haifa"],["1999–2000","Hapoel Ashkelon"],["2000–2001","Hapoel Kfar Saba"]]
-    },
-    {
-      answer: "BITON",
-      wiki: "Dan Biton (footballer)",
-      pos: "Forward",
-      country: "🇮🇱 Israel",
-      career: [["2014–2017","Hapoel Be'er Sheva"],["2017–2019","F.C. Ashdod"],["2019–2021","Ludogorets Razgrad"],["2021–2024","Maccabi Tel Aviv"],["2024–","Hapoel Be'er Sheva"]]
-    },
-    {
-      answer: "GOLAN",
-      wiki: "Omer Golan",
-      pos: "Forward",
-      country: "🇮🇱 Israel",
-      career: [["2000–2007","Maccabi Petah Tikva"],["2008–2010","Lokeren"],["2010–2014","Maccabi Petah Tikva"]]
-    },
-    {
-      answer: "STOINOV",
-      wiki: "Nikita Stoinov",
-      pos: "Defender",
-      country: "🇮🇱 Israel",
-      career: [["2024–2025","Maccabi Netanya"],["2025–","Dinamo București"]]
-    },
-    {
-      answer: "HARAN",
-      wiki: "Tomer Haran",
-      pos: "Goalkeeper",
-      country: "🇮🇱 Israel",
-      career: [["2017–2022","Bnei Sakhnin"],["2022","Rudar Velenje"],["2023","SV Babelsberg 03"],["2023–2024","Cerro Largo"],["2024–2025","Hapoel Migdal HaEmek"],["2025–","F.C. Jerusalem"]]
-    },
-    {
-      answer: "GROPPER",
-      wiki: "Denny Gropper",
-      pos: "Defender",
-      country: "🇮🇱 Israel",
-      career: [["2018–2019","Hapoel Afula"],["2019–2022","Hapoel Tel Aviv"],["2022–2025","Ludogorets Razgrad"],["2025–","Maccabi Tel Aviv"]]
     },
     {
       answer: "MEGRELASHVILI",
@@ -681,27 +527,6 @@ export default {
       pos: "Midfielder",
       country: "🇮🇱 Israel",
       career: [["2013–2019","Hapoel Tel Aviv"],["2019–2023","Hapoel Be'er Sheva"],["2023–","Antalyaspor"]]
-    },
-    {
-      answer: "SEGEV",
-      wiki: "Yaniv Segev",
-      pos: "Midfielder",
-      country: "🇮🇱 Israel",
-      career: [["2018","Ironi Nesher"],["2019","IFK Lidingö"],["2020","Karlbergs BK"],["2020","U Cluj"],["2021","Aerostar Bacău"],["2021–2022","Hapoel Nof HaGalil"],["2023–2025","Hapoel Herzliya"]]
-    },
-    {
-      answer: "OR DASA",
-      wiki: "Or Dasa",
-      pos: "Forward",
-      country: "🇮🇱 Israel",
-      career: [["2015–2019","Maccabi Tel Aviv"],["2019–2021","Hapoel Ra'anana"],["2021–2022","Arouca"],["2022–2023","Hapoel Ramat Gan"],["2023–2024","Hapoel Acre"],["2025–2026","F.C. Ashdod"]]
-    },
-    {
-      answer: "CALDERON",
-      wiki: "Ronnie Calderon",
-      pos: "Midfielder",
-      country: "🇮🇱 Israel",
-      career: [["1969–1970","Hapoel Tel Aviv"],["1970–1971","Ajax"],["1971–1973","Hapoel Tel Aviv"],["1973–1974","Feyenoord"],["1974","Paris FC"],["1975–1976","Hapoel Ramat Gan"]]
     },
   ]
 }

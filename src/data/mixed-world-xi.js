@@ -1057,13 +1057,6 @@ export default {
       career: [["2013–2014","Istres"],["2014–2016","Red Bull Salzburg"],["2016–2018","RB Leipzig"],["2018–2023","Liverpool"],["2023–2026","Werder Bremen"],["2026–","Ferencváros"]]
     },
     {
-      answer: "OLUNGA",
-      wiki: "Michael Olunga",
-      pos: "Striker",
-      country: "🇰🇪 Kenya",
-      career: [["2016","Djurgårdens IF"],["2017–2018","Guizhou Zhicheng"],["2018–2021","Kashiwa Reysol"],["2021–2025","Al-Duhail"],["2025–","Al-Arabi"]]
-    },
-    {
       answer: "NAKAMBA",
       wiki: "Marvelous Nakamba",
       pos: "Midfielder",
@@ -1405,13 +1398,6 @@ export default {
       pos: "Forward",
       country: "🇩🇪 Germany",
       career: [["2013–2016","VfB Stuttgart"],["2016–2020","RB Leipzig"],["2020–2022","Chelsea"],["2022–2026","RB Leipzig"],["2024–2025","Tottenham Hotspur"],["2026–","San Jose Earthquakes"]]
-    },
-    {
-      answer: "MARIN",
-      wiki: "Marius Marin",
-      pos: "Midfielder",
-      country: "🇷🇴 Romania",
-      career: [["2015–2019","Sassuolo"],["2019–2026","Pisa"],["2026–","Al-Nasr"]]
     },
     {
       answer: "GRADEL",

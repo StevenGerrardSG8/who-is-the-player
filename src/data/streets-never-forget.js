@@ -277,13 +277,6 @@ export default {
       career: [["1986–1991","Atlético Nacional"],["1991–1992","Real Valladolid"],["1993–1997","Atlético Nacional"],["1997–1998","Veracruz"],["1999–2000","Independiente Medellín"],["2002–2003","Deportivo Pereira"]]
     },
     {
-      answer: "JORGE CAMPOS",
-      wiki: "Jorge Campos",
-      pos: "Goalkeeper",
-      country: "🇲🇽 Mexico",
-      career: [["1988–1995","UNAM"],["1995–1996","Atlante"],["1996–1997","LA Galaxy"],["1997","Cruz Azul"],["1998","Chicago Fire"],["1998–2000","UNAM"],["2000","Tigres UANL"],["2002–2003","Puebla"]]
-    },
-    {
       answer: "BLANCO",
       wiki: "Cuauhtémoc Blanco",
       pos: "Forward",
