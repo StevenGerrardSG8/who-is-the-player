@@ -32,6 +32,13 @@ export const PACK_ORDER = [
   "world-legends",
   "streets-never-forget",
   "mixed-world-xi",
+  "national-team-legends",
+  "ballon-dor-winners",
+  "womens-football",
+  "legendary-club-sides",
+  "israelis-abroad",
+  "retro-90s-2000s",
+  "legendary-managers",
   "all-leagues-mix",
 ];
 

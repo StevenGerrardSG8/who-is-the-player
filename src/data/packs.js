@@ -30,6 +30,13 @@ import belgianProLeague from "./belgian-pro-league.js";
 import croatianHnl from "./croatian-hnl.js";
 import colombianLiga from "./colombian-liga.js";
 import israeliLeague from "./israeli-league.js";
+import nationalTeamLegends from "./national-team-legends.js";
+import ballonDorWinners from "./ballon-dor-winners.js";
+import womensFootball from "./womens-football.js";
+import legendaryClubSides from "./legendary-club-sides.js";
+import israelisAbroad from "./israelis-abroad.js";
+import retro90s2000s from "./retro-90s-2000s.js";
+import legendaryManagers from "./legendary-managers.js";
 
 // Real, hand-curated packs, in home-screen display order.
 const CORE_PACKS = {
@@ -65,6 +72,13 @@ const CORE_PACKS = {
   [croatianHnl.id]: croatianHnl,
   [colombianLiga.id]: colombianLiga,
   [israeliLeague.id]: israeliLeague,
+  [nationalTeamLegends.id]: nationalTeamLegends,
+  [ballonDorWinners.id]: ballonDorWinners,
+  [womensFootball.id]: womensFootball,
+  [legendaryClubSides.id]: legendaryClubSides,
+  [israelisAbroad.id]: israelisAbroad,
+  [retro90s2000s.id]: retro90s2000s,
+  [legendaryManagers.id]: legendaryManagers,
 };
 
 /**
