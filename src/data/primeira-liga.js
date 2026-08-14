@@ -83,5 +83,71 @@ export default {
      career:[["2017–2021","PSV Eindhoven"],["2021–2025","OGC Nice"],["2025–","Porto"]]},
     {answer:"BORJA SAINZ", wiki:"Borja Sainz", pos:"Forward", country:"🇪🇸 Spain",
      career:[["2019–2022","Alavés"],["2022–2023","Giresunspor"],["2023–2025","Norwich City"],["2025–","Porto"]]},
+
+    
+    
+    {answer:"BERNARDO SILVA", wiki:"Bernardo Silva", pos:"Midfielder", country:"🇵🇹 Portugal",
+     career:[["2013–2015","Benfica"],["2015–2017","Monaco"],["2017–2026","Manchester City"],["2026–","Real Madrid"]]},
+    
+    
+    
+    
+    {answer:"PEPE", wiki:"Pepe (footballer, born 1983)", pos:"Defender", country:"🇵🇹 Portugal",
+     career:[["2002–2004","Marítimo"],["2004–2007","Porto"],["2007–2017","Real Madrid"],["2017–2018","Beşiktaş"],["2019–2024","Porto"]]},
+    
+    
+    
+    {answer:"GONCALO RAMOS", wiki:"Gonçalo Ramos", pos:"Forward", country:"🇵🇹 Portugal",
+     career:[["2020–2023","Benfica"],["2023–2026","Paris Saint-Germain"],["2026–","AC Milan"]]},
+    
+    {answer:"RENATO SANCHES", wiki:"Renato Sanches", pos:"Midfielder", country:"🇵🇹 Portugal",
+     career:[["2015–2016","Benfica"],["2016–2019","Bayern Munich"],["2019–2022","Lille"],["2022–2023","Paris Saint-Germain"],["2023–2024","Roma"],["2024–2025","Benfica"],["2025–2026","Panathinaikos"],["2026–","Paris Saint-Germain"]]},
+    {answer:"RICARDO CARVALHO", wiki:"Ricardo Carvalho", pos:"Defender", country:"🇵🇹 Portugal",
+     career:[["1997–2004","Porto"],["2004–2010","Chelsea"],["2010–2013","Real Madrid"],["2013–2016","Monaco"],["2017–2018","Shanghai SIPG"]]},
+    {answer:"PAULO FERREIRA", wiki:"Paulo Ferreira", pos:"Defender", country:"🇵🇹 Portugal",
+     career:[["1997–2000","Estoril"],["2000–2002","Vitória de Setúbal"],["2002–2004","Porto"],["2004–2013","Chelsea"]]},
+    {answer:"NUNO GOMES", wiki:"Nuno Gomes", pos:"Forward", country:"🇵🇹 Portugal",
+     career:[["1994–1997","Boavista"],["1997–2000","Benfica"],["2000–2002","Fiorentina"],["2002–2011","Benfica"],["2011–2012","Braga"],["2012–2013","Blackburn Rovers"]]},
+    {answer:"RICARDO QUARESMA", wiki:"Ricardo Quaresma", pos:"Forward", country:"🇵🇹 Portugal",
+     career:[["2001–2003","Sporting CP"],["2003–2004","Barcelona"],["2004–2008","Porto"],["2008–2010","Inter Milan"],["2010–2012","Beşiktaş"],["2013","Al Ahli"],["2014–2015","Porto"],["2015–2019","Beşiktaş"],["2019–2020","Kasımpaşa"],["2020–2022","Vitória de Guimarães"]]},
+    {answer:"WILLIAM CARVALHO", wiki:"William Carvalho", pos:"Midfielder", country:"🇵🇹 Portugal",
+     career:[["2011–2018","Sporting CP"],["2018–2025","Real Betis"],["2025–2026","Pachuca"]]},
+    {answer:"RUI PATRICIO", wiki:"Rui Patrício", pos:"Goalkeeper", country:"🇵🇹 Portugal",
+     career:[["2006–2018","Sporting CP"],["2018–2021","Wolverhampton Wanderers"],["2021–2024","Roma"],["2024–2025","Atalanta"],["2025","Al Ain"]]},
+    {answer:"ANDRE GOMES", wiki:"André Gomes", pos:"Midfielder", country:"🇵🇹 Portugal",
+     career:[["2012–2015","Benfica"],["2015–2016","Valencia"],["2016–2019","Barcelona"],["2019–2024","Everton"],["2024–2026","Lille"],["2026–","Columbus Crew"]]},
+    {answer:"ANTONIO SILVA", wiki:"António Silva (footballer, born 2003)", pos:"Defender", country:"🇵🇹 Portugal",
+     career:[["2022–2026","Benfica"],["2026–","AFC Bournemouth"]]},
+    {answer:"VICTOR LINDELOF", wiki:"Victor Lindelöf", pos:"Defender", country:"🇸🇪 Sweden",
+     career:[["2012–2017","Benfica"],["2017–2025","Manchester United"],["2025–","Aston Villa"]]},
+    {answer:"NEMANJA MATIC", wiki:"Nemanja Matić", pos:"Midfielder", country:"🇷🇸 Serbia",
+     career:[["2009–2011","Chelsea"],["2011–2014","Benfica"],["2014–2017","Chelsea"],["2017–2022","Manchester United"],["2022–2023","Roma"],["2023–2024","Rennes"],["2024–2025","Lyon"],["2025–","Sassuolo"]]},
+    
+    {answer:"FABIO COENTRAO", wiki:"Fábio Coentrão", pos:"Defender", country:"🇵🇹 Portugal",
+     career:[["2005–2007","Rio Ave"],["2007–2011","Benfica"],["2011–2018","Real Madrid"],["2018–2021","Rio Ave"]]},
+    
+    {answer:"JACKSON MARTINEZ", wiki:"Jackson Martínez", pos:"Forward", country:"🇨🇴 Colombia",
+     career:[["2004–2009","Independiente Medellín"],["2009–2012","Chiapas"],["2012–2015","Porto"],["2015–2016","Atlético Madrid"],["2016–2019","Guangzhou Evergrande"],["2019–2020","Portimonense"]]},
+    {answer:"VITOR BAIA", wiki:"Vítor Baía", pos:"Goalkeeper", country:"🇵🇹 Portugal",
+     career:[["1988–1996","Porto"],["1996–1999","Barcelona"],["1999–2007","Porto"]]},
+    {answer:"MANICHE", wiki:"Maniche", pos:"Midfielder", country:"🇵🇹 Portugal",
+     career:[["1995–1996","Benfica"],["1996–1999","Alverca"],["1999–2002","Benfica"],["2002–2005","Porto"],["2005–2006","Dynamo Moscow"],["2006","Chelsea"],["2006–2009","Atlético Madrid"],["2009–2010","1. FC Köln"],["2010–2011","Sporting CP"]]},
+    {answer:"COSTINHA", wiki:"Costinha", pos:"Midfielder", country:"🇵🇹 Portugal",
+     career:[["1996–1997","Nacional"],["1997–2001","Monaco"],["2001–2005","Porto"],["2005–2006","Dynamo Moscow"],["2006–2007","Atlético Madrid"],["2007–2010","Atalanta"]]},
+    {answer:"SIMAO SABROSA", wiki:"Simão Sabrosa", pos:"Forward", country:"🇵🇹 Portugal",
+     career:[["1997–1999","Sporting CP"],["1999–2001","Barcelona"],["2001–2007","Benfica"],["2007–2010","Atlético Madrid"],["2011–2012","Beşiktaş"],["2012–2014","Espanyol"],["2015","NorthEast United"]]},
+    {answer:"DANNY", wiki:"Danny (footballer)", pos:"Forward", country:"🇵🇹 Portugal",
+     career:[["2002–2005","Sporting CP"],["2005–2008","Dynamo Moscow"],["2008–2017","Zenit St. Petersburg"],["2017–2018","Slavia Prague"],["2018","Marítimo"]]},
+    
+    {answer:"FERNANDO MEIRA", wiki:"Fernando Meira", pos:"Defender", country:"🇵🇹 Portugal",
+     career:[["1996–2000","Vitória Guimarães"],["2000–2001","Benfica"],["2002–2008","VfB Stuttgart"],["2008–2009","Galatasaray"],["2009–2011","Zenit St. Petersburg"],["2011–2012","Real Zaragoza"]]},
+    {answer:"BEBE", wiki:"Bebé (footballer)", pos:"Forward", country:"🇨🇻 Cape Verde",
+     career:[["2009–2010","Estrela da Amadora"],["2010","Vitória de Guimarães"],["2010–2014","Manchester United"],["2014–2016","Benfica"],["2016–2018","Eibar"],["2018–2024","Rayo Vallecano"],["2024–2025","Racing Ferrol"],["2025–","Ibiza"]]},
+    {answer:"ADRIEN SILVA", wiki:"Adrien Silva", pos:"Midfielder", country:"🇵🇹 Portugal",
+     career:[["2007–2017","Sporting CP"],["2018–2020","Leicester City"],["2020–2022","Sampdoria"],["2022–2023","Al Wahda"],["2024","Rio Ave"],["2024–2025","Dubai United"]]},
+    {answer:"EDER", wiki:"Éder (footballer, born 1987)", pos:"Forward", country:"🇵🇹 Portugal",
+     career:[["2008–2012","Académica"],["2012–2015","Braga"],["2015–2016","Swansea City"],["2016–2018","Lille"],["2018–2021","Lokomotiv Moscow"],["2021–2022","Al Raed"]]},
+    {answer:"RICARDO", wiki:"Ricardo (footballer, born 1976)", pos:"Goalkeeper", country:"🇵🇹 Portugal",
+     career:[["1994–1995","Montijo"],["1995–2003","Boavista"],["2003–2007","Sporting CP"],["2007–2011","Real Betis"],["2011","Leicester City"],["2011–2012","Vitória de Setúbal"],["2012–2014","Olhanense"]]},
   ],
 }

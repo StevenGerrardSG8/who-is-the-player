@@ -1,0 +1,294 @@
+import { shuffle, buildBankLetters, checkAnswer } from "./game.js";
+import { loadPhoto, prefetchPhotos } from "./photo.js";
+import { showScreen } from "./screens.js";
+
+const $ = (id) => document.getElementById(id);
+const MP_POINTS = 100;
+const MAX_PLAYERS = 8;
+const MIN_PLAYERS = 2;
+
+let packs = null;
+let packOrder = null;
+let onExit = null;
+
+let playerNames = ["", ""];
+
+let game = null; // { players:[{name,score}], deck:[player,...], turns:[{playerIdx}], turnIndex, packName }
+let tiles = [];
+let slots = [];
+let locked = false;
+
+/* ============================================================
+   SETUP SCREEN
+============================================================ */
+function renderSetup() {
+  const list = $("mpPlayerList");
+  list.innerHTML = "";
+  playerNames.forEach((name, i) => {
+    const row = document.createElement("div");
+    row.className = "mp-player-row";
+    const input = document.createElement("input");
+    input.type = "text";
+    input.placeholder = "Player " + (i + 1);
+    input.value = name;
+    input.maxLength = 16;
+    input.addEventListener("input", (e) => {
+      playerNames[i] = e.target.value;
+    });
+    row.appendChild(input);
+    if (playerNames.length > MIN_PLAYERS) {
+      const removeBtn = document.createElement("button");
+      removeBtn.className = "mp-remove-btn";
+      removeBtn.textContent = "✕";
+      removeBtn.addEventListener("click", () => {
+        playerNames.splice(i, 1);
+        renderSetup();
+      });
+      row.appendChild(removeBtn);
+    }
+    list.appendChild(row);
+  });
+
+  $("mpAddPlayerBtn").style.display = playerNames.length >= MAX_PLAYERS ? "none" : "";
+
+  const packSelect = $("mpPackSelect");
+  if (!packSelect.dataset.filled) {
+    packOrder.forEach((packId) => {
+      const pack = packs[packId];
+      if (!pack) return;
+      const opt = document.createElement("option");
+      opt.value = packId;
+      opt.textContent = pack.icon + " " + pack.name;
+      packSelect.appendChild(opt);
+    });
+    packSelect.dataset.filled = "1";
+  }
+}
+
+function showSetup() {
+  showScreen("screenMpSetup");
+  renderSetup();
+}
+
+function startGame() {
+  const names = playerNames.map((n) => n.trim()).filter(Boolean);
+  if (names.length < MIN_PLAYERS) {
+    alert("Add at least " + MIN_PLAYERS + " player names.");
+    return;
+  }
+  const packId = $("mpPackSelect").value;
+  const pack = packs[packId];
+  const rounds = Math.max(1, Math.min(20, parseInt($("mpRoundsInput").value, 10) || 5));
+
+  const totalTurns = names.length * rounds;
+  const deck = buildDeck(pack.players, totalTurns);
+
+  const turns = [];
+  for (let r = 0; r < rounds; r++) {
+    for (let p = 0; p < names.length; p++) turns.push({ playerIdx: p, round: r + 1 });
+  }
+
+  game = {
+    players: names.map((name) => ({ name, score: 0 })),
+    deck,
+    turns,
+    turnIndex: 0,
+    rounds,
+    packName: pack.name,
+  };
+
+  showScreen("screenMpGame");
+  buildTurn();
+}
+
+function buildDeck(players, count) {
+  const deck = [];
+  let pool = shuffle([...players]);
+  while (deck.length < count) {
+    if (pool.length === 0) pool = shuffle([...players]);
+    deck.push(pool.pop());
+  }
+  return deck;
+}
+
+/* ============================================================
+   IN-GAME
+============================================================ */
+function currentTurn() {
+  return game.turns[game.turnIndex];
+}
+function currentPlayer() {
+  return game.players[currentTurn().playerIdx];
+}
+function currentTarget() {
+  return game.deck[game.turnIndex];
+}
+
+function renderScoreboard() {
+  const el = $("mpScoreboard");
+  el.innerHTML = game.players
+    .map((p, i) => {
+      const active = i === currentTurn().playerIdx;
+      return (
+        '<div class="mp-score-chip' + (active ? " active" : "") + '">' +
+        '<span class="mp-score-name">' + escapeHtml(p.name) + "</span>" +
+        '<span class="mp-score-value">' + p.score + "</span>" +
+        "</div>"
+      );
+    })
+    .join("");
+  $("mpRoundLabel").textContent = "Round " + currentTurn().round + "/" + game.rounds;
+}
+
+function escapeHtml(s) {
+  return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+function buildTurn() {
+  locked = false;
+  const p = currentTarget();
+  $("mpSticker").classList.remove("win");
+  $("mpStickerNum").textContent = "#" + (game.turnIndex + 1);
+  $("mpTurnBanner").textContent = currentPlayer().name + "'s turn";
+  $("mpAnswer").classList.remove("correct", "wrong", "small", "tiny");
+
+  const answerEl = $("mpAnswer");
+  answerEl.innerHTML = "";
+  const letters = p.answer.replace(/ /g, "").length;
+  if (letters >= 12) answerEl.classList.add("tiny");
+  else if (letters >= 9) answerEl.classList.add("small");
+
+  slots = [];
+  p.answer.split(" ").forEach((word) => {
+    const w = document.createElement("div");
+    w.className = "word";
+    word.split("").forEach((ch) => {
+      const s = document.createElement("div");
+      s.className = "slot";
+      const slotObj = { char: ch, el: s, tileIdx: null };
+      s.addEventListener("click", () => removeFromSlot(slotObj));
+      w.appendChild(s);
+      slots.push(slotObj);
+    });
+    answerEl.appendChild(w);
+  });
+
+  const bankLetters = buildBankLetters(p.answer);
+  const bankEl = $("mpBank");
+  bankEl.innerHTML = "";
+  tiles = bankLetters.map((ch) => {
+    const b = document.createElement("button");
+    b.className = "tile";
+    b.textContent = ch;
+    const tileObj = { char: ch, el: b, used: false };
+    b.addEventListener("click", () => placeTile(tileObj));
+    bankEl.appendChild(b);
+    return tileObj;
+  });
+
+  loadPhoto(p, $("mpPhoto"));
+  prefetchPhotos(game.deck.slice(game.turnIndex + 1, game.turnIndex + 3));
+  renderScoreboard();
+}
+
+function placeTile(tile) {
+  if (locked || tile.used) return;
+  const empty = slots.find((s) => s.tileIdx === null);
+  if (!empty) return;
+  empty.tileIdx = tiles.indexOf(tile);
+  empty.el.textContent = tile.char;
+  empty.el.classList.add("filled");
+  tile.used = true;
+  tile.el.classList.add("used");
+  if (slots.every((s) => s.tileIdx !== null)) checkNow();
+}
+
+function removeFromSlot(slot) {
+  if (locked || slot.tileIdx === null) return;
+  const tile = tiles[slot.tileIdx];
+  tile.used = false;
+  tile.el.classList.remove("used");
+  slot.tileIdx = null;
+  slot.el.textContent = "";
+  slot.el.classList.remove("filled");
+  $("mpAnswer").classList.remove("wrong");
+}
+
+function checkNow() {
+  const guess = slots.map((s) => tiles[s.tileIdx].char).join("");
+  if (checkAnswer(guess, currentTarget().answer)) {
+    scoreTurn(MP_POINTS);
+  } else {
+    $("mpAnswer").classList.add("wrong");
+    setTimeout(() => $("mpAnswer").classList.remove("wrong"), 600);
+  }
+}
+
+function skipTurn() {
+  if (locked) return;
+  scoreTurn(0);
+}
+
+function scoreTurn(points) {
+  locked = true;
+  currentPlayer().score += points;
+  $("mpAnswer").classList.add(points > 0 ? "correct" : "wrong");
+  $("mpSticker").classList.add("win");
+  renderScoreboard();
+  setTimeout(advanceTurn, 700);
+}
+
+function advanceTurn() {
+  game.turnIndex += 1;
+  if (game.turnIndex >= game.turns.length) {
+    showResults();
+    return;
+  }
+  buildTurn();
+}
+
+function showResults() {
+  $("screenMpGame").style.display = "none";
+  const ranked = [...game.players].sort((a, b) => b.score - a.score);
+  const topScore = ranked[0].score;
+  const winners = ranked.filter((p) => p.score === topScore);
+  $("mpWinnerName").textContent =
+    winners.length > 1 ? winners.map((p) => p.name).join(" & ") + " tie!" : winners[0].name + " wins!";
+  $("mpFinalScores").innerHTML = ranked
+    .map((p, i) => '<div class="mp-final-row">#' + (i + 1) + " " + escapeHtml(p.name) + " — <b>" + p.score + "</b> pts</div>")
+    .join("");
+  $("mpResultsOverlay").classList.add("show");
+}
+
+function quitToHome() {
+  game = null;
+  $("screenMpGame").style.display = "none";
+  $("mpResultsOverlay").classList.remove("show");
+  if (onExit) onExit();
+}
+
+/* ============================================================
+   INIT
+============================================================ */
+export function init(context) {
+  packs = context.packs;
+  packOrder = context.packOrder;
+  onExit = context.onExit;
+
+  $("mpAddPlayerBtn").addEventListener("click", () => {
+    if (playerNames.length < MAX_PLAYERS) {
+      playerNames.push("");
+      renderSetup();
+    }
+  });
+  $("mpStartBtn").addEventListener("click", startGame);
+  $("mpBackBtn").addEventListener("click", () => {
+    $("screenMpSetup").style.display = "none";
+    if (onExit) onExit();
+  });
+  $("mpSkipBtn").addEventListener("click", skipTurn);
+  $("mpQuitBtn").addEventListener("click", quitToHome);
+  $("mpPlayAgainBtn").addEventListener("click", quitToHome);
+}
+
+export { showSetup };

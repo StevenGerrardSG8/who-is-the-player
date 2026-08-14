@@ -9,10 +9,30 @@ import superLig from "./super-lig.js";
 import saudiProLeague from "./saudi-pro-league.js";
 import mls from "./mls.js";
 import brasileirao from "./brasileirao.js";
+import argentinaLiga from "./argentina-liga.js";
+import qatarStarsLeague from "./qatar-stars-league.js";
+import scottishPremiership from "./scottish-premiership.js";
+import chineseSuperLeague from "./chinese-super-league.js";
+import greekSuperLeague from "./greek-super-league.js";
+import russianPremierLeague from "./russian-premier-league.js";
+import austrianBundesliga from "./austrian-bundesliga.js";
+import ligaMx from "./liga-mx.js";
+import indianSuperLeague from "./indian-super-league.js";
+import ukrainianPremierLeague from "./ukrainian-premier-league.js";
+import j1League from "./j1-league.js";
+import aLeague from "./a-league.js";
+import uruguayanLiga from "./uruguayan-liga.js";
 import worldLegends from "./world-legends.js";
+import streetsNeverForget from "./streets-never-forget.js";
 import mixedWorldXi from "./mixed-world-xi.js";
+import serbianSuperliga from "./serbian-superliga.js";
+import belgianProLeague from "./belgian-pro-league.js";
+import croatianHnl from "./croatian-hnl.js";
+import colombianLiga from "./colombian-liga.js";
+import israeliLeague from "./israeli-league.js";
 
-export const PACKS = {
+// Real, hand-curated packs, in home-screen display order.
+const CORE_PACKS = {
   [premierLeague.id]: premierLeague,
   [laLiga.id]: laLiga,
   [serieA.id]: serieA,
@@ -24,6 +44,48 @@ export const PACKS = {
   [saudiProLeague.id]: saudiProLeague,
   [mls.id]: mls,
   [brasileirao.id]: brasileirao,
+  [argentinaLiga.id]: argentinaLiga,
+  [qatarStarsLeague.id]: qatarStarsLeague,
+  [scottishPremiership.id]: scottishPremiership,
+  [chineseSuperLeague.id]: chineseSuperLeague,
+  [greekSuperLeague.id]: greekSuperLeague,
+  [russianPremierLeague.id]: russianPremierLeague,
+  [austrianBundesliga.id]: austrianBundesliga,
+  [ligaMx.id]: ligaMx,
+  [indianSuperLeague.id]: indianSuperLeague,
+  [ukrainianPremierLeague.id]: ukrainianPremierLeague,
+  [j1League.id]: j1League,
+  [aLeague.id]: aLeague,
+  [uruguayanLiga.id]: uruguayanLiga,
   [worldLegends.id]: worldLegends,
+  [streetsNeverForget.id]: streetsNeverForget,
   [mixedWorldXi.id]: mixedWorldXi,
+  [serbianSuperliga.id]: serbianSuperliga,
+  [belgianProLeague.id]: belgianProLeague,
+  [croatianHnl.id]: croatianHnl,
+  [colombianLiga.id]: colombianLiga,
+  [israeliLeague.id]: israeliLeague,
+};
+
+/**
+ * Round-robin interleave every pack's (already easy→hard ordered) player list
+ * into one combined, deterministic sequence: level 1 of every league, then
+ * level 2 of every league, etc. Deterministic (no Math.random) so a saved
+ * levelIndex always points at the same player across reloads.
+ */
+function buildAllLeaguesMix(packs) {
+  const lists = Object.values(packs).map((p) => p.players);
+  const maxLen = Math.max(...lists.map((l) => l.length));
+  const players = [];
+  for (let i = 0; i < maxLen; i++) {
+    for (const list of lists) {
+      if (list[i]) players.push(list[i]);
+    }
+  }
+  return { id: "all-leagues-mix", name: "All Leagues Mix", icon: "🌐", players };
+}
+
+export const PACKS = {
+  ...CORE_PACKS,
+  "all-leagues-mix": buildAllLeaguesMix(CORE_PACKS),
 };

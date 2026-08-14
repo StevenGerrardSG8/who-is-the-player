@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Chakra+Petch:wght@500;700&family=Nunito+Sans:wght@400;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./src/styles/main.css">
+<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
 </head>
 <body>
 
@@ -23,7 +24,151 @@
   <div class="pack-grid" id="packGrid"></div>
 
   <div class="footer">
+    <button class="link-btn" id="multiplayerBtn">🎉 Multiplayer</button>
     <button class="link-btn" id="settingsBtn">Settings</button>
+  </div>
+</div>
+
+<!-- ============ MULTIPLAYER MODE CHOICE ============ -->
+<div class="wrap" id="screenMpMode" style="display:none">
+  <div class="game-topbar">
+    <button class="back-btn" id="mpModeBackBtn">← Packs</button>
+    <div class="pack-name">Multiplayer</div>
+  </div>
+  <h1>Party <span>Mode</span></h1>
+  <p class="subtitle">Choose how you want to play</p>
+  <div class="mp-mode-grid">
+    <button class="mp-mode-card" id="mpModeLocalBtn">
+      <div class="mp-mode-icon">📱</div>
+      <div class="mp-mode-title">Local</div>
+      <div class="mp-mode-desc">Pass one device around the room</div>
+    </button>
+    <button class="mp-mode-card" id="mpModeOnlineBtn">
+      <div class="mp-mode-icon">🌐</div>
+      <div class="mp-mode-title">Online</div>
+      <div class="mp-mode-desc">Two players, two separate devices</div>
+    </button>
+  </div>
+</div>
+
+<!-- ============ ONLINE MULTIPLAYER: LOBBY ============ -->
+<div class="wrap" id="screenMpOnline" style="display:none">
+  <div class="game-topbar">
+    <button class="back-btn" id="mpOnlineBackBtn">← Packs</button>
+    <div class="pack-name">Online Multiplayer</div>
+  </div>
+
+  <div id="mpOnlineChoice">
+    <h1>Play <span>Online</span></h1>
+    <p class="subtitle">Host a room, or join one with a code</p>
+    <div class="mp-players">
+      <input type="text" id="mpOnlineNameInput" placeholder="Your name" maxlength="16">
+    </div>
+    <button class="btn-main" id="mpHostBtn">Host a Room</button>
+    <button class="link-btn" id="mpJoinToggleBtn">Or join with a code</button>
+    <div class="mp-players" id="mpJoinRow" style="display:none">
+      <input type="text" id="mpJoinCodeInput" placeholder="ROOM CODE" maxlength="6" style="text-transform:uppercase">
+      <button class="btn-main" id="mpJoinBtn">Join</button>
+    </div>
+    <p class="subtitle" id="mpOnlineError" style="color:#F3897E"></p>
+  </div>
+
+  <div id="mpOnlineLobby" style="display:none">
+    <h1>Room <span id="mpRoomCode">----</span></h1>
+    <p class="subtitle" id="mpLobbyStatus">Waiting for opponent…</p>
+    <div class="mp-config" id="mpOnlineConfig" style="display:none">
+      <label>Pack <select id="mpOnlinePackSelect"></select></label>
+      <label>Rounds per player <input type="number" id="mpOnlineRoundsInput" min="1" max="20" value="5"></label>
+    </div>
+    <button class="btn-main" id="mpOnlineStartBtn" style="display:none">Start</button>
+  </div>
+</div>
+
+<!-- ============ ONLINE MULTIPLAYER: GAME ============ -->
+<div class="wrap" id="screenMpoGame" style="display:none">
+  <div class="game-topbar">
+    <button class="back-btn" id="mpoQuitBtn">← Quit</button>
+    <div class="pack-name" id="mpoRoundLabel">Round 1/5</div>
+  </div>
+
+  <div class="mp-scoreboard" id="mpoScoreboard"></div>
+  <div class="mp-turn-banner" id="mpoTurnBanner">Your turn</div>
+
+  <div class="sticker" id="mpoSticker">
+    <div class="sticker-num" id="mpoStickerNum">#1</div>
+    <div class="photo" id="mpoPhoto">
+      <div class="fallback">?</div>
+    </div>
+  </div>
+
+  <div class="answer" id="mpoAnswer"></div>
+  <div class="bank" id="mpoBank"></div>
+
+  <div class="footer">
+    <button class="link-btn" id="mpoSkipBtn">Skip (0 pts)</button>
+  </div>
+</div>
+
+<div class="overlay" id="mpoResultsOverlay">
+  <div class="modal">
+    <h2>Game Over! 🏆</h2>
+    <div class="m-name" id="mpoWinnerName"></div>
+    <div id="mpoFinalScores"></div>
+    <button class="btn-main" id="mpoPlayAgainBtn">Back to Home</button>
+  </div>
+</div>
+
+<!-- ============ MULTIPLAYER SETUP ============ -->
+<div class="wrap" id="screenMpSetup" style="display:none">
+  <div class="game-topbar">
+    <button class="back-btn" id="mpBackBtn">← Packs</button>
+    <div class="pack-name">Multiplayer</div>
+  </div>
+  <h1>Party <span>Mode</span></h1>
+  <p class="subtitle">Add players, pick a pack, take turns</p>
+
+  <div class="mp-players" id="mpPlayerList"></div>
+  <button class="link-btn" id="mpAddPlayerBtn">+ Add Player</button>
+
+  <div class="mp-config">
+    <label>Pack <select id="mpPackSelect"></select></label>
+    <label>Rounds per player <input type="number" id="mpRoundsInput" min="1" max="20" value="5"></label>
+  </div>
+
+  <button class="btn-main" id="mpStartBtn">Start</button>
+</div>
+
+<!-- ============ MULTIPLAYER GAME ============ -->
+<div class="wrap" id="screenMpGame" style="display:none">
+  <div class="game-topbar">
+    <button class="back-btn" id="mpQuitBtn">← Quit</button>
+    <div class="pack-name" id="mpRoundLabel">Round 1/5</div>
+  </div>
+
+  <div class="mp-scoreboard" id="mpScoreboard"></div>
+  <div class="mp-turn-banner" id="mpTurnBanner">Player's turn</div>
+
+  <div class="sticker" id="mpSticker">
+    <div class="sticker-num" id="mpStickerNum">#1</div>
+    <div class="photo" id="mpPhoto">
+      <div class="fallback">?</div>
+    </div>
+  </div>
+
+  <div class="answer" id="mpAnswer"></div>
+  <div class="bank" id="mpBank"></div>
+
+  <div class="footer">
+    <button class="link-btn" id="mpSkipBtn">Skip (0 pts)</button>
+  </div>
+</div>
+
+<div class="overlay" id="mpResultsOverlay">
+  <div class="modal">
+    <h2>Game Over! 🏆</h2>
+    <div class="m-name" id="mpWinnerName"></div>
+    <div id="mpFinalScores"></div>
+    <button class="btn-main" id="mpPlayAgainBtn">Back to Home</button>
   </div>
 </div>
 

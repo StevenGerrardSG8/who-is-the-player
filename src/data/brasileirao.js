@@ -82,6 +82,66 @@ export default {
     {answer:"MARCOS ROCHA", wiki:"Marcos Rocha", pos:"Defender", country:"🇧🇷 Brazil",
      career:[["2008–2019","Atlético Mineiro"],["2019–2025","Palmeiras"],["2025–","Grêmio"]]},
     {answer:"GERSON", wiki:"Gerson (footballer, born 1997)", pos:"Midfielder", country:"🇧🇷 Brazil",
-     career:[["2014–2016","Fluminense"],["2016–2019","Roma"],["2019–2021","Flamengo"],["2021–2023","Marseille"],["2023–2025","Flamengo"],["2025–2026","Zenit Saint Petersburg"],["2026–","Cruzeiro"]]}
+     career:[["2014–2016","Fluminense"],["2016–2019","Roma"],["2019–2021","Flamengo"],["2021–2023","Marseille"],["2023–2025","Flamengo"],["2025–2026","Zenit Saint Petersburg"],["2026–","Cruzeiro"]]},
+    
+    
+    {answer:"TAFFAREL", wiki:"Cláudio Taffarel", pos:"Goalkeeper", country:"🇧🇷 Brazil",
+     career:[["1985–1990","Internacional"],["1990–1993","Parma"],["1993–1994","Reggiana"],["1995–1998","Atlético Mineiro"],["1998–2001","Galatasaray"],["2001–2003","Parma"]]},
+    
+    
+    {answer:"SOCRATES", wiki:"Sócrates", pos:"Midfielder", country:"🇧🇷 Brazil",
+     career:[["1973–1978","Botafogo-SP"],["1978–1984","Corinthians"],["1984–1985","Fiorentina"],["1986–1987","Flamengo"],["1988–1989","Santos"]]},
+    
+    {answer:"JAIRZINHO", wiki:"Jairzinho", pos:"Forward", country:"🇧🇷 Brazil",
+     career:[["1962–1974","Botafogo"],["1974–1975","Marseille"],["1976","Cruzeiro"],["1981–1982","Botafogo"]]},
+    {answer:"RIVELLINO", wiki:"Rivellino", pos:"Midfielder", country:"🇧🇷 Brazil",
+     career:[["1965–1974","Corinthians"],["1975–1978","Fluminense"],["1978–1981","Al-Hilal"]]},
+    {answer:"CARECA", wiki:"Careca", pos:"Forward", country:"🇧🇷 Brazil",
+     career:[["1978–1982","Guarani"],["1983–1987","São Paulo"],["1987–1993","Napoli"],["1993–1996","Kashiwa Reysol"]]},
+    
+    
+    {answer:"FRED", wiki:"Fred (footballer, born 1983)", pos:"Striker", country:"🇧🇷 Brazil",
+     career:[["2003–2004","América Mineiro"],["2004–2005","Cruzeiro"],["2005–2009","Lyon"],["2009–2016","Fluminense"],["2016–2017","Atlético Mineiro"],["2018–2020","Cruzeiro"],["2020–2022","Fluminense"]]},
+    
+    {answer:"EDMUNDO", wiki:"Edmundo (footballer)", pos:"Forward", country:"🇧🇷 Brazil",
+     career:[["1991–1992","Vasco da Gama"],["1993–1995","Palmeiras"],["1995–1996","Flamengo"],["1996–1997","Vasco da Gama"],["1998–1999","Fiorentina"],["1999–2001","Vasco da Gama"],["2006–2007","Palmeiras"]]},
+    {answer:"ROGERIO CENI", wiki:"Rogério Ceni", pos:"Goalkeeper", country:"🇧🇷 Brazil",
+     career:[["1990","Sinop"],["1993–2015","São Paulo"]]},
+    {answer:"LEONARDO", wiki:"Leonardo Araújo", pos:"Defender", country:"🇧🇷 Brazil",
+     career:[["1987–1990","Flamengo"],["1990–1991","São Paulo"],["1991–1993","Valencia"],["1993–1994","São Paulo"],["1994–1996","Kashima Antlers"],["1996–1997","Paris Saint-Germain"],["1997–2001","AC Milan"],["2001–2002","São Paulo"],["2002–2003","AC Milan"]]},
+    {answer:"RENATO GAUCHO", wiki:"Renato Gaúcho", pos:"Forward", country:"🇧🇷 Brazil",
+     career:[["1980–1986","Grêmio"],["1987–1990","Flamengo"],["1991–1992","Botafogo"],["1992","Cruzeiro"],["1993","Flamengo"],["1994","Atlético Mineiro"],["1995–1997","Fluminense"],["1997–1998","Flamengo"]]},
+    {answer:"DJALMINHA", wiki:"Djalminha", pos:"Midfielder", country:"🇧🇷 Brazil",
+     career:[["1988–1993","Flamengo"],["1993–1995","Guarani"],["1996–1997","Palmeiras"],["1997–2004","Deportivo La Coruña"],["2004","Club América"]]},
+    {answer:"MULLER", wiki:"Müller (footballer, born 1966)", pos:"Forward", country:"🇧🇷 Brazil",
+     career:[["1984–1988","São Paulo"],["1988–1991","Torino"],["1991–1996","São Paulo"],["1997–1998","Santos"],["1998–2001","Cruzeiro"]]},
+    {answer:"AMOROSO", wiki:"Márcio Amoroso", pos:"Forward", country:"🇧🇷 Brazil",
+     career:[["1992–1996","Guarani"],["1996–1999","Udinese"],["1999–2001","Parma"],["2001–2004","Borussia Dortmund"],["2004–2005","Málaga"],["2006–2007","Corinthians"],["2007","Grêmio"]]},
+    {answer:"OSCAR", wiki:"Oscar (footballer, born 1991)", pos:"Midfielder", country:"🇧🇷 Brazil",
+     career:[["2008–2010","São Paulo"],["2010–2012","Internacional"],["2012–2017","Chelsea"],["2017–2024","Shanghai Port"],["2025–","São Paulo"]]},
+    {answer:"FELIPE ANDERSON", wiki:"Felipe Anderson", pos:"Forward", country:"🇧🇷 Brazil",
+     career:[["2010–2013","Santos"],["2013–2018","Lazio"],["2018–2021","West Ham United"],["2021–2024","Lazio"],["2024–","Palmeiras"]]},
+    {answer:"MARTIN BRAITHWAITE", wiki:"Martin Braithwaite", pos:"Forward", country:"🇩🇰 Denmark",
+     career:[["2017–2019","Middlesbrough"],["2019–2020","Leganés"],["2020–2022","Barcelona"],["2022–2024","Espanyol"],["2024–","Grêmio"]]},
+    {answer:"HUGO SOUZA", wiki:"Hugo Souza", pos:"Goalkeeper", country:"🇧🇷 Brazil",
+     career:[["2018–2024","Flamengo"],["2024–","Corinthians"]]},
+    {answer:"LEO PEREIRA", wiki:"Léo Pereira (footballer, born 1996)", pos:"Defender", country:"🇧🇷 Brazil",
+     career:[["2014–2019","Athletico Paranaense"],["2020–","Flamengo"]]},
+    {answer:"WESLEY FRANCA", wiki:"Wesley França", pos:"Defender", country:"🇧🇷 Brazil",
+     career:[["2021","Atlético Tubarão"],["2021–2025","Flamengo"],["2025–","Roma"]]},
+    {answer:"ANDRE", wiki:"André (footballer, born 2001)", pos:"Midfielder", country:"🇧🇷 Brazil",
+     career:[["2020–2024","Fluminense"],["2024–","Wolverhampton Wanderers"]]},
+    {answer:"IGOR JESUS", wiki:"Igor Jesus (footballer, born 2001)", pos:"Forward", country:"🇧🇷 Brazil",
+     career:[["2019–2020","Coritiba"],["2020–2024","Shabab Al Ahli"],["2024–2025","Botafogo"],["2025–","Nottingham Forest"]]},
+    {answer:"JHON ARIAS", wiki:"Jhon Arias (footballer)", pos:"Midfielder", country:"🇨🇴 Colombia",
+     career:[["2018–2019","Patriotas"],["2020","América de Cali"],["2021","Santa Fe"],["2021–2025","Fluminense"],["2025–2026","Wolverhampton Wanderers"],["2026–","Palmeiras"]]},
+    {answer:"RAPHAEL VEIGA", wiki:"Raphael Veiga", pos:"Midfielder", country:"🇧🇷 Brazil",
+     career:[["2016","Coritiba"],["2017–2026","Palmeiras"],["2026–","América"]]},
+    {answer:"ESTEVAO", wiki:"Estêvão Willian", pos:"Forward", country:"🇧🇷 Brazil",
+     career:[["2023–2025","Palmeiras"],["2025–","Chelsea"]]},
+    {answer:"PABLO VEGETTI", wiki:"Pablo Vegetti", pos:"Forward", country:"🇦🇷 Argentina",
+     career:[["2019–2023","Belgrano"],["2023–2026","Vasco da Gama"],["2026–","Cerro Porteño"]]},
+    {answer:"DEYVERSON", wiki:"Deyverson", pos:"Forward", country:"🇧🇷 Brazil",
+     career:[["2017–2022","Palmeiras"],["2022–2024","Cuiabá"],["2024–2025","Atlético Mineiro"],["2025–2026","Fortaleza"],["2026–","LDU Quito"]]}
   ]
 }

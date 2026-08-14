@@ -105,5 +105,101 @@ export default {
      career:[["2024–","Arsenal"]]},
     {answer:"BURN", wiki:"Dan Burn", pos:"Defender", country:"🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
      career:[["2011–2016","Fulham"],["2016–2018","Wigan Athletic"],["2018–2022","Brighton & Hove Albion"],["2022–","Newcastle United"]]},
+    {answer:"ROONEY", wiki:"Wayne Rooney", pos:"Striker", country:"🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+     career:[["2002–2004","Everton"],["2004–2017","Manchester United"],["2017–2018","Everton"],["2018–2019","D.C. United"],["2019–2021","Derby County"]]},
+    
+    
+    
+    
+    
+    
+    
+    {answer:"CANTONA", wiki:"Eric Cantona", pos:"Forward", country:"🇫🇷 France",
+     career:[["1988–1991","Marseille"],["1991–1992","Nîmes"],["1992","Leeds United"],["1992–1997","Manchester United"]]},
+    
+    {answer:"SCHOLES", wiki:"Paul Scholes", pos:"Midfielder", country:"🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+     career:[["1993–2013","Manchester United"]]},
+    
+    {answer:"FERDINAND", wiki:"Rio Ferdinand", pos:"Defender", country:"🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+     career:[["1996–2000","West Ham United"],["2000–2002","Leeds United"],["2002–2014","Manchester United"],["2014–2015","Queens Park Rangers"]]},
+    {answer:"TERRY", wiki:"John Terry", pos:"Defender", country:"🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+     career:[["1998–2017","Chelsea"],["2017–2018","Aston Villa"]]},
+    
+    {answer:"ASHLEY COLE", wiki:"Ashley Cole", pos:"Defender", country:"🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+     career:[["1999–2006","Arsenal"],["2006–2014","Chelsea"],["2014–2016","Roma"],["2016–2018","LA Galaxy"]]},
+    
+    
+    
+    
+    {answer:"KEANE", wiki:"Roy Keane", pos:"Midfielder", country:"🇮🇪 Ireland",
+     career:[["1990–1993","Nottingham Forest"],["1993–2005","Manchester United"],["2005–2006","Celtic"]]},
+    
+    
+    {answer:"YAYA TOURE", wiki:"Yaya Touré", pos:"Midfielder", country:"🇨🇮 Ivory Coast",
+     career:[["2006–2007","Monaco"],["2007–2010","Barcelona"],["2010–2018","Manchester City"]]},
+    {answer:"KOMPANY", wiki:"Vincent Kompany", pos:"Defender", country:"🇧🇪 Belgium",
+     career:[["2003–2006","Anderlecht"],["2006–2008","Hamburger SV"],["2008–2019","Manchester City"]]},
+    {answer:"FABREGAS", wiki:"Cesc Fàbregas", pos:"Midfielder", country:"🇪🇸 Spain",
+     career:[["2003–2011","Arsenal"],["2011–2014","Barcelona"],["2014–2019","Chelsea"],["2019–2023","Monaco"]]},
+    {answer:"HAZARD", wiki:"Eden Hazard", pos:"Winger", country:"🇧🇪 Belgium",
+     career:[["2007–2012","Lille"],["2012–2019","Chelsea"],["2019–2023","Real Madrid"]]},
+    {answer:"CECH", wiki:"Petr Čech", pos:"Goalkeeper", country:"🇨🇿 Czech Republic",
+     career:[["2001–2002","Sparta Prague"],["2002–2004","Rennes"],["2004–2015","Chelsea"],["2015–2019","Arsenal"]]},
+    {answer:"VIDIC", wiki:"Nemanja Vidić", pos:"Defender", country:"🇷🇸 Serbia",
+     career:[["2000–2005","Red Star Belgrade"],["2006–2014","Manchester United"],["2014–2015","Inter Milan"]]},
+    
+    {answer:"BERBATOV", wiki:"Dimitar Berbatov", pos:"Striker", country:"🇧🇬 Bulgaria",
+     career:[["2001–2006","Bayer Leverkusen"],["2006–2008","Tottenham Hotspur"],["2008–2012","Manchester United"],["2012–2014","Fulham"],["2014–2015","Monaco"],["2015–2016","PAOK"]]},
+    {answer:"CROUCH", wiki:"Peter Crouch", pos:"Striker", country:"🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+     career:[["2002–2005","Aston Villa"],["2005–2008","Liverpool"],["2008–2009","Portsmouth"],["2009–2011","Tottenham Hotspur"],["2011–2018","Stoke City"]]},
+    {answer:"ANDY COLE", wiki:"Andy Cole", pos:"Striker", country:"🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+     career:[["1993–1995","Newcastle United"],["1995–2001","Manchester United"],["2001–2004","Blackburn Rovers"],["2004–2005","Fulham"],["2005–2006","Manchester City"]]},
+    {answer:"CARRAGHER", wiki:"Jamie Carragher", pos:"Defender", country:"🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+     career:[["1996–2013","Liverpool"]]},
+    {answer:"NEVILLE", wiki:"Gary Neville", pos:"Defender", country:"🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+     career:[["1992–2011","Manchester United"]]},
+    {answer:"DE GEA", wiki:"David de Gea", pos:"Goalkeeper", country:"🇪🇸 Spain",
+     career:[["2009–2011","Atlético Madrid"],["2011–2023","Manchester United"],["2024–","Fiorentina"]]},
+    
+    
+    
+    
+    
+    {answer:"ALEXIS SANCHEZ", wiki:"Alexis Sánchez", pos:"Forward", country:"🇨🇱 Chile",
+     career:[["2006–2011","Udinese"],["2011–2014","Barcelona"],["2014–2018","Arsenal"],["2018–2020","Manchester United"],["2020–2024","Inter Milan"],["2024–2026","Udinese"],["2026–","CF Montréal"]]},
+    
+    {answer:"ERIKSEN", wiki:"Christian Eriksen", pos:"Midfielder", country:"🇩🇰 Denmark",
+     career:[["2010–2013","Ajax"],["2013–2020","Tottenham Hotspur"],["2020–2022","Inter Milan"],["2022","Brentford"],["2022–2025","Manchester United"],["2025–","VfL Wolfsburg"]]},
+    {answer:"TEVEZ", wiki:"Carlos Tevez", pos:"Striker", country:"🇦🇷 Argentina",
+     career:[["2001–2004","Boca Juniors"],["2005–2006","Corinthians"],["2006–2007","West Ham United"],["2007–2009","Manchester United"],["2009–2013","Manchester City"],["2013–2015","Juventus"],["2015–2016","Boca Juniors"],["2016–2018","Shanghai Shenhua"],["2018–2021","Boca Juniors"]]},
+    
+    {answer:"SHERINGHAM", wiki:"Teddy Sheringham", pos:"Forward", country:"🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+     career:[["1983–1991","Millwall"],["1991–1992","Nottingham Forest"],["1992–1997","Tottenham Hotspur"],["1997–2001","Manchester United"],["2001–2003","Tottenham Hotspur"],["2003–2004","Portsmouth"],["2004–2007","West Ham United"]]},
+    {answer:"MAHREZ", wiki:"Riyad Mahrez", pos:"Winger", country:"🇩🇿 Algeria",
+     career:[["2011–2014","Le Havre"],["2014–2018","Leicester City"],["2018–2023","Manchester City"],["2023–2026","Al-Ahli"]]},
+    {answer:"STERLING", wiki:"Raheem Sterling", pos:"Winger", country:"🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+     career:[["2012–2015","Liverpool"],["2015–2022","Manchester City"],["2022–2026","Chelsea"],["2026–","Feyenoord"]]},
+    {answer:"ALLI", wiki:"Dele Alli", pos:"Midfielder", country:"🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+     career:[["2012–2015","Milton Keynes Dons"],["2015–2022","Tottenham Hotspur"],["2022–2024","Everton"],["2025","Como"]]},
+    {answer:"ZAHA", wiki:"Wilfried Zaha", pos:"Winger", country:"🇨🇮 Ivory Coast",
+     career:[["2010–2013","Crystal Palace"],["2013–2015","Manchester United"],["2015–2023","Crystal Palace"],["2023–","Galatasaray"]]},
+    
+    {answer:"CUCURELLA", wiki:"Marc Cucurella", pos:"Defender", country:"🇪🇸 Spain",
+     career:[["2019–2021","Getafe"],["2021–2022","Brighton & Hove Albion"],["2022–2026","Chelsea"],["2026–","Real Madrid"]]},
+    {answer:"WALKER", wiki:"Kyle Walker", pos:"Defender", country:"🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+     career:[["2009–2017","Tottenham Hotspur"],["2017–2025","Manchester City"],["2025–","Burnley"]]},
+    {answer:"GREALISH", wiki:"Jack Grealish", pos:"Midfielder", country:"🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+     career:[["2013–2021","Aston Villa"],["2021–2025","Manchester City"],["2025–","Everton"]]},
+    {answer:"GORDON", wiki:"Anthony Gordon (footballer)", pos:"Winger", country:"🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+     career:[["2017–2023","Everton"],["2023–2026","Newcastle United"],["2026–","Barcelona"]]},
+    
+    {answer:"RASHFORD", wiki:"Marcus Rashford", pos:"Forward", country:"🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+     career:[["2016–2025","Manchester United"],["2025–2026","Barcelona"],["2026–","Manchester United"]]},
+    {answer:"PICKFORD", wiki:"Jordan Pickford", pos:"Goalkeeper", country:"🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+     career:[["2011–2017","Sunderland"],["2017–","Everton"]]},
+    {answer:"MAGUIRE", wiki:"Harry Maguire", pos:"Defender", country:"🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+     career:[["2011–2014","Sheffield United"],["2014–2017","Hull City"],["2017–2019","Leicester City"],["2019–","Manchester United"]]},
+    {answer:"ENZO FERNANDEZ", wiki:"Enzo Fernández", pos:"Midfielder", country:"🇦🇷 Argentina",
+     career:[["2021–2022","River Plate"],["2022–2023","Benfica"],["2023–","Chelsea"]]},
   ]
 }

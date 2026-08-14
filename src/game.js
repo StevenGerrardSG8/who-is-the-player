@@ -7,7 +7,8 @@ import {
   NO_HINT_BONUS,
 } from "./config.js";
 
-const ALPHABET = "ABCDEFGHIJKLMNOPRSTUVYZ";
+export const LATIN_ALPHABET = "ABCDEFGHIJKLMNOPRSTUVYZ";
+export const HEBREW_ALPHABET = "אבגדהוזחטיכלמנסעפצקרשת";
 
 export function shuffle(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
@@ -17,12 +18,12 @@ export function shuffle(arr) {
   return arr;
 }
 
-export function buildBankLetters(answer) {
+export function buildBankLetters(answer, alphabet = LATIN_ALPHABET) {
   const answerLetters = answer.replace(/ /g, "").split("");
   const total = Math.max(12, answerLetters.length + 4);
   const bankLetters = [...answerLetters];
   while (bankLetters.length < total) {
-    bankLetters.push(ALPHABET[Math.floor(Math.random() * ALPHABET.length)]);
+    bankLetters.push(alphabet[Math.floor(Math.random() * alphabet.length)]);
   }
   return shuffle(bankLetters);
 }

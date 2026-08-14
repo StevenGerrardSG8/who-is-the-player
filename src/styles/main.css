@@ -117,6 +117,10 @@ h1 span{color:var(--foil)}
   padding:4px 10px;border-radius:999px;border:1px solid #4B6B58;
 }
 
+/* ---------- RTL (Hebrew-content packs) ---------- */
+.answer.rtl{direction:rtl}
+.bank.rtl{direction:rtl}
+
 /* ---------- answer slots ---------- */
 .answer{display:flex;flex-direction:column;gap:8px;align-items:center;margin-top:2px}
 .word{display:flex;gap:6px;justify-content:center;flex-wrap:nowrap}
@@ -212,3 +216,51 @@ h1 span{color:var(--foil)}
   .tile{width:38px;height:42px;font-size:17px}
   .slot{width:34px;height:40px;font-size:18px}
 }
+
+/* ---------- multiplayer ---------- */
+.mp-players{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.mp-player-row{display:flex;gap:8px;align-items:center}
+.mp-player-row input{
+  flex:1;font-family:var(--body);font-size:14px;padding:10px 12px;border-radius:10px;
+  border:2px solid var(--card-edge);background:var(--card);color:var(--ink);
+}
+.mp-remove-btn{
+  background:none;border:0;color:var(--bad);font-size:16px;cursor:pointer;padding:4px 8px;
+}
+.mp-config{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.mp-config label{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+  font-family:var(--body);font-size:13px;color:#CFE3D5;
+}
+.mp-config select,.mp-config input[type="number"]{
+  font-family:var(--body);font-size:14px;padding:8px 10px;border-radius:10px;
+  border:2px solid var(--card-edge);background:var(--card);color:var(--ink);
+}
+.mp-scoreboard{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:-2px 0 4px}
+.mp-score-chip{
+  display:flex;flex-direction:column;align-items:center;gap:1px;padding:5px 10px;
+  border-radius:10px;background:#1C4A34;border:1.5px solid #3A6B50;min-width:56px;
+}
+.mp-score-chip.active{background:var(--foil);border-color:var(--foil-deep)}
+.mp-score-name{font-family:var(--body);font-size:10px;font-weight:800;color:#CFE3D5;max-width:70px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mp-score-chip.active .mp-score-name{color:#3B2C08}
+.mp-score-value{font-family:var(--score);font-size:14px;color:#FFE9A8}
+.mp-score-chip.active .mp-score-value{color:#3B2C08}
+.mp-turn-banner{
+  text-align:center;font-family:var(--display);font-size:16px;color:var(--foil);
+  text-transform:uppercase;letter-spacing:.5px;
+}
+.mp-final-row{font-family:var(--score);font-size:14px;color:var(--ink);padding:4px 0;border-bottom:1px dashed var(--card-edge)}
+.mp-final-row:last-child{border-bottom:0}
+
+.mp-mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
+.mp-mode-card{
+  background:var(--card);border-radius:14px;padding:20px 12px;border:3px solid var(--foil);
+  display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;
+  box-shadow:0 8px 20px rgba(0,0,0,0.35), 0 2px 0 var(--foil-deep);
+}
+.mp-mode-card:active{transform:scale(0.96)}
+.mp-mode-icon{font-size:36px}
+.mp-mode-title{font-family:var(--display);font-size:15px;color:var(--ink);text-transform:uppercase}
+.mp-mode-desc{font-family:var(--body);font-size:11px;color:var(--ink-soft);text-align:center}
+#mpRoomCode{font-family:var(--score);color:var(--foil);letter-spacing:2px}

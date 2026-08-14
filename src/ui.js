@@ -7,6 +7,8 @@ import {
   resetPackProgress,
 } from "./state.js";
 import { UNLOCK_MODE, STARS_PER_UNLOCK } from "./config.js";
+import { loadPhoto as loadPhotoInto, prefetchPhotos } from "./photo.js";
+import { showScreen } from "./screens.js";
 
 const $ = (id) => document.getElementById(id);
 
@@ -84,30 +86,8 @@ function toast(msg) {
 /* ============================================================
    PHOTO
 ============================================================ */
-async function loadPhoto(p) {
-  const photo = $("photo");
-  photo.innerHTML = '<div class="fallback">?<small>Loading photo…</small></div>';
-  try {
-    const r = await fetch(
-      "https://en.wikipedia.org/api/rest_v1/page/summary/" + encodeURIComponent(p.wiki)
-    );
-    if (!r.ok) throw new Error("fetch failed");
-    const j = await r.json();
-    const src = (j.originalimage && j.originalimage.source) || (j.thumbnail && j.thumbnail.source);
-    if (!src) throw new Error("no image");
-    const img = new Image();
-    img.onload = () => {
-      photo.innerHTML = "";
-      photo.appendChild(img);
-    };
-    img.onerror = showSilhouette;
-    img.src = src;
-  } catch (e) {
-    showSilhouette();
-  }
-  function showSilhouette() {
-    photo.innerHTML = '<div class="fallback">🕵️<small>Mystery player — use the hints!</small></div>';
-  }
+function loadPhoto(p) {
+  return loadPhotoInto(p, $("photo"));
 }
 
 /* ============================================================
@@ -133,9 +113,11 @@ function buildRound() {
   $("careerPanel").classList.remove("show");
   $("careerTable").innerHTML = "";
 
+  const pack = currentPack();
   const answerEl = $("answer");
   answerEl.innerHTML = "";
-  answerEl.classList.remove("correct", "wrong", "small", "tiny");
+  answerEl.classList.remove("correct", "wrong", "small", "tiny", "rtl");
+  answerEl.classList.toggle("rtl", !!pack.rtl);
   const letters = p.answer.replace(/ /g, "").length;
   if (letters >= 12) answerEl.classList.add("tiny");
   else if (letters >= 9) answerEl.classList.add("small");
@@ -155,9 +137,10 @@ function buildRound() {
     answerEl.appendChild(w);
   });
 
-  const bankLetters = buildBankLetters(p.answer);
+  const bankLetters = buildBankLetters(p.answer, pack.alphabet);
   const bankEl = $("bank");
   bankEl.innerHTML = "";
+  bankEl.classList.toggle("rtl", !!pack.rtl);
   tiles = bankLetters.map((ch) => {
     const b = document.createElement("button");
     b.className = "tile";
@@ -173,6 +156,7 @@ function buildRound() {
   if (ps.hintsBought.includes(2)) showCareer();
 
   loadPhoto(p);
+  prefetchPhotos(pack.players.slice(ps.levelIndex + 1, ps.levelIndex + 3));
   renderScoreboard();
 }
 
@@ -346,9 +330,7 @@ async function resetProgress() {
 ============================================================ */
 export function showHome() {
   currentPackId = null;
-  $("screenGame").style.display = "none";
-  $("packCompleteOverlay").classList.remove("show");
-  $("screenHome").style.display = "flex";
+  showScreen("screenHome");
   renderHome();
 }
 
@@ -359,8 +341,7 @@ export function showGame(packId) {
   if (ps.levelIndex >= pack.players.length) {
     ps.levelIndex = 0; // replay a completed pack
   }
-  $("screenHome").style.display = "none";
-  $("screenGame").style.display = "flex";
+  showScreen("screenGame");
   buildRound();
 }
 
