@@ -44,6 +44,7 @@ body{
 .sb-value.stars::before{content:"★";color:var(--foil);font-size:12px;margin-right:5px;vertical-align:2px}
 
 /* ---------- title ---------- */
+.brand-badge{display:block;margin:0 auto;border-radius:14px}
 h1{
   font-family:var(--display);font-size:22px;margin:2px 0 0;text-align:center;
   letter-spacing:1px;color:var(--chalk);text-transform:uppercase;
