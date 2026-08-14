@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Who's The Player?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Chakra+Petch:wght@500;700&family=Nunito+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/src/styles/main.css">
+</head>
+<body>
+
+<!-- ============ HOME SCREEN ============ -->
+<div class="wrap" id="screenHome">
+  <h1>Who's The <span>Player</span>?</h1>
+  <p class="subtitle">Pick a pack &amp; name the footballers</p>
+
+  <div class="totals">
+    <div class="sb-item"><span class="sb-label">Coins</span><span class="sb-value coins" id="homeCoins">100</span></div>
+    <div class="sb-item"><span class="sb-label">Total Stars</span><span class="sb-value stars" id="homeStars">0</span></div>
+  </div>
+
+  <div class="pack-grid" id="packGrid"></div>
+
+  <div class="footer">
+    <button class="link-btn" id="settingsBtn">Settings</button>
+  </div>
+</div>
+
+<!-- ============ GAME SCREEN ============ -->
+<div class="wrap" id="screenGame" style="display:none">
+  <div class="game-topbar">
+    <button class="back-btn" id="backBtn">← Packs</button>
+    <div class="pack-name" id="gamePackName">Premier League</div>
+  </div>
+
+  <div class="scoreboard">
+    <div class="sb-item"><span class="sb-label">Level</span><span class="sb-value" id="sbLevel">1/30</span></div>
+    <div class="sb-item"><span class="sb-label">Score</span><span class="sb-value" id="sbScore">0</span></div>
+    <div class="sb-item"><span class="sb-label">Coins</span><span class="sb-value coins" id="sbCoins">100</span></div>
+  </div>
+
+  <div class="sticker" id="sticker">
+    <div class="sticker-num" id="stickerNum">#1</div>
+    <div class="photo" id="photo">
+      <div class="fallback">?</div>
+    </div>
+    <div class="clue-chips" id="clueChips"></div>
+  </div>
+
+  <div class="answer" id="answer"></div>
+  <div class="bank" id="bank"></div>
+
+  <div class="hints">
+    <button class="hint" id="hint1">
+      <span class="h-icon">🧭</span><span class="h-name">Position &amp; Country</span><span class="h-cost">● 15</span>
+    </button>
+    <button class="hint" id="hint2">
+      <span class="h-icon">📋</span><span class="h-name">Career Clubs</span><span class="h-cost">● 30</span>
+    </button>
+    <button class="hint" id="hint3">
+      <span class="h-icon">💡</span><span class="h-name">Reveal Name</span><span class="h-cost">● 60</span>
+    </button>
+  </div>
+
+  <div class="career" id="careerPanel">
+    <h3>Senior Career</h3>
+    <table id="careerTable"></table>
+  </div>
+
+  <div class="footer">
+    <button class="link-btn" id="resetBtn">Reset pack progress</button>
+  </div>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <h2 id="mTitle">Goal! ⚽</h2>
+    <div class="m-name" id="mName"></div>
+    <div class="m-rewards" id="mRewards"></div>
+    <button class="btn-main" id="nextBtn">Next Player →</button>
+  </div>
+</div>
+
+<div class="overlay" id="packCompleteOverlay">
+  <div class="modal">
+    <h2>Pack Complete! 🏆</h2>
+    <div class="m-name" id="pcPackName"></div>
+    <div class="m-rewards" id="pcStars"></div>
+    <button class="btn-main" id="pcHomeBtn">Back to Packs</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>
