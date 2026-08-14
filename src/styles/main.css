@@ -125,7 +125,14 @@ h1 span{color:var(--foil)}
   padding:4px 10px;border-radius:999px;border:1px solid #4B6B58;
 }
 
-/* ---------- RTL (Hebrew-content packs) ---------- */
+/* ---------- RTL (Hebrew-content packs) ----------
+   Pack-content direction (which way the letter tiles/slots read) is
+   independent of the app's UI language — force ltr by default so an
+   English-answer pack stays left-to-right even when the app chrome is in
+   Hebrew/Arabic (dir="rtl" on <html>), and only flip for packs whose actual
+   player data is Hebrew (marked with pack.rtl = true). */
+.answer{direction:ltr}
+.bank{direction:ltr}
 .answer.rtl{direction:rtl}
 .bank.rtl{direction:rtl}
 
