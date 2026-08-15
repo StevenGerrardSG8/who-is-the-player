@@ -102,6 +102,8 @@ const STATIC_MAP = {
   homeStarsLabel: "home.totalStars",
   multiplayerBtn: "home.multiplayer",
   settingsBtn: "home.settings",
+  packTabTop: "home.tabTop",
+  packTabAll: "home.tabAll",
 
   mpModeBackLabel: "game.back",
   mpModeCrumb: "home.multiplayer",

@@ -6,7 +6,14 @@ import {
   isPackUnlocked,
   resetPackProgress,
 } from "./state.js";
-import { UNLOCK_MODE, STARS_PER_UNLOCK } from "./config.js";
+import {
+  UNLOCK_MODE,
+  STARS_PER_UNLOCK,
+  TOP_LEAGUE_PACKS,
+  HOME_LEAGUE_PACK,
+  SPECIAL_PACKS,
+  FEATURED_PACK_ID,
+} from "./config.js";
 import { loadPhoto as loadPhotoInto, prefetchPhotos } from "./photo.js";
 import { showScreen } from "./screens.js";
 import { t, getLang, onLangChange } from "./i18n/index.js";
@@ -46,33 +53,114 @@ function lockHint(index) {
   return t("home.starsToUnlock", { n: index * STARS_PER_UNLOCK });
 }
 
-function renderPackGrid() {
-  const grid = $("packGrid");
-  grid.innerHTML = "";
-  ctx.packOrder.forEach((packId, idx) => {
-    const pack = ctx.packs[packId];
-    if (!pack) return;
-    const ps = ctx.state.packs[packId];
-    const solved = packSolvedCount(ps);
-    const stars = packStarTotal(ps);
-    const unlocked = isPackUnlocked(ctx.state, ctx.packOrder, ctx.packs, idx);
-    const pct = Math.round((solved / pack.players.length) * 100);
+// Which of the two home-screen tabs is active, and whether the collapsed
+// "More Leagues" accordion is open. Module-scoped so the choice survives a
+// pack-complete -> back-to-home round trip within the same session, but
+// naturally resets on a full page reload.
+let activePackTab = "top";
+let moreExpanded = false;
 
-    const card = document.createElement("div");
-    card.className = "pack-card" + (unlocked ? "" : " locked");
-    card.innerHTML =
-      '<div class="p-icon">' + pack.icon + "</div>" +
-      '<div class="p-name">' + pack.name + "</div>" +
-      '<div class="p-progress">' + solved + "/" + pack.players.length + "</div>" +
-      '<div class="p-bar"><div class="p-bar-fill" style="width:' + pct + '%"></div></div>' +
-      '<div class="p-stars">★ ' + stars + "</div>" +
-      (unlocked ? "" : '<div class="p-hint">' + lockHint(idx) + "</div>");
+function buildPackCard(packId) {
+  const pack = ctx.packs[packId];
+  if (!pack) return null;
+  // Always look up the pack's index in the *full* flat PACK_ORDER (not its
+  // position within whatever section/tab we're currently building) — that's
+  // the index isPackUnlocked()/lockHint() expect for "stars"/"sequential"
+  // unlock-mode maths, regardless of which section the card renders in.
+  const idx = ctx.packOrder.indexOf(packId);
+  const ps = ctx.state.packs[packId];
+  const solved = packSolvedCount(ps);
+  const stars = packStarTotal(ps);
+  const unlocked = isPackUnlocked(ctx.state, ctx.packOrder, ctx.packs, idx);
+  const pct = Math.round((solved / pack.players.length) * 100);
 
-    if (unlocked) {
-      card.addEventListener("click", () => showGame(packId));
-    }
-    grid.appendChild(card);
+  const card = document.createElement("div");
+  card.className = "pack-card" + (unlocked ? "" : " locked");
+  card.innerHTML =
+    '<div class="p-icon">' + pack.icon + "</div>" +
+    '<div class="p-name">' + pack.name + "</div>" +
+    '<div class="p-progress">' + solved + "/" + pack.players.length + "</div>" +
+    '<div class="p-bar"><div class="p-bar-fill" style="width:' + pct + '%"></div></div>' +
+    '<div class="p-stars">★ ' + stars + "</div>" +
+    (unlocked ? "" : '<div class="p-hint">' + lockHint(idx) + "</div>");
+
+  if (unlocked) {
+    card.addEventListener("click", () => showGame(packId));
+  }
+  return card;
+}
+
+function buildPackGrid(packIds, extraClass) {
+  const grid = document.createElement("div");
+  grid.className = "pack-grid" + (extraClass ? " " + extraClass : "");
+  packIds.forEach((packId) => {
+    const card = buildPackCard(packId);
+    if (card) grid.appendChild(card);
   });
+  return grid;
+}
+
+function buildSection(titleKey, packIds, opts = {}) {
+  const section = document.createElement("div");
+  section.className = "pack-section";
+  const h = document.createElement("h2");
+  h.className = "pack-section-title";
+  h.textContent = t(titleKey);
+  section.appendChild(h);
+  if (opts.subKey) {
+    const sub = document.createElement("p");
+    sub.className = "pack-section-sub";
+    sub.textContent = t(opts.subKey);
+    section.appendChild(sub);
+  }
+  section.appendChild(buildPackGrid(packIds, opts.gridClass));
+  return section;
+}
+
+function renderPackGrid() {
+  const content = $("packContent");
+  content.innerHTML = "";
+
+  if (activePackTab === "all") {
+    content.appendChild(buildPackGrid(ctx.packOrder));
+    return;
+  }
+
+  // Default "Top" tab: featured mix + curated top leagues, the Israeli
+  // league (home-market pack, always shown), a clearly-labelled Specials
+  // section, then everything else collapsed behind a "More Leagues" toggle.
+  const bucketed = new Set([FEATURED_PACK_ID, HOME_LEAGUE_PACK, ...TOP_LEAGUE_PACKS, ...SPECIAL_PACKS]);
+  const moreIds = ctx.packOrder.filter((id) => !bucketed.has(id));
+
+  content.appendChild(buildSection("home.sectionTopLeagues", [FEATURED_PACK_ID, ...TOP_LEAGUE_PACKS]));
+  content.appendChild(buildSection("home.sectionIsraeli", [HOME_LEAGUE_PACK], { gridClass: "one-col" }));
+  content.appendChild(buildSection("home.sectionSpecials", SPECIAL_PACKS, { subKey: "home.sectionSpecialsHint" }));
+
+  const moreWrap = document.createElement("div");
+  moreWrap.className = "pack-more";
+  const toggle = document.createElement("button");
+  toggle.type = "button";
+  toggle.className = "pack-more-toggle";
+  toggle.innerHTML =
+    "<span>" + t("home.moreLeagues", { n: moreIds.length }) + '</span><span class="pack-more-chevron">' + (moreExpanded ? "▴" : "▾") + "</span>";
+  toggle.addEventListener("click", () => {
+    moreExpanded = !moreExpanded;
+    renderPackGrid();
+  });
+  moreWrap.appendChild(toggle);
+  const moreGrid = buildPackGrid(moreIds, "pack-more-body");
+  moreGrid.hidden = !moreExpanded;
+  moreWrap.appendChild(moreGrid);
+  content.appendChild(moreWrap);
+}
+
+function setPackTab(tab) {
+  if (activePackTab === tab) return;
+  activePackTab = tab;
+  $("packTabTop").classList.toggle("active", tab === "top");
+  $("packTabAll").classList.toggle("active", tab === "all");
+  renderPackGrid();
+  window.scrollTo({ top: 0, behavior: "auto" });
 }
 
 /* ============================================================
@@ -352,6 +440,8 @@ export function showGame(packId) {
 ============================================================ */
 export function init(context) {
   ctx = context;
+  $("packTabTop").addEventListener("click", () => setPackTab("top"));
+  $("packTabAll").addEventListener("click", () => setPackTab("all"));
   $("hint1").addEventListener("click", () => buyHint(1));
   $("hint2").addEventListener("click", () => buyHint(2));
   $("hint3").addEventListener("click", () => buyHint(3));

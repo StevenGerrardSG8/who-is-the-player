@@ -99,8 +99,41 @@ h1 span{
 }
 .subtitle{text-align:center;font-size:12px;color:#A9C3B2;margin:-6px 0 0;letter-spacing:.2px}
 
+/* ---------- home: pack tabs & sections ---------- */
+.pack-tabs{display:flex;gap:8px;margin-top:2px}
+.pack-tab{
+  flex:1;font-family:var(--display);font-size:12px;letter-spacing:.4px;text-transform:uppercase;
+  padding:10px 8px;border-radius:999px;cursor:pointer;text-align:center;
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);color:#A9C3B2;
+  transition:background .15s,color .15s,border-color .15s;
+}
+.pack-tab.active{
+  background:linear-gradient(180deg,var(--foil-2),var(--foil-deep));border-color:var(--foil-deep);color:#3B2C08;
+  box-shadow:0 4px 10px rgba(0,0,0,0.3);
+}
+.pack-tab:active{transform:scale(0.97)}
+
+.pack-section{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.pack-section-title{
+  font-family:var(--display);font-size:13px;letter-spacing:.6px;text-transform:uppercase;
+  color:var(--foil-2);margin:0;text-shadow:0 1px 4px rgba(0,0,0,0.35);
+}
+.pack-section-sub{font-family:var(--body);font-size:11px;color:#A9C3B2;margin:-4px 0 0}
+
+.pack-more{margin-top:8px;display:flex;flex-direction:column;gap:10px}
+.pack-more-toggle{
+  display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
+  background:rgba(255,255,255,0.06);border:1px solid rgba(231,190,85,0.3);border-radius:999px;
+  color:#FFE9A8;font-family:var(--score);font-size:12.5px;letter-spacing:.4px;
+  padding:11px 16px;cursor:pointer;transition:background .15s;
+}
+.pack-more-toggle:active{background:rgba(255,255,255,0.12)}
+.pack-more-chevron{font-size:11px}
+.pack-more-body[hidden]{display:none}
+
 /* ---------- home: pack grid ---------- */
 .pack-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:2px}
+.pack-grid.one-col{grid-template-columns:1fr}
 .pack-card{padding:15px 10px 13px;text-align:center;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px}
 .pack-card:nth-child(4n+1) .p-icon{background:radial-gradient(circle at 35% 30%,var(--foil-2),var(--foil-deep) 75%)}
 .pack-card:nth-child(4n+2) .p-icon{background:radial-gradient(circle at 35% 30%,var(--good-2),#1E8A54 75%)}

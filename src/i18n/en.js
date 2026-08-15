@@ -12,6 +12,13 @@ export default {
   "home.settingsSoon": "Settings coming soon",
   "home.starsToUnlock": "{n}★ to unlock",
   "home.finishPrevious": "Finish previous pack",
+  "home.tabTop": "Top Leagues",
+  "home.tabAll": "All Packs",
+  "home.sectionTopLeagues": "Top Leagues",
+  "home.sectionIsraeli": "🇮🇱 Israeli League",
+  "home.sectionSpecials": "Specials",
+  "home.sectionSpecialsHint": "Fun packs — not real leagues",
+  "home.moreLeagues": "More Leagues ({n})",
 
   "game.back": "← Packs",
   "game.level": "Level",
