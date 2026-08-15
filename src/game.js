@@ -5,6 +5,10 @@ import {
   SOLVE_COINS,
   REVEAL_COINS,
   NO_HINT_BONUS,
+  STREAK_BONUS_COINS,
+  STREAK_BONUS_CAP,
+  TIMED_BONUS_MAX,
+  TIMED_BONUS_WINDOW_SEC,
 } from "./config.js";
 
 export const LATIN_ALPHABET = "ABCDEFGHIJKLMNOPRSTUVYZ";
@@ -57,7 +61,7 @@ export function renderAnswerLayout(answer, container, slots, onSlotClick) {
       }
       const s = document.createElement("div");
       s.className = "slot";
-      const slotObj = { char: ch, el: s, tileIdx: null };
+      const slotObj = { char: ch, el: s, tileIdx: null, confirmed: false };
       s.addEventListener("click", () => onSlotClick(slotObj));
       w.appendChild(s);
       slots.push(slotObj);
@@ -80,6 +84,25 @@ export function computeStars({ revealed, hintsBought }) {
   if (revealed) return 1;
   if (hintsBought.some((n) => n === 1 || n === 2)) return 2;
   return 3;
+}
+
+// No-mistakes streak bonus: +STREAK_BONUS_COINS per consecutive round solved
+// with zero wrong "all slots filled" checks, escalating linearly and capped
+// at STREAK_BONUS_CAP consecutive solves (streak=1 -> +5 coins, streak=2 ->
+// +10, ... streak>=10 -> capped at +50). Caller resets streak to 0 on any
+// mistake or reveal before calling this with the new (already-incremented)
+// streak count.
+export function computeStreakBonus(streak) {
+  return Math.min(streak, STREAK_BONUS_CAP) * STREAK_BONUS_COINS;
+}
+
+// Timed-mode bonus: solving within TIMED_BONUS_WINDOW_SEC seconds of the
+// round starting earns up to TIMED_BONUS_MAX bonus points, decaying
+// linearly to 0 pts at the window's edge (and staying 0 past it).
+export function computeTimeBonus(elapsedSec) {
+  if (elapsedSec >= TIMED_BONUS_WINDOW_SEC) return 0;
+  const frac = 1 - elapsedSec / TIMED_BONUS_WINDOW_SEC;
+  return Math.round(TIMED_BONUS_MAX * frac);
 }
 
 export { HINT_COSTS };

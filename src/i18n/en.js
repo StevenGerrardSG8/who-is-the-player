@@ -21,6 +21,11 @@ export default {
   "home.sectionSpecialsHint": "Fun packs — not real leagues",
   "home.moreLeagues": "More Leagues ({n})",
 
+  "settings.title": "Settings",
+  "settings.timedMode": "Timed Mode",
+  "settings.timedModeDesc": "Solve fast for bonus points — shows a countdown timer during each round.",
+  "settings.done": "Done",
+
   "game.back": "← Packs",
   "game.level": "Level",
   "game.score": "Score",
@@ -33,6 +38,8 @@ export default {
   "game.mysteryFallback": "Mystery player — use the hints!",
   "game.pts": "pts",
   "game.coinsShort": "coins",
+  "game.streakBonus": "🔥 {n} in a row: +{c} coins",
+  "game.timeBonus": "⏱ Speed bonus: +{n} pts",
 
   "hint.position": "Position & Country",
   "hint.career": "Career Clubs",

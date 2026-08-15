@@ -202,6 +202,8 @@
     <div class="sb-item"><span class="sb-label" id="sbCoinsLabel">Coins</span><span class="sb-value coins" id="sbCoins">100</span></div>
   </div>
 
+  <div class="game-timer" id="gameTimer" style="display:none">⏱ <span id="gameTimerValue">0:30</span></div>
+
   <div class="sticker" id="sticker">
     <div class="sticker-num" id="stickerNum">#1</div>
     <div class="photo" id="photo">
@@ -250,6 +252,24 @@
     <div class="m-name" id="pcPackName"></div>
     <div class="m-rewards" id="pcStars"></div>
     <button class="btn-main" id="pcHomeBtn">Back to Packs</button>
+  </div>
+</div>
+
+<!-- ============ SETTINGS ============ -->
+<div class="overlay" id="settingsOverlay">
+  <div class="modal">
+    <h2 id="settingsTitle">Settings</h2>
+    <div class="settings-row">
+      <div class="settings-row-text">
+        <span class="settings-row-label" id="settingsTimedModeLabel">Timed Mode</span>
+        <span class="settings-row-desc" id="settingsTimedModeDesc">Solve fast for bonus points.</span>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="timedModeToggle">
+        <span class="switch-track"><span class="switch-thumb"></span></span>
+      </label>
+    </div>
+    <button class="btn-main" id="settingsDoneBtn">Done</button>
   </div>
 </div>
 

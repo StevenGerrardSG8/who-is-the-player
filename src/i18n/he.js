@@ -21,6 +21,11 @@ export default {
   "home.sectionSpecialsHint": "חבילות כיפיות — לא ליגות אמיתיות",
   "home.moreLeagues": "עוד ליגות ({n})",
 
+  "settings.title": "הגדרות",
+  "settings.timedMode": "מצב זמן",
+  "settings.timedModeDesc": "פתרו מהר לבונוס נקודות — טיימר יוצג בכל סיבוב.",
+  "settings.done": "סיום",
+
   "game.back": "← חבילות",
   "game.level": "שלב",
   "game.score": "ניקוד",
@@ -31,8 +36,10 @@ export default {
   "game.notEnoughCoins": "אין מספיק מטבעות — נחש שחקנים כדי להרוויח עוד!",
   "game.mysteryLoading": "טוען תמונה…",
   "game.mysteryFallback": "שחקן מסתורי — השתמש ברמזים!",
-  "game.pts": "נק'",
+  "game.pts": "נק׳",
   "game.coinsShort": "מטבעות",
+  "game.streakBonus": "🔥 רצף של {n}: +{c} מטבעות",
+  "game.timeBonus": "⏱ בונוס מהירות: +{n} נק׳",
 
   "hint.position": "עמדה ומדינה",
   "hint.career": "מועדוני קריירה",
