@@ -528,5 +528,117 @@ export default {
       country: "🇮🇱 Israel",
       career: [["2013–2019","Hapoel Tel Aviv"],["2019–2023","Hapoel Be'er Sheva"],["2023–","Antalyaspor"]]
     },
+    {
+      answer: "SUAN",
+      wiki: "Abbas Suan",
+      pos: "Midfielder",
+      country: "🇮🇱 Israel",
+      career: [["1994–1996","Hapoel Sakhnin"],["1996–2006","Bnei Sakhnin"],["2006–2007","Maccabi Haifa"],["2007–2009","Ironi Kiryat Shmona"],["2009–2010","Bnei Sakhnin"]]
+    },
+    {
+      answer: "TURK",
+      wiki: "Rifaat Turk",
+      pos: "Midfielder",
+      country: "🇮🇱 Israel",
+      career: [["1972–1984","Hapoel Tel Aviv"],["1984–1986","Hapoel Jerusalem"]]
+    },
+    {
+      answer: "RONNY LEVY",
+      wiki: "Ronny Levy",
+      pos: "Midfielder",
+      country: "🇮🇱 Israel",
+      career: [["1985–1992","Maccabi Netanya"],["1992–1997","Maccabi Haifa"]]
+    },
+    {
+      answer: "VITOR",
+      wiki: "Miguel Vítor",
+      pos: "Defender",
+      country: "🇮🇱 Israel",
+      career: [["2007–2013","Benfica"],["2013–2016","PAOK"],["2016–","Hapoel Be'er Sheva"]]
+    },
+    {
+      answer: "HAZIZA",
+      wiki: "Dolev Haziza",
+      pos: "Forward",
+      country: "🇮🇱 Israel",
+      career: [["2014–2019","Bnei Yehuda"],["2019–2026","Maccabi Haifa"],["2026–","Maccabi Netanya"]]
+    },
+    {
+      answer: "ATZILI",
+      wiki: "Omer Atzili",
+      pos: "Forward",
+      country: "🇮🇱 Israel",
+      career: [["2011–2013","Hapoel Rishon LeZion"],["2013–2016","Beitar Jerusalem"],["2016–2017","Granada"],["2017–2020","Maccabi Tel Aviv"],["2020–2021","APOEL"],["2021–2023","Maccabi Haifa"],["2023–2024","Al Ain"],["2024–2025","Omonia"],["2025–","Beitar Jerusalem"]]
+    },
+    {
+      answer: "DAVID REVIVO",
+      wiki: "David Revivo",
+      pos: "Midfielder",
+      country: "🇮🇱 Israel",
+      career: [["1996–2000","Maccabi Tel Aviv"],["2000–2009","F.C. Ashdod"],["2009–2011","Hapoel Be'er Sheva"],["2011–2013","F.C. Ashdod"],["2013–2014","Beitar Jerusalem"]]
+    },
+    {
+      answer: "KABHA",
+      wiki: "Marwan Kabha",
+      pos: "Midfielder",
+      country: "🇮🇱 Israel",
+      career: [["2009–2015","Maccabi Petah Tikva"],["2015–2018","Maribor"],["2018–2021","Hapoel Be'er Sheva"],["2021–2023","Bnei Sakhnin"],["2023–2024","Maccabi Bnei Reineh"]]
+    },
+    {
+      answer: "MELAMED",
+      wiki: "Guy Melamed (footballer, born 1992)",
+      pos: "Forward",
+      country: "🇮🇱 Israel",
+      career: [["2011–2013","Hapoel Kfar Saba"],["2013–2017","Maccabi Petah Tikva"],["2017–2018","Hapoel Be'er Sheva"],["2018–2020","Maccabi Netanya"],["2020–2021","St Johnstone"],["2021–2023","Bnei Sakhnin"],["2023–2025","Hapoel Haifa"],["2025–","Maccabi Haifa"]]
+    },
+    {
+      answer: "ABUKASIS",
+      wiki: "Yossi Abukasis",
+      pos: "Midfielder",
+      country: "🇮🇱 Israel",
+      career: [["1987–1993","Hapoel Tel Aviv"],["1993–1994","Bnei Yehuda"],["1995–2001","Beitar Jerusalem"],["2001–2007","Hapoel Tel Aviv"]]
+    },
+    {
+      answer: "HARAZI",
+      wiki: "Alon Harazi",
+      pos: "Defender",
+      country: "🇮🇱 Israel",
+      career: [["1989–1990","Hakoah Ramat Gan"],["1990–1997","Maccabi Haifa"],["1997–1998","Beitar Jerusalem"],["1998–2009","Maccabi Haifa"]]
+    },
+    {
+      answer: "ATAR",
+      wiki: "Reuven Atar",
+      pos: "Midfielder",
+      country: "🇮🇱 Israel",
+      career: [["1986–1994","Maccabi Haifa"],["1994–1997","Hapoel Haifa"],["1998–1999","Hapoel Petah Tikva"],["2000–2002","Maccabi Haifa"],["2002–2003","Maccabi Netanya"]]
+    },
+    {
+      answer: "GOLASA",
+      wiki: "Eyal Golasa",
+      pos: "Midfielder",
+      country: "🇮🇱 Israel",
+      career: [["2008–2014","Maccabi Haifa"],["2014–2016","PAOK"],["2016–2024","Maccabi Tel Aviv"],["2024–","Maccabi Petah Tikva"]]
+    },
+    {
+      answer: "MORI",
+      wiki: "Dan Mori",
+      pos: "Defender",
+      country: "🇮🇱 Israel",
+      career: [["2007–2012","Bnei Yehuda"],["2012–2015","Vitesse"],["2015–2016","Bnei Yehuda"],["2016–2017","Beitar Jerusalem"],["2017–2022","Bnei Yehuda"]]
+    },
+    {
+      answer: "MESHUMAR",
+      wiki: "Eyal Meshumar",
+      pos: "Defender",
+      country: "🇮🇱 Israel",
+      career: [["2000–2006","Hapoel Kfar Saba"],["2006–2016","Maccabi Haifa"],["2017–2018","Hapoel Ashkelon"]]
+    },
+    {
+      answer: "KORNFEIN",
+      wiki: "Itzik Kornfein",
+      pos: "Goalkeeper",
+      country: "🇮🇱 Israel",
+      career: [["1989–1990","Hapoel Tiberias"],["1990–1991","Hapoel Jerusalem"],["1991–1993","Hapoel Ramat Gan"],["1993–1994","Hapoel Petah Tikva"],["1994–1995","Beitar Tel Aviv"],["1995–2007","Beitar Jerusalem"]]
+    },
   ]
 }

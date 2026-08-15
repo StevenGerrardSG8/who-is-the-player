@@ -215,5 +215,17 @@ export default {
      career:[["1998–2001","Envigado"],["2001–2002","Independiente Santa Fe"],["2002–2005","Independiente Medellín"],["2003–2004","Morelia"],["2004–2005","Al Ain"],["2005–2007","Independiente Medellín"],["2007–2008","Red Star Belgrade"],["2008–2009","Santos"],["2009–2010","Seongnam"],["2011–2015","FC Seoul"],["2016–2017","Independiente Medellín"]]},
     {answer:"COLL", wiki:"Marcos Coll", pos:"Midfielder", country:"🇨🇴 Colombia",
      career:[["1952–1955","Sporting de Barranquilla"],["1955","Independiente Medellín"],["1956–1959","Deportes Tolima"],["1960","Atlético Platense"],["1960–1965","América de Cali"],["1965–1969","Deportes Tolima"],["1970–1971","Atlético Junior"]]},
+    {answer:"ABEL AGUILAR", wiki:"Abel Aguilar", pos:"Midfielder", country:"🇨🇴 Colombia",
+     career:[["2002–2005","Deportivo Cali"],["2005–2010","Udinese"],["2010–2013","Hércules"],["2013–2016","Toulouse"],["2016–2018","Deportivo Cali"]]},
+    {answer:"CARLOS SANCHEZ", wiki:"Carlos Sánchez (footballer, born 1986)", pos:"Midfielder", country:"🇨🇴 Colombia",
+     career:[["2007–2013","Valenciennes"],["2013–2014","Elche"],["2014–2017","Aston Villa"],["2017–2018","Fiorentina"],["2018–2020","West Ham United"],["2021–2023","Independiente Santa Fe"]]},
+    {answer:"JHON CULMA", wiki:"Jhon Culma", pos:"Midfielder", country:"🇨🇴 Colombia",
+     career:[["2001–2003","Cruz Azul"],["2003–2005","Cruz Azul Oaxaca"],["2006–2007","Bnei Sakhnin"],["2008–2011","Maccabi Haifa"],["2011–2013","Brest"]]},
+    {answer:"ZUNIGA", wiki:"Juan Camilo Zúñiga", pos:"Defender", country:"🇨🇴 Colombia",
+     career:[["2002–2008","Atlético Nacional"],["2008–2009","Siena"],["2009–2018","Napoli"],["2016–2017","Watford"]]},
+    {answer:"ARMERO", wiki:"Pablo Armero", pos:"Defender", country:"🇨🇴 Colombia",
+     career:[["2004–2008","América de Cali"],["2009–2010","Palmeiras"],["2010–2013","Udinese"],["2013–2014","Napoli"],["2014–2017","Udinese"],["2018","América de Cali"]]},
+    {answer:"IBARBO", wiki:"Víctor Ibarbo", pos:"Winger", country:"🇨🇴 Colombia",
+     career:[["2008–2011","Atlético Nacional"],["2011–2017","Cagliari"],["2018–2019","Sagan Tosu"],["2020–2023","V-Varen Nagasaki"],["2023–2024","América de Cali"]]},
   ]
 }

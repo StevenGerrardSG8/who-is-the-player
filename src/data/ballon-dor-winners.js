@@ -352,6 +352,13 @@ export default {
       pos: "Midfielder",
       country: "🇪🇸 Spain",
       career: [["1953–1954","Deportivo La Coruña"],["1954–1955","España Industrial"],["1955–1961","Barcelona"],["1961–1970","Inter Milan"],["1970–1973","Sampdoria"]]
+    },
+    {
+      answer: "MATTHEWS",
+      wiki: "Stanley Matthews",
+      pos: "Forward",
+      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+      career: [["1932–1947","Stoke City"],["1947–1961","Blackpool"],["1961–1965","Stoke City"]]
     }
   ]
 }
