@@ -11,6 +11,7 @@ const MIN_PLAYERS = 2;
 let packs = null;
 let packOrder = null;
 let onExit = null;
+let recordChampion = null;
 
 let playerNames = ["", ""];
 
@@ -89,6 +90,7 @@ function startGame() {
     deck,
     roundIndex: 0,
     rounds,
+    packId,
     packName: pack.name,
   };
 
@@ -260,6 +262,15 @@ function showResults() {
     .map((p, i) => '<div class="mp-final-row">#' + (i + 1) + " " + escapeHtml(p.name) + " — <b>" + p.score + "</b> pts</div>")
     .join("");
   $("mpResultsOverlay").classList.add("show");
+
+  // Local multiplayer is one shared device passed around the room — record
+  // the winner(s) into the on-device champions log so regulars can see who's
+  // won the most, instead of discarding the result once this overlay closes.
+  if (recordChampion) {
+    winners.forEach((w) =>
+      recordChampion({ name: w.name, score: w.score, packId: game.packId, mode: "local", date: Date.now() })
+    );
+  }
 }
 
 function quitToHome() {
@@ -276,6 +287,7 @@ export function init(context) {
   packs = context.packs;
   packOrder = context.packOrder;
   onExit = context.onExit;
+  recordChampion = context.recordChampion;
 
   $("mpAddPlayerBtn").addEventListener("click", () => {
     if (playerNames.length < MAX_PLAYERS) {

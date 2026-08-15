@@ -15,6 +15,7 @@ const ROOM_CODE_CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // no 0/O/1/I
 let packs = null;
 let packOrder = null;
 let onExit = null;
+let recordChampion = null;
 
 let peer = null;
 let conn = null;
@@ -206,6 +207,7 @@ function beginGame(packId, deckIndices, names, rounds) {
     deck: deckIndices.map((i) => pack.players[i]),
     roundIndex: 0,
     rounds,
+    packId,
   };
   showScreen("screenMpoGame");
   buildRound();
@@ -395,6 +397,15 @@ function showResults() {
     .map((p, i) => '<div class="mp-final-row">#' + (i + 1) + " " + escapeHtml(p.name) + " — <b>" + p.score + "</b> pts</div>")
     .join("");
   $("mpoResultsOverlay").classList.add("show");
+
+  // Each device only knows its own local history (there's no backend), so
+  // both host and guest independently record this match's winner(s) into
+  // their own on-device champions log.
+  if (recordChampion) {
+    winners.forEach((w) =>
+      recordChampion({ name: w.name, score: w.score, packId: game.packId, mode: "online", date: Date.now() })
+    );
+  }
 }
 
 function quitSilently() {
@@ -429,6 +440,7 @@ export function init(context) {
   packs = context.packs;
   packOrder = context.packOrder;
   onExit = context.onExit;
+  recordChampion = context.recordChampion;
 
   $("mpHostBtn").addEventListener("click", hostRoom);
   $("mpJoinToggleBtn").addEventListener("click", () => {

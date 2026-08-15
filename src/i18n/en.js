@@ -8,10 +8,12 @@ export default {
   "home.coins": "Coins",
   "home.totalStars": "Total Stars",
   "home.multiplayer": "🎉 Multiplayer",
+  "home.hallOfFame": "🏆 Hall of Fame",
   "home.settings": "Settings",
   "home.settingsSoon": "Settings coming soon",
   "home.starsToUnlock": "{n}★ to unlock",
   "home.finishPrevious": "Finish previous pack",
+  "home.streak": "Streak",
 
   "game.back": "← Packs",
   "game.level": "Level",
@@ -87,5 +89,21 @@ export default {
   "lang.pickTitle": "Choose your language",
   "lang.pickSubtitle": "You can change this later in Settings",
   "lang.continue": "Continue",
-  "game.quit": "Quit"
+  "game.quit": "Quit",
+
+  "hof.title": "Hall of Fame",
+  "hof.title1": "Hall",
+  "hof.title2": "of Fame",
+  "hof.subtitle": "Your records, on this device",
+  "hof.streakTitle": "Daily Streak",
+  "hof.streakCurrentLabel": "Day streak",
+  "hof.streakBestLabel": "Best streak",
+  "hof.bestsTitle": "Personal Bests",
+  "hof.noBests": "Complete a pack to set your first record!",
+  "hof.champsTitle": "Champions Log",
+  "hof.noChampions": "Play a multiplayer match to crown a champion!",
+  "hof.winsShort": "wins",
+  "hof.modeLocal": "Local",
+  "hof.modeOnline": "Online",
+  "hof.pts": "pts"
 };

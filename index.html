@@ -26,6 +26,7 @@
 <div class="wrap" id="screenHome">
   <div class="home-toolbar">
     <button class="link-btn" id="multiplayerBtn">🎉 Multiplayer</button>
+    <button class="link-btn" id="hallOfFameBtn">🏆 Hall of Fame</button>
     <button class="link-btn" id="settingsBtn">Settings</button>
     <button class="link-btn" id="languageBtn">🌐 Language</button>
   </div>
@@ -37,9 +38,45 @@
   <div class="totals">
     <div class="sb-item"><span class="sb-label" id="homeCoinsLabel">Coins</span><span class="sb-value coins" id="homeCoins">100</span></div>
     <div class="sb-item"><span class="sb-label" id="homeStarsLabel">Total Stars</span><span class="sb-value stars" id="homeStars">0</span></div>
+    <div class="sb-item"><span class="sb-label" id="homeStreakLabel">Streak</span><span class="sb-value streak" id="homeStreak">0</span></div>
   </div>
 
   <div class="pack-grid" id="packGrid"></div>
+</div>
+
+<!-- ============ HALL OF FAME ============ -->
+<div class="wrap" id="screenHallOfFame" style="display:none">
+  <div class="game-topbar">
+    <button class="back-btn" id="hofBackBtn"><span class="back-arrow">←</span> <span id="hofBackLabel">Home</span></button>
+    <div class="pack-name" id="hofCrumb">Hall of Fame</div>
+  </div>
+  <h1><span id="hofTitle1">Hall</span> <span id="hofTitle2">of Fame</span></h1>
+  <p class="subtitle" id="hofSubtitle">Your records, on this device</p>
+
+  <div class="hof-card">
+    <h3 id="hofStreakTitle">Daily Streak</h3>
+    <div class="hof-streak-row">
+      <div class="hof-streak-block">
+        <div class="hof-streak-num" id="hofStreakCurrent">0</div>
+        <div class="hof-streak-label" id="hofStreakCurrentLabel">Day streak</div>
+      </div>
+      <div class="hof-streak-block">
+        <div class="hof-streak-num" id="hofStreakBest">0</div>
+        <div class="hof-streak-label" id="hofStreakBestLabel">Best streak</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hof-card">
+    <h3 id="hofBestsTitle">Personal Bests</h3>
+    <div id="hofPackBests"></div>
+  </div>
+
+  <div class="hof-card">
+    <h3 id="hofChampsTitle">Champions Log</h3>
+    <div id="hofChampsLeaderboard"></div>
+    <div id="hofChampsLog"></div>
+  </div>
 </div>
 
 <!-- ============ MULTIPLAYER MODE CHOICE ============ -->
