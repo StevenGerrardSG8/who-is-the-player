@@ -32,11 +32,21 @@ function fileNameFromUrl(url) {
 // Some Commons extmetadata fields (e.g. the "Unknown author" template) embed
 // a hidden duplicate span for machine parsing — strip that out first, or a
 // naive tag strip concatenates it with the visible copy ("Unknown authorUnknown author").
+//
+// Derivative-work photos (crops/edits of someone else's upload) list BOTH
+// contributors as a bare `<ul><li>` list: "<OriginalFile.jpg>: <uploader>" then
+// "derivative work: <editor>". The original file is usually named after its
+// subject by whoever uploaded it (e.g. "Abby_Wambach_USA_vs_Can_Sep17.jpg"),
+// so a plain tag-strip leaves that filename sitting at the front of the
+// credit line — which reads as though the player were credited as their own
+// photographer, even though the real contributors follow right after. Strip
+// bare "filename.ext:" fragments so only the actual credited names remain.
 function stripHtml(html) {
   if (!html) return "";
   return html
     .replace(/<span[^>]*display:\s*none[^>]*>[\s\S]*?<\/span>/gi, "")
     .replace(/<[^>]*>/g, "")
+    .replace(/\S+\.(?:jpe?g|png|gif|svg|tiff?|webp|bmp):\s*/gi, "")
     .replace(/\s+/g, " ")
     .trim();
 }
