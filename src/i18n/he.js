@@ -13,6 +13,13 @@ export default {
   "home.settingsSoon": "ההגדרות בקרוב",
   "home.starsToUnlock": "{n}★ לפתיחה",
   "home.finishPrevious": "סיים את החבילה הקודמת",
+  "home.tabTop": "ליגות מובילות",
+  "home.tabAll": "כל החבילות",
+  "home.sectionTopLeagues": "ליגות מובילות",
+  "home.sectionIsraeli": "🇮🇱 הליגה הישראלית",
+  "home.sectionSpecials": "מיוחדות",
+  "home.sectionSpecialsHint": "חבילות כיפיות — לא ליגות אמיתיות",
+  "home.moreLeagues": "עוד ליגות ({n})",
 
   "game.back": "← חבילות",
   "game.level": "שלב",
