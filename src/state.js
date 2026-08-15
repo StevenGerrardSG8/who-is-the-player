@@ -28,7 +28,7 @@ export function defaultState(packIds) {
     coins: START_COINS,
     score: 0,
     streak: 0, // consecutive no-mistake solves, resets on any wrong guess or reveal
-    settings: { sound: true, timedMode: false },
+    settings: { sound: true, timedMode: false, survivalMode: false },
     packs,
     hallOfFame: defaultHallOfFame(),
   };

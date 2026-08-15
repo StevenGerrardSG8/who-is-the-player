@@ -89,6 +89,19 @@ body::after{
 .sb-value.stars::before{content:"★";color:var(--foil);font-size:12px;margin-right:5px;vertical-align:2px;-webkit-text-fill-color:var(--foil)}
 .sb-value.streak::before{content:"🔥";font-size:12px;margin-right:5px;vertical-align:1px}
 
+/* ---------- survival mode: lives ----------
+   Its own compact strip under the scoreboard rather than a 4th scoreboard
+   column — the existing 3-column bar (Level/Score/Coins) is already sized
+   to just fit the narrowest supported widths, so squeezing lives in there
+   too caused the row to overflow on narrow phones. */
+.lives-bar{display:flex;align-items:center;justify-content:center;gap:8px;margin:-6px 0 0}
+.lives-bar .sb-label{font-size:9px;letter-spacing:2px;color:#6C9A7C;text-transform:uppercase}
+.sb-value.lives{display:flex;gap:3px;background:none;-webkit-text-fill-color:initial;filter:none;font-size:16px}
+.sb-value.lives .heart{color:var(--bad);transition:color .2s,transform .2s}
+.sb-value.lives .heart.lost{color:rgba(255,255,255,0.18)}
+.sb-value.lives .heart.just-lost{animation:heartLost .5s ease-out}
+@keyframes heartLost{0%{transform:scale(1.35);color:var(--bad)}55%{transform:scale(0.75);color:var(--bad)}100%{transform:scale(1);color:rgba(255,255,255,0.18)}}
+
 /* ---------- title ---------- */
 .brand-badge{
   display:block;margin:0 auto;border-radius:16px;
@@ -343,6 +356,20 @@ h1 span{
 .modal .m-name{font-family:var(--display);font-weight:900;font-size:18px;color:var(--foil-deep);margin:2px 0 10px}
 .modal .m-rewards{font-family:var(--score);font-weight:700;font-size:15px;margin:8px 0 16px;color:var(--ink-soft)}
 .modal .m-rewards b{color:var(--ink);font-size:18px}
+.modal .link-btn{display:block;margin:12px auto 0}
+
+/* ---------- settings overlay ---------- */
+.settings-row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:16px 0 6px}
+.settings-row-text{text-align:start}
+.settings-row-title{font-family:var(--body);font-weight:800;font-size:14px;color:var(--ink)}
+.settings-row-desc{font-family:var(--body);font-size:11px;color:var(--ink-soft);margin-top:2px}
+.switch{position:relative;display:inline-block;width:44px;height:25px;flex:none}
+.switch input{position:absolute;opacity:0;width:0;height:0}
+.switch-slider{position:absolute;inset:0;background:rgba(0,0,0,0.2);border-radius:999px;cursor:pointer;transition:background .2s}
+.switch-slider::before{content:"";position:absolute;width:19px;height:19px;left:3px;top:3px;background:#fff;border-radius:50%;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,0.3)}
+.switch input:checked + .switch-slider{background:var(--good)}
+.switch input:checked + .switch-slider::before{transform:translateX(19px)}
+#settingsOverlay .subtitle{margin:6px 0 16px}
 .btn-main{
   font-family:var(--display);font-weight:900;font-size:15px;text-transform:uppercase;letter-spacing:1px;
   background:linear-gradient(180deg,var(--pitch-light),var(--pitch));color:var(--chalk);border:0;border-radius:999px;

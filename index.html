@@ -22,6 +22,25 @@
   </div>
 </div>
 
+<!-- ============ SETTINGS OVERLAY ============ -->
+<div class="overlay" id="settingsOverlay">
+  <div class="modal">
+    <h2 id="settingsTitle">Settings</h2>
+    <div class="settings-row">
+      <div class="settings-row-text">
+        <div class="settings-row-title" id="survivalModeLabel">Survival Mode</div>
+        <div class="settings-row-desc" id="survivalModeDesc">Wrong guesses cost a life. Run out and the pack attempt ends — retry or go home.</div>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="survivalModeToggle">
+        <span class="switch-slider"></span>
+      </label>
+    </div>
+    <p class="subtitle" id="survivalHintNote">Note: the Reveal Name hint is disabled in Survival Mode.</p>
+    <button class="btn-main" id="settingsCloseBtn">Done</button>
+  </div>
+</div>
+
 <!-- ============ HOME SCREEN ============ -->
 <div class="wrap" id="screenHome">
   <div class="home-toolbar">
@@ -238,6 +257,9 @@
     <div class="sb-item"><span class="sb-label" id="sbScoreLabel">Score</span><span class="sb-value" id="sbScore">0</span></div>
     <div class="sb-item"><span class="sb-label" id="sbCoinsLabel">Coins</span><span class="sb-value coins" id="sbCoins">100</span></div>
   </div>
+  <div class="lives-bar" id="sbLivesItem" style="display:none">
+    <span class="sb-label" id="sbLivesLabel">Lives</span><span class="sb-value lives" id="sbLives"></span>
+  </div>
 
   <div class="game-timer" id="gameTimer" style="display:none">⏱ <span id="gameTimerValue">0:30</span></div>
 
@@ -306,7 +328,28 @@
         <span class="switch-track"><span class="switch-thumb"></span></span>
       </label>
     </div>
+    <div class="settings-row">
+      <div class="settings-row-text">
+        <span class="settings-row-label" id="survivalModeLabel">Survival Mode</span>
+        <span class="settings-row-desc" id="survivalModeDesc">Wrong guesses cost a life.</span>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="survivalModeToggle">
+        <span class="switch-track"><span class="switch-thumb"></span></span>
+      </label>
+    </div>
+    <p class="subtitle" id="survivalHintNote">Note: the Reveal Name hint is disabled in Survival Mode.</p>
     <button class="btn-main" id="settingsDoneBtn">Done</button>
+  </div>
+</div>
+
+<div class="overlay" id="survivalOutOverlay">
+  <div class="modal">
+    <h2 id="survivalOutTitle">You're Out! 💀</h2>
+    <div class="m-name" id="survivalOutPackName"></div>
+    <div class="m-rewards" id="survivalOutDesc"></div>
+    <button class="btn-main" id="survivalRetryBtn">Retry Pack</button>
+    <button class="link-btn" id="survivalHomeBtn">Back to Home</button>
   </div>
 </div>
 

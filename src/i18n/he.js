@@ -32,6 +32,7 @@ export default {
   "game.level": "שלב",
   "game.score": "ניקוד",
   "game.coins": "מטבעות",
+  "game.lives": "חיים",
   "game.resetProgress": "איפוס התקדמות בחבילה",
   "game.resetConfirm": "לאפס את ההתקדמות ב-{pack}? השלב והכוכבים בחבילה הזו יתחילו מחדש.",
   "game.resetToast": "התקדמות החבילה אופסה",
@@ -47,7 +48,19 @@ export default {
   "hint.career": "מועדוני קריירה",
   "hint.reveal": "חשוף שם",
   "hint.bought": "✓ נרכש",
+  "hint.disabledSurvival": "🔒 הישרדות",
   "career.title": "קריירה בוגרת",
+
+  "settings.title": "הגדרות",
+  "settings.survivalMode": "מצב הישרדות",
+  "settings.survivalModeDesc": "ניחוש שגוי עולה חיים. כשנגמרים החיים, הניסיון בחבילה מסתיים — אפשר לנסות שוב או לחזור הביתה.",
+  "settings.survivalHintNote": "לתשומת לבך: רמז חשיפת השם מושבת במצב הישרדות.",
+  "settings.close": "סיום",
+
+  "survival.outTitle": "נגמרו החיים! 💀",
+  "survival.outDesc": "נגמרו לך החיים ב-{pack}.",
+  "survival.retryPack": "נסה שוב את החבילה",
+  "survival.backHome": "חזרה לדף הבית",
 
   "win.goal": "גול! ⚽",
   "win.revealed": "נחשף 💡",

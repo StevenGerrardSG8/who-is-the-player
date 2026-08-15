@@ -13,7 +13,14 @@ const SCREEN_IDS = [
   "screenHallOfFame",
 ];
 
-const OVERLAY_IDS = ["overlay", "packCompleteOverlay", "mpResultsOverlay", "mpoResultsOverlay", "settingsOverlay"];
+const OVERLAY_IDS = [
+  "overlay",
+  "packCompleteOverlay",
+  "survivalOutOverlay",
+  "mpResultsOverlay",
+  "mpoResultsOverlay",
+  "settingsOverlay",
+];
 
 export function hideAllScreens() {
   SCREEN_IDS.forEach((id) => {

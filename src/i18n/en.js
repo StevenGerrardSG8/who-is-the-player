@@ -32,6 +32,7 @@ export default {
   "game.level": "Level",
   "game.score": "Score",
   "game.coins": "Coins",
+  "game.lives": "Lives",
   "game.resetProgress": "Reset pack progress",
   "game.resetConfirm": "Reset progress for {pack}? Level and stars for this pack will start over.",
   "game.resetToast": "Pack progress reset",
@@ -47,7 +48,19 @@ export default {
   "hint.career": "Career Clubs",
   "hint.reveal": "Reveal Name",
   "hint.bought": "✓ Bought",
+  "hint.disabledSurvival": "🔒 Survival",
   "career.title": "Senior Career",
+
+  "settings.title": "Settings",
+  "settings.survivalMode": "Survival Mode",
+  "settings.survivalModeDesc": "Wrong guesses cost a life. Run out and the pack attempt ends — retry or go home.",
+  "settings.survivalHintNote": "Note: the Reveal Name hint is disabled in Survival Mode.",
+  "settings.close": "Done",
+
+  "survival.outTitle": "You're Out! 💀",
+  "survival.outDesc": "You ran out of lives on {pack}.",
+  "survival.retryPack": "Retry Pack",
+  "survival.backHome": "Back to Home",
 
   "win.goal": "GOAL! ⚽",
   "win.revealed": "Revealed 💡",

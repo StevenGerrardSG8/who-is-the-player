@@ -110,5 +110,11 @@ export const STREAK_BONUS_CAP = 10; // max +50 coins (10 * 5) once streak>=10
 export const TIMED_BONUS_MAX = 50;
 export const TIMED_BONUS_WINDOW_SEC = 30;
 
+// "Survival Mode" — optional, off by default (see state.js's
+// defaultState().settings.survivalMode). When on, each wrong full-answer
+// submission costs one life; running out ends the current pack attempt
+// early instead of allowing indefinite retries.
+export const SURVIVAL_LIVES = 3;
+
 export const STORAGE_KEY = "wtp-progress-v2";
 export const LANG_STORAGE_KEY = "wtp-lang-v1";
