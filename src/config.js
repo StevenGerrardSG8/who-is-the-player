@@ -51,15 +51,7 @@ export const PACK_ORDER = [
 // screen; a pack's *index* for unlock-mode maths (see isPackUnlocked in
 // state.js) always comes from its position in PACK_ORDER itself, so nothing
 // here can quietly break the "stars"/"sequential" unlock modes.
-export const TOP_LEAGUE_PACKS = [
-  "premier-league",
-  "la-liga",
-  "serie-a",
-  "bundesliga",
-  "ligue-1",
-  "primeira-liga",
-  "saudi-pro-league",
-];
+export const TOP_LEAGUE_PACKS = ["premier-league", "la-liga", "serie-a", "bundesliga", "ligue-1"];
 
 // The developer's home-market pack — Hebrew-native content, always shown
 // right after the top leagues regardless of where it sits in PACK_ORDER.

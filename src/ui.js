@@ -162,8 +162,8 @@ function renderPackGrid() {
   const bucketed = new Set([FEATURED_PACK_ID, HOME_LEAGUE_PACK, ...TOP_LEAGUE_PACKS, ...SPECIAL_PACKS]);
   const moreIds = ctx.packOrder.filter((id) => !bucketed.has(id));
 
-  content.appendChild(buildSection("home.sectionTopLeagues", [FEATURED_PACK_ID, ...TOP_LEAGUE_PACKS]));
   content.appendChild(buildSection("home.sectionIsraeli", [HOME_LEAGUE_PACK], { gridClass: "one-col" }));
+  content.appendChild(buildSection("home.sectionTopLeagues", [FEATURED_PACK_ID, ...TOP_LEAGUE_PACKS]));
   content.appendChild(buildSection("home.sectionSpecials", SPECIAL_PACKS, { subKey: "home.sectionSpecialsHint" }));
 
   const moreWrap = document.createElement("div");
@@ -538,11 +538,14 @@ function winRound(revealed) {
 
   const p = currentPlayerData();
   $("mTitle").textContent = revealed ? t("win.revealed") : t("win.goal");
-  // resolved.answer differs from the pack's base answer only when the active
-  // UI language has a localized override for this player — show both so a
-  // Hebrew player still sees the real (Wikipedia) name they just solved.
-  $("mName").textContent =
-    resolved.answer === p.answer ? p.wiki : resolved.answer.replace(/ /g, " ") + " · " + p.wiki;
+  // resolved.answer is already localized whenever it's actually written in
+  // Hebrew script — whether that's a per-player he.js override, or (for
+  // Hebrew-native packs like the Israeli league, which have no override
+  // because their base answer already IS Hebrew) the pack's own data. Show
+  // it alongside the real Wikipedia name in that case; a same-script match
+  // (e.g. English UI, Latin answer) would just be a redundant duplicate.
+  const isLocalizedAnswer = /[֐-׿]/.test(resolved.answer);
+  $("mName").textContent = isLocalizedAnswer ? resolved.answer.replace(/ /g, " ") + " · " + p.wiki : p.wiki;
   let rewardsHtml =
     "+<b>" + totalPoints + "</b> " + t("game.pts") + " &nbsp;·&nbsp; +<b>" + totalCoins + "</b> " + t("game.coinsShort") + " &nbsp;·&nbsp; " + "★".repeat(stars);
   const extras = [];
@@ -745,23 +748,6 @@ export function init(context) {
   $("pcHomeBtn").addEventListener("click", () => {
     $("packCompleteOverlay").classList.remove("show");
     showHome();
-  });
-  $("settingsBtn").addEventListener("click", () => {
-    $("timedModeToggle").checked = !!ctx.state.settings.timedMode;
-    $("survivalModeToggle").checked = !!ctx.state.settings.survivalMode;
-    $("settingsOverlay").classList.add("show");
-  });
-  $("settingsDoneBtn").addEventListener("click", () => {
-    $("settingsOverlay").classList.remove("show");
-  });
-  $("timedModeToggle").addEventListener("change", (e) => {
-    ctx.state.settings.timedMode = e.target.checked;
-    ctx.persist();
-    if (currentPackId !== null) startRoundTimer(); // live-update the in-progress game screen
-  });
-  $("survivalModeToggle").addEventListener("change", (e) => {
-    ctx.state.settings.survivalMode = e.target.checked;
-    ctx.persist();
   });
   $("survivalRetryBtn").addEventListener("click", retrySurvivalPack);
   $("survivalHomeBtn").addEventListener("click", () => {

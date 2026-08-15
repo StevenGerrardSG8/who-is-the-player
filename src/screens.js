@@ -19,7 +19,6 @@ const OVERLAY_IDS = [
   "survivalOutOverlay",
   "mpResultsOverlay",
   "mpoResultsOverlay",
-  "settingsOverlay",
 ];
 
 export function hideAllScreens() {

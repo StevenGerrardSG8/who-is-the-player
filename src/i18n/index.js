@@ -107,7 +107,6 @@ const STATIC_MAP = {
   homeStreakLabel: "home.streak",
   multiplayerBtn: "home.multiplayer",
   hallOfFameBtn: "home.hallOfFame",
-  settingsBtn: "home.settings",
   languageBtn: "home.language",
   packTabTop: "home.tabTop",
   packTabAll: "home.tabAll",
@@ -165,12 +164,6 @@ const STATIC_MAP = {
   packCompleteTitle: "packComplete.title",
   pcHomeBtn: "packComplete.backToPacks",
 
-  settingsTitle: "settings.title",
-  survivalModeLabel: "settings.survivalMode",
-  survivalModeDesc: "settings.survivalModeDesc",
-  survivalHintNote: "settings.survivalHintNote",
-  settingsCloseBtn: "settings.close",
-
   survivalOutTitle: "survival.outTitle",
   survivalRetryBtn: "survival.retryPack",
   survivalHomeBtn: "survival.backHome",
@@ -178,11 +171,6 @@ const STATIC_MAP = {
   langPickTitle: "lang.pickTitle",
   langPickSubtitle: "lang.pickSubtitle",
   langContinueBtn: "lang.continue",
-
-  settingsTitle: "settings.title",
-  settingsTimedModeLabel: "settings.timedMode",
-  settingsTimedModeDesc: "settings.timedModeDesc",
-  settingsDoneBtn: "settings.done",
 
   hofBackLabel: "game.back",
   hofCrumb: "hof.title",
