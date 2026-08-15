@@ -87,6 +87,7 @@ body::after{
 }
 .sb-value.coins::before{content:"●";color:var(--foil);font-size:12px;margin-right:5px;vertical-align:2px;-webkit-text-fill-color:var(--foil)}
 .sb-value.stars::before{content:"★";color:var(--foil);font-size:12px;margin-right:5px;vertical-align:2px;-webkit-text-fill-color:var(--foil)}
+.sb-value.streak::before{content:"🔥";font-size:12px;margin-right:5px;vertical-align:1px}
 
 /* ---------- title ---------- */
 .brand-badge{
@@ -352,7 +353,7 @@ h1 span{
 .btn-main:active{transform:translateY(3px);box-shadow:0 1px 0 var(--pitch-dark)}
 
 .footer{display:flex;justify-content:center;gap:16px;margin-top:6px}
-.home-toolbar{display:flex;justify-content:center;gap:16px;margin:-2px 0 -4px}
+.home-toolbar{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px;margin:-2px 0 -4px}
 .link-btn{background:none;border:0;color:#8FBBA0;font-size:11px;cursor:pointer;text-decoration:underline;font-family:var(--body);transition:color .15s}
 .link-btn:active{color:var(--foil-2)}
 
@@ -466,6 +467,39 @@ h1 span{
 .lang-flag{position:relative;z-index:1;font-size:26px}
 .lang-name{position:relative;z-index:1;font-family:var(--body);font-size:13px;font-weight:800;color:var(--ink)}
 .lang-card.active{background:radial-gradient(circle at 30% 20%,var(--foil-2),var(--foil-deep) 85%) padding-box, linear-gradient(135deg,var(--foil-2),var(--foil-deep)) border-box}
+
+/* ---------- hall of fame ---------- */
+.hof-card{
+  background:linear-gradient(var(--card),var(--card-2)) padding-box,
+             linear-gradient(135deg,var(--foil-2),var(--foil-deep)) border-box;
+  color:var(--ink);border-radius:var(--radius-sm);padding:14px 15px 15px;
+  border:2px solid transparent;box-shadow:var(--shadow-card);
+}
+.hof-card h3{margin:0 0 10px;font-family:var(--score);font-weight:700;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--foil-deep);border-bottom:1.5px solid var(--card-edge);padding-bottom:6px}
+.hof-streak-row{display:flex;align-items:center;justify-content:center;gap:34px}
+.hof-streak-block{display:flex;flex-direction:column;align-items:center;gap:1px}
+.hof-streak-num{
+  font-family:var(--display);font-weight:900;font-size:30px;line-height:1;
+  background:linear-gradient(180deg,var(--foil-2),var(--foil-deep));-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hof-streak-label{font-family:var(--body);font-size:10.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.6px;font-weight:700}
+.hof-empty{font-family:var(--body);font-size:12.5px;color:var(--ink-soft);text-align:center;padding:6px 2px}
+.hof-pack-row{padding:9px 0;border-bottom:1px dashed var(--card-edge)}
+.hof-pack-row:last-child{border-bottom:0}
+.hof-pack-head{display:flex;align-items:center;gap:7px}
+.hof-pack-head .p-icon-sm{font-size:16px;line-height:1}
+.hof-pack-head .p-name-sm{font-family:var(--display);font-weight:900;font-size:12px;color:var(--ink);text-transform:uppercase;letter-spacing:.2px}
+.hof-run-list{display:flex;flex-direction:column;gap:3px;margin-top:6px}
+.hof-run-chip{display:flex;justify-content:space-between;gap:8px;font-family:var(--score);font-weight:700;font-size:11.5px;color:var(--ink-soft)}
+.hof-run-chip b{color:var(--ink)}
+.hof-champ-lead{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px dashed var(--card-edge);font-family:var(--body);font-size:12.5px;font-weight:800;color:var(--ink)}
+.hof-champ-lead:last-child{border-bottom:1.5px solid var(--card-edge);margin-bottom:6px}
+.hof-champ-lead .rank{color:var(--foil-deep);margin-inline-end:6px}
+.hof-champ-lead .wins{font-family:var(--score);font-weight:700;color:var(--ink-soft)}
+.hof-champ-row{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;border-bottom:1px dashed var(--card-edge)}
+.hof-champ-row:last-child{border-bottom:0}
+.hof-champ-name{font-family:var(--score);font-weight:700;font-size:13px;color:var(--ink)}
+.hof-champ-meta{color:var(--ink-soft);font-size:10.5px;font-family:var(--body);font-weight:700;text-align:end}
 
 /* ---------- direction-aware nav arrows ---------- */
 .dir-arrow{display:inline-block}

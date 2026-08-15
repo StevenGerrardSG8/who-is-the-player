@@ -104,7 +104,9 @@ const STATIC_MAP = {
   homeSubtitle: "home.subtitle",
   homeCoinsLabel: "home.coins",
   homeStarsLabel: "home.totalStars",
+  homeStreakLabel: "home.streak",
   multiplayerBtn: "home.multiplayer",
+  hallOfFameBtn: "home.hallOfFame",
   settingsBtn: "home.settings",
   languageBtn: "home.language",
   packTabTop: "home.tabTop",
@@ -170,6 +172,17 @@ const STATIC_MAP = {
   settingsTimedModeLabel: "settings.timedMode",
   settingsTimedModeDesc: "settings.timedModeDesc",
   settingsDoneBtn: "settings.done",
+
+  hofBackLabel: "game.back",
+  hofCrumb: "hof.title",
+  hofTitle1: "hof.title1",
+  hofTitle2: "hof.title2",
+  hofSubtitle: "hof.subtitle",
+  hofStreakTitle: "hof.streakTitle",
+  hofStreakCurrentLabel: "hof.streakCurrentLabel",
+  hofStreakBestLabel: "hof.streakBestLabel",
+  hofBestsTitle: "hof.bestsTitle",
+  hofChampsTitle: "hof.champsTitle",
 };
 
 export function applyStaticTranslations() {

@@ -8,6 +8,7 @@ export default {
   "home.coins": "מטבעות",
   "home.totalStars": "סה״כ כוכבים",
   "home.multiplayer": "🎉 מולטיפלייר",
+  "home.hallOfFame": "🏆 היכל התהילה",
   "home.settings": "הגדרות",
   "home.language": "🌐 שפה",
   "home.settingsSoon": "ההגדרות בקרוב",
@@ -20,6 +21,7 @@ export default {
   "home.sectionSpecials": "מיוחדות",
   "home.sectionSpecialsHint": "חבילות כיפיות — לא ליגות אמיתיות",
   "home.moreLeagues": "עוד ליגות ({n})",
+  "home.streak": "רצף",
 
   "settings.title": "הגדרות",
   "settings.timedMode": "מצב זמן",
@@ -104,5 +106,21 @@ export default {
   "lang.pickTitle": "בחר את השפה שלך",
   "lang.pickSubtitle": "תוכל לשנות זאת מאוחר יותר בהגדרות",
   "lang.continue": "המשך",
-  "game.quit": "יציאה"
+  "game.quit": "יציאה",
+
+  "hof.title": "היכל התהילה",
+  "hof.title1": "היכל",
+  "hof.title2": "התהילה",
+  "hof.subtitle": "השיאים שלך, במכשיר הזה",
+  "hof.streakTitle": "רצף יומי",
+  "hof.streakCurrentLabel": "ימי רצף",
+  "hof.streakBestLabel": "השיא",
+  "hof.bestsTitle": "שיאים אישיים",
+  "hof.noBests": "השלם חבילה כדי לקבוע את השיא הראשון שלך!",
+  "hof.champsTitle": "לוח האלופים",
+  "hof.noChampions": "שחק משחק מולטיפלייר כדי להכתיר אלוף!",
+  "hof.winsShort": "ניצחונות",
+  "hof.modeLocal": "מקומי",
+  "hof.modeOnline": "אונליין",
+  "hof.pts": "נק׳"
 };

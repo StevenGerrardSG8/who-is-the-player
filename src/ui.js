@@ -14,6 +14,8 @@ import {
   totalStars,
   isPackUnlocked,
   resetPackProgress,
+  recordPackRun,
+  championsLeaderboard,
 } from "./state.js";
 import {
   UNLOCK_MODE,
@@ -34,6 +36,7 @@ const $ = (id) => document.getElementById(id);
 
 let ctx = null; // { state, packs, packOrder, persist }
 let currentPackId = null;
+let onHallOfFame = false;
 let tiles = [];
 let slots = [];
 let locked = false;
@@ -60,6 +63,7 @@ function currentPlayerData() {
 function renderHome() {
   $("homeCoins").textContent = ctx.state.coins;
   $("homeStars").textContent = totalStars(ctx.state);
+  $("homeStreak").textContent = ctx.state.hallOfFame.streak.current;
   renderPackGrid();
 }
 
@@ -452,6 +456,7 @@ function winRound(revealed) {
   ctx.state.score += totalPoints;
   ctx.state.coins += totalCoins;
   ps.stars[ps.levelIndex] = stars;
+  ps.runScore = (ps.runScore || 0) + reward.points;
 
   const p = currentPlayerData();
   $("mTitle").textContent = revealed ? t("win.revealed") : t("win.goal");
@@ -497,6 +502,16 @@ function nextLevel() {
 function showPackComplete() {
   const pack = currentPack();
   const ps = currentPackState();
+
+  // Snapshot this completed playthrough into the pack's personal-bests
+  // history, then reset the run trackers so the next playthrough (e.g. a
+  // replay) starts a fresh run instead of inheriting this one's numbers.
+  const timeMs = ps.runStartedAt ? Date.now() - ps.runStartedAt : null;
+  recordPackRun(ps, { score: ps.runScore || 0, stars: packStarTotal(ps), timeMs, date: Date.now() });
+  ps.runScore = 0;
+  ps.runStartedAt = null;
+  ctx.persist();
+
   $("pcPackName").textContent = translatePackName(pack, getLang());
   $("pcStars").innerHTML =
     "★ " + packStarTotal(ps) + " / " + pack.players.length * 3 + " &nbsp;·&nbsp; " + pack.players.length + "/" + pack.players.length + " solved";
@@ -518,17 +533,115 @@ async function resetProgress() {
 export function showHome() {
   currentPackId = null;
   stopRoundTimer();
+  onHallOfFame = false;
   showScreen("screenHome");
   renderHome();
 }
 
+/* ============================================================
+   HALL OF FAME
+============================================================ */
+function escapeHofHtml(s) {
+  return String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+function formatHofDate(ts) {
+  if (!ts) return "";
+  try {
+    return new Date(ts).toLocaleDateString(getLang(), { month: "short", day: "numeric" });
+  } catch {
+    return new Date(ts).toLocaleDateString();
+  }
+}
+
+function formatHofTime(ms) {
+  if (!ms || ms < 0) return null;
+  const totalSec = Math.round(ms / 1000);
+  const m = Math.floor(totalSec / 60);
+  const s = totalSec % 60;
+  return m > 0 ? m + "m " + s + "s" : s + "s";
+}
+
+function renderHallOfFame() {
+  const streak = ctx.state.hallOfFame.streak;
+  $("hofStreakCurrent").textContent = streak.current;
+  $("hofStreakBest").textContent = streak.longest;
+
+  const bestsEl = $("hofPackBests");
+  const packsWithRuns = ctx.packOrder
+    .map((packId) => ({ pack: ctx.packs[packId], ps: ctx.state.packs[packId] }))
+    .filter((entry) => entry.pack && entry.ps && entry.ps.bestRuns && entry.ps.bestRuns.length);
+
+  if (!packsWithRuns.length) {
+    bestsEl.innerHTML = '<div class="hof-empty">' + t("hof.noBests") + "</div>";
+  } else {
+    bestsEl.innerHTML = packsWithRuns
+      .map(({ pack, ps }) => {
+        const runsHtml = ps.bestRuns
+          .map((run) => {
+            const timeStr = formatHofTime(run.timeMs);
+            return (
+              '<div class="hof-run-chip"><span>★' + run.stars + " · " + formatHofDate(run.date) +
+              (timeStr ? " · " + timeStr : "") + '</span><b>' + run.score + " " + t("hof.pts") + "</b></div>"
+            );
+          })
+          .join("");
+        return (
+          '<div class="hof-pack-row"><div class="hof-pack-head"><span class="p-icon-sm">' + pack.icon +
+          '</span><span class="p-name-sm">' + escapeHofHtml(pack.name) + "</span></div>" +
+          '<div class="hof-run-list">' + runsHtml + "</div></div>"
+        );
+      })
+      .join("");
+  }
+
+  const leaderboardEl = $("hofChampsLeaderboard");
+  const logEl = $("hofChampsLog");
+  const champions = ctx.state.hallOfFame.champions || [];
+  if (!champions.length) {
+    leaderboardEl.innerHTML = "";
+    logEl.innerHTML = '<div class="hof-empty">' + t("hof.noChampions") + "</div>";
+  } else {
+    const leaderboard = championsLeaderboard(ctx.state);
+    leaderboardEl.innerHTML = leaderboard
+      .map(
+        (row, i) =>
+          '<div class="hof-champ-lead"><span><span class="rank">#' + (i + 1) + "</span>" + escapeHofHtml(row.name) +
+          '</span><span class="wins">' + row.wins + " " + t("hof.winsShort") + "</span></div>"
+      )
+      .join("");
+    logEl.innerHTML = champions
+      .slice(0, 12)
+      .map((c) => {
+        const pack = ctx.packs[c.packId];
+        const modeLabel = c.mode === "online" ? t("hof.modeOnline") : t("hof.modeLocal");
+        const packLabel = pack ? pack.icon + " " + escapeHofHtml(pack.name) : "";
+        return (
+          '<div class="hof-champ-row"><span class="hof-champ-name">' + escapeHofHtml(c.name) + "</span>" +
+          '<span class="hof-champ-meta">' + c.score + " " + t("hof.pts") + " · " + packLabel + " · " + modeLabel + " · " + formatHofDate(c.date) + "</span></div>"
+        );
+      })
+      .join("");
+  }
+}
+
+export function showHallOfFame() {
+  onHallOfFame = true;
+  showScreen("screenHallOfFame");
+  renderHallOfFame();
+}
+
 export function showGame(packId) {
   currentPackId = packId;
+  onHallOfFame = false;
   const pack = ctx.packs[packId];
   const ps = ctx.state.packs[packId];
   if (ps.levelIndex >= pack.players.length) {
-    ps.levelIndex = 0; // replay a completed pack
+    ps.levelIndex = 0; // replay a completed pack — start a fresh timed run
+    ps.runScore = 0;
+    ps.runStartedAt = null;
   }
+  if (!ps.runStartedAt) ps.runStartedAt = Date.now();
   showScreen("screenGame");
   buildRound();
 }
@@ -565,9 +678,11 @@ export function init(context) {
     ctx.persist();
     if (currentPackId !== null) startRoundTimer(); // live-update the in-progress game screen
   });
+  $("hofBackBtn").addEventListener("click", showHome);
 
   onLangChange(() => {
-    if (currentPackId === null) renderHome();
+    if (onHallOfFame) renderHallOfFame();
+    else if (currentPackId === null) renderHome();
     else buildRound();
   });
 }

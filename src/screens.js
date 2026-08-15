@@ -10,6 +10,7 @@ const SCREEN_IDS = [
   "screenMpGame",
   "screenMpOnline",
   "screenMpoGame",
+  "screenHallOfFame",
 ];
 
 const OVERLAY_IDS = ["overlay", "packCompleteOverlay", "mpResultsOverlay", "mpoResultsOverlay", "settingsOverlay"];
