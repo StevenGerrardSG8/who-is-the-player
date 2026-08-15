@@ -56,5 +56,17 @@ export const SOLVE_COINS = 25;
 export const REVEAL_COINS = 5;
 export const NO_HINT_BONUS = 50;
 
+// No-mistakes streak bonus: +STREAK_BONUS_COINS per consecutive round solved
+// with zero wrong "all slots filled" checks (escalating, capped so it
+// doesn't grow unbounded), reset to 0 the moment a mistake happens or a
+// round is finished via reveal.
+export const STREAK_BONUS_COINS = 5;
+export const STREAK_BONUS_CAP = 10; // max +50 coins (10 * 5) once streak>=10
+
+// Timed-mode scoring (opt-in via Settings): solving within TIMED_BONUS_WINDOW_SEC
+// seconds earns up to TIMED_BONUS_MAX bonus points, decaying linearly to 0.
+export const TIMED_BONUS_MAX = 50;
+export const TIMED_BONUS_WINDOW_SEC = 30;
+
 export const STORAGE_KEY = "wtp-progress-v2";
 export const LANG_STORAGE_KEY = "wtp-lang-v1";

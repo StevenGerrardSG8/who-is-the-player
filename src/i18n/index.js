@@ -158,6 +158,11 @@ const STATIC_MAP = {
   langPickTitle: "lang.pickTitle",
   langPickSubtitle: "lang.pickSubtitle",
   langContinueBtn: "lang.continue",
+
+  settingsTitle: "settings.title",
+  settingsTimedModeLabel: "settings.timedMode",
+  settingsTimedModeDesc: "settings.timedModeDesc",
+  settingsDoneBtn: "settings.done",
 };
 
 export function applyStaticTranslations() {

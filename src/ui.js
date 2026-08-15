@@ -1,4 +1,12 @@
-import { HINT_COSTS, buildBankLetters, checkAnswer, computeReward, computeStars } from "./game.js";
+import {
+  HINT_COSTS,
+  buildBankLetters,
+  checkAnswer,
+  computeReward,
+  computeStars,
+  computeStreakBonus,
+  computeTimeBonus,
+} from "./game.js";
 import {
   packSolvedCount,
   packStarTotal,
@@ -6,7 +14,7 @@ import {
   isPackUnlocked,
   resetPackProgress,
 } from "./state.js";
-import { UNLOCK_MODE, STARS_PER_UNLOCK } from "./config.js";
+import { UNLOCK_MODE, STARS_PER_UNLOCK, TIMED_BONUS_WINDOW_SEC } from "./config.js";
 import { loadPhoto as loadPhotoInto, prefetchPhotos } from "./photo.js";
 import { showScreen } from "./screens.js";
 import { t, getLang, onLangChange } from "./i18n/index.js";
@@ -21,6 +29,10 @@ let slots = [];
 let locked = false;
 let toastTimer;
 let resolved = null; // current round's player, resolved for the active UI language
+let mistakesThisRound = 0; // wrong "all slots filled" checks this round, drives the streak bonus
+let wrongFreeTimer = null; // pending timeout that frees wrong-position letters back to the bank
+let roundStartTime = 0; // Date.now() when the current round started, for timed-mode scoring
+let timerInterval = null; // interval driving the visible countdown in timed mode
 
 function currentPack() {
   return ctx.packs[currentPackId];
@@ -111,6 +123,8 @@ function buildRound() {
   const pack = currentPack();
   resolved = resolvePlayer(p, getLang(), pack);
   locked = false;
+  mistakesThisRound = 0;
+  clearTimeout(wrongFreeTimer);
   ps.hintsBought = ps.hintsBought || [];
   $("sticker").classList.remove("win");
   $("stickerNum").textContent = "#" + (ps.levelIndex + 1);
@@ -133,7 +147,7 @@ function buildRound() {
     word.split("").forEach((ch) => {
       const s = document.createElement("div");
       s.className = "slot";
-      const slotObj = { char: ch, el: s, tileIdx: null };
+      const slotObj = { char: ch, el: s, tileIdx: null, confirmed: false };
       s.addEventListener("click", () => removeFromSlot(slotObj));
       w.appendChild(s);
       slots.push(slotObj);
@@ -162,6 +176,37 @@ function buildRound() {
   loadPhoto(p);
   prefetchPhotos(pack.players.slice(ps.levelIndex + 1, ps.levelIndex + 3));
   renderScoreboard();
+  startRoundTimer();
+}
+
+/* ---------- timed mode ---------- */
+function stopRoundTimer() {
+  clearInterval(timerInterval);
+  timerInterval = null;
+}
+
+function updateTimerDisplay() {
+  const elapsed = (Date.now() - roundStartTime) / 1000;
+  const remaining = Math.max(0, TIMED_BONUS_WINDOW_SEC - elapsed);
+  const mm = Math.floor(remaining / 60);
+  const ss = Math.floor(remaining % 60);
+  $("gameTimerValue").textContent = mm + ":" + String(ss).padStart(2, "0");
+  $("gameTimer").classList.toggle("low", remaining > 0 && remaining <= 5);
+  if (remaining <= 0) stopRoundTimer();
+}
+
+function startRoundTimer() {
+  stopRoundTimer();
+  const timerEl = $("gameTimer");
+  if (!ctx.state.settings.timedMode) {
+    timerEl.style.display = "none";
+    return;
+  }
+  timerEl.style.display = "block";
+  timerEl.classList.remove("low");
+  roundStartTime = Date.now();
+  updateTimerDisplay();
+  timerInterval = setInterval(updateTimerDisplay, 250);
 }
 
 /* ---------- tile logic ---------- */
@@ -178,7 +223,7 @@ function placeTile(tile) {
 }
 
 function removeFromSlot(slot) {
-  if (locked || slot.tileIdx === null) return;
+  if (locked || slot.confirmed || slot.tileIdx === null) return;
   const tile = tiles[slot.tileIdx];
   tile.used = false;
   tile.el.classList.remove("used");
@@ -192,10 +237,38 @@ function checkAnswerNow() {
   const guess = slots.map((s) => tiles[s.tileIdx].char).join("");
   if (checkAnswer(guess, resolved.answer)) {
     winRound(false);
-  } else {
-    $("answer").classList.add("wrong");
-    setTimeout(() => $("answer").classList.remove("wrong"), 600);
+    return;
   }
+  mistakesThisRound += 1;
+  $("answer").classList.add("wrong");
+  setTimeout(() => $("answer").classList.remove("wrong"), 600);
+
+  // Per-letter lock feedback: letters already in the right slot turn green
+  // and lock (can't be removed/reused); letters in the wrong slot flash red
+  // and then free back to the bank so only the wrong ones need retrying.
+  const toFree = [];
+  slots.forEach((s) => {
+    if (s.confirmed) return;
+    const tile = tiles[s.tileIdx];
+    if (tile.char === s.char) {
+      s.confirmed = true;
+      s.el.classList.add("slot-correct");
+    } else {
+      s.el.classList.add("slot-wrong");
+      toFree.push(s);
+    }
+  });
+  clearTimeout(wrongFreeTimer);
+  wrongFreeTimer = setTimeout(() => {
+    toFree.forEach((s) => {
+      const tile = tiles[s.tileIdx];
+      tile.used = false;
+      tile.el.classList.remove("used");
+      s.tileIdx = null;
+      s.el.textContent = "";
+      s.el.classList.remove("filled", "slot-wrong");
+    });
+  }, 650);
 }
 
 /* ---------- hints ---------- */
@@ -239,6 +312,7 @@ function showCareer() {
 }
 
 function revealName() {
+  clearTimeout(wrongFreeTimer);
   slots.forEach((s) => {
     if (s.tileIdx !== null) {
       tiles[s.tileIdx].used = false;
@@ -247,6 +321,8 @@ function revealName() {
       s.el.textContent = "";
       s.el.classList.remove("filled");
     }
+    s.confirmed = false;
+    s.el.classList.remove("slot-correct", "slot-wrong");
   });
   const target = resolved.answer.replace(/ /g, "").split("");
   target.forEach((ch, i) => {
@@ -265,6 +341,7 @@ function revealName() {
 /* ---------- win / next ---------- */
 function winRound(revealed) {
   locked = true;
+  stopRoundTimer();
   updateHintButtons();
   $("answer").classList.add("correct");
   $("sticker").classList.add("win");
@@ -273,15 +350,41 @@ function winRound(revealed) {
   const reward = computeReward({ revealed, hintsBought: ps.hintsBought });
   const stars = computeStars({ revealed, hintsBought: ps.hintsBought });
 
-  ctx.state.score += reward.points;
-  ctx.state.coins += reward.coins;
+  // No-mistakes streak bonus: reveal or any wrong-guess attempt this round
+  // breaks the streak; a clean solve extends it and pays out escalating coins.
+  let streakBonus = 0;
+  if (revealed || mistakesThisRound > 0) {
+    ctx.state.streak = 0;
+  } else {
+    ctx.state.streak = (ctx.state.streak || 0) + 1;
+    streakBonus = computeStreakBonus(ctx.state.streak);
+  }
+
+  // Timed-mode bonus: only for genuine (non-revealed) solves, based on how
+  // quickly the round was solved once timed mode is switched on.
+  let timeBonus = 0;
+  if (ctx.state.settings.timedMode && !revealed) {
+    const elapsedSec = (Date.now() - roundStartTime) / 1000;
+    timeBonus = computeTimeBonus(elapsedSec);
+  }
+
+  const totalPoints = reward.points + timeBonus;
+  const totalCoins = reward.coins + streakBonus;
+
+  ctx.state.score += totalPoints;
+  ctx.state.coins += totalCoins;
   ps.stars[ps.levelIndex] = stars;
 
   const p = currentPlayerData();
   $("mTitle").textContent = revealed ? t("win.revealed") : t("win.goal");
   $("mName").textContent = p.wiki;
-  $("mRewards").innerHTML =
-    "+<b>" + reward.points + "</b> pts &nbsp;·&nbsp; +<b>" + reward.coins + "</b> coins &nbsp;·&nbsp; " + "★".repeat(stars);
+  let rewardsHtml =
+    "+<b>" + totalPoints + "</b> pts &nbsp;·&nbsp; +<b>" + totalCoins + "</b> coins &nbsp;·&nbsp; " + "★".repeat(stars);
+  const extras = [];
+  if (streakBonus > 0) extras.push(t("game.streakBonus", { n: ctx.state.streak, c: streakBonus }));
+  if (timeBonus > 0) extras.push(t("game.timeBonus", { n: timeBonus }));
+  if (extras.length) rewardsHtml += "<br>" + extras.join(" &nbsp;·&nbsp; ");
+  $("mRewards").innerHTML = rewardsHtml;
 
   const pack = currentPack();
   const isLast = ps.levelIndex >= pack.players.length - 1;
@@ -332,6 +435,7 @@ async function resetProgress() {
 ============================================================ */
 export function showHome() {
   currentPackId = null;
+  stopRoundTimer();
   showScreen("screenHome");
   renderHome();
 }
@@ -365,7 +469,18 @@ export function init(context) {
     $("packCompleteOverlay").classList.remove("show");
     showHome();
   });
-  $("settingsBtn").addEventListener("click", () => toast(t("home.settingsSoon")));
+  $("settingsBtn").addEventListener("click", () => {
+    $("timedModeToggle").checked = !!ctx.state.settings.timedMode;
+    $("settingsOverlay").classList.add("show");
+  });
+  $("settingsDoneBtn").addEventListener("click", () => {
+    $("settingsOverlay").classList.remove("show");
+  });
+  $("timedModeToggle").addEventListener("change", (e) => {
+    ctx.state.settings.timedMode = e.target.checked;
+    ctx.persist();
+    if (currentPackId !== null) startRoundTimer(); // live-update the in-progress game screen
+  });
 
   onLangChange(() => {
     if (currentPackId === null) renderHome();

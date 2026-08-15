@@ -10,7 +10,13 @@ export function defaultState(packIds) {
   packIds.forEach((id) => {
     packs[id] = defaultPackState();
   });
-  return { coins: START_COINS, score: 0, settings: { sound: true }, packs };
+  return {
+    coins: START_COINS,
+    score: 0,
+    streak: 0, // consecutive no-mistake solves, resets on any wrong guess or reveal
+    settings: { sound: true, timedMode: false },
+    packs,
+  };
 }
 
 export async function loadState(packIds) {

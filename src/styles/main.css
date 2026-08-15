@@ -220,6 +220,12 @@ h1 span{
 .answer.wrong{animation:shake .4s}
 .answer.wrong .slot.filled{background:#F3C7C2;border-color:var(--bad);color:var(--bad)}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}50%{transform:translateX(6px)}75%{transform:translateX(-4px)}}
+/* Per-letter lock feedback on a wrong "all slots filled" check: correct-
+   position letters lock in green, wrong-position letters flash red before
+   being freed back to the bank. Declared after .slot.filled so they win at
+   equal specificity. */
+.slot.slot-correct{background:linear-gradient(180deg,var(--good-2),var(--good));color:#fff;border-color:var(--good);box-shadow:0 3px 0 #1F7040;cursor:not-allowed}
+.slot.slot-wrong{background:#F3C7C2;border-color:var(--bad);color:var(--bad);animation:shake .3s}
 
 /* ---------- tile bank ---------- */
 .bank{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:4px 2px}
@@ -305,6 +311,31 @@ h1 span{
   transition:transform .3s cubic-bezier(.2,.8,.25,1.1);z-index:60;
 }
 .toast.show{transform:translateX(-50%) translateY(0)}
+
+/* ---------- settings ---------- */
+.settings-row{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  text-align:left;margin:14px 0 22px;padding:12px 14px;
+  background:rgba(0,0,0,0.05);border-radius:var(--radius-sm);
+}
+.settings-row-text{display:flex;flex-direction:column;gap:3px}
+.settings-row-label{font-family:var(--display);font-size:13px;color:var(--ink);text-transform:uppercase;letter-spacing:.3px}
+.settings-row-desc{font-family:var(--body);font-size:11px;color:var(--ink-soft);max-width:210px}
+.switch{position:relative;display:inline-block;width:46px;height:26px;flex-shrink:0;cursor:pointer}
+.switch input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer;width:100%;height:100%}
+.switch-track{position:absolute;inset:0;background:#C9C1A4;border-radius:999px;transition:background .15s;pointer-events:none}
+.switch-thumb{position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 2px 4px rgba(0,0,0,0.3);transition:transform .15s}
+.switch input:checked + .switch-track{background:var(--good)}
+.switch input:checked + .switch-track .switch-thumb{transform:translateX(20px)}
+.switch input:focus-visible + .switch-track{box-shadow:0 0 0 3px rgba(231,190,85,0.4)}
+
+/* ---------- timed-mode countdown ---------- */
+.game-timer{
+  text-align:center;font-family:var(--score);font-size:16px;font-weight:700;
+  color:#FFE9A8;letter-spacing:1px;margin:-4px 0 -2px;
+}
+.game-timer.low{color:var(--bad);animation:pulseTimer .6s ease-in-out infinite}
+@keyframes pulseTimer{0%,100%{opacity:1}50%{opacity:.55}}
 
 @media (max-width:380px){
   .tile{width:38px;height:42px;font-size:17px}
@@ -396,3 +427,4 @@ h1 span{
 html[dir="rtl"] .game-topbar{flex-direction:row-reverse}
 html[dir="rtl"] .sb-value.coins::before,
 html[dir="rtl"] .sb-value.stars::before{margin-right:0;margin-left:5px}
+html[dir="rtl"] .settings-row{text-align:right}

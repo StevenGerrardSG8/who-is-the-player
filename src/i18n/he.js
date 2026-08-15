@@ -9,9 +9,13 @@ export default {
   "home.totalStars": "סה״כ כוכבים",
   "home.multiplayer": "🎉 מולטיפלייר",
   "home.settings": "הגדרות",
-  "home.settingsSoon": "ההגדרות בקרוב",
   "home.starsToUnlock": "{n}★ לפתיחה",
   "home.finishPrevious": "סיים את החבילה הקודמת",
+
+  "settings.title": "הגדרות",
+  "settings.timedMode": "מצב זמן",
+  "settings.timedModeDesc": "פתרו מהר לבונוס נקודות — טיימר יוצג בכל סיבוב.",
+  "settings.done": "סיום",
 
   "game.back": "← חבילות",
   "game.level": "שלב",
@@ -23,6 +27,8 @@ export default {
   "game.notEnoughCoins": "אין מספיק מטבעות — נחש שחקנים כדי להרוויח עוד!",
   "game.mysteryLoading": "טוען תמונה…",
   "game.mysteryFallback": "שחקן מסתורי — השתמש ברמזים!",
+  "game.streakBonus": "🔥 רצף של {n}: +{c} מטבעות",
+  "game.timeBonus": "⏱ בונוס מהירות: +{n} נק'",
 
   "hint.position": "עמדה ומדינה",
   "hint.career": "מועדוני קריירה",

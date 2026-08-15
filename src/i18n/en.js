@@ -9,9 +9,13 @@ export default {
   "home.totalStars": "Total Stars",
   "home.multiplayer": "🎉 Multiplayer",
   "home.settings": "Settings",
-  "home.settingsSoon": "Settings coming soon",
   "home.starsToUnlock": "{n}★ to unlock",
   "home.finishPrevious": "Finish previous pack",
+
+  "settings.title": "Settings",
+  "settings.timedMode": "Timed Mode",
+  "settings.timedModeDesc": "Solve fast for bonus points — shows a countdown timer during each round.",
+  "settings.done": "Done",
 
   "game.back": "← Packs",
   "game.level": "Level",
@@ -23,6 +27,8 @@ export default {
   "game.notEnoughCoins": "Not enough coins — solve players to earn more!",
   "game.mysteryLoading": "Loading photo…",
   "game.mysteryFallback": "Mystery player — use the hints!",
+  "game.streakBonus": "🔥 {n} in a row: +{c} coins",
+  "game.timeBonus": "⏱ Speed bonus: +{n} pts",
 
   "hint.position": "Position & Country",
   "hint.career": "Career Clubs",
