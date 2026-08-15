@@ -1,7 +1,8 @@
-import { shuffle, buildBankLetters, checkAnswer } from "./game.js";
+import { shuffle, buildBankLetters, checkAnswer, renderAnswerLayout } from "./game.js";
 import { loadPhoto, prefetchPhotos } from "./photo.js";
 import { showScreen } from "./screens.js";
-import { t } from "./i18n/index.js";
+import { t, getLang } from "./i18n/index.js";
+import { translatePackName } from "./i18n/content/leagues.js";
 
 const $ = (id) => document.getElementById(id);
 const MP_POINTS = 100;
@@ -54,17 +55,17 @@ function renderSetup() {
   $("mpAddPlayerBtn").style.display = playerNames.length >= MAX_PLAYERS ? "none" : "";
 
   const packSelect = $("mpPackSelect");
-  if (!packSelect.dataset.filled) {
-    packOrder.forEach((packId) => {
-      const pack = packs[packId];
-      if (!pack) return;
-      const opt = document.createElement("option");
-      opt.value = packId;
-      opt.textContent = pack.icon + " " + pack.name;
-      packSelect.appendChild(opt);
-    });
-    packSelect.dataset.filled = "1";
-  }
+  const prevValue = packSelect.value;
+  packSelect.innerHTML = "";
+  packOrder.forEach((packId) => {
+    const pack = packs[packId];
+    if (!pack) return;
+    const opt = document.createElement("option");
+    opt.value = packId;
+    opt.textContent = pack.icon + " " + translatePackName(pack, getLang());
+    packSelect.appendChild(opt);
+  });
+  if (prevValue) packSelect.value = prevValue;
 }
 
 function showSetup() {
@@ -142,25 +143,12 @@ function buildRound() {
   $("mpAnswer").classList.remove("correct", "wrong", "small", "tiny");
 
   const answerEl = $("mpAnswer");
-  answerEl.innerHTML = "";
-  const letters = p.answer.replace(/ /g, "").length;
+  const letters = p.answer.replace(/[ -]/g, "").length;
   if (letters >= 12) answerEl.classList.add("tiny");
   else if (letters >= 9) answerEl.classList.add("small");
 
   slots = [];
-  p.answer.split(" ").forEach((word) => {
-    const w = document.createElement("div");
-    w.className = "word";
-    word.split("").forEach((ch) => {
-      const s = document.createElement("div");
-      s.className = "slot";
-      const slotObj = { char: ch, el: s, tileIdx: null };
-      s.addEventListener("click", () => removeFromSlot(slotObj));
-      w.appendChild(s);
-      slots.push(slotObj);
-    });
-    answerEl.appendChild(w);
-  });
+  renderAnswerLayout(p.answer, answerEl, slots, removeFromSlot);
 
   const bankLetters = buildBankLetters(p.answer);
   const bankEl = $("mpBank");
@@ -257,7 +245,7 @@ function showResults() {
       ? t("mp.tie", { names: winners.map((p) => p.name).join(" & ") })
       : t("mp.wins", { name: winners[0].name });
   $("mpFinalScores").innerHTML = ranked
-    .map((p, i) => '<div class="mp-final-row">#' + (i + 1) + " " + escapeHtml(p.name) + " — <b>" + p.score + "</b> pts</div>")
+    .map((p, i) => '<div class="mp-final-row">#' + (i + 1) + " " + escapeHtml(p.name) + " — <b>" + p.score + "</b> " + t("game.pts") + "</div>")
     .join("");
   $("mpResultsOverlay").classList.add("show");
 }

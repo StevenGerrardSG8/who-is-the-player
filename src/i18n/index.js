@@ -17,23 +17,27 @@ import zh from "./zh.js";
 import { storage } from "../storage.js";
 import { LANG_STORAGE_KEY } from "../config.js";
 
+// `enabled: false` languages are fully wired (dict, content, RTL handling)
+// but hidden from the picker for now — the plan is to bring them back once
+// their content-translation dictionaries get the same accuracy pass Hebrew
+// just got. Nothing needs deleting to re-enable one: just flip this flag.
 export const LANGUAGES = [
-  { code: "en", label: "English", flag: "🇬🇧", rtl: false },
-  { code: "he", label: "עברית", flag: "🇮🇱", rtl: true },
-  { code: "ar", label: "العربية", flag: "🇸🇦", rtl: true },
-  { code: "es", label: "Español", flag: "🇪🇸", rtl: false },
-  { code: "fr", label: "Français", flag: "🇫🇷", rtl: false },
-  { code: "pt", label: "Português", flag: "🇧🇷", rtl: false },
-  { code: "de", label: "Deutsch", flag: "🇩🇪", rtl: false },
-  { code: "it", label: "Italiano", flag: "🇮🇹", rtl: false },
-  { code: "ru", label: "Русский", flag: "🇷🇺", rtl: false },
-  { code: "tr", label: "Türkçe", flag: "🇹🇷", rtl: false },
-  { code: "nl", label: "Nederlands", flag: "🇳🇱", rtl: false },
-  { code: "pl", label: "Polski", flag: "🇵🇱", rtl: false },
-  { code: "el", label: "Ελληνικά", flag: "🇬🇷", rtl: false },
-  { code: "ja", label: "日本語", flag: "🇯🇵", rtl: false },
-  { code: "ko", label: "한국어", flag: "🇰🇷", rtl: false },
-  { code: "zh", label: "中文", flag: "🇨🇳", rtl: false },
+  { code: "en", label: "English", flag: "🇬🇧", rtl: false, enabled: true },
+  { code: "he", label: "עברית", flag: "🇮🇱", rtl: true, enabled: true },
+  { code: "ar", label: "العربية", flag: "🇸🇦", rtl: true, enabled: false },
+  { code: "es", label: "Español", flag: "🇪🇸", rtl: false, enabled: false },
+  { code: "fr", label: "Français", flag: "🇫🇷", rtl: false, enabled: false },
+  { code: "pt", label: "Português", flag: "🇧🇷", rtl: false, enabled: false },
+  { code: "de", label: "Deutsch", flag: "🇩🇪", rtl: false, enabled: false },
+  { code: "it", label: "Italiano", flag: "🇮🇹", rtl: false, enabled: false },
+  { code: "ru", label: "Русский", flag: "🇷🇺", rtl: false, enabled: false },
+  { code: "tr", label: "Türkçe", flag: "🇹🇷", rtl: false, enabled: false },
+  { code: "nl", label: "Nederlands", flag: "🇳🇱", rtl: false, enabled: false },
+  { code: "pl", label: "Polski", flag: "🇵🇱", rtl: false, enabled: false },
+  { code: "el", label: "Ελληνικά", flag: "🇬🇷", rtl: false, enabled: false },
+  { code: "ja", label: "日本語", flag: "🇯🇵", rtl: false, enabled: false },
+  { code: "ko", label: "한국어", flag: "🇰🇷", rtl: false, enabled: false },
+  { code: "zh", label: "中文", flag: "🇨🇳", rtl: false, enabled: false },
 ];
 
 const DICTS = { en, he, ar, es, fr, pt, de, it, ru, tr, nl, pl, el, ja, ko, zh };
@@ -102,6 +106,7 @@ const STATIC_MAP = {
   homeStarsLabel: "home.totalStars",
   multiplayerBtn: "home.multiplayer",
   settingsBtn: "home.settings",
+  languageBtn: "home.language",
 
   mpModeBackLabel: "game.back",
   mpModeCrumb: "home.multiplayer",
@@ -177,12 +182,13 @@ function renderLangGrid() {
   const grid = $("langGrid");
   if (!grid) return;
   grid.innerHTML = "";
-  LANGUAGES.forEach((lang) => {
+  LANGUAGES.filter((lang) => lang.enabled).forEach((lang) => {
     const card = document.createElement("div");
     card.className = "lang-card" + (lang.code === currentLang ? " selected" : "");
     card.innerHTML = '<span class="flag">' + lang.flag + "</span>" + lang.label;
     card.addEventListener("click", async () => {
       await setLang(lang.code);
+      hideLangPicker();
     });
     grid.appendChild(card);
   });

@@ -9,6 +9,7 @@ export default {
   "home.totalStars": "סה״כ כוכבים",
   "home.multiplayer": "🎉 מולטיפלייר",
   "home.settings": "הגדרות",
+  "home.language": "🌐 שפה",
   "home.settingsSoon": "ההגדרות בקרוב",
   "home.starsToUnlock": "{n}★ לפתיחה",
   "home.finishPrevious": "סיים את החבילה הקודמת",
@@ -23,6 +24,8 @@ export default {
   "game.notEnoughCoins": "אין מספיק מטבעות — נחש שחקנים כדי להרוויח עוד!",
   "game.mysteryLoading": "טוען תמונה…",
   "game.mysteryFallback": "שחקן מסתורי — השתמש ברמזים!",
+  "game.pts": "נק'",
+  "game.coinsShort": "מטבעות",
 
   "hint.position": "עמדה ומדינה",
   "hint.career": "מועדוני קריירה",

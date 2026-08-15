@@ -3,10 +3,11 @@
 // needed). The host generates a short room code; the guest connects to it.
 // Both players race the same target each round; the host is the sole
 // authority on who answered first (see reportAttempt/resolveRound).
-import { buildBankLetters, checkAnswer } from "./game.js";
+import { buildBankLetters, checkAnswer, renderAnswerLayout } from "./game.js";
 import { loadPhoto, prefetchPhotos } from "./photo.js";
 import { showScreen } from "./screens.js";
-import { t } from "./i18n/index.js";
+import { t, getLang } from "./i18n/index.js";
+import { translatePackName } from "./i18n/content/leagues.js";
 
 const $ = (id) => document.getElementById(id);
 const MP_POINTS = 100;
@@ -76,17 +77,17 @@ export function showLobby() {
   resetLobbyUI();
 
   const select = $("mpOnlinePackSelect");
-  if (!select.dataset.filled) {
-    packOrder.forEach((packId) => {
-      const pack = packs[packId];
-      if (!pack) return;
-      const opt = document.createElement("option");
-      opt.value = packId;
-      opt.textContent = pack.icon + " " + pack.name;
-      select.appendChild(opt);
-    });
-    select.dataset.filled = "1";
-  }
+  const prevValue = select.value;
+  select.innerHTML = "";
+  packOrder.forEach((packId) => {
+    const pack = packs[packId];
+    if (!pack) return;
+    const opt = document.createElement("option");
+    opt.value = packId;
+    opt.textContent = pack.icon + " " + translatePackName(pack, getLang());
+    select.appendChild(opt);
+  });
+  if (prevValue) select.value = prevValue;
 }
 
 function hostRoom() {
@@ -241,21 +242,8 @@ function buildRound() {
   $("mpoAnswer").classList.remove("correct", "wrong");
 
   const answerEl = $("mpoAnswer");
-  answerEl.innerHTML = "";
   slots = [];
-  p.answer.split(" ").forEach((word) => {
-    const w = document.createElement("div");
-    w.className = "word";
-    word.split("").forEach((ch) => {
-      const s = document.createElement("div");
-      s.className = "slot";
-      const slotObj = { char: ch, el: s, tileIdx: null };
-      s.addEventListener("click", () => removeFromSlot(slotObj));
-      w.appendChild(s);
-      slots.push(slotObj);
-    });
-    answerEl.appendChild(w);
-  });
+  renderAnswerLayout(p.answer, answerEl, slots, removeFromSlot);
 
   const bankLetters = buildBankLetters(p.answer);
   const bankEl = $("mpoBank");
@@ -392,7 +380,7 @@ function showResults() {
       ? t("mp.tie", { names: winners.map((p) => p.name).join(" & ") })
       : t("mp.wins", { name: winners[0].name });
   $("mpoFinalScores").innerHTML = ranked
-    .map((p, i) => '<div class="mp-final-row">#' + (i + 1) + " " + escapeHtml(p.name) + " — <b>" + p.score + "</b> pts</div>")
+    .map((p, i) => '<div class="mp-final-row">#' + (i + 1) + " " + escapeHtml(p.name) + " — <b>" + p.score + "</b> " + t("game.pts") + "</div>")
     .join("");
   $("mpoResultsOverlay").classList.add("show");
 }

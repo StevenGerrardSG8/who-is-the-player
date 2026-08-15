@@ -20,9 +20,15 @@
   --shadow-card:0 16px 32px -10px rgba(0,0,0,0.55), 0 2px 0 rgba(0,0,0,0.15);
   --shadow-pop:0 20px 44px -12px rgba(0,0,0,0.6);
   --ring-gold:0 0 0 1px rgba(231,190,85,0.35);
-  --display:'Archivo Black',sans-serif;
-  --score:'Chakra Petch',monospace;
-  --body:'Nunito Sans',sans-serif;
+  /* Archivo Black/Chakra Petch/Nunito Sans have no Hebrew glyphs, so Hebrew
+     text silently fell back to the browser's thin default sans — Rubik ships
+     a Hebrew+Latin Black (900) weight, so listing it as the fallback (with
+     an explicit font-weight at each use site below) keeps Hebrew visually as
+     bold/prominent as the Latin branding instead of looking like an
+     afterthought. */
+  --display:'Archivo Black','Rubik',sans-serif;
+  --score:'Chakra Petch','Rubik',monospace;
+  --body:'Nunito Sans','Rubik',sans-serif;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0}
@@ -68,7 +74,7 @@ body::after{
   position:relative;display:flex;align-items:stretch;justify-content:space-between;gap:8px;
   background:linear-gradient(180deg,#0E2A1C,#081B12);
   border:1px solid rgba(231,190,85,0.28);border-radius:var(--radius-sm);
-  padding:9px 12px;font-family:var(--score);
+  padding:9px 12px;font-family:var(--score);font-weight:700;
   box-shadow:inset 0 0 22px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.06), 0 4px 10px rgba(0,0,0,0.35);
 }
 .totals{justify-content:center;gap:40px}
@@ -90,7 +96,7 @@ body::after{
 }
 @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
 h1{
-  font-family:var(--display);font-size:23px;margin:4px 0 0;text-align:center;
+  font-family:var(--display);font-weight:900;font-size:23px;margin:4px 0 0;text-align:center;
   letter-spacing:1px;color:var(--chalk);text-transform:uppercase;text-shadow:0 2px 10px rgba(0,0,0,0.35);
 }
 h1 span{
@@ -112,9 +118,9 @@ h1 span{
   display:flex;align-items:center;justify-content:center;
   box-shadow:inset 0 2px 4px rgba(255,255,255,0.5), 0 4px 10px rgba(0,0,0,0.25);
 }
-.pack-card .p-name{position:relative;z-index:1;font-family:var(--display);font-size:12.5px;color:var(--ink);text-transform:uppercase;letter-spacing:.2px}
-.pack-card .p-progress{position:relative;z-index:1;font-family:var(--score);font-size:12px;color:var(--ink-soft)}
-.pack-card .p-stars{position:relative;z-index:1;font-family:var(--score);font-size:11px;color:var(--foil-deep);font-weight:700}
+.pack-card .p-name{position:relative;z-index:1;font-family:var(--display);font-weight:900;font-size:12.5px;color:var(--ink);text-transform:uppercase;letter-spacing:.2px}
+.pack-card .p-progress{position:relative;z-index:1;font-family:var(--score);font-weight:700;font-size:12px;color:var(--ink-soft)}
+.pack-card .p-stars{position:relative;z-index:1;font-family:var(--score);font-weight:700;font-size:11px;color:var(--foil-deep);font-weight:700}
 .pack-card .p-bar{position:relative;z-index:1;width:100%;height:6px;border-radius:99px;background:rgba(0,0,0,0.08);overflow:hidden;margin-top:1px;box-shadow:inset 0 1px 2px rgba(0,0,0,0.12)}
 .pack-card .p-bar-fill{height:100%;background:linear-gradient(90deg,var(--good),var(--good-2));border-radius:99px;transition:width .3s ease}
 .pack-card.locked{opacity:0.55;cursor:default;filter:grayscale(0.75)}
@@ -125,12 +131,12 @@ h1 span{
 .game-topbar{display:flex;align-items:center;justify-content:space-between;margin:-2px 0 -6px}
 .back-btn{
   background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:#D9EBDF;
-  font-family:var(--score);font-size:13px;cursor:pointer;padding:6px 12px 6px 8px;border-radius:999px;
+  font-family:var(--score);font-weight:700;font-size:13px;cursor:pointer;padding:6px 12px 6px 8px;border-radius:999px;
   display:flex;align-items:center;gap:4px;transition:background .15s;
 }
 .back-btn:active{background:rgba(255,255,255,0.14)}
 .back-arrow{font-size:14px}
-.pack-name{font-family:var(--score);font-size:12px;letter-spacing:1px;color:#8FA37E;text-transform:uppercase}
+.pack-name{font-family:var(--score);font-weight:700;font-size:12px;letter-spacing:1px;color:#8FA37E;text-transform:uppercase}
 
 /* ---------- sticker card ---------- */
 .sticker{
@@ -163,7 +169,7 @@ h1 span{
 .photo img{width:100%;height:100%;object-fit:cover;object-position:top center}
 .photo .fallback{
   display:flex;flex-direction:column;align-items:center;gap:6px;color:#4C6B58;
-  font-family:var(--display);font-size:64px;
+  font-family:var(--display);font-weight:900;font-size:64px;
 }
 .photo .fallback small{font-family:var(--body);font-size:11px;font-weight:700;max-width:80%;text-align:center}
 .photo-credit{
@@ -177,7 +183,7 @@ h1 span{
 .sticker-num{
   position:absolute;top:-14px;left:-14px;z-index:4;
   background:radial-gradient(circle at 35% 30%,var(--foil-2),var(--foil-deep) 80%);color:#3B2C08;
-  font-family:var(--score);font-weight:700;font-size:13px;
+  font-family:var(--score);font-weight:700;font-weight:700;font-size:13px;
   border-radius:50%;width:38px;height:38px;display:flex;align-items:center;justify-content:center;
   box-shadow:0 0 0 3px var(--card), 0 4px 10px rgba(0,0,0,0.4), inset 0 2px 3px rgba(255,255,255,0.55);
   transform:rotate(-8deg);
@@ -207,15 +213,23 @@ h1 span{
   width:38px;height:44px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.08);
   border:2px dashed rgba(244,246,239,0.3);
   display:flex;align-items:center;justify-content:center;
-  font-family:var(--display);font-size:20px;color:var(--chalk);cursor:pointer;
+  font-family:var(--display);font-weight:900;font-size:20px;color:var(--chalk);cursor:pointer;
   transition:background .15s,border-color .15s,transform .1s;
 }
 .slot.filled{
   background:linear-gradient(180deg,#fff,#F2ECDD);color:var(--ink);border:2px solid var(--card-edge);
   box-shadow:0 3px 0 var(--card-edge), 0 5px 10px rgba(0,0,0,0.25);
 }
+/* Static hyphen between letter groups (Troost-Ekong, El-Arabi, ...) — not a
+   tile the player has to find, just punctuation baked into the layout. */
+.slot-sep{
+  width:14px;height:44px;display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-weight:900;font-size:20px;color:var(--chalk);opacity:0.6;
+}
 .answer.small .slot{width:30px;height:38px;font-size:16px}
+.answer.small .slot-sep{width:11px;height:38px;font-size:16px}
 .answer.tiny .slot{width:24px;height:32px;font-size:13px}
+.answer.tiny .slot-sep{width:9px;height:32px;font-size:13px}
 .answer.correct .slot{background:linear-gradient(180deg,var(--good-2),var(--good));color:#fff;border-color:var(--good);box-shadow:0 3px 0 #1F7040}
 .answer.wrong{animation:shake .4s}
 .answer.wrong .slot.filled{background:#F3C7C2;border-color:var(--bad);color:var(--bad)}
@@ -225,7 +239,7 @@ h1 span{
 .bank{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:4px 2px}
 .tile{
   width:42px;height:46px;border-radius:var(--radius-sm);background:linear-gradient(180deg,#fff,#F3ECDD);color:var(--ink);
-  font-family:var(--display);font-size:19px;border:0;cursor:pointer;
+  font-family:var(--display);font-weight:900;font-size:19px;border:0;cursor:pointer;
   box-shadow:0 4px 0 var(--card-edge), 0 7px 12px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.8);
   transition:transform .08s;
 }
@@ -245,7 +259,7 @@ h1 span{
 .hint:disabled{opacity:0.45;cursor:default}
 .hint .h-icon{font-size:18px;line-height:1}
 .hint .h-name{font-size:11px;font-weight:800;letter-spacing:.3px}
-.hint .h-cost{font-family:var(--score);font-size:12px;color:#FFE9A8}
+.hint .h-cost{font-family:var(--score);font-weight:700;font-size:12px;color:#FFE9A8}
 .hint.bought{background:linear-gradient(180deg,#233022,#1A2419);box-shadow:none}
 .hint.bought .h-cost{color:#8FA37E}
 
@@ -258,20 +272,26 @@ h1 span{
 }
 .career.show{display:block;animation:pop .25s ease-out}
 @keyframes pop{from{transform:scale(.92);opacity:0}to{transform:scale(1);opacity:1}}
-.career h3{margin:0 0 8px;font-family:var(--score);font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--foil-deep);border-bottom:1.5px solid var(--card-edge);padding-bottom:6px}
+.career h3{margin:0 0 8px;font-family:var(--score);font-weight:700;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--foil-deep);border-bottom:1.5px solid var(--card-edge);padding-bottom:6px}
 .career table{width:100%;border-collapse:collapse;font-size:13px}
 .career td{padding:5px 2px;border-bottom:1px dashed var(--card-edge)}
 .career tr:last-child td{border-bottom:0}
-.career td.years{font-family:var(--score);color:var(--ink-soft);width:86px;font-size:12px}
+.career td.years{font-family:var(--score);font-weight:700;color:var(--ink-soft);width:86px;font-size:12px}
 .career td.club{font-weight:800}
 
 /* ---------- overlay ---------- */
 .overlay{
   position:fixed;inset:0;background:rgba(4,14,9,0.8);display:none;
-  align-items:center;justify-content:center;padding:20px;z-index:50;overflow-y:auto;
+  padding:20px;z-index:50;overflow-y:auto;
 }
+/* Centering via auto margins (not align-items/justify-content) is what makes
+   this scrollable when the modal is taller than the viewport (many lang
+   cards, long career panel, etc.) — align-items:center instead pushes the
+   overflow above the scroll boundary, making the top of the modal (title,
+   Continue button) permanently unreachable no matter how far you scroll. */
 .overlay.show{display:flex}
 .modal{
+  margin:auto;
   background:linear-gradient(var(--card),var(--card-2)) padding-box,
              linear-gradient(135deg,var(--foil-2),var(--foil-deep)) border-box;
   color:var(--ink);border-radius:20px;padding:26px 22px;
@@ -279,12 +299,12 @@ h1 span{
   box-shadow:var(--shadow-pop);
   animation:pop .32s cubic-bezier(.2,.8,.25,1.15);
 }
-.modal h2{font-family:var(--display);margin:0 0 4px;font-size:24px;text-transform:uppercase}
-.modal .m-name{font-family:var(--display);font-size:18px;color:var(--foil-deep);margin:2px 0 10px}
-.modal .m-rewards{font-family:var(--score);font-size:15px;margin:8px 0 16px;color:var(--ink-soft)}
+.modal h2{font-family:var(--display);font-weight:900;margin:0 0 4px;font-size:24px;text-transform:uppercase}
+.modal .m-name{font-family:var(--display);font-weight:900;font-size:18px;color:var(--foil-deep);margin:2px 0 10px}
+.modal .m-rewards{font-family:var(--score);font-weight:700;font-size:15px;margin:8px 0 16px;color:var(--ink-soft)}
 .modal .m-rewards b{color:var(--ink);font-size:18px}
 .btn-main{
-  font-family:var(--display);font-size:15px;text-transform:uppercase;letter-spacing:1px;
+  font-family:var(--display);font-weight:900;font-size:15px;text-transform:uppercase;letter-spacing:1px;
   background:linear-gradient(180deg,var(--pitch-light),var(--pitch));color:var(--chalk);border:0;border-radius:999px;
   padding:13px 28px;cursor:pointer;
   box-shadow:0 4px 0 var(--pitch-dark), 0 8px 18px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.18);
@@ -299,7 +319,7 @@ h1 span{
 
 .toast{
   position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);
-  background:linear-gradient(180deg,#0E2A1C,#081B12);color:#FFE9A8;font-family:var(--score);font-size:13px;
+  background:linear-gradient(180deg,#0E2A1C,#081B12);color:#FFE9A8;font-family:var(--score);font-weight:700;font-size:13px;
   padding:11px 20px;border-radius:999px;border:1px solid rgba(231,190,85,0.3);
   box-shadow:0 10px 24px rgba(0,0,0,0.4);
   transition:transform .3s cubic-bezier(.2,.8,.25,1.1);z-index:60;
@@ -350,15 +370,15 @@ h1 span{
 .mp-score-chip.tappable:active{transform:scale(0.92)}
 .mp-score-name{font-family:var(--body);font-size:10px;font-weight:800;color:#CFE3D5;max-width:70px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .mp-score-chip.active .mp-score-name{color:#3B2C08}
-.mp-score-value{font-family:var(--score);font-size:14px;color:#FFE9A8}
+.mp-score-value{font-family:var(--score);font-weight:700;font-size:14px;color:#FFE9A8}
 .mp-score-chip.active .mp-score-value{color:#3B2C08}
 @keyframes mpPulse{0%,100%{box-shadow:0 0 0 2px rgba(255,233,168,.35)}50%{box-shadow:0 0 0 6px rgba(255,233,168,.12)}}
 .mp-turn-banner{
-  text-align:center;font-family:var(--display);font-size:16px;
+  text-align:center;font-family:var(--display);font-weight:900;font-size:16px;
   background:linear-gradient(180deg,var(--foil-2),var(--foil));-webkit-background-clip:text;background-clip:text;color:transparent;
   text-transform:uppercase;letter-spacing:.5px;
 }
-.mp-final-row{font-family:var(--score);font-size:14px;color:var(--ink);padding:5px 0;border-bottom:1px dashed var(--card-edge)}
+.mp-final-row{font-family:var(--score);font-weight:700;font-size:14px;color:var(--ink);padding:5px 0;border-bottom:1px dashed var(--card-edge)}
 .mp-final-row:last-child{border-bottom:0}
 
 .mp-mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:8px}
@@ -369,10 +389,10 @@ h1 span{
   background:radial-gradient(circle at 35% 30%,var(--foil-2),var(--foil-deep) 75%);
   box-shadow:inset 0 2px 4px rgba(255,255,255,0.5), 0 4px 10px rgba(0,0,0,0.25);
 }
-.mp-mode-title{position:relative;z-index:1;font-family:var(--display);font-size:15px;color:var(--ink);text-transform:uppercase}
+.mp-mode-title{position:relative;z-index:1;font-family:var(--display);font-weight:900;font-size:15px;color:var(--ink);text-transform:uppercase}
 .mp-mode-desc{position:relative;z-index:1;font-family:var(--body);font-size:11px;color:var(--ink-soft);text-align:center}
 #mpRoomCode{
-  font-family:var(--score);letter-spacing:3px;
+  font-family:var(--score);font-weight:700;letter-spacing:3px;
   background:linear-gradient(180deg,var(--foil-2),var(--foil));-webkit-background-clip:text;background-clip:text;color:transparent;
 }
 

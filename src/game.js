@@ -22,7 +22,7 @@ export function shuffle(arr) {
 }
 
 export function buildBankLetters(answer, alphabet = LATIN_ALPHABET) {
-  const answerLetters = answer.replace(/ /g, "").split("");
+  const answerLetters = answer.replace(/[ -]/g, "").split("");
   const total = Math.max(12, answerLetters.length + 4);
   const bankLetters = [...answerLetters];
   while (bankLetters.length < total) {
@@ -32,7 +32,38 @@ export function buildBankLetters(answer, alphabet = LATIN_ALPHABET) {
 }
 
 export function checkAnswer(guess, answer) {
-  return guess === answer.replace(/ /g, "");
+  return guess === answer.replace(/[ -]/g, "");
+}
+
+// Builds the answer's letter-slot layout into `container`, splitting into
+// separate <div class="word"> groups on spaces (as before) and, within a
+// word, rendering a "-" as a static separator rather than a slot — a hyphen
+// (e.g. "Troost-Ekong", "El-Arabi") is punctuation the player never has to
+// hunt for a tile to fill, unlike every real letter. Pushes one entry per
+// real letter slot (not separators) onto the caller-supplied `slots` array,
+// in reading order, wired to `onSlotClick`.
+export function renderAnswerLayout(answer, container, slots, onSlotClick) {
+  container.innerHTML = "";
+  answer.split(" ").forEach((word) => {
+    const w = document.createElement("div");
+    w.className = "word";
+    word.split("").forEach((ch) => {
+      if (ch === "-") {
+        const sep = document.createElement("div");
+        sep.className = "slot-sep";
+        sep.textContent = "-";
+        w.appendChild(sep);
+        return;
+      }
+      const s = document.createElement("div");
+      s.className = "slot";
+      const slotObj = { char: ch, el: s, tileIdx: null };
+      s.addEventListener("click", () => onSlotClick(slotObj));
+      w.appendChild(s);
+      slots.push(slotObj);
+    });
+    container.appendChild(w);
+  });
 }
 
 // hintsBought: array subset of [1,2,3] bought for the level just solved

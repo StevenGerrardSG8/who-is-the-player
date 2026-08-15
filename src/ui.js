@@ -1,4 +1,4 @@
-import { HINT_COSTS, buildBankLetters, checkAnswer, computeReward, computeStars } from "./game.js";
+import { HINT_COSTS, buildBankLetters, checkAnswer, computeReward, computeStars, renderAnswerLayout } from "./game.js";
 import {
   packSolvedCount,
   packStarTotal,
@@ -11,6 +11,7 @@ import { loadPhoto as loadPhotoInto, prefetchPhotos } from "./photo.js";
 import { showScreen } from "./screens.js";
 import { t, getLang, onLangChange } from "./i18n/index.js";
 import { resolvePlayer } from "./i18n/content/index.js";
+import { translatePackName } from "./i18n/content/leagues.js";
 
 const $ = (id) => document.getElementById(id);
 
@@ -62,7 +63,7 @@ function renderPackGrid() {
     card.className = "pack-card" + (unlocked ? "" : " locked");
     card.innerHTML =
       '<div class="p-icon">' + pack.icon + "</div>" +
-      '<div class="p-name">' + pack.name + "</div>" +
+      '<div class="p-name">' + translatePackName(pack, getLang()) + "</div>" +
       '<div class="p-progress">' + solved + "/" + pack.players.length + "</div>" +
       '<div class="p-bar"><div class="p-bar-fill" style="width:' + pct + '%"></div></div>' +
       '<div class="p-stars">★ ' + stars + "</div>" +
@@ -102,7 +103,7 @@ function renderScoreboard() {
   $("sbLevel").textContent = ps.levelIndex + 1 + "/" + pack.players.length;
   $("sbScore").textContent = ctx.state.score;
   $("sbCoins").textContent = ctx.state.coins;
-  $("gamePackName").textContent = pack.name;
+  $("gamePackName").textContent = translatePackName(pack, getLang());
 }
 
 function buildRound() {
@@ -119,27 +120,14 @@ function buildRound() {
   $("careerTable").innerHTML = "";
 
   const answerEl = $("answer");
-  answerEl.innerHTML = "";
   answerEl.classList.remove("correct", "wrong", "small", "tiny", "rtl");
   answerEl.classList.toggle("rtl", !!resolved.rtl);
-  const letters = resolved.answer.replace(/ /g, "").length;
+  const letters = resolved.answer.replace(/[ -]/g, "").length;
   if (letters >= 12) answerEl.classList.add("tiny");
   else if (letters >= 9) answerEl.classList.add("small");
 
   slots = [];
-  resolved.answer.split(" ").forEach((word) => {
-    const w = document.createElement("div");
-    w.className = "word";
-    word.split("").forEach((ch) => {
-      const s = document.createElement("div");
-      s.className = "slot";
-      const slotObj = { char: ch, el: s, tileIdx: null };
-      s.addEventListener("click", () => removeFromSlot(slotObj));
-      w.appendChild(s);
-      slots.push(slotObj);
-    });
-    answerEl.appendChild(w);
-  });
+  renderAnswerLayout(resolved.answer, answerEl, slots, removeFromSlot);
 
   const bankLetters = buildBankLetters(resolved.answer, resolved.alphabet);
   const bankEl = $("bank");
@@ -279,9 +267,13 @@ function winRound(revealed) {
 
   const p = currentPlayerData();
   $("mTitle").textContent = revealed ? t("win.revealed") : t("win.goal");
-  $("mName").textContent = p.wiki;
+  // resolved.answer differs from the pack's base answer only when the active
+  // UI language has a localized override for this player — show both so a
+  // Hebrew player still sees the real (Wikipedia) name they just solved.
+  $("mName").textContent =
+    resolved.answer === p.answer ? p.wiki : resolved.answer.replace(/ /g, " ") + " · " + p.wiki;
   $("mRewards").innerHTML =
-    "+<b>" + reward.points + "</b> pts &nbsp;·&nbsp; +<b>" + reward.coins + "</b> coins &nbsp;·&nbsp; " + "★".repeat(stars);
+    "+<b>" + reward.points + "</b> " + t("game.pts") + " &nbsp;·&nbsp; +<b>" + reward.coins + "</b> " + t("game.coinsShort") + " &nbsp;·&nbsp; " + "★".repeat(stars);
 
   const pack = currentPack();
   const isLast = ps.levelIndex >= pack.players.length - 1;
@@ -312,7 +304,7 @@ function nextLevel() {
 function showPackComplete() {
   const pack = currentPack();
   const ps = currentPackState();
-  $("pcPackName").textContent = pack.name;
+  $("pcPackName").textContent = translatePackName(pack, getLang());
   $("pcStars").innerHTML =
     "★ " + packStarTotal(ps) + " / " + pack.players.length * 3 + " &nbsp;·&nbsp; " + pack.players.length + "/" + pack.players.length + " solved";
   $("packCompleteOverlay").classList.add("show");

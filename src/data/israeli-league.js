@@ -147,9 +147,9 @@ export default {
      career:[["2020–2022","מכבי פתח תקווה"],["2022–2024","מכבי נתניה"],["2024–","מכבי חיפה"]]},
     {answer:"ברוניניו", wiki:"Bruninho (footballer, born 2000)", pos:"קשר", country:"🇧🇷 ברזיל",
      career:[["2024–2025","קרפטי לבוב"],["2025–","מכבי חיפה"]]},
-    {answer:"סייף", wiki:"Kenny Saief", pos:"כנף", country:"🇺🇸 ארה\"ב",
+    {answer:"סייף", wiki:"Kenny Saief", pos:"כנף", country:"🇺🇸 ארה״ב",
      career:[["2014–2018","חנט"],["2018–2022","אנדרלכט"],["2022–2023","נפטצ'י"],["2023–","מכבי חיפה"]]},
-    {answer:"נובקוביץ'", wiki:"Andrija Novakovich", pos:"חלוץ", country:"🇺🇸 ארה\"ב",
+    {answer:"נובקוביץ'", wiki:"Andrija Novakovich", pos:"חלוץ", country:"🇺🇸 ארה״ב",
      career:[["2019–2022","פרוזינונה"],["2022–2025","ונציה"],["2025–2026","רג'אנה"],["2026–","מכבי חיפה"]]},
 
     {answer:"פיבן", wiki:"Shahar Piven", pos:"מגן", country:"🇮🇱 ישראל",

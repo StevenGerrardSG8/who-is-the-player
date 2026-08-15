@@ -9,6 +9,7 @@ export default {
   "home.totalStars": "Total Stars",
   "home.multiplayer": "🎉 Multiplayer",
   "home.settings": "Settings",
+  "home.language": "🌐 Language",
   "home.settingsSoon": "Settings coming soon",
   "home.starsToUnlock": "{n}★ to unlock",
   "home.finishPrevious": "Finish previous pack",
@@ -23,6 +24,8 @@ export default {
   "game.notEnoughCoins": "Not enough coins — solve players to earn more!",
   "game.mysteryLoading": "Loading photo…",
   "game.mysteryFallback": "Mystery player — use the hints!",
+  "game.pts": "pts",
+  "game.coinsShort": "coins",
 
   "hint.position": "Position & Country",
   "hint.career": "Career Clubs",
