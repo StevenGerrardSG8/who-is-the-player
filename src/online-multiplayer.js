@@ -150,16 +150,38 @@ function joinRoom() {
 }
 
 function wireConnection() {
+  disconnectHandled = false;
   conn.on("data", handleMessage);
-  conn.on("close", () => {
-    if (game) {
-      alert(t("online.opponentDisconnected", { name: peerName || "Opponent" }));
-      quitToHome();
-    }
-  });
+  conn.on("close", handleUnexpectedDisconnect);
+  conn.on("error", handleUnexpectedDisconnect);
   conn.on("open", () => {
     if (myPlayerIdx === 0) conn.send({ type: "welcome", name: myName });
+    // PeerJS's "close" event only fires on a *graceful* shutdown (the other
+    // side calling conn.close()). If the opponent's tab is closed, their
+    // app is backgrounded (common on mobile), or the network just drops,
+    // the WebRTC connection dies silently and neither "close" nor "error"
+    // ever fires, leaving this side stuck on the game screen forever with
+    // no way home. Watch the underlying RTCPeerConnection's ICE state too,
+    // so an abrupt disappearance is treated the same as a graceful one.
+    const pc = conn.peerConnection;
+    if (pc) {
+      pc.addEventListener("iceconnectionstatechange", () => {
+        if (["disconnected", "failed", "closed"].includes(pc.iceConnectionState)) {
+          handleUnexpectedDisconnect();
+        }
+      });
+    }
   });
+}
+
+let disconnectHandled = false;
+function handleUnexpectedDisconnect() {
+  if (disconnectHandled) return;
+  disconnectHandled = true;
+  if (game) {
+    alert(t("online.opponentDisconnected", { name: peerName || "Opponent" }));
+    quitToHome();
+  }
 }
 
 function handleMessage(msg) {
