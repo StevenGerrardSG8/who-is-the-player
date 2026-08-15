@@ -10,7 +10,7 @@ export function defaultState(packIds) {
   packIds.forEach((id) => {
     packs[id] = defaultPackState();
   });
-  return { coins: START_COINS, score: 0, settings: { sound: true }, packs };
+  return { coins: START_COINS, score: 0, settings: { sound: true, survivalMode: false }, packs };
 }
 
 export async function loadState(packIds) {

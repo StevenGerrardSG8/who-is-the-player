@@ -12,7 +12,7 @@ const SCREEN_IDS = [
   "screenMpoGame",
 ];
 
-const OVERLAY_IDS = ["overlay", "packCompleteOverlay", "mpResultsOverlay", "mpoResultsOverlay"];
+const OVERLAY_IDS = ["overlay", "packCompleteOverlay", "survivalOutOverlay", "mpResultsOverlay", "mpoResultsOverlay"];
 
 export function hideAllScreens() {
   SCREEN_IDS.forEach((id) => {

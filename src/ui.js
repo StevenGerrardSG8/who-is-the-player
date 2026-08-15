@@ -6,7 +6,7 @@ import {
   isPackUnlocked,
   resetPackProgress,
 } from "./state.js";
-import { UNLOCK_MODE, STARS_PER_UNLOCK } from "./config.js";
+import { UNLOCK_MODE, STARS_PER_UNLOCK, SURVIVAL_LIVES } from "./config.js";
 import { loadPhoto as loadPhotoInto, prefetchPhotos } from "./photo.js";
 import { showScreen } from "./screens.js";
 import { t, getLang, onLangChange } from "./i18n/index.js";
@@ -21,6 +21,16 @@ let slots = [];
 let locked = false;
 let toastTimer;
 let resolved = null; // current round's player, resolved for the active UI language
+
+// Survival Mode ("lives") is scoped to a single pack *attempt* rather than
+// persisted — it resets to full whenever a pack is (re)entered from Home,
+// and stays put across levels within that same attempt so wrong guesses on
+// later players can still cost lives banked from earlier ones.
+let livesLeft = SURVIVAL_LIVES;
+
+function survivalEnabled() {
+  return !!(ctx.state.settings && ctx.state.settings.survivalMode);
+}
 
 function currentPack() {
   return ctx.packs[currentPackId];
@@ -103,6 +113,28 @@ function renderScoreboard() {
   $("sbScore").textContent = ctx.state.score;
   $("sbCoins").textContent = ctx.state.coins;
   $("gamePackName").textContent = pack.name;
+  renderLives(false);
+}
+
+// Renders the heart row that mirrors `livesLeft`, and hides the whole
+// scoreboard slot when Survival Mode is off (default) so normal play looks
+// exactly as it always has. `justLost`, when true, tags the heart that was
+// just lost with a one-shot animation class instead of just re-drawing.
+function renderLives(justLost) {
+  const item = $("sbLivesItem");
+  if (!survivalEnabled()) {
+    item.style.display = "none";
+    return;
+  }
+  item.style.display = "";
+  const el = $("sbLives");
+  el.innerHTML = "";
+  for (let i = 0; i < SURVIVAL_LIVES; i++) {
+    const heart = document.createElement("span");
+    heart.className = "heart" + (i < livesLeft ? "" : " lost") + (justLost && i === livesLeft ? " just-lost" : "");
+    heart.textContent = "♥";
+    el.appendChild(heart);
+  }
 }
 
 function buildRound() {
@@ -195,24 +227,69 @@ function checkAnswerNow() {
   } else {
     $("answer").classList.add("wrong");
     setTimeout(() => $("answer").classList.remove("wrong"), 600);
+    if (survivalEnabled()) loseLife();
   }
 }
 
-/* ---------- hints ---------- */
+// ---------- survival mode: lives ----------
+function loseLife() {
+  livesLeft = Math.max(0, livesLeft - 1);
+  renderLives(true);
+  if (livesLeft <= 0) {
+    // Freeze the board (same lock used on a win) so the player can't keep
+    // fiddling with tiles while the "you're out" overlay is about to show.
+    locked = true;
+    updateHintButtons();
+    setTimeout(showSurvivalOut, 700);
+  }
+}
+
+function showSurvivalOut() {
+  const pack = currentPack();
+  $("survivalOutPackName").textContent = pack.name;
+  $("survivalOutDesc").textContent = t("survival.outDesc", { pack: pack.name });
+  $("survivalOutOverlay").classList.add("show");
+}
+
+function retrySurvivalPack() {
+  $("survivalOutOverlay").classList.remove("show");
+  resetPackProgress(ctx.state, currentPackId);
+  livesLeft = SURVIVAL_LIVES;
+  ctx.persist();
+  buildRound();
+}
+
+/* ---------- hints ----------
+   Design call for Survival Mode: Hint 3 (Reveal Name) is disabled while
+   Survival Mode is on. Hints 1/2 (position/country, career clubs) still cost
+   coins but leave the player to actually type the letters in — a wrong
+   entry still costs a life, so the challenge stays real. Reveal, on the
+   other hand, would let a player facing their last life always buy their
+   way to a guaranteed "win" for a handful of coins, which defeats the whole
+   point of a lives-based challenge — so it's blocked outright rather than
+   just discouraged. */
 function updateHintButtons() {
   const ps = currentPackState();
+  const survivalBlocksReveal = survivalEnabled();
   [1, 2, 3].forEach((n) => {
     const btn = $("hint" + n);
     const bought = ps.hintsBought.includes(n);
+    const blocked = n === 3 && survivalBlocksReveal;
     btn.classList.toggle("bought", bought);
-    btn.disabled = bought || locked;
-    btn.querySelector(".h-cost").textContent = bought ? t("hint.bought") : "● " + HINT_COSTS[n];
+    btn.classList.toggle("survival-blocked", blocked);
+    btn.disabled = bought || locked || blocked;
+    btn.querySelector(".h-cost").textContent = blocked
+      ? t("hint.disabledSurvival")
+      : bought
+      ? t("hint.bought")
+      : "● " + HINT_COSTS[n];
   });
 }
 
 function buyHint(n) {
   const ps = currentPackState();
   if (locked || ps.hintsBought.includes(n)) return;
+  if (n === 3 && survivalEnabled()) return;
   if (ctx.state.coins < HINT_COSTS[n]) {
     toast(t("game.notEnoughCoins"));
     return;
@@ -322,9 +399,20 @@ function showPackComplete() {
 async function resetProgress() {
   if (!confirm(t("game.resetConfirm", { pack: currentPack().name }))) return;
   resetPackProgress(ctx.state, currentPackId);
+  livesLeft = SURVIVAL_LIVES;
   ctx.persist();
   buildRound();
   toast(t("game.resetToast"));
+}
+
+/* ---------- settings overlay ---------- */
+function showSettings() {
+  $("survivalModeToggle").checked = survivalEnabled();
+  $("settingsOverlay").classList.add("show");
+}
+
+function hideSettings() {
+  $("settingsOverlay").classList.remove("show");
 }
 
 /* ============================================================
@@ -343,6 +431,7 @@ export function showGame(packId) {
   if (ps.levelIndex >= pack.players.length) {
     ps.levelIndex = 0; // replay a completed pack
   }
+  livesLeft = SURVIVAL_LIVES; // fresh attempt any time a pack is (re)entered from Home
   showScreen("screenGame");
   buildRound();
 }
@@ -365,7 +454,18 @@ export function init(context) {
     $("packCompleteOverlay").classList.remove("show");
     showHome();
   });
-  $("settingsBtn").addEventListener("click", () => toast(t("home.settingsSoon")));
+  $("settingsBtn").addEventListener("click", showSettings);
+  $("settingsCloseBtn").addEventListener("click", hideSettings);
+  $("survivalModeToggle").addEventListener("change", (e) => {
+    ctx.state.settings.survivalMode = e.target.checked;
+    ctx.persist();
+  });
+  $("survivalRetryBtn").addEventListener("click", retrySurvivalPack);
+  $("survivalHomeBtn").addEventListener("click", () => {
+    $("survivalOutOverlay").classList.remove("show");
+    ctx.persist();
+    showHome();
+  });
 
   onLangChange(() => {
     if (currentPackId === null) renderHome();

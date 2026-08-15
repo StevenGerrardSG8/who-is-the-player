@@ -56,5 +56,11 @@ export const SOLVE_COINS = 25;
 export const REVEAL_COINS = 5;
 export const NO_HINT_BONUS = 50;
 
+// "Survival Mode" — optional, off by default (see state.js's
+// defaultState().settings.survivalMode). When on, each wrong full-answer
+// submission costs one life; running out ends the current pack attempt
+// early instead of allowing indefinite retries.
+export const SURVIVAL_LIVES = 3;
+
 export const STORAGE_KEY = "wtp-progress-v2";
 export const LANG_STORAGE_KEY = "wtp-lang-v1";

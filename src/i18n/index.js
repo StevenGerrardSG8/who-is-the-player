@@ -147,6 +147,7 @@ const STATIC_MAP = {
   sbLevelLabel: "game.level",
   sbScoreLabel: "game.score",
   sbCoinsLabel: "game.coins",
+  sbLivesLabel: "game.lives",
   hint1Label: "hint.position",
   hint2Label: "hint.career",
   hint3Label: "hint.reveal",
@@ -154,6 +155,16 @@ const STATIC_MAP = {
   resetBtn: "game.resetProgress",
   packCompleteTitle: "packComplete.title",
   pcHomeBtn: "packComplete.backToPacks",
+
+  settingsTitle: "settings.title",
+  survivalModeLabel: "settings.survivalMode",
+  survivalModeDesc: "settings.survivalModeDesc",
+  survivalHintNote: "settings.survivalHintNote",
+  settingsCloseBtn: "settings.close",
+
+  survivalOutTitle: "survival.outTitle",
+  survivalRetryBtn: "survival.retryPack",
+  survivalHomeBtn: "survival.backHome",
 
   langPickTitle: "lang.pickTitle",
   langPickSubtitle: "lang.pickSubtitle",
