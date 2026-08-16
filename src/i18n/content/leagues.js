@@ -5,7 +5,7 @@
 const HE = {
   "premier-league": "פרימייר ליג",
   "la-liga": "לה ליגה",
-  "serie-a": "סרייה א׳",
+  "serie-a": "סרייה א",
   "bundesliga": "בונדסליגה",
   "ligue-1": "ליגה 1",
   "primeira-liga": "פרימיירה ליגה",

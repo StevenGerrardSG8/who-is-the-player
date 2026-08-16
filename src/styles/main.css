@@ -21,14 +21,17 @@
   --shadow-pop:0 20px 44px -12px rgba(0,0,0,0.6);
   --ring-gold:0 0 0 1px rgba(231,190,85,0.35);
   /* Archivo Black/Chakra Petch/Nunito Sans have no Hebrew glyphs, so Hebrew
-     text silently fell back to the browser's thin default sans — Rubik ships
+     text silently fell back to the browser's thin default sans — Heebo ships
      a Hebrew+Latin Black (900) weight, so listing it as the fallback (with
      an explicit font-weight at each use site below) keeps Hebrew visually as
      bold/prominent as the Latin branding instead of looking like an
-     afterthought. */
-  --display:'Archivo Black','Rubik',sans-serif;
-  --score:'Chakra Petch','Rubik',monospace;
-  --body:'Nunito Sans','Rubik',sans-serif;
+     afterthought. Heebo specifically (not Rubik, used previously) was picked
+     because its vav (ו) keeps a visible top hook at heavy weight, staying
+     distinct from final-nun (ן); Rubik's vav collapses into an identical
+     plain bar at every weight, making the two letters unreadable apart. */
+  --display:'Archivo Black','Heebo',sans-serif;
+  --score:'Chakra Petch','Heebo',monospace;
+  --body:'Nunito Sans','Heebo',sans-serif;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0}
