@@ -6,7 +6,7 @@
 import { buildBankLetters, checkAnswer, renderAnswerLayout } from "./game.js";
 import { loadPhoto, prefetchPhotos } from "./photo.js";
 import { showScreen } from "./screens.js";
-import { t, getLang } from "./i18n/index.js";
+import { t, getLang, showLangPicker, onLangChange } from "./i18n/index.js";
 import { translatePackName } from "./i18n/content/leagues.js";
 
 const $ = (id) => document.getElementById(id);
@@ -31,6 +31,17 @@ let locked = false;
 let roundDecided = false;
 let hostGaveUp = false;
 let guestGaveUp = false;
+let winnerFlashIdx = null; // briefly highlights the round's winning chip
+
+// Tracks the last lobby-status message shown so it can be re-translated in
+// place if the user opens the language picker while still in the lobby.
+let lastStatusKey = null;
+let lastStatusVars = null;
+function setLobbyStatus(key, vars) {
+  lastStatusKey = key;
+  lastStatusVars = vars;
+  $("mpLobbyStatus").textContent = t(key, vars);
+}
 
 function escapeHtml(s) {
   return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -71,12 +82,12 @@ function resetLobbyUI() {
   $("mpJoinRow").style.display = "none";
   $("mpOnlineConfig").style.display = "none";
   $("mpOnlineStartBtn").style.display = "none";
+  $("mpLobbyStatus").classList.remove("waiting");
+  lastStatusKey = null;
+  lastStatusVars = null;
 }
 
-export function showLobby() {
-  showScreen("screenMpOnline");
-  resetLobbyUI();
-
+function populatePackSelect() {
   const select = $("mpOnlinePackSelect");
   const prevValue = select.value;
   select.innerHTML = "";
@@ -91,8 +102,14 @@ export function showLobby() {
   if (prevValue) select.value = prevValue;
 }
 
+export function showLobby() {
+  showScreen("screenMpOnline");
+  resetLobbyUI();
+  populatePackSelect();
+}
+
 function hostRoom() {
-  myName = $("mpOnlineNameInput").value.trim() || "Host";
+  myName = $("mpOnlineNameInput").value.trim() || t("online.defaultHostName");
   myPlayerIdx = 0;
   attemptHost(0);
 }
@@ -109,14 +126,15 @@ function attemptHost(tries) {
     $("mpOnlineChoice").style.display = "none";
     $("mpOnlineLobby").style.display = "";
     $("mpRoomCode").textContent = code;
-    $("mpLobbyStatus").textContent = t("online.waitingShare", { code });
+    setLobbyStatus("online.waitingShare", { code });
+    $("mpLobbyStatus").classList.add("waiting");
   });
   p.on("error", (err) => {
     if (err.type === "unavailable-id") {
       p.destroy();
       attemptHost(tries + 1);
     } else {
-      $("mpOnlineError").textContent = "Connection error: " + err.type;
+      $("mpOnlineError").textContent = t("online.connectionError", { err: err.type });
     }
   });
   p.on("connection", (c) => {
@@ -126,7 +144,7 @@ function attemptHost(tries) {
 }
 
 function joinRoom() {
-  myName = $("mpOnlineNameInput").value.trim() || "Guest";
+  myName = $("mpOnlineNameInput").value.trim() || t("online.defaultGuestName");
   const code = $("mpJoinCodeInput").value.trim().toUpperCase();
   if (!code) {
     $("mpOnlineError").textContent = t("online.enterCode");
@@ -143,7 +161,8 @@ function joinRoom() {
       $("mpOnlineChoice").style.display = "none";
       $("mpOnlineLobby").style.display = "";
       $("mpRoomCode").textContent = code;
-      $("mpLobbyStatus").textContent = t("online.connectedWaiting");
+      setLobbyStatus("online.connectedWaiting");
+      $("mpLobbyStatus").classList.add("waiting");
     });
   });
   p.on("error", (err) => {
@@ -181,7 +200,7 @@ function handleUnexpectedDisconnect() {
   if (disconnectHandled) return;
   disconnectHandled = true;
   if (game) {
-    alert(t("online.opponentDisconnected", { name: peerName || "Opponent" }));
+    alert(t("online.opponentDisconnected", { name: peerName || t("online.opponentFallback") }));
     quitToHome();
   }
 }
@@ -190,12 +209,14 @@ function handleMessage(msg) {
   if (msg.type === "hello") {
     peerName = msg.name;
     conn.send({ type: "welcome", name: myName });
-    $("mpLobbyStatus").textContent = t("online.joinedPickPack", { name: peerName });
+    $("mpLobbyStatus").classList.remove("waiting");
+    setLobbyStatus("online.joinedPickPack", { name: peerName });
     $("mpOnlineConfig").style.display = "";
     $("mpOnlineStartBtn").style.display = "";
   } else if (msg.type === "welcome") {
     peerName = msg.name;
-    $("mpLobbyStatus").textContent = t("online.connectedTo", { name: peerName });
+    $("mpLobbyStatus").classList.remove("waiting");
+    setLobbyStatus("online.connectedTo", { name: peerName });
   } else if (msg.type === "start") {
     startFromNetwork(msg);
   } else if (msg.type === "attempt") {
@@ -203,7 +224,7 @@ function handleMessage(msg) {
   } else if (msg.type === "roundResult") {
     applyRoundResult(msg.winnerIdx);
   } else if (msg.type === "quit") {
-    alert(t("online.opponentLeft", { name: peerName || "Opponent" }));
+    alert(t("online.opponentLeft", { name: peerName || t("online.opponentFallback") }));
     quitToHome();
   }
 }
@@ -242,9 +263,10 @@ function beginGame(packId, deckIndices, names, rounds) {
 function renderScoreboard() {
   const el = $("mpoScoreboard");
   el.innerHTML = game.players
-    .map((p) => {
+    .map((p, i) => {
+      const cls = i === winnerFlashIdx ? " winner-flash" : "";
       return (
-        '<div class="mp-score-chip">' +
+        '<div class="mp-score-chip' + cls + '">' +
         '<span class="mp-score-name">' + escapeHtml(p.name) + "</span>" +
         '<span class="mp-score-value">' + p.score + "</span>" +
         "</div>"
@@ -259,6 +281,7 @@ function buildRound() {
   roundDecided = false;
   hostGaveUp = false;
   guestGaveUp = false;
+  winnerFlashIdx = null;
   const p = game.deck[game.roundIndex];
   $("mpoSticker").classList.remove("win");
   $("mpoStickerNum").textContent = "#" + (game.roundIndex + 1);
@@ -376,9 +399,11 @@ function showRoundOutcome(winnerIdx) {
   } else if (winnerIdx === myPlayerIdx) {
     $("mpoAnswer").classList.add("correct");
     $("mpoTurnBanner").textContent = t("online.youGotIt");
+    winnerFlashIdx = winnerIdx;
   } else {
     $("mpoAnswer").classList.add("wrong");
     $("mpoTurnBanner").textContent = t("online.opponentGotIt", { name: game.players[winnerIdx].name });
+    winnerFlashIdx = winnerIdx;
   }
   $("mpoSticker").classList.add("win");
   renderScoreboard();
@@ -404,7 +429,10 @@ function showResults() {
       ? t("mp.tie", { names: winners.map((p) => p.name).join(" & ") })
       : t("mp.wins", { name: winners[0].name });
   $("mpoFinalScores").innerHTML = ranked
-    .map((p, i) => '<div class="mp-final-row">#' + (i + 1) + " " + escapeHtml(p.name) + " — <b>" + p.score + "</b> " + t("game.pts") + "</div>")
+    .map(
+      (p, i) =>
+        '<div class="mp-final-row' + (p.score === topScore ? " winner" : "") + '">#' + (i + 1) + " " + escapeHtml(p.name) + " — <b>" + p.score + "</b> " + t("game.pts") + "</div>"
+    )
     .join("");
   $("mpoResultsOverlay").classList.add("show");
 
@@ -465,4 +493,15 @@ export function init(context) {
   $("mpoQuitBtn").addEventListener("click", quitToHome);
   $("mpoSkipBtn").addEventListener("click", skipTurn);
   $("mpoPlayAgainBtn").addEventListener("click", quitToHome);
+  $("mpOnlineLangBtn").addEventListener("click", showLangPicker);
+
+  // Re-render the lobby's dynamic bits (translated pack names, the last
+  // status message) if the language changes while it's on-screen — static
+  // chrome (buttons/labels/placeholders) is already covered by
+  // applyStaticTranslations.
+  onLangChange(() => {
+    if ($("screenMpOnline").style.display === "none") return;
+    populatePackSelect();
+    if (lastStatusKey) $("mpLobbyStatus").textContent = t(lastStatusKey, lastStatusVars);
+  });
 }

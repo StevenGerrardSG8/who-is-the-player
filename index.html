@@ -94,7 +94,10 @@
 <div class="wrap" id="screenMpMode" style="display:none">
   <div class="game-topbar">
     <button class="back-btn" id="mpModeBackBtn"><span class="back-arrow">←</span> <span id="mpModeBackLabel">Packs</span></button>
-    <div class="pack-name" id="mpModeCrumb">Multiplayer</div>
+    <div class="topbar-right">
+      <div class="pack-name" id="mpModeCrumb">Multiplayer</div>
+      <button class="icon-btn" id="mpModeLangBtn" title="Language">🌐</button>
+    </div>
   </div>
   <h1><span id="mpModeTitle1">Party</span> <span id="mpModeTitle2">Mode</span></h1>
   <p class="subtitle" id="mpModeSubtitle">Choose how you want to play</p>
@@ -103,11 +106,13 @@
       <div class="mp-mode-icon">📱</div>
       <div class="mp-mode-title" id="mpModeLocalTitle">Local</div>
       <div class="mp-mode-desc" id="mpModeLocalDesc">Pass one device around the room</div>
+      <div class="mp-mode-tag" id="mpModeLocalTag">2–8 players</div>
     </button>
     <button class="mp-mode-card" id="mpModeOnlineBtn">
       <div class="mp-mode-icon">🌐</div>
       <div class="mp-mode-title" id="mpModeOnlineTitle">Online</div>
       <div class="mp-mode-desc" id="mpModeOnlineDesc">Two players, two separate devices</div>
+      <div class="mp-mode-tag" id="mpModeOnlineTag">2 players, live</div>
     </button>
   </div>
 </div>
@@ -116,27 +121,35 @@
 <div class="wrap" id="screenMpOnline" style="display:none">
   <div class="game-topbar">
     <button class="back-btn" id="mpOnlineBackBtn"><span class="back-arrow">←</span> <span id="mpOnlineBackLabel">Packs</span></button>
-    <div class="pack-name" id="mpOnlineCrumb">Online Multiplayer</div>
+    <div class="topbar-right">
+      <div class="pack-name" id="mpOnlineCrumb">Online Multiplayer</div>
+      <button class="icon-btn" id="mpOnlineLangBtn" title="Language">🌐</button>
+    </div>
   </div>
 
   <div id="mpOnlineChoice">
     <h1><span id="onlineTitle1">Play</span> <span id="onlineTitle2">Online</span></h1>
     <p class="subtitle" id="onlineSubtitle">Host a room, or join one with a code</p>
-    <div class="mp-players">
-      <input type="text" id="mpOnlineNameInput" placeholder="Your name" maxlength="16">
+    <div class="mp-panel-card">
+      <div class="mp-players">
+        <input type="text" id="mpOnlineNameInput" maxlength="16">
+      </div>
+      <button class="btn-main" id="mpHostBtn">Host a Room</button>
+      <button class="btn-outline" id="mpJoinToggleBtn">Or join with a code</button>
+      <div class="mp-player-row" id="mpJoinRow" style="display:none">
+        <input type="text" id="mpJoinCodeInput" maxlength="6" style="text-transform:uppercase">
+        <button class="btn-main" id="mpJoinBtn">Join</button>
+      </div>
     </div>
-    <button class="btn-main" id="mpHostBtn">Host a Room</button>
-    <button class="link-btn" id="mpJoinToggleBtn">Or join with a code</button>
-    <div class="mp-players" id="mpJoinRow" style="display:none">
-      <input type="text" id="mpJoinCodeInput" placeholder="ROOM CODE" maxlength="6" style="text-transform:uppercase">
-      <button class="btn-main" id="mpJoinBtn">Join</button>
-    </div>
-    <p class="subtitle" id="mpOnlineError" style="color:#F3897E"></p>
+    <p class="mp-online-error" id="mpOnlineError"></p>
   </div>
 
   <div id="mpOnlineLobby" style="display:none">
-    <h1><span id="onlineRoomLabel">Room</span> <span id="mpRoomCode">----</span></h1>
-    <p class="subtitle" id="mpLobbyStatus">Waiting for opponent…</p>
+    <div class="room-code-card">
+      <div class="room-code-label" id="onlineRoomLabel">Room Code</div>
+      <div class="room-code-value" id="mpRoomCode">----</div>
+    </div>
+    <p class="mp-lobby-status" id="mpLobbyStatus">Waiting for opponent…</p>
     <div class="mp-config" id="mpOnlineConfig" style="display:none">
       <label><span id="onlinePackLabel">Pack</span> <select id="mpOnlinePackSelect"></select></label>
       <label><span id="onlineRoundsLabel">Rounds per player</span> <input type="number" id="mpOnlineRoundsInput" min="1" max="20" value="5"></label>
@@ -183,17 +196,22 @@
 <div class="wrap" id="screenMpSetup" style="display:none">
   <div class="game-topbar">
     <button class="back-btn" id="mpBackBtn"><span class="back-arrow">←</span> <span id="mpBackLabel">Packs</span></button>
-    <div class="pack-name" id="mpSetupCrumb">Multiplayer</div>
+    <div class="topbar-right">
+      <div class="pack-name" id="mpSetupCrumb">Multiplayer</div>
+      <button class="icon-btn" id="mpSetupLangBtn" title="Language">🌐</button>
+    </div>
   </div>
   <h1><span id="mpSetupTitle1">Party</span> <span id="mpSetupTitle2">Mode</span></h1>
   <p class="subtitle" id="mpSetupSubtitle">Add players, pick a pack, take turns</p>
 
-  <div class="mp-players" id="mpPlayerList"></div>
-  <button class="link-btn" id="mpAddPlayerBtn">+ Add Player</button>
+  <div class="mp-panel-card">
+    <div class="mp-players" id="mpPlayerList"></div>
+    <button class="mp-add-btn" id="mpAddPlayerBtn">+ Add Player</button>
 
-  <div class="mp-config">
-    <label><span id="mpPackLabel">Pack</span> <select id="mpPackSelect"></select></label>
-    <label><span id="mpRoundsLabel">Rounds per player</span> <input type="number" id="mpRoundsInput" min="1" max="20" value="5"></label>
+    <div class="mp-config">
+      <label><span id="mpPackLabel">Pack</span> <select id="mpPackSelect"></select></label>
+      <label><span id="mpRoundsLabel">Rounds per player</span> <input type="number" id="mpRoundsInput" min="1" max="20" value="5"></label>
+    </div>
   </div>
 
   <button class="btn-main" id="mpStartBtn">Start</button>
