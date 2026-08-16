@@ -19,7 +19,7 @@ export default {
   "game.resetToast": "Progressi del mazzo reimpostati",
   "game.notEnoughCoins": "Monete insufficienti — indovina i giocatori per guadagnarne altre!",
   "game.mysteryLoading": "Caricamento foto…",
-  "game.mysteryFallback": "Giocatore misterioso — usa gli indizi!",
+  "game.photoUnavailable": "Giocatore misterioso — usa gli indizi!",
 
   "hint.position": "Posizione e Nazione",
   "hint.career": "Club di Carriera",
@@ -72,6 +72,7 @@ export default {
   "online.couldntCreate": "Impossibile creare una stanza — controlla la connessione e riprova.",
   "online.enterCode": "Inserisci un codice stanza.",
   "online.couldntConnect": "Impossibile connettersi — controlla il codice e riprova ({err}).",
+  "online.connectTimeout": "Connessione scaduta — riprova.",
   "online.opponentDisconnected": "{name} si è disconnesso.",
   "online.opponentLeft": "{name} ha lasciato la partita.",
   "online.quit": "← Esci",

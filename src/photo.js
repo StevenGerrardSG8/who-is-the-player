@@ -133,7 +133,7 @@ export async function loadPhoto(player, container) {
   const isStale = () => activeTokens.get(container) !== token;
   const showSilhouette = () => {
     if (isStale()) return;
-    container.innerHTML = '<div class="fallback">🕵️<small>' + t("game.mysteryFallback") + "</small></div>";
+    container.innerHTML = '<div class="fallback">🖼️<small>' + t("game.photoUnavailable") + "</small></div>";
   };
 
   // If this photo was already prefetched, the bytes are (likely) already in

@@ -22,7 +22,7 @@ export default {
   "game.resetToast": "تمت إعادة تعيين تقدم الحزمة",
   "game.notEnoughCoins": "العملات غير كافية — خمّن اللاعبين لتكسب المزيد!",
   "game.mysteryLoading": "جارٍ تحميل الصورة…",
-  "game.mysteryFallback": "لاعب غامض — استخدم التلميحات!",
+  "game.photoUnavailable": "لاعب غامض — استخدم التلميحات!",
 
   "hint.position": "المركز والجنسية",
   "hint.career": "أندية المسيرة",
@@ -75,6 +75,7 @@ export default {
   "online.couldntCreate": "تعذّر إنشاء الغرفة — تحقق من اتصالك وحاول مرة أخرى.",
   "online.enterCode": "أدخل رمز الغرفة.",
   "online.couldntConnect": "تعذّر الاتصال — تحقق من الرمز وحاول مرة أخرى ({err}).",
+  "online.connectTimeout": "انتهت مهلة الاتصال — حاول مرة أخرى.",
   "online.opponentDisconnected": "انقطع اتصال {name}.",
   "online.opponentLeft": "غادر {name} اللعبة.",
   "online.quit": "← خروج",

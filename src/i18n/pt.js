@@ -19,7 +19,7 @@ export default {
   "game.resetToast": "Progresso do pacote redefinido",
   "game.notEnoughCoins": "Moedas insuficientes — acerte jogadores para ganhar mais!",
   "game.mysteryLoading": "Carregando foto…",
-  "game.mysteryFallback": "Jogador misterioso — use as dicas!",
+  "game.photoUnavailable": "Jogador misterioso — use as dicas!",
 
   "hint.position": "Posição e País",
   "hint.career": "Clubes da Carreira",
@@ -72,6 +72,7 @@ export default {
   "online.couldntCreate": "Não foi possível criar a sala — verifique sua conexão e tente novamente.",
   "online.enterCode": "Digite um código de sala.",
   "online.couldntConnect": "Não foi possível conectar — verifique o código e tente novamente ({err}).",
+  "online.connectTimeout": "Tempo de conexão esgotado — tente novamente.",
   "online.opponentDisconnected": "{name} desconectou.",
   "online.opponentLeft": "{name} saiu do jogo.",
   "online.quit": "← Sair",

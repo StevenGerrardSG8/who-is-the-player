@@ -20,7 +20,7 @@ export default {
   "game.resetToast": "Η πρόοδος του πακέτου επαναφέρθηκε",
   "game.notEnoughCoins": "Δεν έχεις αρκετά νομίσματα — λύσε παίκτες για να κερδίσεις περισσότερα!",
   "game.mysteryLoading": "Φόρτωση φωτογραφίας…",
-  "game.mysteryFallback": "Μυστηριώδης παίκτης — χρησιμοποίησε τις βοήθειες!",
+  "game.photoUnavailable": "Μυστηριώδης παίκτης — χρησιμοποίησε τις βοήθειες!",
 
   "hint.position": "Θέση & Χώρα",
   "hint.career": "Ομάδες Καριέρας",
@@ -73,6 +73,7 @@ export default {
   "online.couldntCreate": "Δεν ήταν δυνατή η δημιουργία δωματίου — έλεγξε τη σύνδεσή σου και δοκίμασε ξανά.",
   "online.enterCode": "Εισήγαγε έναν κωδικό δωματίου.",
   "online.couldntConnect": "Δεν ήταν δυνατή η σύνδεση — έλεγξε τον κωδικό και δοκίμασε ξανά ({err}).",
+  "online.connectTimeout": "Λήξη χρονικού ορίου σύνδεσης — δοκίμασε ξανά.",
   "online.opponentDisconnected": "Ο/Η {name} αποσυνδέθηκε.",
   "online.opponentLeft": "Ο/Η {name} έφυγε από το παιχνίδι.",
   "online.quit": "← Έξοδος",

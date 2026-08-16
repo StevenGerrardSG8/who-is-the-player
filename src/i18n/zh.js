@@ -20,7 +20,7 @@ export default {
   "game.resetToast": "卡包进度已重置",
   "game.notEnoughCoins": "金币不足——猜对球员即可获得更多金币！",
   "game.mysteryLoading": "正在加载照片…",
-  "game.mysteryFallback": "神秘球员——使用提示吧！",
+  "game.photoUnavailable": "神秘球员——使用提示吧！",
 
   "hint.position": "位置与国籍",
   "hint.career": "职业生涯球会",
@@ -73,6 +73,7 @@ export default {
   "online.couldntCreate": "无法创建房间——请检查网络连接后重试。",
   "online.enterCode": "请输入房间码。",
   "online.couldntConnect": "无法连接——请检查房间码后重试（{err}）。",
+  "online.connectTimeout": "连接超时——请重试。",
   "online.opponentDisconnected": "{name}已断开连接。",
   "online.opponentLeft": "{name}已离开游戏。",
   "online.quit": "← 退出",

@@ -20,7 +20,7 @@ export default {
   "game.resetToast": "Pakketvoortgang gereset",
   "game.notEnoughCoins": "Niet genoeg munten — los spelers op om er meer te verdienen!",
   "game.mysteryLoading": "Foto laden…",
-  "game.mysteryFallback": "Mysterieuze speler — gebruik de hints!",
+  "game.photoUnavailable": "Mysterieuze speler — gebruik de hints!",
 
   "hint.position": "Positie & Land",
   "hint.career": "Carrièreclubs",
@@ -73,6 +73,7 @@ export default {
   "online.couldntCreate": "Kon geen kamer aanmaken — controleer je verbinding en probeer opnieuw.",
   "online.enterCode": "Voer een kamercode in.",
   "online.couldntConnect": "Kon niet verbinden — controleer de code en probeer opnieuw ({err}).",
+  "online.connectTimeout": "Verbinding verlopen — probeer het opnieuw.",
   "online.opponentDisconnected": "{name} is losgekoppeld.",
   "online.opponentLeft": "{name} heeft het spel verlaten.",
   "online.quit": "← Stoppen",

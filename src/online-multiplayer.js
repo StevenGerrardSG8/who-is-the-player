@@ -8,6 +8,7 @@ import { loadPhoto, prefetchPhotos } from "./photo.js";
 import { showScreen } from "./screens.js";
 import { t, getLang, showLangPicker, onLangChange } from "./i18n/index.js";
 import { translatePackName } from "./i18n/content/leagues.js";
+import { resolvePlayer } from "./i18n/content/index.js";
 
 const $ = (id) => document.getElementById(id);
 const MP_POINTS = 100;
@@ -49,6 +50,7 @@ let roundDecided = false;
 let hostGaveUp = false;
 let guestGaveUp = false;
 let winnerFlashIdx = null; // briefly highlights the round's winning chip
+let resolved = null; // current round's player, resolved for the active UI language
 
 // Tracks the last lobby-status message shown so it can be re-translated in
 // place if the user opens the language picker while still in the lobby.
@@ -160,6 +162,15 @@ function attemptHost(tries) {
   });
 }
 
+// If the peer ID doesn't exist, PeerJS's broker replies with a
+// "peer-unavailable" error almost instantly (handled by p.on("error")
+// below). But if the ID exists and the WebRTC handshake itself stalls —
+// e.g. both STUN and the TURN relay fail or time out — neither "open" nor
+// "error" ever fires, and the guest is stuck on "connecting…" forever with
+// no feedback. Give the handshake a deadline so that case surfaces a real,
+// actionable error instead of hanging silently.
+const CONNECT_TIMEOUT_MS = 15000;
+
 function joinRoom() {
   myName = $("mpOnlineNameInput").value.trim() || t("online.defaultGuestName");
   const code = $("mpJoinCodeInput").value.trim().toUpperCase();
@@ -169,11 +180,21 @@ function joinRoom() {
   }
   myPlayerIdx = 1;
   const p = new Peer({ config: ICE_CONFIG });
+  let settled = false;
+  const timeoutId = setTimeout(() => {
+    if (settled) return;
+    settled = true;
+    p.destroy();
+    $("mpOnlineError").textContent = t("online.connectTimeout");
+  }, CONNECT_TIMEOUT_MS);
   p.on("open", () => {
     peer = p;
     conn = p.connect("wtp-" + code, { reliable: true });
     wireConnection();
     conn.on("open", () => {
+      if (settled) return; // timed out just before the handshake landed
+      settled = true;
+      clearTimeout(timeoutId);
       conn.send({ type: "hello", name: myName });
       $("mpOnlineChoice").style.display = "none";
       $("mpOnlineLobby").style.display = "";
@@ -183,6 +204,9 @@ function joinRoom() {
     });
   });
   p.on("error", (err) => {
+    if (settled) return;
+    settled = true;
+    clearTimeout(timeoutId);
     $("mpOnlineError").textContent = t("online.couldntConnect", { err: err.type });
   });
 }
@@ -300,18 +324,21 @@ function buildRound() {
   guestGaveUp = false;
   winnerFlashIdx = null;
   const p = game.deck[game.roundIndex];
+  resolved = resolvePlayer(p, getLang());
   $("mpoSticker").classList.remove("win");
   $("mpoStickerNum").textContent = "#" + (game.roundIndex + 1);
   $("mpoTurnBanner").textContent = t("mp.raceBanner");
-  $("mpoAnswer").classList.remove("correct", "wrong");
+  $("mpoAnswer").classList.remove("correct", "wrong", "rtl");
 
   const answerEl = $("mpoAnswer");
+  answerEl.classList.toggle("rtl", !!resolved.rtl);
   slots = [];
-  renderAnswerLayout(p.answer, answerEl, slots, removeFromSlot);
+  renderAnswerLayout(resolved.answer, answerEl, slots, removeFromSlot);
 
-  const bankLetters = buildBankLetters(p.answer);
+  const bankLetters = buildBankLetters(resolved.answer, resolved.alphabet);
   const bankEl = $("mpoBank");
   bankEl.innerHTML = "";
+  bankEl.classList.toggle("rtl", !!resolved.rtl);
   tiles = bankLetters.map((ch) => {
     const b = document.createElement("button");
     b.className = "tile";
@@ -353,7 +380,7 @@ function removeFromSlot(slot) {
 function checkNow() {
   if (locked) return;
   const guess = slots.map((s) => tiles[s.tileIdx].char).join("");
-  if (checkAnswer(guess, game.deck[game.roundIndex].answer)) {
+  if (checkAnswer(guess, resolved.answer)) {
     locked = true;
     reportAttempt(true);
   } else {
@@ -517,8 +544,10 @@ export function init(context) {
   // chrome (buttons/labels/placeholders) is already covered by
   // applyStaticTranslations.
   onLangChange(() => {
-    if ($("screenMpOnline").style.display === "none") return;
-    populatePackSelect();
-    if (lastStatusKey) $("mpLobbyStatus").textContent = t(lastStatusKey, lastStatusVars);
+    if ($("screenMpOnline").style.display !== "none") {
+      populatePackSelect();
+      if (lastStatusKey) $("mpLobbyStatus").textContent = t(lastStatusKey, lastStatusVars);
+    }
+    if ($("screenMpoGame").style.display !== "none" && game) buildRound();
   });
 }

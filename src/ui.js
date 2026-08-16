@@ -287,7 +287,7 @@ function buildRound() {
   const p = currentPlayerData();
   const ps = currentPackState();
   const pack = currentPack();
-  resolved = resolvePlayer(p, getLang(), pack);
+  resolved = resolvePlayer(p, getLang());
   locked = false;
   mistakesThisRound = 0;
   clearTimeout(wrongFreeTimer);

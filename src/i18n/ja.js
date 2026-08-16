@@ -20,7 +20,7 @@ export default {
   "game.resetToast": "パックの進行状況をリセットしました",
   "game.notEnoughCoins": "コインが足りません — 選手を当ててコインを稼ごう！",
   "game.mysteryLoading": "写真を読み込み中…",
-  "game.mysteryFallback": "謎の選手 — ヒントを使おう！",
+  "game.photoUnavailable": "謎の選手 — ヒントを使おう！",
 
   "hint.position": "ポジション＆国籍",
   "hint.career": "所属クラブ歴",
@@ -73,6 +73,7 @@ export default {
   "online.couldntCreate": "部屋を作成できませんでした — 接続を確認してもう一度お試しください。",
   "online.enterCode": "ルームコードを入力してください。",
   "online.couldntConnect": "接続できませんでした — コードを確認してもう一度お試しください ({err})。",
+  "online.connectTimeout": "接続がタイムアウトしました — もう一度お試しください。",
   "online.opponentDisconnected": "{name}が切断しました。",
   "online.opponentLeft": "{name}がゲームを退出しました。",
   "online.quit": "← 終了",

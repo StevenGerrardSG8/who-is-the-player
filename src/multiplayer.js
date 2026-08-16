@@ -3,6 +3,7 @@ import { loadPhoto, prefetchPhotos } from "./photo.js";
 import { showScreen } from "./screens.js";
 import { t, getLang, showLangPicker, onLangChange } from "./i18n/index.js";
 import { translatePackName } from "./i18n/content/leagues.js";
+import { resolvePlayer } from "./i18n/content/index.js";
 
 const $ = (id) => document.getElementById(id);
 const MP_POINTS = 100;
@@ -22,6 +23,7 @@ let slots = [];
 let locked = false;
 let awaitingWinner = false;
 let winnerFlashIdx = null; // briefly highlights the tapped winner's chip
+let resolved = null; // current round's player, resolved for the active UI language
 
 /* ============================================================
    SETUP SCREEN
@@ -146,23 +148,26 @@ function buildRound() {
   awaitingWinner = false;
   winnerFlashIdx = null;
   const p = currentTarget();
+  resolved = resolvePlayer(p, getLang());
   $("mpSticker").classList.remove("win");
   $("mpStickerNum").textContent = "#" + (game.roundIndex + 1);
   $("mpTurnBanner").textContent = t("mp.raceBanner");
   $("mpTurnBanner").classList.remove("awaiting");
-  $("mpAnswer").classList.remove("correct", "wrong", "small", "tiny");
+  $("mpAnswer").classList.remove("correct", "wrong", "small", "tiny", "rtl");
 
   const answerEl = $("mpAnswer");
-  const letters = p.answer.replace(/[ -]/g, "").length;
+  answerEl.classList.toggle("rtl", !!resolved.rtl);
+  const letters = resolved.answer.replace(/[ -]/g, "").length;
   if (letters >= 12) answerEl.classList.add("tiny");
   else if (letters >= 9) answerEl.classList.add("small");
 
   slots = [];
-  renderAnswerLayout(p.answer, answerEl, slots, removeFromSlot);
+  renderAnswerLayout(resolved.answer, answerEl, slots, removeFromSlot);
 
-  const bankLetters = buildBankLetters(p.answer);
+  const bankLetters = buildBankLetters(resolved.answer, resolved.alphabet);
   const bankEl = $("mpBank");
   bankEl.innerHTML = "";
+  bankEl.classList.toggle("rtl", !!resolved.rtl);
   tiles = bankLetters.map((ch) => {
     const b = document.createElement("button");
     b.className = "tile";
@@ -203,7 +208,7 @@ function removeFromSlot(slot) {
 
 function checkNow() {
   const guess = slots.map((s) => tiles[s.tileIdx].char).join("");
-  if (checkAnswer(guess, currentTarget().answer)) {
+  if (checkAnswer(guess, resolved.answer)) {
     onCorrectGuess();
   } else {
     $("mpAnswer").classList.add("wrong");
@@ -317,6 +322,7 @@ export function init(context) {
   // static chrome (buttons/labels) is already covered by applyStaticTranslations.
   onLangChange(() => {
     if ($("screenMpSetup").style.display !== "none") renderSetup();
+    if ($("screenMpGame").style.display !== "none" && game) buildRound();
   });
 }
 

@@ -19,7 +19,7 @@ export default {
   "game.resetToast": "Прогресс набора сброшен",
   "game.notEnoughCoins": "Недостаточно монет — угадывай игроков, чтобы заработать больше!",
   "game.mysteryLoading": "Загружаем фото…",
-  "game.mysteryFallback": "Таинственный игрок — используй подсказки!",
+  "game.photoUnavailable": "Таинственный игрок — используй подсказки!",
 
   "hint.position": "Позиция и страна",
   "hint.career": "Клубы карьеры",
@@ -72,6 +72,7 @@ export default {
   "online.couldntCreate": "Не удалось создать комнату — проверь соединение и попробуй снова.",
   "online.enterCode": "Введи код комнаты.",
   "online.couldntConnect": "Не удалось подключиться — проверь код и попробуй снова ({err}).",
+  "online.connectTimeout": "Время ожидания соединения истекло — попробуй снова.",
   "online.opponentDisconnected": "{name} отключился.",
   "online.opponentLeft": "{name} покинул игру.",
   "online.quit": "← Выйти",

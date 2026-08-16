@@ -20,7 +20,7 @@ export default {
   "game.resetToast": "팩 진행상황이 초기화되었습니다",
   "game.notEnoughCoins": "코인이 부족합니다 — 선수를 맞혀서 코인을 모으세요!",
   "game.mysteryLoading": "사진 불러오는 중…",
-  "game.mysteryFallback": "미스터리 선수 — 힌트를 사용해보세요!",
+  "game.photoUnavailable": "미스터리 선수 — 힌트를 사용해보세요!",
 
   "hint.position": "포지션 & 국적",
   "hint.career": "소속 클럽 이력",
@@ -73,6 +73,7 @@ export default {
   "online.couldntCreate": "방을 만들 수 없습니다 — 연결 상태를 확인하고 다시 시도하세요.",
   "online.enterCode": "방 코드를 입력하세요.",
   "online.couldntConnect": "연결할 수 없습니다 — 코드를 확인하고 다시 시도하세요 ({err}).",
+  "online.connectTimeout": "연결 시간이 초과되었습니다 — 다시 시도하세요.",
   "online.opponentDisconnected": "{name}님의 연결이 끊어졌습니다.",
   "online.opponentLeft": "{name}님이 게임을 나갔습니다.",
   "online.quit": "← 나가기",

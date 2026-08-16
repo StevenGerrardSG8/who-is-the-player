@@ -20,7 +20,7 @@ export default {
   "game.resetToast": "Postęp talii zresetowany",
   "game.notEnoughCoins": "Za mało monet — rozwiązuj zawodników, aby zdobyć więcej!",
   "game.mysteryLoading": "Ładowanie zdjęcia…",
-  "game.mysteryFallback": "Tajemniczy zawodnik — użyj podpowiedzi!",
+  "game.photoUnavailable": "Tajemniczy zawodnik — użyj podpowiedzi!",
 
   "hint.position": "Pozycja i Kraj",
   "hint.career": "Kluby w Karierze",
@@ -73,6 +73,7 @@ export default {
   "online.couldntCreate": "Nie udało się utworzyć pokoju — sprawdź połączenie i spróbuj ponownie.",
   "online.enterCode": "Wprowadź kod pokoju.",
   "online.couldntConnect": "Nie udało się połączyć — sprawdź kod i spróbuj ponownie ({err}).",
+  "online.connectTimeout": "Przekroczono czas połączenia — spróbuj ponownie.",
   "online.opponentDisconnected": "{name} rozłączył się.",
   "online.opponentLeft": "{name} opuścił grę.",
   "online.quit": "← Wyjdź",

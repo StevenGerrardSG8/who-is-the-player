@@ -19,7 +19,7 @@ export default {
   "game.resetToast": "Paket ilerlemesi sıfırlandı",
   "game.notEnoughCoins": "Yeterli jeton yok — daha fazla kazanmak için oyuncuları bil!",
   "game.mysteryLoading": "Fotoğraf yükleniyor…",
-  "game.mysteryFallback": "Gizemli oyuncu — ipuçlarını kullan!",
+  "game.photoUnavailable": "Gizemli oyuncu — ipuçlarını kullan!",
 
   "hint.position": "Mevki & Ülke",
   "hint.career": "Kariyer Kulüpleri",
@@ -72,6 +72,7 @@ export default {
   "online.couldntCreate": "Oda oluşturulamadı — bağlantını kontrol edip tekrar dene.",
   "online.enterCode": "Bir oda kodu gir.",
   "online.couldntConnect": "Bağlanılamadı — kodu kontrol edip tekrar dene ({err}).",
+  "online.connectTimeout": "Bağlantı zaman aşımına uğradı — tekrar dene.",
   "online.opponentDisconnected": "{name} bağlantısı kesildi.",
   "online.opponentLeft": "{name} oyundan ayrıldı.",
   "online.quit": "← Çıkış",

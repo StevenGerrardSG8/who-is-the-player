@@ -22,7 +22,7 @@ export default {
   "game.resetToast": "Progression du pack réinitialisée",
   "game.notEnoughCoins": "Pas assez de pièces — trouve des joueurs pour en gagner plus !",
   "game.mysteryLoading": "Chargement de la photo…",
-  "game.mysteryFallback": "Joueur mystère — utilise les indices !",
+  "game.photoUnavailable": "Joueur mystère — utilise les indices !",
 
   "hint.position": "Poste & Pays",
   "hint.career": "Clubs en carrière",
@@ -75,6 +75,7 @@ export default {
   "online.couldntCreate": "Impossible de créer une salle — vérifie ta connexion et réessaie.",
   "online.enterCode": "Entre un code de salle.",
   "online.couldntConnect": "Connexion impossible — vérifie le code et réessaie ({err}).",
+  "online.connectTimeout": "Délai de connexion dépassé — réessaie.",
   "online.opponentDisconnected": "{name} s'est déconnecté(e).",
   "online.opponentLeft": "{name} a quitté la partie.",
   "online.quit": "← Quitter",

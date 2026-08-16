@@ -22,7 +22,7 @@ export default {
   "game.resetToast": "Progreso del paquete reiniciado",
   "game.notEnoughCoins": "No tienes suficientes monedas — ¡adivina jugadores para ganar más!",
   "game.mysteryLoading": "Cargando foto…",
-  "game.mysteryFallback": "Jugador misterioso — ¡usa las pistas!",
+  "game.photoUnavailable": "Jugador misterioso — ¡usa las pistas!",
 
   "hint.position": "Posición y País",
   "hint.career": "Clubes de Carrera",
@@ -75,6 +75,7 @@ export default {
   "online.couldntCreate": "No se pudo crear la sala — revisa tu conexión e inténtalo de nuevo.",
   "online.enterCode": "Introduce un código de sala.",
   "online.couldntConnect": "No se pudo conectar — revisa el código e inténtalo de nuevo ({err}).",
+  "online.connectTimeout": "Se agotó el tiempo de conexión — inténtalo de nuevo.",
   "online.opponentDisconnected": "{name} se desconectó.",
   "online.opponentLeft": "{name} abandonó la partida.",
   "online.quit": "← Salir",

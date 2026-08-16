@@ -19,7 +19,7 @@ export default {
   "game.resetToast": "Pack-Fortschritt zurückgesetzt",
   "game.notEnoughCoins": "Nicht genug Münzen — errate Spieler, um mehr zu verdienen!",
   "game.mysteryLoading": "Foto wird geladen…",
-  "game.mysteryFallback": "Geheimnisvoller Spieler — nutze die Hinweise!",
+  "game.photoUnavailable": "Geheimnisvoller Spieler — nutze die Hinweise!",
 
   "hint.position": "Position & Land",
   "hint.career": "Karriere-Vereine",
@@ -72,6 +72,7 @@ export default {
   "online.couldntCreate": "Raum konnte nicht erstellt werden — überprüfe deine Verbindung und versuche es erneut.",
   "online.enterCode": "Gib einen Raumcode ein.",
   "online.couldntConnect": "Verbindung fehlgeschlagen — überprüfe den Code und versuche es erneut ({err}).",
+  "online.connectTimeout": "Zeitüberschreitung bei der Verbindung — versuche es erneut.",
   "online.opponentDisconnected": "{name} hat die Verbindung getrennt.",
   "online.opponentLeft": "{name} hat das Spiel verlassen.",
   "online.quit": "← Verlassen",
