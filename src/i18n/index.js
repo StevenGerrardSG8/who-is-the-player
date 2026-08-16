@@ -105,9 +105,9 @@ const STATIC_MAP = {
   homeCoinsLabel: "home.coins",
   homeStarsLabel: "home.totalStars",
   homeStreakLabel: "home.streak",
-  multiplayerBtn: "home.multiplayer",
-  hallOfFameBtn: "home.hallOfFame",
-  languageBtn: "home.language",
+  multiplayerBtnLabel: "home.multiplayer",
+  languageBtnLabel: "home.language",
+  hofTeaserTitle: "hof.title",
   packTabTop: "home.tabTop",
   packTabAll: "home.tabAll",
 

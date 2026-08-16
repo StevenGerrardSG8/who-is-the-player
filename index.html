@@ -16,7 +16,7 @@
 <div class="overlay" id="langPickerOverlay">
   <div class="modal">
     <h2 id="langPickTitle">Choose your language</h2>
-    <p class="subtitle" id="langPickSubtitle">You can change this later in Settings</p>
+    <p class="subtitle" id="langPickSubtitle">You can change this later</p>
     <div class="lang-grid" id="langGrid"></div>
     <button class="btn-main" id="langContinueBtn">Continue</button>
   </div>
@@ -25,14 +25,22 @@
 <!-- ============ HOME SCREEN ============ -->
 <div class="wrap" id="screenHome">
   <div class="home-toolbar">
-    <button class="link-btn" id="multiplayerBtn">🎉 Multiplayer</button>
-    <button class="link-btn" id="hallOfFameBtn">🏆 Hall of Fame</button>
-    <button class="link-btn" id="languageBtn">🌐 Language</button>
+    <button class="toolbar-chip" id="multiplayerBtn"><span class="toolbar-chip-icon">🎉</span><span class="toolbar-chip-label" id="multiplayerBtnLabel">Multiplayer</span></button>
+    <button class="toolbar-chip" id="languageBtn"><span class="toolbar-chip-icon">🌐</span><span class="toolbar-chip-label" id="languageBtnLabel">Language</span></button>
   </div>
 
   <img class="brand-badge" src="./src/assets/logo-badge.svg" alt="" width="56" height="56">
   <h1 id="homeTitle">Who's The <span>Player</span>?</h1>
   <p class="subtitle" id="homeSubtitle">Pick a pack &amp; name the footballers</p>
+
+  <button class="hof-teaser" id="hofTeaserBtn">
+    <div class="hof-teaser-icon">🏆</div>
+    <div class="hof-teaser-body">
+      <div class="hof-teaser-title" id="hofTeaserTitle">Hall of Fame</div>
+      <div class="hof-teaser-stats" id="hofTeaserStats"></div>
+    </div>
+    <div class="hof-teaser-arrow dir-arrow">›</div>
+  </button>
 
   <div class="totals">
     <div class="sb-item"><span class="sb-label" id="homeCoinsLabel">Coins</span><span class="sb-value coins" id="homeCoins">100</span></div>

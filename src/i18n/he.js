@@ -7,11 +7,8 @@ export default {
   "home.subtitle": "בחר חבילה ונחש את השחקנים",
   "home.coins": "מטבעות",
   "home.totalStars": "סה״כ כוכבים",
-  "home.multiplayer": "🎉 מולטיפלייר",
-  "home.hallOfFame": "🏆 היכל התהילה",
-  "home.settings": "הגדרות",
-  "home.language": "🌐 שפה",
-  "home.settingsSoon": "ההגדרות בקרוב",
+  "home.multiplayer": "מולטיפלייר",
+  "home.language": "שפה",
   "home.starsToUnlock": "{n}★ לפתיחה",
   "home.finishPrevious": "סיים את החבילה הקודמת",
   "home.tabTop": "ליגות מובילות",
@@ -22,11 +19,8 @@ export default {
   "home.sectionSpecialsHint": "חבילות כיפיות — לא ליגות אמיתיות",
   "home.moreLeagues": "עוד ליגות ({n})",
   "home.streak": "רצף",
-
-  "settings.title": "הגדרות",
-  "settings.timedMode": "מצב זמן",
-  "settings.timedModeDesc": "פתרו מהר לבונוס נקודות — טיימר יוצג בכל סיבוב.",
-  "settings.done": "סיום",
+  "home.hofTeaserBest": "השיא שלך: {pack} · {score} נק׳",
+  "home.hofTeaserEmpty": "שחק חבילה כדי להתחיל את היכל התהילה שלך!",
 
   "game.back": "← חבילות",
   "game.level": "שלב",
@@ -50,12 +44,6 @@ export default {
   "hint.bought": "✓ נרכש",
   "hint.disabledSurvival": "🔒 הישרדות",
   "career.title": "קריירה בוגרת",
-
-  "settings.title": "הגדרות",
-  "settings.survivalMode": "מצב הישרדות",
-  "settings.survivalModeDesc": "ניחוש שגוי עולה חיים. כשנגמרים החיים, הניסיון בחבילה מסתיים — אפשר לנסות שוב או לחזור הביתה.",
-  "settings.survivalHintNote": "לתשומת לבך: רמז חשיפת השם מושבת במצב הישרדות.",
-  "settings.close": "סיום",
 
   "survival.outTitle": "נגמרו החיים! 💀",
   "survival.outDesc": "נגמרו לך החיים ב-{pack}.",
@@ -117,7 +105,7 @@ export default {
   "online.quit": "← יציאה",
 
   "lang.pickTitle": "בחר את השפה שלך",
-  "lang.pickSubtitle": "תוכל לשנות זאת מאוחר יותר בהגדרות",
+  "lang.pickSubtitle": "תוכל לשנות זאת מאוחר יותר בכפתור השפה",
   "lang.continue": "המשך",
   "game.quit": "יציאה",
 
