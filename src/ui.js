@@ -75,7 +75,45 @@ function renderHome() {
   $("homeCoins").textContent = ctx.state.coins;
   $("homeStars").textContent = totalStars(ctx.state);
   $("homeStreak").textContent = ctx.state.hallOfFame.streak.current;
+  renderHofTeaser();
   renderPackGrid();
+}
+
+// Best-ever pack run (highest score) across every pack, for the home-screen
+// Hall of Fame teaser — packState.bestRuns is already sorted best-first (see
+// recordPackRun in state.js), so each pack's own best is just bestRuns[0].
+function bestOverallRun() {
+  let best = null;
+  ctx.packOrder.forEach((packId) => {
+    const pack = ctx.packs[packId];
+    const ps = ctx.state.packs[packId];
+    if (!pack || !ps || !ps.bestRuns || !ps.bestRuns.length) return;
+    const top = ps.bestRuns[0];
+    if (!best || top.score > best.run.score) best = { pack, run: top };
+  });
+  return best;
+}
+
+// Home-screen Hall of Fame teaser: a day-streak flame + a "your best pack"
+// stat, so a returning player sees real progress the instant Home loads
+// instead of having to tap into Hall of Fame first.
+function renderHofTeaser() {
+  const streak = ctx.state.hallOfFame.streak.current;
+  const best = bestOverallRun();
+  const parts = [];
+  if (streak > 0) {
+    parts.push(
+      '<span class="hof-teaser-streak"><span class="flame">🔥</span><b>' + streak + "</b> " + t("hof.streakCurrentLabel") + "</span>"
+    );
+  }
+  if (best) {
+    parts.push(
+      '<span class="hof-teaser-best">' + best.pack.icon + " " +
+        escapeHofHtml(t("home.hofTeaserBest", { pack: translatePackName(best.pack, getLang()), score: best.run.score })) +
+      "</span>"
+    );
+  }
+  $("hofTeaserStats").innerHTML = parts.length ? parts.join("") : '<span class="hof-teaser-hint">' + t("home.hofTeaserEmpty") + "</span>";
 }
 
 function lockHint(index) {
@@ -746,23 +784,7 @@ export function init(context) {
     $("packCompleteOverlay").classList.remove("show");
     showHome();
   });
-  $("settingsBtn").addEventListener("click", () => {
-    $("timedModeToggle").checked = !!ctx.state.settings.timedMode;
-    $("survivalModeToggle").checked = !!ctx.state.settings.survivalMode;
-    $("settingsOverlay").classList.add("show");
-  });
-  $("settingsDoneBtn").addEventListener("click", () => {
-    $("settingsOverlay").classList.remove("show");
-  });
-  $("timedModeToggle").addEventListener("change", (e) => {
-    ctx.state.settings.timedMode = e.target.checked;
-    ctx.persist();
-    if (currentPackId !== null) startRoundTimer(); // live-update the in-progress game screen
-  });
-  $("survivalModeToggle").addEventListener("change", (e) => {
-    ctx.state.settings.survivalMode = e.target.checked;
-    ctx.persist();
-  });
+  $("hofTeaserBtn").addEventListener("click", showHallOfFame);
   $("survivalRetryBtn").addEventListener("click", retrySurvivalPack);
   $("survivalHomeBtn").addEventListener("click", () => {
     $("survivalOutOverlay").classList.remove("show");

@@ -1,7 +1,7 @@
 import { PACKS } from "./data/packs.js";
 import { PACK_ORDER } from "./config.js";
 import { loadState, saveState, updateDailyStreak, recordChampion } from "./state.js";
-import { init, showHome, showHallOfFame } from "./ui.js";
+import { init, showHome } from "./ui.js";
 import * as multiplayer from "./multiplayer.js";
 import * as onlineMultiplayer from "./online-multiplayer.js";
 import { showScreen } from "./screens.js";
@@ -34,7 +34,6 @@ const $ = (id) => document.getElementById(id);
   $("multiplayerBtn").addEventListener("click", () => {
     showScreen("screenMpMode");
   });
-  $("hallOfFameBtn").addEventListener("click", showHallOfFame);
   $("mpModeBackBtn").addEventListener("click", showHome);
   $("mpModeLocalBtn").addEventListener("click", () => multiplayer.showSetup());
   $("mpModeOnlineBtn").addEventListener("click", () => onlineMultiplayer.showLobby());

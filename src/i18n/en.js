@@ -7,11 +7,8 @@ export default {
   "home.subtitle": "Pick a pack & name the footballers",
   "home.coins": "Coins",
   "home.totalStars": "Total Stars",
-  "home.multiplayer": "🎉 Multiplayer",
-  "home.hallOfFame": "🏆 Hall of Fame",
-  "home.settings": "Settings",
-  "home.language": "🌐 Language",
-  "home.settingsSoon": "Settings coming soon",
+  "home.multiplayer": "Multiplayer",
+  "home.language": "Language",
   "home.starsToUnlock": "{n}★ to unlock",
   "home.finishPrevious": "Finish previous pack",
   "home.tabTop": "Top Leagues",
@@ -22,11 +19,8 @@ export default {
   "home.sectionSpecialsHint": "Fun packs — not real leagues",
   "home.moreLeagues": "More Leagues ({n})",
   "home.streak": "Streak",
-
-  "settings.title": "Settings",
-  "settings.timedMode": "Timed Mode",
-  "settings.timedModeDesc": "Solve fast for bonus points — shows a countdown timer during each round.",
-  "settings.done": "Done",
+  "home.hofTeaserBest": "Best: {pack} · {score} pts",
+  "home.hofTeaserEmpty": "Play a pack to start your Hall of Fame!",
 
   "game.back": "← Packs",
   "game.level": "Level",
@@ -50,12 +44,6 @@ export default {
   "hint.bought": "✓ Bought",
   "hint.disabledSurvival": "🔒 Survival",
   "career.title": "Senior Career",
-
-  "settings.title": "Settings",
-  "settings.survivalMode": "Survival Mode",
-  "settings.survivalModeDesc": "Wrong guesses cost a life. Run out and the pack attempt ends — retry or go home.",
-  "settings.survivalHintNote": "Note: the Reveal Name hint is disabled in Survival Mode.",
-  "settings.close": "Done",
 
   "survival.outTitle": "You're Out! 💀",
   "survival.outDesc": "You ran out of lives on {pack}.",
@@ -117,7 +105,7 @@ export default {
   "online.quit": "← Quit",
 
   "lang.pickTitle": "Choose your language",
-  "lang.pickSubtitle": "You can change this later in Settings",
+  "lang.pickSubtitle": "You can change this later from the Language button",
   "lang.continue": "Continue",
   "game.quit": "Quit",
 
