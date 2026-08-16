@@ -1,7 +1,7 @@
 import { shuffle, buildBankLetters, checkAnswer, renderAnswerLayout } from "./game.js";
 import { loadPhoto, prefetchPhotos } from "./photo.js";
 import { showScreen } from "./screens.js";
-import { t, getLang } from "./i18n/index.js";
+import { t, getLang, showLangPicker, onLangChange } from "./i18n/index.js";
 import { translatePackName } from "./i18n/content/leagues.js";
 
 const $ = (id) => document.getElementById(id);
@@ -21,6 +21,7 @@ let tiles = [];
 let slots = [];
 let locked = false;
 let awaitingWinner = false;
+let winnerFlashIdx = null; // briefly highlights the tapped winner's chip
 
 /* ============================================================
    SETUP SCREEN
@@ -31,9 +32,13 @@ function renderSetup() {
   playerNames.forEach((name, i) => {
     const row = document.createElement("div");
     row.className = "mp-player-row";
+    const badge = document.createElement("div");
+    badge.className = "mp-player-badge";
+    badge.textContent = i + 1;
+    row.appendChild(badge);
     const input = document.createElement("input");
     input.type = "text";
-    input.placeholder = "Player " + (i + 1);
+    input.placeholder = t("mp.playerPlaceholder", { n: i + 1 });
     input.value = name;
     input.maxLength = 16;
     input.addEventListener("input", (e) => {
@@ -120,8 +125,9 @@ function renderScoreboard() {
   const el = $("mpScoreboard");
   el.innerHTML = game.players
     .map((p, i) => {
+      const cls = (awaitingWinner ? " tappable" : "") + (i === winnerFlashIdx ? " winner-flash" : "");
       return (
-        '<div class="mp-score-chip' + (awaitingWinner ? " tappable" : "") + '" data-idx="' + i + '">' +
+        '<div class="mp-score-chip' + cls + '" data-idx="' + i + '">' +
         '<span class="mp-score-name">' + escapeHtml(p.name) + "</span>" +
         '<span class="mp-score-value">' + p.score + "</span>" +
         "</div>"
@@ -138,10 +144,12 @@ function escapeHtml(s) {
 function buildRound() {
   locked = false;
   awaitingWinner = false;
+  winnerFlashIdx = null;
   const p = currentTarget();
   $("mpSticker").classList.remove("win");
   $("mpStickerNum").textContent = "#" + (game.roundIndex + 1);
   $("mpTurnBanner").textContent = t("mp.raceBanner");
+  $("mpTurnBanner").classList.remove("awaiting");
   $("mpAnswer").classList.remove("correct", "wrong", "small", "tiny");
 
   const answerEl = $("mpAnswer");
@@ -208,14 +216,17 @@ function onCorrectGuess() {
   awaitingWinner = true;
   $("mpAnswer").classList.add("correct");
   $("mpTurnBanner").textContent = t("mp.tapWinner");
+  $("mpTurnBanner").classList.add("awaiting");
   renderScoreboard();
 }
 
 function awardPoint(idx) {
   if (!awaitingWinner) return;
   awaitingWinner = false;
+  winnerFlashIdx = idx;
   game.players[idx].score += MP_POINTS;
   $("mpSticker").classList.add("win");
+  $("mpTurnBanner").classList.remove("awaiting");
   renderScoreboard();
   setTimeout(advanceRound, 700);
 }
@@ -247,7 +258,10 @@ function showResults() {
       ? t("mp.tie", { names: winners.map((p) => p.name).join(" & ") })
       : t("mp.wins", { name: winners[0].name });
   $("mpFinalScores").innerHTML = ranked
-    .map((p, i) => '<div class="mp-final-row">#' + (i + 1) + " " + escapeHtml(p.name) + " — <b>" + p.score + "</b> " + t("game.pts") + "</div>")
+    .map(
+      (p, i) =>
+        '<div class="mp-final-row' + (p.score === topScore ? " winner" : "") + '">#' + (i + 1) + " " + escapeHtml(p.name) + " — <b>" + p.score + "</b> " + t("game.pts") + "</div>"
+    )
     .join("");
   $("mpResultsOverlay").classList.add("show");
 
@@ -296,6 +310,14 @@ export function init(context) {
   });
   $("mpQuitBtn").addEventListener("click", quitToHome);
   $("mpPlayAgainBtn").addEventListener("click", quitToHome);
+  $("mpSetupLangBtn").addEventListener("click", showLangPicker);
+
+  // Re-render the setup screen's dynamic bits (per-player placeholders,
+  // translated pack names) if the language changes while it's on-screen —
+  // static chrome (buttons/labels) is already covered by applyStaticTranslations.
+  onLangChange(() => {
+    if ($("screenMpSetup").style.display !== "none") renderSetup();
+  });
 }
 
 export { showSetup };

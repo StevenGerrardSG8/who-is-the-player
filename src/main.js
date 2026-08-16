@@ -38,6 +38,7 @@ const $ = (id) => document.getElementById(id);
   $("mpModeBackBtn").addEventListener("click", showHome);
   $("mpModeLocalBtn").addEventListener("click", () => multiplayer.showSetup());
   $("mpModeOnlineBtn").addEventListener("click", () => onlineMultiplayer.showLobby());
+  $("mpModeLangBtn").addEventListener("click", showLangPicker);
 
   $("languageBtn").addEventListener("click", showLangPicker);
   $("langContinueBtn").addEventListener("click", hideLangPicker);

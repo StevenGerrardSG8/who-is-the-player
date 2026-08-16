@@ -119,8 +119,10 @@ const STATIC_MAP = {
   mpModeSubtitle: "mpMode.subtitle",
   mpModeLocalTitle: "mpMode.local.title",
   mpModeLocalDesc: "mpMode.local.desc",
+  mpModeLocalTag: "mpMode.local.tag",
   mpModeOnlineTitle: "mpMode.online.title",
   mpModeOnlineDesc: "mpMode.online.desc",
+  mpModeOnlineTag: "mpMode.online.tag",
 
   mpOnlineBackLabel: "game.back",
   onlineTitle1: "online.title.play",
@@ -129,7 +131,7 @@ const STATIC_MAP = {
   mpHostBtn: "online.hostRoom",
   mpJoinToggleBtn: "online.joinWithCode",
   mpJoinBtn: "online.join",
-  onlineRoomLabel: "online.title.online",
+  onlineRoomLabel: "online.roomCode",
   onlinePackLabel: "mp.pack",
   onlineRoundsLabel: "mp.roundsPerPlayer",
   mpOnlineStartBtn: "mp.start",
@@ -196,10 +198,32 @@ const STATIC_MAP = {
   hofChampsTitle: "hof.champsTitle",
 };
 
+// HTML `placeholder`/`title` attributes aren't plain text nodes, so the
+// textContent-based STATIC_MAP above can't reach them — these two small
+// sibling maps cover the handful of inputs/icon-buttons that need one.
+const STATIC_PLACEHOLDER_MAP = {
+  mpOnlineNameInput: "online.yourName",
+  mpJoinCodeInput: "online.roomCodePlaceholder",
+};
+
+const STATIC_TITLE_MAP = {
+  mpModeLangBtn: "home.language",
+  mpSetupLangBtn: "home.language",
+  mpOnlineLangBtn: "home.language",
+};
+
 export function applyStaticTranslations() {
   Object.entries(STATIC_MAP).forEach(([id, key]) => {
     const el = $(id);
     if (el) el.textContent = t(key);
+  });
+  Object.entries(STATIC_PLACEHOLDER_MAP).forEach(([id, key]) => {
+    const el = $(id);
+    if (el) el.placeholder = t(key);
+  });
+  Object.entries(STATIC_TITLE_MAP).forEach(([id, key]) => {
+    const el = $(id);
+    if (el) el.title = t(key);
   });
   const homeTitle = $("homeTitle");
   if (homeTitle) homeTitle.innerHTML = t("app.title.who") + " <span>" + t("app.title.player") + "</span>";
