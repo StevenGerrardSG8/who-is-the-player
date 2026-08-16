@@ -234,7 +234,7 @@ function setPackTab(tab) {
 /* ============================================================
    TOAST
 ============================================================ */
-function toast(msg) {
+export function toast(msg) {
   const t = $("toast");
   t.textContent = msg;
   t.classList.add("show");

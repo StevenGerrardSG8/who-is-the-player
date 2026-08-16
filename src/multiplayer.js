@@ -4,6 +4,7 @@ import { showScreen } from "./screens.js";
 import { t, getLang, showLangPicker, onLangChange } from "./i18n/index.js";
 import { translatePackName } from "./i18n/content/leagues.js";
 import { resolvePlayer } from "./i18n/content/index.js";
+import { toast } from "./ui.js";
 
 const $ = (id) => document.getElementById(id);
 const MP_POINTS = 100;
@@ -84,7 +85,7 @@ function showSetup() {
 function startGame() {
   const names = playerNames.map((n) => n.trim()).filter(Boolean);
   if (names.length < MIN_PLAYERS) {
-    alert(t("mp.needMinPlayers", { n: MIN_PLAYERS }));
+    toast(t("mp.needMinPlayers", { n: MIN_PLAYERS }));
     return;
   }
   const packId = $("mpPackSelect").value;
