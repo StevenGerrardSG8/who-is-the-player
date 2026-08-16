@@ -88,18 +88,71 @@ function resolveCredit(wiki, rawUrl) {
   return promise;
 }
 
+// Wiki titles disambiguate same-name players with a trailing parenthetical
+// ("Chris Allen (footballer, born 1972)") that Wikipedia needs but a plain
+// name-search API doesn't — and will find nothing for if left attached.
+function bareName(wiki) {
+  return wiki.replace(/\s*\([^)]*\)\s*$/, "").trim();
+}
+
+// TheSportsDB's free, keyless tier (the "3" test key, intended for exactly
+// this kind of hobby lookup) as a second source for the ~40% of players
+// Wikipedia has no photo for at all — mostly lower-profile players from the
+// bigger leagues' full squads. `strCutout` (a transparent-background player
+// render) is tried first since it matches the sticker-card art direction
+// better than an arbitrary action photo; `strThumb` is the fallback within
+// the fallback.
+async function resolveSportsDbSrc(wiki) {
+  const r = await fetch(
+    "https://www.thesportsdb.com/api/v1/json/3/searchplayers.php?p=" + encodeURIComponent(bareName(wiki))
+  );
+  if (!r.ok) throw new Error("sportsdb fetch failed");
+  const j = await r.json();
+  const hit = j.player && j.player[0];
+  return (hit && (hit.strCutout || hit.strThumb)) || null;
+}
+
 async function resolveImageSrc(wiki) {
   if (srcCache.has(wiki)) return srcCache.get(wiki);
-  const r = await fetch(
-    "https://en.wikipedia.org/api/rest_v1/page/summary/" + encodeURIComponent(wiki)
-  );
-  if (!r.ok) throw new Error("fetch failed");
-  const j = await r.json();
-  const raw = (j.thumbnail && j.thumbnail.source) || (j.originalimage && j.originalimage.source) || null;
-  const src = resizeThumbnail(raw);
-  srcCache.set(wiki, src);
-  if (raw) resolveCredit(wiki, raw);
-  return src;
+
+  let raw = null;
+  let wikiFailed = false;
+  try {
+    const r = await fetch("https://en.wikipedia.org/api/rest_v1/page/summary/" + encodeURIComponent(wiki));
+    if (!r.ok) throw new Error("wiki fetch failed");
+    const j = await r.json();
+    raw = (j.thumbnail && j.thumbnail.source) || (j.originalimage && j.originalimage.source) || null;
+  } catch (e) {
+    wikiFailed = true;
+  }
+
+  if (raw) {
+    const src = resizeThumbnail(raw);
+    srcCache.set(wiki, src);
+    resolveCredit(wiki, raw);
+    return src;
+  }
+
+  let fallback = null;
+  let fallbackFailed = false;
+  try {
+    fallback = await resolveSportsDbSrc(wiki);
+  } catch (e) {
+    fallbackFailed = true;
+  }
+
+  if (fallback) {
+    srcCache.set(wiki, fallback);
+    creditCache.set(wiki, Promise.resolve("TheSportsDB"));
+    return fallback;
+  }
+
+  // Only remember "no photo anywhere" once both lookups have genuinely
+  // completed — a transient failure (rate limit, flaky network) should be
+  // retried next time, not written off permanently for the rest of the
+  // session over what might just be a momentary hiccup.
+  if (!wikiFailed && !fallbackFailed) srcCache.set(wiki, null);
+  return null;
 }
 
 // Actually start downloading the image bytes (not just resolve the URL) and
