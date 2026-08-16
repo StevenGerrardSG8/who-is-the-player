@@ -18,6 +18,23 @@ let packOrder = null;
 let onExit = null;
 let recordChampion = null;
 
+// Default PeerJS/WebRTC setup only offers STUN, which negotiates a direct
+// P2P path — fine when both players are behind the same/simple NAT (e.g.
+// same wifi), but it silently fails once they're on different networks
+// with stricter NATs (mobile data, different home routers, etc.), since
+// there's no relay to fall back to. Adding a TURN server (Open Relay
+// Project's free, keyless public TURN service) gives WebRTC a relay path
+// so the connection also works across arbitrary networks, not just LAN.
+const ICE_CONFIG = {
+  iceServers: [
+    { urls: "stun:stun.l.google.com:19302" },
+    { urls: "stun:stun.relay.metered.ca:80" },
+    { urls: "turn:openrelay.metered.ca:80", username: "openrelayproject", credential: "openrelayproject" },
+    { urls: "turn:openrelay.metered.ca:443", username: "openrelayproject", credential: "openrelayproject" },
+    { urls: "turn:openrelay.metered.ca:443?transport=tcp", username: "openrelayproject", credential: "openrelayproject" },
+  ],
+};
+
 let peer = null;
 let conn = null;
 let myName = "";
@@ -120,7 +137,7 @@ function attemptHost(tries) {
     return;
   }
   const code = genRoomCode();
-  const p = new Peer("wtp-" + code);
+  const p = new Peer("wtp-" + code, { config: ICE_CONFIG });
   p.on("open", () => {
     peer = p;
     $("mpOnlineChoice").style.display = "none";
@@ -151,7 +168,7 @@ function joinRoom() {
     return;
   }
   myPlayerIdx = 1;
-  const p = new Peer();
+  const p = new Peer({ config: ICE_CONFIG });
   p.on("open", () => {
     peer = p;
     conn = p.connect("wtp-" + code, { reliable: true });
