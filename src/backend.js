@@ -102,7 +102,10 @@ export async function bumpGamesPlayedCounter() {
 }
 
 // Write-only from the app's perspective — see firestore.rules, only the
-// developer's own signed-in account can ever read these back.
+// developer's own signed-in account can ever read these back. Telegram
+// notification for new reports is handled out-of-band by a scheduled
+// GitHub Action (scripts/notify-bug-reports.js) so no bot token ever has
+// to live in client-side code.
 export async function submitBugReport(text) {
   const trimmed = (text || "").trim();
   if (!uid || !trimmed) return false;
