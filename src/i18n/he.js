@@ -147,5 +147,8 @@ export default {
   "hof.globalEmpty": "אין עדיין רשומות — תהיה הראשון!",
   "hof.globalLoading": "טוען…",
   "hof.dayStreakUnit": "ימים",
-  "hof.winStreakUnit": "ניצחונות"
+  "hof.winStreakUnit": "ניצחונות",
+  "hof.enablePush": "🔔 תזכיר לי אם לא שיחקתי היום",
+  "hof.pushOn": "🔔 תזכורות פעילות",
+  "hof.pushFailed": "לא הצלחנו להפעיל תזכורות — בדוק הרשאות התראות ונסה שוב."
 };

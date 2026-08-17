@@ -709,6 +709,10 @@ h1 span{
   background:transparent;color:var(--ink-soft);cursor:pointer;transition:background .15s,color .15s;
 }
 .hof-global-tab.active{background:linear-gradient(135deg,var(--foil-2),var(--foil-deep));color:#3B2C08;border-color:transparent}
+#hofEnablePushBtn{margin-bottom:10px;width:100%}
+.hof-push-on{
+  margin:0 0 10px;font-family:var(--score);font-weight:700;font-size:12px;color:var(--foil-deep);text-align:center;
+}
 
 /* ---------- direction-aware nav arrows ---------- */
 .dir-arrow{display:inline-block}

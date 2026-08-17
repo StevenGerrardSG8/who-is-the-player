@@ -194,6 +194,8 @@ const STATIC_MAP = {
   hofTabMonthly: "hof.tabMonthly",
   hofTabDayStreak: "hof.tabDayStreak",
   hofTabWinStreak: "hof.tabWinStreak",
+  hofEnablePushBtn: "hof.enablePush",
+  hofPushOnLabel: "hof.pushOn",
 };
 
 // HTML `placeholder`/`title` attributes aren't plain text nodes, so the

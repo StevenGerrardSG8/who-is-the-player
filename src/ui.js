@@ -32,7 +32,14 @@ import { showScreen } from "./screens.js";
 import { t, getLang, onLangChange } from "./i18n/index.js";
 import { resolvePlayer } from "./i18n/content/index.js";
 import { translatePackName } from "./i18n/content/leagues.js";
-import { getGlobalName, setGlobalName, recordRun, fetchLeaderboard } from "./backend.js";
+import {
+  getGlobalName,
+  setGlobalName,
+  recordRun,
+  fetchLeaderboard,
+  isPushAlreadyEnabled,
+  enablePushNotifications,
+} from "./backend.js";
 
 const $ = (id) => document.getElementById(id);
 
@@ -749,11 +756,15 @@ function renderHallOfFame() {
 
 let activeGlobalPeriod = "daily";
 
-function renderGlobalNameUI() {
+async function renderGlobalNameUI() {
   const name = getGlobalName();
   $("hofNameSetup").style.display = name ? "none" : "";
   $("hofNamePlaying").style.display = name ? "" : "none";
   if (name) $("hofPlayingAsName").textContent = name;
+
+  const pushOn = name && (await isPushAlreadyEnabled());
+  $("hofEnablePushBtn").style.display = name && !pushOn ? "" : "none";
+  $("hofPushOnLabel").style.display = pushOn ? "" : "none";
 }
 
 async function loadGlobalLeaderboard() {
@@ -845,6 +856,11 @@ export function init(context) {
     $("hofGlobalNameInput").value = getGlobalName() || "";
     $("hofNameSetup").style.display = "";
     $("hofNamePlaying").style.display = "none";
+  });
+  $("hofEnablePushBtn").addEventListener("click", async () => {
+    const ok = await enablePushNotifications();
+    if (ok) renderGlobalNameUI();
+    else toast(t("hof.pushFailed"));
   });
   $("hofGlobalTabs").querySelectorAll(".hof-global-tab").forEach((btn) => {
     btn.addEventListener("click", () => setGlobalTab(btn.dataset.period));

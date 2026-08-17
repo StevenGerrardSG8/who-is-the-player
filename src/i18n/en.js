@@ -147,5 +147,8 @@ export default {
   "hof.globalEmpty": "No entries yet — be the first!",
   "hof.globalLoading": "Loading…",
   "hof.dayStreakUnit": "days",
-  "hof.winStreakUnit": "wins"
+  "hof.winStreakUnit": "wins",
+  "hof.enablePush": "🔔 Remind me if I haven't played today",
+  "hof.pushOn": "🔔 Reminders on",
+  "hof.pushFailed": "Couldn't enable reminders — check notification permissions and try again."
 };

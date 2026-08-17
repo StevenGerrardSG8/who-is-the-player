@@ -11,6 +11,7 @@ import {
   getDoc,
   setDoc,
   addDoc,
+  arrayUnion,
   collection,
   query,
   where,
@@ -19,9 +20,14 @@ import {
   getDocs,
   serverTimestamp,
 } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
+import { getMessaging, getToken, isSupported as isMessagingSupported } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-messaging.js";
 import { firebaseConfig } from "./firebase-config.js";
 import { storage } from "./storage.js";
-import { GLOBAL_NAME_STORAGE_KEY } from "./config.js";
+import { GLOBAL_NAME_STORAGE_KEY, PUSH_TOKEN_STORAGE_KEY } from "./config.js";
+
+// Generated in the Firebase console (Project settings → Cloud Messaging →
+// Web Push certificates) — public by nature, like the rest of firebaseConfig.
+const VAPID_KEY = "BPF2ao3rU6YUgGcB0fgkOj3CE2vRs74l8pOIUQRUTjhrqDo0ICzCXieT3-NQsRtKHQsy2nTVTqIOBjqO2coRFEc";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -140,5 +146,38 @@ export async function fetchLeaderboard(kind) {
       .slice(0, 20);
   } catch (e) {
     return [];
+  }
+}
+
+/* ============================================================
+   PUSH NOTIFICATIONS — "come back and play" reminder
+   Opt-in only: never requested automatically, only from an explicit
+   button click (see enablePushNotifications callers in ui.js). A daily
+   Cloud Function (functions/index.js) does the actual "did they play
+   today?" check and sends to whatever's in players/{uid}.fcmTokens.
+============================================================ */
+export function getPushPermission() {
+  return typeof Notification !== "undefined" ? Notification.permission : "unsupported";
+}
+
+export async function isPushAlreadyEnabled() {
+  return !!(await storage.get(PUSH_TOKEN_STORAGE_KEY));
+}
+
+export async function enablePushNotifications() {
+  if (!uid || !cachedName) return false;
+  if (!("serviceWorker" in navigator) || !(await isMessagingSupported().catch(() => false))) return false;
+  try {
+    const registration = await navigator.serviceWorker.register("firebase-messaging-sw.js");
+    const permission = await Notification.requestPermission();
+    if (permission !== "granted") return false;
+    const messaging = getMessaging(app);
+    const token = await getToken(messaging, { vapidKey: VAPID_KEY, serviceWorkerRegistration: registration });
+    if (!token) return false;
+    await setDoc(doc(db, "players", uid), { name: cachedName, fcmTokens: arrayUnion(token) }, { merge: true });
+    await storage.set(PUSH_TOKEN_STORAGE_KEY, token);
+    return true;
+  } catch (e) {
+    return false;
   }
 }

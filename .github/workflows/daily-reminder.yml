@@ -1,0 +1,24 @@
+name: Daily play reminder
+
+on:
+  schedule:
+    # 18:00 Israel time. GitHub Actions cron is UTC and doesn't shift for
+    # DST, so this lands at 17:00 or 18:00 local depending on the season —
+    # close enough for a casual daily nudge.
+    - cron: "0 16 * * *"
+  workflow_dispatch: {}
+
+jobs:
+  send-reminder:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+        working-directory: scripts
+      - run: node send-daily-reminder.js
+        working-directory: scripts
+        env:
+          FIREBASE_SERVICE_ACCOUNT_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
