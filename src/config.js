@@ -79,23 +79,33 @@ export const FEATURED_PACK_ID = "all-leagues-mix";
 // "none"       — every pack is unlocked from the start, playable in any order
 // "stars"      — pack at index i unlocks once total stars earned >= i * STARS_PER_UNLOCK
 // "sequential" — pack at index i unlocks once pack i-1 is fully completed
-export const UNLOCK_MODE = "none";
-export const STARS_PER_UNLOCK = 30;
+//
+// In both "stars" and "sequential" modes, FREE_PACKS below are always
+// unlocked regardless of progress, and the *i* used for the remaining packs
+// is their index among the non-free packs only (so free packs don't shift
+// everyone else's thresholds).
+export const UNLOCK_MODE = "stars";
+export const STARS_PER_UNLOCK = 20;
+
+// Always-unlocked packs, on top of whatever UNLOCK_MODE gates the rest.
+export const FREE_PACKS = [...TOP_LEAGUE_PACKS, HOME_LEAGUE_PACK];
 
 export const START_COINS = 100;
 export const HINT_COSTS = { 1: 15, 2: 30, 3: 60 };
-export const BASE_POINTS = 100;
-export const HINT_PENALTY = 25;
 export const SOLVE_COINS = 25;
 export const REVEAL_COINS = 5;
-export const NO_HINT_BONUS = 50;
 
-// No-mistakes streak bonus: +STREAK_BONUS_COINS per consecutive round solved
-// with zero wrong "all slots filled" checks (escalating, capped so it
-// doesn't grow unbounded), reset to 0 the moment a mistake happens or a
-// round is finished via reveal.
+// Points per solve, keyed by how many paid hints (1/2) were bought — flat
+// tiers rather than a base+penalty formula so the drop-off per hint stays
+// smooth (150 -> 100 -> 60) instead of cliff-y. Hint 3 (reveal) always wins
+// via the separate "revealed" path in computeReward, at 0 points.
+export const POINTS_BY_HINTS = { 0: 150, 1: 100, 2: 60 };
+
+// No-mistakes streak bonus: escalating, capped so it doesn't grow unbounded,
+// reset to 0 the moment a mistake happens or a round is finished via reveal.
 export const STREAK_BONUS_COINS = 5;
-export const STREAK_BONUS_CAP = 10; // max +50 coins (10 * 5) once streak>=10
+export const STREAK_BONUS_POINTS = 2;
+export const STREAK_BONUS_CAP = 10; // max +50 coins / +20 pts once streak>=10
 
 // Timed-mode scoring (opt-in via Settings): solving within TIMED_BONUS_WINDOW_SEC
 // seconds earns up to TIMED_BONUS_MAX bonus points, decaying linearly to 0.

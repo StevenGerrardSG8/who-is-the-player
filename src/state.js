@@ -1,5 +1,5 @@
 import { storage } from "./storage.js";
-import { STORAGE_KEY, START_COINS, UNLOCK_MODE, STARS_PER_UNLOCK } from "./config.js";
+import { STORAGE_KEY, START_COINS, UNLOCK_MODE, STARS_PER_UNLOCK, FREE_PACKS } from "./config.js";
 
 const MAX_PACK_RUNS = 5; // keep the best 5 completed runs per pack (personal bests)
 const MAX_CHAMPIONS = 30; // keep the most recent 30 multiplayer champion entries
@@ -139,14 +139,18 @@ export function totalStars(state) {
   return Object.values(state.packs).reduce((sum, p) => sum + packStarTotal(p), 0);
 }
 
-export function isPackUnlocked(state, packOrder, packsData, index) {
+// `index` is the pack's position among the *lockable* packs only (i.e.
+// packOrder with FREE_PACKS removed) — see lockableIndex() in ui.js, which
+// callers use to compute it before calling this.
+export function isPackUnlocked(state, packOrder, packsData, packId, index) {
   if (UNLOCK_MODE === "none") return true;
-  if (index === 0) return true;
+  if (FREE_PACKS.includes(packId)) return true;
+  if (index <= 0) return true;
   if (UNLOCK_MODE === "sequential") {
-    const prevId = packOrder[index - 1];
-    const prevPack = packsData[prevId];
+    const lockablePrevId = packOrder.filter((id) => !FREE_PACKS.includes(id))[index - 1];
+    const prevPack = packsData[lockablePrevId];
     if (!prevPack) return true;
-    return isPackComplete(state.packs[prevId], prevPack.players.length);
+    return isPackComplete(state.packs[lockablePrevId], prevPack.players.length);
   }
   return totalStars(state) >= index * STARS_PER_UNLOCK;
 }

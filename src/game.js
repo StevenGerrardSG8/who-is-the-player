@@ -1,11 +1,10 @@
 import {
   HINT_COSTS,
-  BASE_POINTS,
-  HINT_PENALTY,
+  POINTS_BY_HINTS,
   SOLVE_COINS,
   REVEAL_COINS,
-  NO_HINT_BONUS,
   STREAK_BONUS_COINS,
+  STREAK_BONUS_POINTS,
   STREAK_BONUS_CAP,
   TIMED_BONUS_MAX,
   TIMED_BONUS_WINDOW_SEC,
@@ -85,9 +84,7 @@ export function renderAnswerLayout(answer, container, slots, onSlotClick) {
 export function computeReward({ revealed, hintsBought }) {
   if (revealed) return { points: 0, coins: REVEAL_COINS };
   const paidHints = hintsBought.filter((n) => n === 1 || n === 2).length;
-  let points = Math.max(BASE_POINTS - paidHints * HINT_PENALTY, 25);
-  if (paidHints === 0 && !hintsBought.includes(3)) points += NO_HINT_BONUS;
-  return { points, coins: SOLVE_COINS };
+  return { points: POINTS_BY_HINTS[paidHints], coins: SOLVE_COINS };
 }
 
 // 3 = no hints, 2 = info hint(s) but not revealed, 1 = revealed
@@ -97,14 +94,17 @@ export function computeStars({ revealed, hintsBought }) {
   return 3;
 }
 
-// No-mistakes streak bonus: +STREAK_BONUS_COINS per consecutive round solved
-// with zero wrong "all slots filled" checks, escalating linearly and capped
-// at STREAK_BONUS_CAP consecutive solves (streak=1 -> +5 coins, streak=2 ->
-// +10, ... streak>=10 -> capped at +50). Caller resets streak to 0 on any
+// No-mistakes streak bonus: escalating coins + points per consecutive round
+// solved with zero wrong "all slots filled" checks, capped at
+// STREAK_BONUS_CAP consecutive solves. Caller resets streak to 0 on any
 // mistake or reveal before calling this with the new (already-incremented)
 // streak count.
 export function computeStreakBonus(streak) {
-  return Math.min(streak, STREAK_BONUS_CAP) * STREAK_BONUS_COINS;
+  const capped = Math.min(streak, STREAK_BONUS_CAP);
+  return {
+    coins: capped * STREAK_BONUS_COINS,
+    points: capped * STREAK_BONUS_POINTS,
+  };
 }
 
 // Timed-mode bonus: solving within TIMED_BONUS_WINDOW_SEC seconds of the

@@ -603,12 +603,12 @@ h1 span{
 /* ---------- online lobby: entry form + room code ---------- */
 .btn-outline{
   font-family:var(--score);font-weight:700;font-size:13px;letter-spacing:.3px;
-  background:rgba(255,255,255,0.06);color:#FFE9A8;border:1.5px solid rgba(231,190,85,0.35);
+  background:rgba(169,121,30,0.08);color:#7A5A12;border:1.5px solid rgba(169,121,30,0.55);
   border-radius:999px;padding:10px 20px;cursor:pointer;
   display:inline-flex;align-items:center;justify-content:center;gap:6px;
   transition:background .15s,transform .08s;
 }
-.btn-outline:active{transform:scale(0.96);background:rgba(255,255,255,0.14)}
+.btn-outline:active{transform:scale(0.96);background:rgba(169,121,30,0.18)}
 #mpJoinToggleBtn::before{content:"🔑"}
 .mp-online-error{
   text-align:center;font-family:var(--body);font-size:12px;color:var(--bad);

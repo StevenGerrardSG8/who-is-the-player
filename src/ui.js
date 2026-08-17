@@ -25,6 +25,7 @@ import {
   HOME_LEAGUE_PACK,
   SPECIAL_PACKS,
   FEATURED_PACK_ID,
+  FREE_PACKS,
   TIMED_BONUS_WINDOW_SEC,
   SURVIVAL_LIVES,
 } from "./config.js";
@@ -125,6 +126,12 @@ function renderHofTeaser() {
   $("hofTeaserStats").innerHTML = parts.length ? parts.join("") : '<span class="hof-teaser-hint">' + t("home.hofTeaserEmpty") + "</span>";
 }
 
+// Index of packId among ctx.packOrder with FREE_PACKS removed — the "i" that
+// isPackUnlocked()'s "stars"/"sequential" maths runs on.
+function lockableIndex(packOrder, packId) {
+  return packOrder.filter((id) => !FREE_PACKS.includes(id)).indexOf(packId);
+}
+
 function lockHint(index) {
   if (UNLOCK_MODE === "sequential") return t("home.finishPrevious");
   return t("home.starsToUnlock", { n: index * STARS_PER_UNLOCK });
@@ -140,15 +147,16 @@ let moreExpanded = false;
 function buildPackCard(packId) {
   const pack = ctx.packs[packId];
   if (!pack) return null;
-  // Always look up the pack's index in the *full* flat PACK_ORDER (not its
-  // position within whatever section/tab we're currently building) — that's
-  // the index isPackUnlocked()/lockHint() expect for "stars"/"sequential"
-  // unlock-mode maths, regardless of which section the card renders in.
-  const idx = ctx.packOrder.indexOf(packId);
+  // Always look up the pack's index among the full flat PACK_ORDER minus
+  // FREE_PACKS (not its position within whatever section/tab we're currently
+  // building) — that's the index isPackUnlocked()/lockHint() expect for
+  // "stars"/"sequential" unlock-mode maths, regardless of which section the
+  // card renders in.
+  const idx = lockableIndex(ctx.packOrder, packId);
   const ps = ctx.state.packs[packId];
   const solved = packSolvedCount(ps);
   const stars = packStarTotal(ps);
-  const unlocked = isPackUnlocked(ctx.state, ctx.packOrder, ctx.packs, idx);
+  const unlocked = isPackUnlocked(ctx.state, ctx.packOrder, ctx.packs, packId, idx);
   const pct = Math.round((solved / pack.players.length) * 100);
 
   const card = document.createElement("div");
@@ -559,7 +567,7 @@ function winRound(revealed) {
 
   // No-mistakes streak bonus: reveal or any wrong-guess attempt this round
   // breaks the streak; a clean solve extends it and pays out escalating coins.
-  let streakBonus = 0;
+  let streakBonus = { coins: 0, points: 0 };
   if (revealed || mistakesThisRound > 0) {
     ctx.state.streak = 0;
   } else {
@@ -575,8 +583,8 @@ function winRound(revealed) {
     timeBonus = computeTimeBonus(elapsedSec);
   }
 
-  const totalPoints = reward.points + timeBonus;
-  const totalCoins = reward.coins + streakBonus;
+  const totalPoints = reward.points + timeBonus + streakBonus.points;
+  const totalCoins = reward.coins + streakBonus.coins;
 
   ctx.state.score += totalPoints;
   ctx.state.coins += totalCoins;
