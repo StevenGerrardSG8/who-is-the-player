@@ -371,6 +371,28 @@ h1 span{
 .modal .m-rewards{font-family:var(--score);font-weight:700;font-size:15px;margin:8px 0 16px;color:var(--ink-soft)}
 .modal .m-rewards b{color:var(--ink);font-size:18px}
 .modal .link-btn{display:block;margin:12px auto 0}
+.bug-report-text{
+  width:100%;font-family:var(--body);font-size:14px;color:var(--ink);
+  padding:10px 12px;border-radius:var(--radius-sm);border:2px solid var(--card-edge);
+  background:var(--card);resize:vertical;margin:10px 0 6px;box-sizing:border-box;
+}
+.bug-report-text:focus{outline:none;border-color:var(--foil);box-shadow:0 0 0 3px rgba(231,190,85,0.25)}
+
+.admin-modal{max-width:420px;text-align:left}
+.admin-modal h2{text-align:center}
+#adminLoginForm input{
+  width:100%;font-family:var(--body);font-size:14px;padding:10px 12px;margin:8px 0;
+  border-radius:var(--radius-sm);border:2px solid var(--card-edge);background:var(--card);color:var(--ink);
+  box-sizing:border-box;
+}
+#adminLoginForm .btn-main{width:100%;margin-top:6px}
+.admin-stat-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px dashed var(--card-edge);font-family:var(--score);font-weight:700}
+.admin-stat-row b{font-size:18px;color:var(--foil-deep)}
+#adminStatsPanel h3{font-family:var(--display);font-size:14px;text-transform:uppercase;margin:14px 0 6px}
+.admin-report-row{padding:8px 0;border-bottom:1px dashed var(--card-edge)}
+.admin-report-meta{font-size:11px;color:var(--ink-soft);margin-bottom:2px}
+.admin-report-text{font-size:13px;color:var(--ink);white-space:pre-wrap}
+.admin-report-empty{font-size:13px;color:var(--ink-soft);text-align:center;padding:10px 0}
 
 .btn-main{
   font-family:var(--display);font-weight:900;font-size:15px;text-transform:uppercase;letter-spacing:1px;
@@ -622,6 +644,7 @@ h1 span{
   text-align:center;font-family:var(--body);font-size:12px;color:var(--bad);
   min-height:14px;margin:2px 0 0;
 }
+.mp-online-error.ok{color:var(--good)}
 .room-code-card{
   position:relative;margin:6px auto 0;text-align:center;max-width:260px;
   background:linear-gradient(var(--card),var(--card-2)) padding-box,

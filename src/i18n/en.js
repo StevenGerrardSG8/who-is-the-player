@@ -121,6 +121,17 @@ export default {
   "mp.passTurn": "Pass turn",
   "mp.turnPassed": "{name} passed — next up!",
 
+  "bug.btnLabel": "Report a bug",
+  "bug.title": "Found a bug?",
+  "bug.subtitle": "Tell us what happened — we read every report.",
+  "bug.placeholder": "What went wrong?",
+  "bug.send": "Send",
+  "bug.cancel": "Cancel",
+  "bug.sending": "Sending…",
+  "bug.sent": "Thanks — got it! 🙏",
+  "bug.failed": "Couldn't send — check your connection and try again.",
+  "bug.empty": "Write a few words about what happened first.",
+
   "lang.pickTitle": "Choose your language",
   "lang.pickSubtitle": "You can change this later from the Language button",
   "lang.continue": "Continue",

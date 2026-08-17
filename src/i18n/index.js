@@ -106,6 +106,7 @@ const STATIC_MAP = {
   homeStarsLabel: "home.totalStars",
   homeStreakLabel: "home.streak",
   multiplayerBtnLabel: "home.multiplayer",
+  bugReportBtnLabel: "bug.btnLabel",
   languageBtnLabel: "home.language",
   hofTeaserTitle: "hof.title",
   packTabTop: "home.tabTop",
@@ -199,6 +200,11 @@ const STATIC_MAP = {
   hofTabWinStreak: "hof.tabWinStreak",
   hofEnablePushBtn: "hof.enablePush",
   hofPushOnLabel: "hof.pushOn",
+
+  bugReportTitle: "bug.title",
+  bugReportSubtitle: "bug.subtitle",
+  bugReportSubmitBtn: "bug.send",
+  bugReportCancelBtn: "bug.cancel",
 };
 
 // HTML `placeholder`/`title` attributes aren't plain text nodes, so the
@@ -208,6 +214,7 @@ const STATIC_PLACEHOLDER_MAP = {
   mpOnlineNameInput: "online.yourName",
   mpJoinCodeInput: "online.roomCodePlaceholder",
   hofGlobalNameInput: "online.yourName",
+  bugReportText: "bug.placeholder",
 };
 
 const STATIC_TITLE_MAP = {

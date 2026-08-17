@@ -5,6 +5,7 @@ import { t, getLang, showLangPicker, onLangChange } from "./i18n/index.js";
 import { translatePackName } from "./i18n/content/leagues.js";
 import { resolvePlayer } from "./i18n/content/index.js";
 import { toast } from "./ui.js";
+import { bumpGamesPlayedCounter } from "./backend.js";
 
 const $ = (id) => document.getElementById(id);
 const MP_POINTS = 100;
@@ -270,6 +271,7 @@ function showResults() {
     )
     .join("");
   $("mpResultsOverlay").classList.add("show");
+  bumpGamesPlayedCounter();
 
   // Local multiplayer is one shared device passed around the room — record
   // the winner(s) into the on-device champions log so regulars can see who's

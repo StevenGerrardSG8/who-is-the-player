@@ -13,7 +13,7 @@ import { t, getLang, showLangPicker, onLangChange } from "./i18n/index.js";
 import { translatePackName } from "./i18n/content/leagues.js";
 import { resolvePlayer } from "./i18n/content/index.js";
 import { toast } from "./ui.js";
-import { recordRun, recordMatchResult } from "./backend.js";
+import { recordRun, recordMatchResult, bumpGamesPlayedCounter } from "./backend.js";
 
 const $ = (id) => document.getElementById(id);
 const MP_POINTS = 100;
@@ -767,6 +767,7 @@ function showResults() {
     recordMatchResult({ won: winners.includes(game.players[myPlayerIdx]) });
   }
   recordRun({ score: game.players[myPlayerIdx].score, mode: "online-multiplayer", packId: game.packId });
+  bumpGamesPlayedCounter();
 }
 
 function quitSilently() {

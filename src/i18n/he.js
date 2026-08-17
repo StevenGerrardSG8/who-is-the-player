@@ -121,6 +121,17 @@ export default {
   "mp.passTurn": "העבר תור",
   "mp.turnPassed": "{name} העביר/ה תור — הבא בתור!",
 
+  "bug.btnLabel": "דיווח על באג",
+  "bug.title": "נתקלת בבאג?",
+  "bug.subtitle": "תספרו לנו מה קרה — אנחנו קוראים כל דיווח.",
+  "bug.placeholder": "מה קרה?",
+  "bug.send": "שלח",
+  "bug.cancel": "ביטול",
+  "bug.sending": "שולח…",
+  "bug.sent": "תודה, קיבלנו! 🙏",
+  "bug.failed": "לא הצלחנו לשלוח — בדקו את החיבור ונסו שוב.",
+  "bug.empty": "כתבו כמה מילים על מה שקרה לפני השליחה.",
+
   "lang.pickTitle": "בחר את השפה שלך",
   "lang.pickSubtitle": "תוכל לשנות זאת מאוחר יותר בכפתור השפה",
   "lang.continue": "המשך",

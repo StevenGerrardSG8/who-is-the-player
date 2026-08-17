@@ -38,6 +38,8 @@ import {
   getGlobalName,
   setGlobalName,
   recordRun,
+  bumpGamesPlayedCounter,
+  submitBugReport,
   fetchLeaderboard,
   isPushAlreadyEnabled,
   enablePushNotifications,
@@ -645,6 +647,7 @@ function showPackComplete() {
   const timeMs = ps.runStartedAt ? Date.now() - ps.runStartedAt : null;
   recordPackRun(ps, { score: ps.runScore || 0, stars: packStarTotal(ps), timeMs, date: Date.now() });
   recordRun({ score: ps.runScore || 0, mode: "solo", packId: currentPackId });
+  bumpGamesPlayedCounter();
   ps.runScore = 0;
   ps.runStartedAt = null;
   ctx.persist();

@@ -22,10 +22,42 @@
   </div>
 </div>
 
+<!-- ============ BUG REPORT ============ -->
+<div class="overlay" id="bugReportOverlay">
+  <div class="modal">
+    <h2 id="bugReportTitle">Found a bug?</h2>
+    <p class="subtitle" id="bugReportSubtitle">Tell us what happened — we read every report.</p>
+    <textarea class="bug-report-text" id="bugReportText" maxlength="2000" rows="5" placeholder="What went wrong?"></textarea>
+    <p class="mp-online-error" id="bugReportStatus"></p>
+    <button class="btn-main" id="bugReportSubmitBtn">Send</button>
+    <button class="link-btn" id="bugReportCancelBtn">Cancel</button>
+  </div>
+</div>
+
+<!-- ============ ADMIN (private, ?admin=1 only) ============ -->
+<div class="overlay" id="adminOverlay">
+  <div class="modal admin-modal">
+    <h2>Admin</h2>
+    <div id="adminLoginForm">
+      <input type="email" id="adminEmailInput" placeholder="Email" autocomplete="username">
+      <input type="password" id="adminPasswordInput" placeholder="Password" autocomplete="current-password">
+      <button class="btn-main" id="adminLoginBtn">Sign in</button>
+      <p class="mp-online-error" id="adminLoginError"></p>
+    </div>
+    <div id="adminStatsPanel" style="display:none">
+      <div class="admin-stat-row"><span>Games played</span><b id="adminGamesPlayed">0</b></div>
+      <div class="admin-stat-row"><span>Unique visitors</span><b id="adminUniqueVisitors">0</b></div>
+      <h3>Bug reports</h3>
+      <div id="adminBugReportsList"></div>
+    </div>
+  </div>
+</div>
+
 <!-- ============ HOME SCREEN ============ -->
 <div class="wrap" id="screenHome">
   <div class="home-toolbar">
     <button class="toolbar-chip" id="multiplayerBtn"><span class="toolbar-chip-icon">🎉</span><span class="toolbar-chip-label" id="multiplayerBtnLabel">Multiplayer</span></button>
+    <button class="toolbar-chip" id="bugReportBtn"><span class="toolbar-chip-icon">🐞</span><span class="toolbar-chip-label" id="bugReportBtnLabel">Report a bug</span></button>
     <button class="toolbar-chip" id="languageBtn"><span class="toolbar-chip-icon">🌐</span><span class="toolbar-chip-label" id="languageBtnLabel">Language</span></button>
   </div>
 

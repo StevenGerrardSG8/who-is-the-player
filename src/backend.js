@@ -4,7 +4,7 @@
 // the experience once a player opts in by setting a global name in the
 // Hall of Fame screen (see showHallOfFame in ui.js).
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
-import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+import { getAuth, signInAnonymously, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
 import {
   getFirestore,
   doc,
@@ -12,6 +12,7 @@ import {
   setDoc,
   addDoc,
   arrayUnion,
+  increment,
   collection,
   query,
   where,
@@ -52,9 +53,93 @@ signInAnonymously(auth).catch(() => {
 
 let cachedName = null;
 
+const AUTO_NAME_ADJECTIVES = ["Swift", "Clever", "Mighty", "Golden", "Silent", "Rapid", "Lucky", "Bold", "Sharp", "Iron"];
+const AUTO_NAME_NOUNS = ["Striker", "Keeper", "Winger", "Captain", "Baller", "Legend", "Ranger", "Falcon", "Tiger", "Phoenix"];
+
+function generateAutoName() {
+  const adjective = AUTO_NAME_ADJECTIVES[Math.floor(Math.random() * AUTO_NAME_ADJECTIVES.length)];
+  const noun = AUTO_NAME_NOUNS[Math.floor(Math.random() * AUTO_NAME_NOUNS.length)];
+  const suffix = Math.floor(Math.random() * 900 + 100);
+  return `${adjective}${noun}${suffix}`;
+}
+
 export async function initBackend() {
   cachedName = (await storage.get(GLOBAL_NAME_STORAGE_KEY)) || null;
-  return Promise.race([ready, new Promise((r) => setTimeout(r, 4000))]);
+  await Promise.race([ready, new Promise((r) => setTimeout(r, 4000))]);
+  if (!cachedName) {
+    await setGlobalName(generateAutoName());
+  }
+  countVisitorOnce();
+}
+
+// Counts this device once, ever, toward the private admin "unique visitors"
+// total — gated on the players/{uid} doc not existing yet, so a returning
+// device (same browser/uid) never re-counts even if the local flag below is
+// somehow cleared.
+const VISITOR_COUNTED_KEY = "wtp_visitor_counted";
+async function countVisitorOnce() {
+  if (!uid || (await storage.get(VISITOR_COUNTED_KEY))) return;
+  try {
+    const ref = doc(db, "players", uid);
+    const snap = await getDoc(ref);
+    if (!snap.exists()) {
+      await setDoc(ref, { firstSeenAt: serverTimestamp() }, { merge: true });
+      await setDoc(doc(db, "stats", "summary"), { uniqueVisitors: increment(1) }, { merge: true });
+    }
+    await storage.set(VISITOR_COUNTED_KEY, true);
+  } catch (e) {}
+}
+
+// Called once per completed game (any mode) — deliberately independent of
+// the opt-in global name/uid gating that recordRun uses, so the "games
+// played" admin counter reflects every device, not just named players.
+export async function bumpGamesPlayedCounter() {
+  if (!uid) return;
+  try {
+    await setDoc(doc(db, "stats", "summary"), { gamesPlayed: increment(1) }, { merge: true });
+  } catch (e) {}
+}
+
+// Write-only from the app's perspective — see firestore.rules, only the
+// developer's own signed-in account can ever read these back.
+export async function submitBugReport(text) {
+  const trimmed = (text || "").trim();
+  if (!uid || !trimmed) return false;
+  try {
+    await addDoc(collection(db, "bugReports"), {
+      uid,
+      text: trimmed.slice(0, 2000),
+      name: cachedName || null,
+      lang: typeof navigator !== "undefined" ? navigator.language : null,
+      ua: typeof navigator !== "undefined" ? navigator.userAgent : null,
+      page: typeof location !== "undefined" ? location.href : null,
+      createdAt: serverTimestamp(),
+    });
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+/* ============================================================
+   ADMIN — private stats view, gated by real Firebase Auth (see
+   firestore.rules: only request.auth.token.email === the developer's
+   own account can read "stats/summary" or list "bugReports"). Signing
+   in here replaces this tab's anonymous session, so it's only ever
+   called from the dedicated ?admin=1 screen, never during normal play.
+============================================================ */
+export async function adminSignIn(email, password) {
+  await signInWithEmailAndPassword(auth, email, password);
+}
+
+export async function fetchAdminStats() {
+  const snap = await getDoc(doc(db, "stats", "summary"));
+  return snap.exists() ? snap.data() : { gamesPlayed: 0, uniqueVisitors: 0 };
+}
+
+export async function fetchBugReports() {
+  const snap = await getDocs(query(collection(db, "bugReports"), orderBy("createdAt", "desc"), limit(100)));
+  return snap.docs.map((d) => ({ id: d.id, ...d.data() }));
 }
 
 export function getGlobalName() {
