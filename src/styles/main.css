@@ -569,6 +569,14 @@ h1 span{
 }
 .mp-turn-banner.awaiting{border-color:var(--foil);animation:bannerPulse 1s ease-in-out infinite}
 @keyframes bannerPulse{0%,100%{box-shadow:0 4px 10px rgba(0,0,0,.25),0 0 0 0 rgba(255,233,168,.35)}50%{box-shadow:0 4px 10px rgba(0,0,0,.25),0 0 0 6px rgba(255,233,168,.1)}}
+.mp-mode-choice{display:flex;flex-direction:column;gap:6px;margin-top:4px}
+.mp-mode-choice>span{color:var(--ink-soft);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.4px}
+.mp-mode-option{display:flex!important;align-items:center;gap:8px;font-weight:600;font-size:13px;cursor:pointer}
+.mp-mode-option input{accent-color:var(--foil);width:16px;height:16px}
+.mp-turn-progress{width:100%;max-width:260px;height:6px;margin:6px auto 0;background:rgba(255,255,255,0.12);border-radius:999px;overflow:hidden}
+.mp-turn-progress-fill{height:100%;width:100%;background:var(--foil);border-radius:999px;transition:width .25s linear,background-color .25s}
+.mp-turn-progress-fill.urgent{background:#e05a4e}
+#screenMpoGame.spectating #mpoBank,#screenMpoGame.spectating #mpoAnswer,#screenMpoGame.spectating #mpoSkipBtn{pointer-events:none;opacity:.45}
 .mp-final-row{font-family:var(--score);font-weight:700;font-size:14px;color:var(--ink);padding:5px 0;border-bottom:1px dashed var(--card-edge)}
 .mp-final-row:last-child{border-bottom:0}
 .mp-final-row.winner{

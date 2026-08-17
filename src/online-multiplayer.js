@@ -42,6 +42,7 @@ const ICE_CONFIG = {
 };
 
 const MAX_TOTAL_PLAYERS = 99;
+const TURN_MS = 20000; // per-turn time limit in "turns" mode
 
 let peer = null;
 let conn = null; // guest's single connection to the host
@@ -60,6 +61,13 @@ let skippedIdxs = new Set();
 let skippedNames = []; // names announced as skipped this round, in order
 let winnerFlashIdx = null; // briefly highlights the round's winning chip
 let resolved = null; // current round's player, resolved for the active UI language
+
+// "turns" mode only: players answer one at a time, in join order.
+let turnOrder = []; // this round's rotation, e.g. [0,1,2] — fixed join order
+let activeIdx = null; // idx whose turn it currently is, or null before it's assigned
+let turnDeadline = null; // ms epoch when the active player's turn expires
+let hostTurnTimeoutHandle = null; // host-only: fallback that force-passes a stalled turn
+let turnCountdownHandle = null; // UI tick for the progress bar, runs on every client
 let lastPackChoiceId = null; // guest-only: last pack the host broadcast, for re-render on lang change
 
 // Tracks the last lobby-status message shown so it can be re-translated in
@@ -320,6 +328,8 @@ function handleGuestMessage(msg) {
     applyRoundResult(msg.winnerIdx);
   } else if (msg.type === "skipAnnounce") {
     announceSkip(msg.idx);
+  } else if (msg.type === "turnStart") {
+    applyTurnStart(msg.idx, msg.deadline);
   } else if (msg.type === "quit") {
     toast(t("online.opponentLeft", { name: peerName || t("online.opponentFallback") }));
     quitToHome();
@@ -357,7 +367,8 @@ function handleGuestDisconnect(idx) {
       skippedIdxs.add(idx);
       broadcast({ type: "skipAnnounce", idx });
       announceSkip(idx);
-      checkAllSkipped();
+      if (game.mode === "turns") hostAdvanceTurnAfterSkip(idx);
+      else checkAllSkipped();
     }
   } else {
     renderRoster();
@@ -393,6 +404,8 @@ function handleHostMessage(msg, idx) {
     setLobbyStatus("online.playersJoined", { count: lobbyRoster.length });
   } else if (msg.type === "attempt") {
     handlePeerAttempt(idx, msg.correct);
+  } else if (msg.type === "passTurn") {
+    if (activeIdx === idx) hostHandleTurnSkip(idx);
   }
 }
 
@@ -402,16 +415,17 @@ function hostStart() {
   const rounds = Math.max(1, Math.min(20, parseInt($("mpOnlineRoundsInput").value, 10) || 5));
   const deckIndices = buildDeckIndices(pack.players.length, rounds);
   const names = lobbyRoster.map((p) => p.name);
+  const mode = $("mpModeTurnsRadio").checked ? "turns" : "race";
 
-  broadcast({ type: "start", packId, rounds, deckIndices, names });
-  beginGame(packId, deckIndices, names, rounds);
+  broadcast({ type: "start", packId, rounds, deckIndices, names, mode });
+  beginGame(packId, deckIndices, names, rounds, mode);
 }
 
 function startFromNetwork(msg) {
-  beginGame(msg.packId, msg.deckIndices, msg.names, msg.rounds);
+  beginGame(msg.packId, msg.deckIndices, msg.names, msg.rounds, msg.mode);
 }
 
-function beginGame(packId, deckIndices, names, rounds) {
+function beginGame(packId, deckIndices, names, rounds, mode) {
   const pack = packs[packId];
   game = {
     players: names.map((n) => ({ name: n, score: 0 })),
@@ -419,6 +433,7 @@ function beginGame(packId, deckIndices, names, rounds) {
     roundIndex: 0,
     rounds,
     packId,
+    mode: mode || "race",
   };
   showScreen("screenMpoGame");
   buildRound();
@@ -449,11 +464,19 @@ function buildRound() {
   skippedIdxs = new Set();
   skippedNames = [];
   winnerFlashIdx = null;
+  clearHostTurnTimeout();
+  clearTurnCountdown();
+  turnOrder = game.players.map((_, i) => i);
+  activeIdx = null;
+  turnDeadline = null;
   const p = game.deck[game.roundIndex];
   resolved = resolvePlayer(p, getLang());
   $("mpoSticker").classList.remove("win");
   $("mpoStickerNum").textContent = "#" + (game.roundIndex + 1);
-  $("mpoTurnBanner").textContent = t("mp.raceBanner");
+  $("screenMpoGame").classList.toggle("spectating", game.mode === "turns");
+  $("mpoTurnProgress").style.display = game.mode === "turns" ? "" : "none";
+  $("mpoTurnBanner").textContent = game.mode === "turns" ? "" : t("mp.raceBanner");
+  $("mpoSkipBtn").textContent = t("mp.skip");
   $("mpoAnswer").classList.remove("correct", "wrong", "rtl");
 
   const answerEl = $("mpoAnswer");
@@ -478,10 +501,15 @@ function buildRound() {
   loadPhoto(p, $("mpoPhoto"));
   prefetchPhotos(game.deck.slice(game.roundIndex + 1, game.roundIndex + 3));
   renderScoreboard();
+  if (game.mode === "turns" && myPlayerIdx === 0) startTurn(turnOrder[0]);
+}
+
+function isMyTurn() {
+  return game.mode !== "turns" || activeIdx === myPlayerIdx;
 }
 
 function placeTile(tile) {
-  if (locked || tile.used) return;
+  if (locked || tile.used || !isMyTurn()) return;
   const empty = slots.find((s) => s.tileIdx === null);
   if (!empty) return;
   empty.tileIdx = tiles.indexOf(tile);
@@ -516,9 +544,105 @@ function checkNow() {
 }
 
 function skipTurn() {
-  if (locked) return;
+  if (locked || !isMyTurn()) return;
+  if (game.mode === "turns") {
+    locked = true;
+    if (myPlayerIdx === 0) hostHandleTurnSkip(0);
+    else if (conn) conn.send({ type: "passTurn" });
+    return;
+  }
   locked = true;
   reportAttempt(false);
+}
+
+/* ------------------------------------------------------------
+   "turns" mode: players answer one at a time, in a fixed order.
+   The host is the sole authority on whose turn it is (mirrors how
+   it's the sole authority on round winners) — it broadcasts every
+   turn change, and runs a fallback timer per turn so a stalled or
+   backgrounded device can't hang the whole round.
+------------------------------------------------------------- */
+function clearHostTurnTimeout() {
+  if (hostTurnTimeoutHandle) {
+    clearTimeout(hostTurnTimeoutHandle);
+    hostTurnTimeoutHandle = null;
+  }
+}
+
+function clearTurnCountdown() {
+  if (turnCountdownHandle) {
+    clearInterval(turnCountdownHandle);
+    turnCountdownHandle = null;
+  }
+}
+
+// Host-only: assigns the turn to `idx`, broadcasts it, and arms the
+// fallback timeout that force-passes the turn if nobody acts in time.
+function startTurn(idx) {
+  turnDeadline = Date.now() + TURN_MS;
+  broadcast({ type: "turnStart", idx, deadline: turnDeadline });
+  applyTurnStart(idx, turnDeadline);
+}
+
+// Runs on every client (host included) when a turn starts or changes.
+function applyTurnStart(idx, deadline) {
+  activeIdx = idx;
+  turnDeadline = deadline;
+  locked = false;
+  renderTurnBanner();
+  clearTurnCountdown();
+  tickTurnCountdown();
+  turnCountdownHandle = setInterval(tickTurnCountdown, 200);
+  if (myPlayerIdx === 0) {
+    clearHostTurnTimeout();
+    const ms = Math.max(0, deadline - Date.now()) + 1000; // grace for network latency
+    hostTurnTimeoutHandle = setTimeout(() => {
+      if (roundDecided || activeIdx !== idx) return;
+      hostHandleTurnSkip(idx);
+    }, ms);
+  }
+}
+
+function renderTurnBanner() {
+  if (!game || game.mode !== "turns" || activeIdx === null) return;
+  $("screenMpoGame").classList.toggle("spectating", activeIdx !== myPlayerIdx);
+  const seconds = Math.max(0, Math.ceil((turnDeadline - Date.now()) / 1000));
+  const name = game.players[activeIdx] ? game.players[activeIdx].name : "";
+  $("mpoTurnBanner").textContent = activeIdx === myPlayerIdx ? t("mp.yourTurn", { seconds }) : t("mp.waitingTurn", { name, seconds });
+  $("mpoSkipBtn").textContent = t("mp.passTurn");
+}
+
+function tickTurnCountdown() {
+  if (!game || game.mode !== "turns" || activeIdx === null || turnDeadline === null) return;
+  const remainingMs = turnDeadline - Date.now();
+  const pct = Math.max(0, Math.min(100, (remainingMs / TURN_MS) * 100));
+  const fill = $("mpoTurnProgressFill");
+  fill.style.width = pct + "%";
+  fill.classList.toggle("urgent", remainingMs < TURN_MS * 0.25);
+  renderTurnBanner();
+}
+
+// Host-only: idx passed (explicitly, or via the fallback timeout) — mark
+// it skipped and either resolve the round (everyone's had a turn) or hand
+// the turn to the next player in the fixed order who hasn't gone yet.
+function hostHandleTurnSkip(idx) {
+  if (roundDecided || skippedIdxs.has(idx)) return;
+  skippedIdxs.add(idx);
+  broadcast({ type: "skipAnnounce", idx });
+  announceSkip(idx);
+  hostAdvanceTurnAfterSkip(idx);
+}
+
+function hostAdvanceTurnAfterSkip(idx) {
+  if (roundDecided) return;
+  if (skippedIdxs.size >= turnOrder.length) {
+    resolveRound(null);
+    return;
+  }
+  if (activeIdx === idx) {
+    const next = turnOrder.find((i) => !skippedIdxs.has(i));
+    if (next !== undefined) startTurn(next);
+  }
 }
 
 // Host is the single authority that decides who won a round — its own
@@ -582,6 +706,10 @@ function applyRoundResult(winnerIdx) {
 
 function showRoundOutcome(winnerIdx) {
   locked = true;
+  clearHostTurnTimeout();
+  clearTurnCountdown();
+  $("screenMpoGame").classList.remove("spectating");
+  $("mpoTurnProgress").style.display = "none";
   if (winnerIdx === null) {
     $("mpoAnswer").classList.add("wrong");
     $("mpoTurnBanner").textContent = t("online.roundSkipped");
@@ -642,6 +770,8 @@ function showResults() {
 }
 
 function quitSilently() {
+  clearHostTurnTimeout();
+  clearTurnCountdown();
   if (conn) {
     try {
       conn.close();

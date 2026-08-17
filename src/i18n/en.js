@@ -113,6 +113,13 @@ export default {
   "online.packChosen": "Pack: {pack}",
   "online.skipAnnounce": "{name} skipped — waiting on the rest…",
   "online.quit": "← Quit",
+  "online.modeLabel": "Game mode",
+  "online.modeRace": "Race — everyone answers at once",
+  "online.modeTurns": "Turns — one player at a time",
+  "mp.yourTurn": "Your turn! ⏳ {seconds}s",
+  "mp.waitingTurn": "{name}'s turn ⏳ {seconds}s",
+  "mp.passTurn": "Pass turn",
+  "mp.turnPassed": "{name} passed — next up!",
 
   "lang.pickTitle": "Choose your language",
   "lang.pickSubtitle": "You can change this later from the Language button",

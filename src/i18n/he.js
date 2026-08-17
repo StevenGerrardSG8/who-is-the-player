@@ -113,6 +113,13 @@ export default {
   "online.packChosen": "חבילה: {pack}",
   "online.skipAnnounce": "{name} דילג/ה — ממתינים לשאר…",
   "online.quit": "← יציאה",
+  "online.modeLabel": "מצב משחק",
+  "online.modeRace": "מרוץ — כולם עונים בבת אחת",
+  "online.modeTurns": "תורות — שחקן אחד בכל פעם",
+  "mp.yourTurn": "התור שלך! ⏳ {seconds} שניות",
+  "mp.waitingTurn": "התור של {name} ⏳ {seconds} שניות",
+  "mp.passTurn": "העבר תור",
+  "mp.turnPassed": "{name} העביר/ה תור — הבא בתור!",
 
   "lang.pickTitle": "בחר את השפה שלך",
   "lang.pickSubtitle": "תוכל לשנות זאת מאוחר יותר בכפתור השפה",
