@@ -1,210 +1,492 @@
+// A curated set of 70 recognizable active women's players, seeded from the
+// highest-rated FC 26 players. Retired legends are intentionally excluded.
 export default {
   id: "womens-football",
-  name: "Women's Football Icons",
+  name: "Women's Football Elite",
   icon: "⚽",
   players: [
-{
-      answer: "MARTA",
-      wiki: "Marta (footballer)",
-      pos: "Forward",
-      country: "🇧🇷 Brazil",
-      career: [["2000–2002","Vasco da Gama"],["2002–2004","Santa Cruz"],["2004–2008","Umeå IK"],["2009","Los Angeles Sol"],["2010","FC Gold Pride"],["2011","Western New York Flash"],["2012–2014","Tyresö FF"],["2014–2017","FC Rosengård"],["2017–","Orlando Pride"]]
-    },
-{
-      answer: "MORGAN",
-      wiki: "Alex Morgan",
-      pos: "Forward",
-      country: "🇺🇸 United States",
-      career: [["2011","Western New York Flash"],["2013–2015","Portland Thorns FC"],["2016–2020","Orlando Pride"],["2020","Tottenham Hotspur"],["2021","Orlando Pride"],["2022–2024","San Diego Wave FC"]]
-    },
-{
-      answer: "RAPINOE",
-      wiki: "Megan Rapinoe",
-      pos: "Midfielder",
-      country: "🇺🇸 United States",
-      career: [["2009–2010","Chicago Red Stars"],["2011","Philadelphia Independence"],["2011–2012","Sydney FC"],["2012","Seattle Sounders Women"],["2013–2014","Lyon"],["2013–2023","Seattle Reign FC"]]
-    },
-{
-      answer: "WAMBACH",
-      wiki: "Abby Wambach",
-      pos: "Forward",
-      country: "🇺🇸 United States",
-      career: [["2002–2003","Washington Freedom"],["2005","Ajax America Women"],["2009–2010","Washington Freedom"],["2011","magicJack"],["2013–2014","Western New York Flash"]]
-    },
-{
-      answer: "HAMM",
-      wiki: "Mia Hamm",
-      pos: "Forward",
-      country: "🇺🇸 United States",
-      career: [["2001–2003","Washington Freedom"]]
-    },
-{
+    {
       answer: "PUTELLAS",
       wiki: "Alexia Putellas",
       pos: "Midfielder",
       country: "🇪🇸 Spain",
-      career: [["2008–2010","Espanyol B"],["2010–2011","Espanyol"],["2011–2012","Levante"],["2012–2026","Barcelona"],["2026–","London City Lionesses"]]
+      career: [["2008–2010", "Espanyol B"], ["2010–2011", "Espanyol"], ["2011–2012", "Levante"], ["2012–2026", "Barcelona"], ["2026–", "London City Lionesses"]],
     },
-{
+    {
       answer: "BONMATI",
       wiki: "Aitana Bonmatí",
       pos: "Midfielder",
       country: "🇪🇸 Spain",
-      career: [["2014–2016","Barcelona B"],["2016–","Barcelona"]]
+      career: [["2014–2016", "Barcelona B"], ["2016–", "Barcelona"]],
     },
-{
-      answer: "HEGERBERG",
-      wiki: "Ada Hegerberg",
-      pos: "Forward",
-      country: "🇳🇴 Norway",
-      career: [["2010–2011","Kolbotn"],["2012–2013","Stabæk"],["2013–2014","Turbine Potsdam"],["2014–","Lyon"]]
-    },
-{
-      answer: "KERR",
-      wiki: "Sam Kerr",
-      pos: "Forward",
-      country: "🇦🇺 Australia",
-      career: [["2009–2019","Perth Glory"],["2013–2014","Western New York Flash"],["2015–2017","Sky Blue FC"],["2018–2019","Chicago Red Stars"],["2020–2026","Chelsea"],["2026–","Gotham FC"]]
-    },
-{
-      answer: "RENARD",
-      wiki: "Wendie Renard",
-      pos: "Defender",
-      country: "🇫🇷 France",
-      career: [["2006–","Lyon"]]
-    },
-{
-      answer: "MIEDEMA",
-      wiki: "Vivianne Miedema",
-      pos: "Forward",
-      country: "🇳🇱 Netherlands",
-      career: [["2011–2014","SC Heerenveen"],["2014–2017","Bayern Munich"],["2017–2024","Arsenal"],["2024–","Manchester City"]]
-    },
-{
-      answer: "BRONZE",
-      wiki: "Lucy Bronze",
-      pos: "Defender",
-      country: "🏴 England",
-      career: [["2007–2010","Sunderland"],["2010–2012","Everton"],["2012–2014","Liverpool"],["2014–2017","Manchester City"],["2017–2020","Lyon"],["2020–2022","Manchester City"],["2022–2024","Barcelona"],["2024–","Chelsea"]]
-    },
-{
-      answer: "SINCLAIR",
-      wiki: "Christine Sinclair",
-      pos: "Forward",
-      country: "🇨🇦 Canada",
-      career: [["2006–2008","Vancouver Whitecaps FC"],["2009–2010","FC Gold Pride"],["2011–2012","Western New York Flash"],["2013–2024","Portland Thorns FC"]]
-    },
-{
-      answer: "SAWA",
-      wiki: "Homare Sawa",
-      pos: "Midfielder",
-      country: "🇯🇵 Japan",
-      career: [["1991–1999","Nippon TV Beleza"],["1999–2000","Denver Diamonds"],["2001–2003","Atlanta Beat"],["2004–2008","Nippon TV Beleza"],["2009–2010","Washington Freedom"],["2011–2015","INAC Kobe Leonessa"]]
-    },
-{
-      answer: "PRINZ",
-      wiki: "Birgit Prinz",
-      pos: "Forward",
-      country: "🇩🇪 Germany",
-      career: [["1993–1998","FSV Frankfurt"],["1998–2002","1. FFC Frankfurt"],["2002–2003","Carolina Courage"],["2003–2011","1. FFC Frankfurt"]]
-    },
-{
-      answer: "SOLO",
-      wiki: "Hope Solo",
-      pos: "Goalkeeper",
-      country: "🇺🇸 United States",
-      career: [["2003","Philadelphia Charge"],["2004","Kopparbergs/Göteborg"],["2005","Lyon"],["2009–2010","Saint Louis Athletica"],["2010","Atlanta Beat"],["2011","magicJack"],["2012","Seattle Sounders Women"],["2013–2016","Seattle Reign FC"]]
-    },
-{
-      answer: "EARPS",
-      wiki: "Mary Earps",
-      pos: "Goalkeeper",
-      country: "🏴 England",
-      career: [["2009–2010","Leicester City"],["2010–2011","Nottingham Forest"],["2011–2012","Doncaster Rovers Belles"],["2013","Birmingham City"],["2014–2015","Bristol Academy"],["2016–2018","Reading"],["2018–2019","VfL Wolfsburg"],["2019–2024","Manchester United"],["2024–2026","Paris Saint-Germain"],["2026–","London City Lionesses"]]
-    },
-{
-      answer: "LLOYD",
-      wiki: "Carli Lloyd",
-      pos: "Midfielder",
-      country: "🇺🇸 United States",
-      career: [["2009","Chicago Red Stars"],["2010","Sky Blue FC"],["2011","Atlanta Beat"],["2013–2014","Western New York Flash"],["2015–2017","Houston Dash"],["2018–2021","NJ/NY Gotham FC"]]
-    },
-{
-      answer: "FORMIGA",
-      wiki: "Formiga (footballer, born 1978)",
-      pos: "Midfielder",
-      country: "🇧🇷 Brazil",
-      career: [["1997–1998","São Paulo FC"],["2000","São Paulo FC"],["2004–2005","Malmö FF Dam"],["2009","FC Gold Pride"],["2010","Chicago Red Stars"],["2013–2015","São José"],["2017–2021","Paris Saint-Germain"],["2022","São Paulo FC"]]
-    },
-{
-      answer: "CRISTIANE",
-      wiki: "Cristiane (footballer)",
-      pos: "Forward",
-      country: "🇧🇷 Brazil",
-      career: [["2003–2005","Juventus-SP"],["2005–2006","Turbine Potsdam"],["2006–2007","VfL Wolfsburg"],["2009","Chicago Red Stars"],["2011–2012","Rossiyanka"],["2015–2017","Paris Saint-Germain"],["2017–2019","Changchun Zhuoyue"],["2020–2023","Santos"],["2024–","Flamengo"]]
-    },
-{
-      answer: "AKERS",
-      wiki: "Michelle Akers",
-      pos: "Forward",
-      country: "🇺🇸 United States",
-      career: [["1990","Tyresö FF"],["1992","Orlando Lions Women"],["1994","Tyresö FF"]]
-    },
-{
-      answer: "HARDER",
-      wiki: "Pernille Harder",
-      pos: "Forward",
-      country: "🇩🇰 Denmark",
-      career: [["2007–2010","Team Viborg"],["2010–2012","IK Skovbakken"],["2012–2016","Linköping"],["2016–2020","VfL Wolfsburg"],["2020–2023","Chelsea"],["2023–","Bayern Munich"]]
-    },
-{
-      answer: "NECIB",
-      wiki: "Louisa Cadamuro",
-      pos: "Midfielder",
-      country: "🇫🇷 France",
-      career: [["2006–2007","Montpellier"],["2007–2016","Lyon"]]
-    },
-{
+    {
       answer: "GRAHAM HANSEN",
       wiki: "Caroline Graham Hansen",
       pos: "Forward",
       country: "🇳🇴 Norway",
-      career: [["2010–2013","Stabæk"],["2013","Tyresö FF"],["2014","Stabæk"],["2014–2019","VfL Wolfsburg"],["2019–","Barcelona"]]
+      career: [["2010–2013", "Stabæk"], ["2013", "Tyresö FF"], ["2014", "Stabæk"], ["2014–2019", "VfL Wolfsburg"], ["2019–", "Barcelona"]],
     },
-{
-      answer: "OSHOALA",
-      wiki: "Asisat Oshoala",
+    {
+      answer: "RUSSO",
+      wiki: "Alessia Russo",
       pos: "Forward",
-      country: "🇳🇬 Nigeria",
-      career: [["2013–2015","Rivers Angels"],["2015–2016","Liverpool"],["2016–2017","Arsenal"],["2017–2019","Dalian Quanjian"],["2019–2024","Barcelona"],["2024–2025","Bay FC"],["2025–","Al Hilal"]]
+      country: "🏴 England",
+      career: [["2016–2017", "Chelsea"], ["2017", "Brighton & Hove Albion"], ["2020–2023", "Manchester United"], ["2023–", "Arsenal"]],
     },
-{
+    {
+      answer: "CALDENTEY",
+      wiki: "Mariona Caldentey",
+      pos: "Midfielder",
+      country: "🇪🇸 Spain",
+      career: [["2011–2014", "Collerense"], ["2014–2024", "Barcelona"], ["2024–", "Arsenal"]],
+    },
+    {
+      answer: "GUIJARRO",
+      wiki: "Patri Guijarro",
+      pos: "Midfielder",
+      country: "🇪🇸 Spain",
+      career: [["2013–2015", "Collerense"], ["2015–", "Barcelona"]],
+    },
+    {
+      answer: "SHAW",
+      wiki: "Khadija Shaw",
+      pos: "Forward",
+      country: "🇯🇲 Jamaica",
+      career: [["2018", "Florida Krush"], ["2019–2021", "Bordeaux"], ["2021–", "Manchester City"]],
+    },
+    {
+      answer: "MAPI LEON",
+      wiki: "Mapi León",
+      pos: "Defender",
+      country: "🇪🇸 Spain",
+      career: [["2011–2013", "Espanyol"], ["2013–2014", "Prainsa Zaragoza"], ["2014–2017", "Atlético Madrid"], ["2017–", "Barcelona"]],
+    },
+    {
+      answer: "KATOTO",
+      wiki: "Marie-Antoinette Katoto",
+      pos: "Forward",
+      country: "🇫🇷 France",
+      career: [["2015–2025", "Paris Saint-Germain"], ["2025–", "Lyon"]],
+    },
+    {
+      answer: "DIANI",
+      wiki: "Kadidiatou Diani",
+      pos: "Forward",
+      country: "🇫🇷 France",
+      career: [["2010–2014", "Juvisy"], ["2014–2017", "Paris FC"], ["2017–2023", "Paris Saint-Germain"], ["2023–", "Lyon"]],
+    },
+    {
+      answer: "WILSON",
+      wiki: "Sophia Wilson (soccer)",
+      pos: "Forward",
+      country: "🇺🇸 United States",
+      career: [["2020–", "Portland Thorns FC"]],
+    },
+    {
+      answer: "REITEN",
+      wiki: "Guro Reiten",
+      pos: "Midfielder",
+      country: "🇳🇴 Norway",
+      career: [["2011–2012", "Kattem"], ["2013–2016", "Trondheims-Ørn"], ["2017–2019", "LSK Kvinner"], ["2019–", "Chelsea"]],
+    },
+    {
+      answer: "PAJOR",
+      wiki: "Ewa Pajor",
+      pos: "Forward",
+      country: "🇵🇱 Poland",
+      career: [["2012–2015", "Medyk Konin"], ["2015–2024", "VfL Wolfsburg"], ["2024–", "Barcelona"]],
+    },
+    {
+      answer: "ENDLER",
+      wiki: "Christiane Endler",
+      pos: "Goalkeeper",
+      country: "🇨🇱 Chile",
+      career: [["2009–2010", "Unión La Calera"], ["2010", "Everton de Viña del Mar"], ["2011–2012", "Colo-Colo"], ["2014–2016", "Colo-Colo"], ["2016–2017", "Valencia"], ["2017–2021", "Paris Saint-Germain"], ["2021–", "Lyon"]],
+    },
+    {
+      answer: "DEBINHA",
+      wiki: "Debinha",
+      pos: "Midfielder",
+      country: "🇧🇷 Brazil",
+      career: [["2011–2013", "Centro Olímpico"], ["2013–2015", "Avaldsnes"], ["2016", "Dalian Quanjian"], ["2017–2022", "North Carolina Courage"], ["2023–", "Kansas City Current"]],
+    },
+    {
+      answer: "PAREDES",
+      wiki: "Irene Paredes",
+      pos: "Defender",
+      country: "🇪🇸 Spain",
+      career: [["2008–2011", "Real Sociedad"], ["2011–2016", "Athletic Bilbao"], ["2016–2021", "Paris Saint-Germain"], ["2021–", "Barcelona"]],
+    },
+    {
+      answer: "KELLY",
+      wiki: "Chloe Kelly",
+      pos: "Forward",
+      country: "🏴 England",
+      career: [["2015–2016", "Arsenal"], ["2016–2020", "Everton"], ["2020–2025", "Manchester City"], ["2025–", "Arsenal"]],
+    },
+    {
+      answer: "HEAPS",
+      wiki: "Lindsey Heaps",
+      pos: "Midfielder",
+      country: "🇺🇸 United States",
+      career: [["2012–2016", "Paris Saint-Germain"], ["2016–2022", "Portland Thorns FC"], ["2022–", "Lyon"]],
+    },
+    {
+      answer: "BRONZE",
+      wiki: "Lucy Bronze",
+      pos: "Defender",
+      country: "🏴 England",
+      career: [["2007–2010", "Sunderland"], ["2010–2012", "Everton"], ["2012–2014", "Liverpool"], ["2014–2017", "Manchester City"], ["2017–2020", "Lyon"], ["2020–2022", "Manchester City"], ["2022–2024", "Barcelona"], ["2024–", "Chelsea"]],
+    },
+    {
+      answer: "LAVELLE",
+      wiki: "Rose Lavelle",
+      pos: "Midfielder",
+      country: "🇺🇸 United States",
+      career: [["2017", "Boston Breakers"], ["2018–2019", "Washington Spirit"], ["2020", "OL Reign"], ["2020–2021", "Manchester City"], ["2021–2023", "OL Reign"], ["2024–", "Gotham FC"]],
+    },
+    {
+      answer: "KARCHAOUI",
+      wiki: "Sakina Karchaoui",
+      pos: "Defender",
+      country: "🇫🇷 France",
+      career: [["2012–2020", "Montpellier"], ["2020–2021", "Lyon"], ["2021–", "Paris Saint-Germain"]],
+    },
+    {
+      answer: "WILLIAMSON",
+      wiki: "Leah Williamson",
+      pos: "Defender",
+      country: "🏴 England",
+      career: [["2014–", "Arsenal"]],
+    },
+    {
+      answer: "MEAD",
+      wiki: "Beth Mead",
+      pos: "Forward",
+      country: "🏴 England",
+      career: [["2011–2017", "Sunderland"], ["2017–", "Arsenal"]],
+    },
+    {
+      answer: "SWANSON",
+      wiki: "Mallory Swanson",
+      pos: "Forward",
+      country: "🇺🇸 United States",
+      career: [["2017", "Washington Spirit"], ["2018", "Sky Blue FC"], ["2019–", "Chicago Stars FC"]],
+    },
+    {
+      answer: "HEGERBERG",
+      wiki: "Ada Hegerberg",
+      pos: "Forward",
+      country: "🇳🇴 Norway",
+      career: [["2010–2011", "Kolbotn"], ["2012–2013", "Stabæk"], ["2013–2014", "Turbine Potsdam"], ["2014–", "Lyon"]],
+    },
+    {
+      answer: "HEMP",
+      wiki: "Lauren Hemp",
+      pos: "Forward",
+      country: "🏴 England",
+      career: [["2016–2018", "Bristol City"], ["2018–", "Manchester City"]],
+    },
+    {
+      answer: "BRIGHT",
+      wiki: "Millie Bright",
+      pos: "Defender",
+      country: "🏴 England",
+      career: [["2009–2014", "Doncaster Rovers Belles"], ["2011–2012", "Leeds United"], ["2015–", "Chelsea"]],
+    },
+    {
+      answer: "MCCABE",
+      wiki: "Katie McCabe",
+      pos: "Defender",
+      country: "🇮🇪 Ireland",
+      career: [["2011–2015", "Raheny United"], ["2015", "Shelbourne"], ["2015–2017", "Arsenal"], ["2017", "Glasgow City"], ["2017–", "Arsenal"]],
+    },
+    {
+      answer: "KERR",
+      wiki: "Sam Kerr",
+      pos: "Forward",
+      country: "🇦🇺 Australia",
+      career: [["2009–2019", "Perth Glory"], ["2013–2014", "Western New York Flash"], ["2015–2017", "Sky Blue FC"], ["2018–2019", "Chicago Red Stars"], ["2020–2026", "Chelsea"], ["2026–", "Gotham FC"]],
+    },
+    {
+      answer: "BERGER",
+      wiki: "Ann-Katrin Berger",
+      pos: "Goalkeeper",
+      country: "🇩🇪 Germany",
+      career: [["2007–2011", "VfL Sindelfingen"], ["2011–2014", "Turbine Potsdam"], ["2014–2016", "Paris Saint-Germain"], ["2016–2019", "Birmingham City"], ["2019–2024", "Chelsea"], ["2024–", "Gotham FC"]],
+    },
+    {
+      answer: "GEYORO",
+      wiki: "Grace Geyoro",
+      pos: "Midfielder",
+      country: "🇫🇷 France",
+      career: [["2014–2026", "Paris Saint-Germain"], ["2026–", "London City Lionesses"]],
+    },
+    {
+      answer: "PINA",
+      wiki: "Claudia Pina",
+      pos: "Forward",
+      country: "🇪🇸 Spain",
+      career: [["2016–2020", "Barcelona B"], ["2017–2020", "Barcelona"], ["2020–2021", "Sevilla"], ["2021–", "Barcelona"]],
+    },
+    {
+      answer: "BUHL",
+      wiki: "Klara Bühl",
+      pos: "Forward",
+      country: "🇩🇪 Germany",
+      career: [["2016–2020", "SC Freiburg"], ["2020–", "Bayern Munich"]],
+    },
+    {
+      answer: "BATLLE",
+      wiki: "Ona Batlle",
+      pos: "Defender",
+      country: "🇪🇸 Spain",
+      career: [["2017–2018", "Barcelona B"], ["2018–2020", "Levante"], ["2020–2023", "Manchester United"], ["2023–", "Barcelona"]],
+    },
+    {
+      answer: "SCHULLER",
+      wiki: "Lea Schüller",
+      pos: "Forward",
+      country: "🇩🇪 Germany",
+      career: [["2013–2020", "SGS Essen"], ["2020–", "Bayern Munich"]],
+    },
+    {
+      answer: "DUMORNAY",
+      wiki: "Melchie Dumornay",
+      pos: "Midfielder",
+      country: "🇭🇹 Haiti",
+      career: [["2017–2021", "AS Tigresses"], ["2021–2023", "Reims"], ["2023–", "Lyon"]],
+    },
+    {
+      answer: "TEMWA CHAWINGA",
+      wiki: "Temwa Chawinga",
+      pos: "Forward",
+      country: "🇲🇼 Malawi",
+      career: [["2017–2019", "Kvarnsvedens IK"], ["2020–2023", "Wuhan Jianghan University"], ["2024–", "Kansas City Current"]],
+    },
+    {
+      answer: "BACHA",
+      wiki: "Selma Bacha",
+      pos: "Defender",
+      country: "🇫🇷 France",
+      career: [["2017–", "Lyon"]],
+    },
+    {
+      answer: "NNADOZIE",
+      wiki: "Chiamaka Nnadozie",
+      pos: "Goalkeeper",
+      country: "🇳🇬 Nigeria",
+      career: [["2016–2020", "Rivers Angels"], ["2020–2026", "Paris FC"], ["2026–", "Brighton & Hove Albion"]],
+    },
+    {
+      answer: "STANWAY",
+      wiki: "Georgia Stanway",
+      pos: "Midfielder",
+      country: "🏴 England",
+      career: [["2015–2022", "Manchester City"], ["2022–", "Bayern Munich"]],
+    },
+    {
+      answer: "CUTHBERT",
+      wiki: "Erin Cuthbert",
+      pos: "Midfielder",
+      country: "🏴 Scotland",
+      career: [["2013–2014", "Rangers"], ["2015–2016", "Glasgow City"], ["2017–", "Chelsea"]],
+    },
+    {
+      answer: "GIUGLIANO",
+      wiki: "Manuela Giugliano",
+      pos: "Midfielder",
+      country: "🇮🇹 Italy",
+      career: [["2013–2014", "Tavagnacco"], ["2014–2015", "Torres"], ["2015–2016", "Mozzanica"], ["2016–2017", "Verona"], ["2017–2018", "Brescia"], ["2018–2019", "AC Milan"], ["2019–", "Roma"]],
+    },
+    {
+      answer: "LITTLE",
+      wiki: "Kim Little",
+      pos: "Midfielder",
+      country: "🏴 Scotland",
+      career: [["2006–2008", "Hibernian"], ["2008–2013", "Arsenal"], ["2014–2016", "Seattle Reign FC"], ["2017–", "Arsenal"]],
+    },
+    {
+      answer: "HASEGAWA",
+      wiki: "Yui Hasegawa",
+      pos: "Midfielder",
+      country: "🇯🇵 Japan",
+      career: [["2013–2020", "Nippon TV Beleza"], ["2021", "AC Milan"], ["2021–2022", "West Ham United"], ["2022–", "Manchester City"]],
+    },
+    {
+      answer: "WEIR",
+      wiki: "Caroline Weir",
+      pos: "Midfielder",
+      country: "🏴 Scotland",
+      career: [["2011–2013", "Hibernian"], ["2013–2015", "Arsenal"], ["2015–2016", "Bristol Academy"], ["2016–2018", "Liverpool"], ["2018–2022", "Manchester City"], ["2022–", "Real Madrid"]],
+    },
+    {
+      answer: "RODMAN",
+      wiki: "Trinity Rodman",
+      pos: "Forward",
+      country: "🇺🇸 United States",
+      career: [["2021–", "Washington Spirit"]],
+    },
+    {
+      answer: "JAMES",
+      wiki: "Lauren James",
+      pos: "Forward",
+      country: "🏴 England",
+      career: [["2017–2018", "Arsenal"], ["2018–2021", "Manchester United"], ["2021–", "Chelsea"]],
+    },
+    {
+      answer: "POPP",
+      wiki: "Alexandra Popp",
+      pos: "Forward",
+      country: "🇩🇪 Germany",
+      career: [["2008–2012", "FCR Duisburg"], ["2012–", "VfL Wolfsburg"]],
+    },
+    {
+      answer: "MARTA",
+      wiki: "Marta (footballer)",
+      pos: "Forward",
+      country: "🇧🇷 Brazil",
+      career: [["2000–2002", "Vasco da Gama"], ["2002–2004", "Santa Cruz"], ["2004–2008", "Umeå IK"], ["2009", "Los Angeles Sol"], ["2010", "FC Gold Pride"], ["2011", "Western New York Flash"], ["2012–2014", "Tyresö FF"], ["2014–2017", "FC Rosengård"], ["2017–", "Orlando Pride"]],
+    },
+    {
+      answer: "TOONE",
+      wiki: "Ella Toone",
+      pos: "Midfielder",
+      country: "🏴 England",
+      career: [["2015–2016", "Blackburn Rovers"], ["2016–2018", "Manchester City"], ["2018–", "Manchester United"]],
+    },
+    {
+      answer: "FOORD",
+      wiki: "Caitlin Foord",
+      pos: "Forward",
+      country: "🇦🇺 Australia",
+      career: [["2010–2013", "Sydney FC"], ["2013–2015", "Sky Blue FC"], ["2014–2016", "Perth Glory"], ["2016–2020", "Sydney FC"], ["2018–2019", "Portland Thorns FC"], ["2020–", "Arsenal"]],
+    },
+    {
+      answer: "GIRMA",
+      wiki: "Naomi Girma",
+      pos: "Defender",
+      country: "🇺🇸 United States",
+      career: [["2022–2025", "San Diego Wave FC"], ["2025–", "Chelsea"]],
+    },
+    {
+      answer: "GIRELLI",
+      wiki: "Cristiana Girelli",
+      pos: "Forward",
+      country: "🇮🇹 Italy",
+      career: [["2005–2013", "Bardolino Verona"], ["2013–2018", "Brescia"], ["2018–", "Juventus"]],
+    },
+    {
+      answer: "CASCARINO",
+      wiki: "Delphine Cascarino",
+      pos: "Forward",
+      country: "🇫🇷 France",
+      career: [["2015–2024", "Lyon"], ["2024–", "San Diego Wave FC"]],
+    },
+    {
+      answer: "MIEDEMA",
+      wiki: "Vivianne Miedema",
+      pos: "Forward",
+      country: "🇳🇱 Netherlands",
+      career: [["2011–2014", "SC Heerenveen"], ["2014–2017", "Bayern Munich"], ["2017–2024", "Arsenal"], ["2024–", "Manchester City"]],
+    },
+    {
+      answer: "WALSH",
+      wiki: "Keira Walsh",
+      pos: "Midfielder",
+      country: "🏴 England",
+      career: [["2014–2022", "Manchester City"], ["2022–2025", "Barcelona"], ["2025–", "Chelsea"]],
+    },
+    {
+      answer: "BANDA",
+      wiki: "Barbra Banda",
+      pos: "Forward",
+      country: "🇿🇲 Zambia",
+      career: [["2016–2018", "Green Buffaloes"], ["2018–2020", "Logroño"], ["2020–2023", "Shanghai Shengli"], ["2024–", "Orlando Pride"]],
+    },
+    {
+      answer: "RENARD",
+      wiki: "Wendie Renard",
+      pos: "Defender",
+      country: "🇫🇷 France",
+      career: [["2006–", "Lyon"]],
+    },
+    {
       answer: "CAICEDO",
       wiki: "Linda Caicedo",
       pos: "Forward",
       country: "🇨🇴 Colombia",
-      career: [["2020–2023","Deportivo Cali"],["2023–","Real Madrid"]]
+      career: [["2019", "América de Cali"], ["2020–2023", "Deportivo Cali"], ["2023–", "Real Madrid"]],
     },
-{
-      answer: "SISSI",
-      wiki: "Sissi (footballer)",
-      pos: "Midfielder",
-      country: "🇧🇷 Brazil",
-      career: [["1997–1998","São Paulo"],["1999–2000","Palmeiras"],["2000","Vasco da Gama"],["2001–2003","San Jose CyberRays"],["2004–2008","California Storm"],["2009","FC Gold Pride"]]
+    {
+      answer: "ROLFO",
+      wiki: "Fridolina Rolfö",
+      pos: "Forward",
+      country: "🇸🇪 Sweden",
+      career: [["2011–2013", "Jitex BK"], ["2014–2016", "Linköping"], ["2017–2019", "Bayern Munich"], ["2019–2021", "VfL Wolfsburg"], ["2021–2026", "Barcelona"], ["2026–", "Manchester United"]],
     },
-{
-      answer: "ANGERER",
-      wiki: "Nadine Angerer",
+    {
+      answer: "HAMPTON",
+      wiki: "Hannah Hampton",
       pos: "Goalkeeper",
-      country: "🇩🇪 Germany",
-      career: [["1995–1996","1. FC Nürnberg"],["1996–1999","FC Wacker München"],["1999–2001","Bayern Munich"],["2001–2007","1. FFC Turbine Potsdam"],["2008","Djurgårdens IF"],["2009–2013","1. FFC Frankfurt"],["2013–2014","Brisbane Roar"],["2014–2015","Portland Thorns FC"]]
+      country: "🏴 England",
+      career: [["2017–2021", "Birmingham City"], ["2021–2023", "Aston Villa"], ["2023–", "Chelsea"]],
     },
-{
-      answer: "MIYAMA",
-      wiki: "Aya Miyama",
+    {
+      answer: "CARMONA",
+      wiki: "Olga Carmona",
+      pos: "Defender",
+      country: "🇪🇸 Spain",
+      career: [["2017–2020", "Sevilla"], ["2020–2026", "Real Madrid"], ["2026–", "Paris Saint-Germain"]],
+    },
+    {
+      answer: "GWINN",
+      wiki: "Giulia Gwinn",
+      pos: "Defender",
+      country: "🇩🇪 Germany",
+      career: [["2015–2019", "SC Freiburg"], ["2019–", "Bayern Munich"]],
+    },
+    {
+      answer: "CATA COLL",
+      wiki: "Cata Coll",
+      pos: "Goalkeeper",
+      country: "🇪🇸 Spain",
+      career: [["2015–2019", "Collerense"], ["2019", "Barcelona"], ["2019–2020", "Sevilla"], ["2020–", "Barcelona"]],
+    },
+    {
+      answer: "PARALLUELO",
+      wiki: "Salma Paralluelo",
+      pos: "Forward",
+      country: "🇪🇸 Spain",
+      career: [["2018–2019", "Zaragoza CFF"], ["2019–2022", "Villarreal"], ["2022–", "Barcelona"]],
+    },
+    {
+      answer: "GREENWOOD",
+      wiki: "Alex Greenwood",
+      pos: "Defender",
+      country: "🏴 England",
+      career: [["2010–2014", "Everton"], ["2015", "Notts County"], ["2016–2018", "Liverpool"], ["2018–2019", "Manchester United"], ["2019–2020", "Lyon"], ["2020–", "Manchester City"]],
+    },
+    {
+      answer: "MAANUM",
+      wiki: "Frida Maanum",
       pos: "Midfielder",
-      country: "🇯🇵 Japan",
-      career: [["1999–2000","Nippon TV Beleza"],["2001–2008","Okayama Yunogo Belle"],["2009","Los Angeles Sol"],["2010","Saint Louis Athletica"],["2010–2016","Okayama Yunogo Belle"]]
-    }
-  ]
-}
+      country: "🇳🇴 Norway",
+      career: [["2014–2016", "Lyn"], ["2017", "Stabæk"], ["2017–2021", "Linköping"], ["2021–", "Arsenal"]],
+    },
+    {
+      answer: "EARPS",
+      wiki: "Mary Earps",
+      pos: "Goalkeeper",
+      country: "🏴 England",
+      career: [["2009–2010", "Leicester City"], ["2010–2011", "Nottingham Forest"], ["2011–2012", "Doncaster Rovers Belles"], ["2013", "Birmingham City"], ["2014–2015", "Bristol Academy"], ["2016–2018", "Reading"], ["2018–2019", "VfL Wolfsburg"], ["2019–2024", "Manchester United"], ["2024–2026", "Paris Saint-Germain"], ["2026–", "London City Lionesses"]],
+    },
+    {
+      answer: "OBERDORF",
+      wiki: "Lena Oberdorf",
+      pos: "Midfielder",
+      country: "🇩🇪 Germany",
+      career: [["2018–2020", "SGS Essen"], ["2020–2024", "VfL Wolfsburg"], ["2024–", "Bayern Munich"]],
+    },
+  ],
+};

@@ -36,7 +36,7 @@ const HE = {
   "mixed-world-xi": "נבחרת עולמית מעורבת",
   "national-team-legends": "אגדות נבחרות",
   "ballon-dor-winners": "זוכי הכדור הזהב",
-  "womens-football": "אגדות הכדורגל הנשי",
+  "womens-football": "כוכבות הכדורגל הנשי",
   "legendary-club-sides": "קבוצות אגדיות",
   "israelis-abroad": "ישראלים בחו״ל",
   "retro-90s-2000s": "אייקוני שנות ה-90 וה-2000",
