@@ -1175,4 +1175,14 @@ export default {
   "Pierluigi Gollini": { answer: "גוליני" },
   "Wladimiro Falcone": { answer: "פאלקון" },
   "Gervinho": { answer: "ג׳רביניו" },
+
+  "Roberto Pereyra": { answer: "רוברטו פריירה" },
+  "Gerard Deulofeu": { answer: "דאולופאו" },
+  "Seko Fofana": { answer: "פופאנה" },
+  "Walace": { answer: "וואלאס" },
+  "Rolando Mandragora": { answer: "מנדרגורה" },
+  "Jens Stryger Larsen": { answer: "סטריגר לארסן" },
+  "Juan Iturbe": { answer: "איטורבה" },
+  "Rodrigo Becão": { answer: "בקאו" },
+  "Davide Frattesi": { answer: "פראטסי" },
 };
