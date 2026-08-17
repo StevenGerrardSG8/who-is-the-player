@@ -57,6 +57,7 @@
 <div class="wrap" id="screenHome">
   <div class="home-toolbar">
     <button class="toolbar-chip" id="multiplayerBtn"><span class="toolbar-chip-icon">🎉</span><span class="toolbar-chip-label" id="multiplayerBtnLabel">Multiplayer</span></button>
+    <button class="toolbar-chip" id="leaguesBtn"><span class="toolbar-chip-icon">🛡️</span><span class="toolbar-chip-label" id="leaguesBtnLabel">Leagues</span></button>
     <button class="toolbar-chip" id="bugReportBtn"><span class="toolbar-chip-icon">🐞</span><span class="toolbar-chip-label" id="bugReportBtnLabel">Report a bug</span></button>
     <button class="toolbar-chip" id="languageBtn"><span class="toolbar-chip-icon">🌐</span><span class="toolbar-chip-label" id="languageBtnLabel">Language</span></button>
   </div>
@@ -145,6 +146,55 @@
     </div>
     <div id="hofGlobalList"></div>
   </div>
+</div>
+
+<!-- ============ FRIEND LEAGUES ============ -->
+<div class="wrap" id="screenLeagues" style="display:none">
+  <div class="game-topbar">
+    <button class="back-btn" id="leaguesBackBtn"><span class="back-arrow">←</span> <span id="leaguesBackLabel">Home</span></button>
+    <div class="pack-name" id="leaguesCrumb">Leagues</div>
+  </div>
+  <h1><span id="leaguesTitle1">Friend</span> <span id="leaguesTitle2">Leagues</span></h1>
+  <p class="subtitle" id="leaguesSubtitle">Private groups, one shared standings table</p>
+
+  <div class="hof-card" id="leaguesNameGate">
+    <p id="leaguesNameGateText">Pick a name in the Hall of Fame first so your friends know it's you.</p>
+  </div>
+
+  <div class="hof-card" id="leaguesMineCard">
+    <h3 id="leaguesMineTitle">My Leagues</h3>
+    <div id="leaguesMineList"></div>
+  </div>
+
+  <div class="hof-card">
+    <h3 id="leaguesCreateTitle">Create a League</h3>
+    <input type="text" id="leagueCreateNameInput" maxlength="60" placeholder="League name">
+    <button class="btn-main" id="leagueCreateBtn">Create</button>
+  </div>
+
+  <div class="hof-card">
+    <h3 id="leaguesJoinTitle">Join a League</h3>
+    <input type="text" id="leagueJoinCodeInput" maxlength="5" placeholder="Invite code" style="text-transform:uppercase">
+    <button class="btn-main" id="leagueJoinBtn">Join</button>
+    <p class="mp-online-error" id="leagueJoinError"></p>
+  </div>
+</div>
+
+<!-- ============ FRIEND LEAGUE DETAIL ============ -->
+<div class="wrap" id="screenLeagueDetail" style="display:none">
+  <div class="game-topbar">
+    <button class="back-btn" id="leagueDetailBackBtn"><span class="back-arrow">←</span> <span id="leagueDetailBackLabel">Leagues</span></button>
+    <div class="pack-name" id="leagueDetailCrumb">League</div>
+  </div>
+  <h1 id="leagueDetailName">League</h1>
+  <p class="subtitle"><span id="leagueDetailCodeHint">Invite code:</span> <b id="leagueDetailCode"></b></p>
+
+  <div class="hof-card">
+    <h3 id="leagueStandingsTitle">Standings</h3>
+    <div id="leagueStandingsList"></div>
+  </div>
+
+  <button class="link-btn" id="leagueLeaveBtn">Leave league</button>
 </div>
 
 <!-- ============ MULTIPLAYER MODE CHOICE ============ -->

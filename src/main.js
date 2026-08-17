@@ -4,6 +4,7 @@ import { loadState, saveState, updateDailyStreak, recordChampion } from "./state
 import { init, showHome, toast } from "./ui.js";
 import * as multiplayer from "./multiplayer.js";
 import * as onlineMultiplayer from "./online-multiplayer.js";
+import * as leagues from "./leagues.js";
 import { showScreen } from "./screens.js";
 import { initLang, showLangPicker, hideLangPicker, hasSavedLang, applyStaticTranslations, t } from "./i18n/index.js";
 import { initBackend, syncDayStreak, submitBugReport } from "./backend.js";
@@ -36,6 +37,7 @@ const $ = (id) => document.getElementById(id);
   init({ state, packs: PACKS, packOrder: PACK_ORDER, persist });
   multiplayer.init({ packs: PACKS, packOrder: PACK_ORDER, onExit: showHome, recordChampion: onChampionRecorded });
   onlineMultiplayer.init({ packs: PACKS, packOrder: PACK_ORDER, onExit: showHome, recordChampion: onChampionRecorded });
+  leagues.init({ onExit: showHome });
 
   $("multiplayerBtn").addEventListener("click", () => {
     showScreen("screenMpMode");

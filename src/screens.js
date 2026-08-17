@@ -11,6 +11,8 @@ const SCREEN_IDS = [
   "screenMpOnline",
   "screenMpoGame",
   "screenHallOfFame",
+  "screenLeagues",
+  "screenLeagueDetail",
 ];
 
 const OVERLAY_IDS = [

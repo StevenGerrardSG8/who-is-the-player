@@ -205,6 +205,24 @@ const STATIC_MAP = {
   bugReportSubtitle: "bug.subtitle",
   bugReportSubmitBtn: "bug.send",
   bugReportCancelBtn: "bug.cancel",
+
+  leaguesBtnLabel: "leagues.navLabel",
+  leaguesBackLabel: "game.back",
+  leaguesCrumb: "leagues.title",
+  leaguesTitle1: "leagues.title1",
+  leaguesTitle2: "leagues.title2",
+  leaguesSubtitle: "leagues.subtitle",
+  leaguesNameGateText: "leagues.nameGate",
+  leaguesMineTitle: "leagues.mineTitle",
+  leaguesCreateTitle: "leagues.createTitle",
+  leagueCreateBtn: "leagues.createBtn",
+  leaguesJoinTitle: "leagues.joinTitle",
+  leagueJoinBtn: "leagues.joinBtn",
+  leagueDetailBackLabel: "leagues.title",
+  leagueDetailCrumb: "leagues.title",
+  leagueDetailCodeHint: "leagues.inviteCodeLabel",
+  leagueStandingsTitle: "leagues.standingsTitle",
+  leagueLeaveBtn: "leagues.leaveBtn",
 };
 
 // HTML `placeholder`/`title` attributes aren't plain text nodes, so the
@@ -215,6 +233,8 @@ const STATIC_PLACEHOLDER_MAP = {
   mpJoinCodeInput: "online.roomCodePlaceholder",
   hofGlobalNameInput: "online.yourName",
   bugReportText: "bug.placeholder",
+  leagueCreateNameInput: "leagues.namePlaceholder",
+  leagueJoinCodeInput: "leagues.codePlaceholder",
 };
 
 const STATIC_TITLE_MAP = {

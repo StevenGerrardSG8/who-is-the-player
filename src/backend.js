@@ -11,6 +11,7 @@ import {
   getDoc,
   setDoc,
   addDoc,
+  deleteDoc,
   arrayUnion,
   increment,
   collection,
@@ -24,7 +25,7 @@ import {
 import { getMessaging, getToken, isSupported as isMessagingSupported } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-messaging.js";
 import { firebaseConfig } from "./firebase-config.js";
 import { storage } from "./storage.js";
-import { GLOBAL_NAME_STORAGE_KEY, PUSH_TOKEN_STORAGE_KEY } from "./config.js";
+import { GLOBAL_NAME_STORAGE_KEY, PUSH_TOKEN_STORAGE_KEY, MY_LEAGUES_STORAGE_KEY } from "./config.js";
 
 // Generated in the Firebase console (Project settings → Cloud Messaging →
 // Web Push certificates) — public by nature, like the rest of firebaseConfig.
@@ -232,6 +233,133 @@ export async function fetchLeaderboard(kind) {
   } catch (e) {
     return [];
   }
+}
+
+/* ============================================================
+   FRIEND LEAGUES — private groups joined by a short invite code (the
+   Firestore doc ID doubles as the code, so there's nothing to look up
+   besides "does this code exist"). Membership lives in a `members`
+   subcollection keyed by uid; each member's own doc accumulates their
+   score across every completed run while they're in the league. The
+   list of leagues *this device* belongs to is cached locally (see
+   MY_LEAGUES_STORAGE_KEY) since Firestore has no reverse index from uid
+   to the leagues containing it.
+============================================================ */
+const LEAGUE_CODE_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // no 0/O/1/I
+const LEAGUE_CODE_LENGTH = 5;
+
+function generateLeagueCode() {
+  let code = "";
+  for (let i = 0; i < LEAGUE_CODE_LENGTH; i++) {
+    code += LEAGUE_CODE_ALPHABET[Math.floor(Math.random() * LEAGUE_CODE_ALPHABET.length)];
+  }
+  return code;
+}
+
+export async function getMyLeagues() {
+  return (await storage.get(MY_LEAGUES_STORAGE_KEY)) || [];
+}
+
+async function rememberLeague(code, name) {
+  const mine = await getMyLeagues();
+  if (!mine.some((l) => l.code === code)) {
+    mine.push({ code, name });
+    await storage.set(MY_LEAGUES_STORAGE_KEY, mine);
+  }
+}
+
+async function forgetLeague(code) {
+  const mine = await getMyLeagues();
+  await storage.set(MY_LEAGUES_STORAGE_KEY, mine.filter((l) => l.code !== code));
+}
+
+async function addSelfAsMember(code) {
+  await setDoc(
+    doc(db, "leagues", code, "members", uid),
+    { name: cachedName, totalScore: 0, gamesPlayed: 0, wins: 0, joinedAt: serverTimestamp() },
+    { merge: true }
+  );
+  await setDoc(doc(db, "leagues", code), { memberCount: increment(1) }, { merge: true });
+}
+
+// Creates a new league owned by this device's player and joins it. Returns
+// { code, name } on success, or null if not signed in / no global name yet.
+export async function createLeague(name) {
+  const trimmed = (name || "").trim();
+  if (!uid || !cachedName || !trimmed) return null;
+  try {
+    let code;
+    let attempts = 0;
+    do {
+      code = generateLeagueCode();
+      attempts += 1;
+    } while (attempts < 5 && (await getDoc(doc(db, "leagues", code))).exists());
+    await setDoc(doc(db, "leagues", code), {
+      name: trimmed.slice(0, 60),
+      ownerUid: uid,
+      memberCount: 0,
+      createdAt: serverTimestamp(),
+    });
+    await addSelfAsMember(code);
+    await rememberLeague(code, trimmed);
+    return { code, name: trimmed };
+  } catch (e) {
+    return null;
+  }
+}
+
+// Joins an existing league by its invite code. Returns { code, name } on
+// success, "not_found" if the code doesn't match a league, or null on
+// failure (offline, not signed in, no global name yet).
+export async function joinLeague(code) {
+  const normalized = (code || "").trim().toUpperCase();
+  if (!uid || !cachedName || !normalized) return null;
+  try {
+    const snap = await getDoc(doc(db, "leagues", normalized));
+    if (!snap.exists()) return "not_found";
+    const memberSnap = await getDoc(doc(db, "leagues", normalized, "members", uid));
+    if (!memberSnap.exists()) await addSelfAsMember(normalized);
+    await rememberLeague(normalized, snap.data().name);
+    return { code: normalized, name: snap.data().name };
+  } catch (e) {
+    return null;
+  }
+}
+
+export async function leaveLeague(code) {
+  if (!uid) return;
+  try {
+    await deleteDoc(doc(db, "leagues", code, "members", uid));
+    await setDoc(doc(db, "leagues", code), { memberCount: increment(-1) }, { merge: true });
+  } catch (e) {}
+  await forgetLeague(code);
+}
+
+// Standings for one league, highest score first.
+export async function fetchLeagueStandings(code) {
+  try {
+    const snap = await getDocs(query(collection(db, "leagues", code, "members"), orderBy("totalScore", "desc"), limit(100)));
+    return snap.docs.map((d) => ({ uid: d.id, name: d.data().name, ...d.data() }));
+  } catch (e) {
+    return [];
+  }
+}
+
+// Call after any completed run (solo pack completion or a multiplayer win)
+// once a global name is set, for every league this device is in — feeds
+// each league's cumulative standings table.
+export async function recordLeagueRuns({ points, won }) {
+  if (!uid || !cachedName) return;
+  const mine = await getMyLeagues();
+  await Promise.all(
+    mine.map(({ code }) =>
+      setDoc(
+        doc(db, "leagues", code, "members", uid),
+        { name: cachedName, totalScore: increment(points || 0), gamesPlayed: increment(1), wins: increment(won ? 1 : 0) },
+        { merge: true }
+      ).catch(() => {})
+    )
+  );
 }
 
 /* ============================================================

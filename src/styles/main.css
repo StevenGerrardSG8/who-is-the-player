@@ -506,13 +506,29 @@ h1 span{
 .mp-players{display:flex;flex-direction:column;gap:8px;margin-top:4px}
 .mp-panel-card .mp-players{margin-top:0}
 .mp-player-row{display:flex;gap:8px;align-items:center}
-.mp-player-row input,.mp-players>input,#hofNameSetup input{
+.mp-player-row input,.mp-players>input,#hofNameSetup input,.hof-card>input{
   flex:1;width:100%;font-family:var(--body);font-size:14px;padding:11px 13px;border-radius:var(--radius-sm);
   border:2px solid var(--card-edge);background:var(--card);color:var(--ink);
-  transition:box-shadow .15s,border-color .15s;
+  transition:box-shadow .15s,border-color .15s;box-sizing:border-box;margin-bottom:8px;
 }
-.mp-player-row input:focus,.mp-players>input:focus,#hofNameSetup input:focus{outline:none;border-color:var(--foil);box-shadow:0 0 0 3px rgba(231,190,85,0.25)}
-.mp-player-row input::placeholder,.mp-players>input::placeholder,#hofNameSetup input::placeholder{color:var(--ink-soft)}
+.mp-player-row input:focus,.mp-players>input:focus,#hofNameSetup input:focus,.hof-card>input:focus{outline:none;border-color:var(--foil);box-shadow:0 0 0 3px rgba(231,190,85,0.25)}
+.mp-player-row input::placeholder,.mp-players>input::placeholder,#hofNameSetup input::placeholder,.hof-card>input::placeholder{color:var(--ink-soft)}
+
+.hof-empty-hint{color:var(--ink-soft);font-size:13px;margin:4px 0}
+.league-row{
+  display:flex;justify-content:space-between;align-items:center;width:100%;
+  padding:11px 13px;margin-bottom:8px;border-radius:var(--radius-sm);
+  border:2px solid var(--card-edge);background:var(--card);color:var(--ink);
+  font-family:var(--body);font-size:14px;cursor:pointer;transition:border-color .15s;
+}
+.league-row:last-child{margin-bottom:0}
+.league-row:hover{border-color:var(--foil)}
+.league-row-code{font-family:var(--score);letter-spacing:1px;color:var(--foil-deep)}
+.league-standing-row{display:flex;align-items:baseline;gap:8px;padding:6px 0;border-bottom:1px dashed var(--card-edge)}
+.league-standing-row:last-child{border-bottom:0}
+.league-standing-rank{color:var(--ink-soft);width:28px;flex-shrink:0}
+.league-standing-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.league-standing-score{font-family:var(--score);color:var(--foil-deep)}
 .mp-player-badge{
   flex-shrink:0;width:28px;height:28px;border-radius:50%;
   background:radial-gradient(circle at 35% 30%,var(--foil-2),var(--foil-deep) 80%);color:#3B2C08;

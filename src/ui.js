@@ -39,6 +39,7 @@ import {
   getGlobalName,
   setGlobalName,
   recordRun,
+  recordLeagueRuns,
   bumpGamesPlayedCounter,
   submitBugReport,
   fetchLeaderboard,
@@ -639,6 +640,7 @@ function showPackComplete() {
   const timeMs = ps.runStartedAt ? Date.now() - ps.runStartedAt : null;
   recordPackRun(ps, { score: ps.runScore || 0, stars: packStarTotal(ps), timeMs, date: Date.now() });
   recordRun({ score: ps.runScore || 0, mode: "solo", packId: currentPackId });
+  recordLeagueRuns({ points: ps.runScore || 0, won: true });
   bumpGamesPlayedCounter();
   ps.runScore = 0;
   ps.runStartedAt = null;

@@ -31,5 +31,22 @@ service cloud.firestore {
       allow update: if request.auth != null && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['gamesPlayed', 'uniqueVisitors']);
       allow delete: if false;
     }
+
+    // Private friend leagues. The doc ID doubles as the invite code, so
+    // there's no reason to ever list all leagues — only "get" a specific
+    // one a player was actually given the code for. Anyone signed in can
+    // create a league (becoming its owner) or bump memberCount by joining
+    // or leaving one; membership itself is enforced one level down.
+    match /leagues/{code} {
+      allow get: if request.auth != null;
+      allow list: if false;
+      allow create: if request.auth != null && request.resource.data.ownerUid == request.auth.uid;
+      allow update: if request.auth != null && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['memberCount']);
+      allow delete: if false;
+    }
+    match /leagues/{code}/members/{uid} {
+      allow get, list: if request.auth != null;
+      allow create, update, delete: if request.auth != null && request.auth.uid == uid;
+    }
   }
 }

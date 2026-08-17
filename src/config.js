@@ -122,3 +122,4 @@ export const STORAGE_KEY = "wtp-progress-v2";
 export const LANG_STORAGE_KEY = "wtp-lang-v1";
 export const GLOBAL_NAME_STORAGE_KEY = "wtp-global-name-v1";
 export const PUSH_TOKEN_STORAGE_KEY = "wtp-push-token-v1";
+export const MY_LEAGUES_STORAGE_KEY = "wtp-my-leagues-v1";
