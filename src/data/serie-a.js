@@ -1,3 +1,5 @@
+import serieABatch1 from "./serie-a-batch1.js";
+
 export default {
   id: "serie-a",
   name: "Serie A",
@@ -530,6 +532,7 @@ export default {
 {answer:"ZICO", wiki:"Zico (footballer)", pos:"Midfielder", country:"🇧🇷 Brazil",
      career:[["1971–1983","Flamengo"],["1983–1985","Udinese"],["1985–1989","Flamengo"],["1991–1994","Kashima Antlers"]]},
 {answer:"ZIDANE", wiki:"Zinedine Zidane", pos:"Midfielder", country:"🇫🇷 France",
-     career:[["1989–1992","Cannes"],["1992–1996","Bordeaux"],["1996–2001","Juventus"],["2001–2006","Real Madrid"]]}
+     career:[["1989–1992","Cannes"],["1992–1996","Bordeaux"],["1996–2001","Juventus"],["2001–2006","Real Madrid"]]},
+...serieABatch1
   ]
 }
