@@ -8,6 +8,7 @@ export default {
   "home.coins": "מטבעות",
   "home.totalStars": "סה״כ כוכבים",
   "home.multiplayer": "מולטיפלייר",
+  "home.players": "שחקנים",
   "home.language": "שפה",
   "home.starsToUnlock": "{n}★ לפתיחה",
   "home.finishPrevious": "סיים את החבילה הקודמת",
@@ -154,6 +155,14 @@ export default {
   "leagues.loading": "טוען…",
   "leagues.leaveBtn": "עזוב ליגה",
   "leagues.left": "עזבת את הליגה.",
+
+  "players.title1": "מאגר",
+  "players.title2": "שחקנים",
+  "players.subtitle": "כל השחקנים מכל החבילות",
+  "players.searchPlaceholder": "חיפוש לפי שם, עמדה או מדינה…",
+  "players.count": "{n} שחקנים",
+  "players.countFiltered": "{shown} מתוך {n} שחקנים",
+  "players.noResults": "לא נמצאו שחקנים תואמים.",
 
   "lang.pickTitle": "בחר את השפה שלך",
   "lang.pickSubtitle": "תוכל לשנות זאת מאוחר יותר בכפתור השפה",

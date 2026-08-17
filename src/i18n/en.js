@@ -8,6 +8,7 @@ export default {
   "home.coins": "Coins",
   "home.totalStars": "Total Stars",
   "home.multiplayer": "Multiplayer",
+  "home.players": "Players",
   "home.language": "Language",
   "home.starsToUnlock": "{n}★ to unlock",
   "home.finishPrevious": "Finish previous pack",
@@ -154,6 +155,14 @@ export default {
   "leagues.loading": "Loading…",
   "leagues.leaveBtn": "Leave league",
   "leagues.left": "Left the league.",
+
+  "players.title1": "Player",
+  "players.title2": "Database",
+  "players.subtitle": "Every player across every pack",
+  "players.searchPlaceholder": "Search by name, position, or country…",
+  "players.count": "{n} players",
+  "players.countFiltered": "{shown} of {n} players",
+  "players.noResults": "No players match your search.",
 
   "lang.pickTitle": "Choose your language",
   "lang.pickSubtitle": "You can change this later from the Language button",

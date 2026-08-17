@@ -5,6 +5,7 @@ import { init, showHome, toast } from "./ui.js";
 import * as multiplayer from "./multiplayer.js";
 import * as onlineMultiplayer from "./online-multiplayer.js";
 import * as leagues from "./leagues.js";
+import * as players from "./players.js";
 import { showScreen } from "./screens.js";
 import { initLang, showLangPicker, hideLangPicker, hasSavedLang, applyStaticTranslations, t } from "./i18n/index.js";
 import { initBackend, syncDayStreak, submitBugReport } from "./backend.js";
@@ -38,6 +39,7 @@ const $ = (id) => document.getElementById(id);
   multiplayer.init({ packs: PACKS, packOrder: PACK_ORDER, onExit: showHome, recordChampion: onChampionRecorded });
   onlineMultiplayer.init({ packs: PACKS, packOrder: PACK_ORDER, onExit: showHome, recordChampion: onChampionRecorded });
   leagues.init({ onExit: showHome });
+  players.init({ packs: PACKS, onExit: showHome });
 
   $("multiplayerBtn").addEventListener("click", () => {
     showScreen("screenMpMode");

@@ -13,6 +13,7 @@ const SCREEN_IDS = [
   "screenHallOfFame",
   "screenLeagues",
   "screenLeagueDetail",
+  "screenPlayers",
 ];
 
 const OVERLAY_IDS = [

@@ -223,6 +223,13 @@ const STATIC_MAP = {
   leagueDetailCodeHint: "leagues.inviteCodeLabel",
   leagueStandingsTitle: "leagues.standingsTitle",
   leagueLeaveBtn: "leagues.leaveBtn",
+
+  playersBtnLabel: "home.players",
+  playersBackLabel: "game.back",
+  playersCrumb: "home.players",
+  playersTitle1: "players.title1",
+  playersTitle2: "players.title2",
+  playersSubtitle: "players.subtitle",
 };
 
 // HTML `placeholder`/`title` attributes aren't plain text nodes, so the
@@ -235,6 +242,7 @@ const STATIC_PLACEHOLDER_MAP = {
   bugReportText: "bug.placeholder",
   leagueCreateNameInput: "leagues.namePlaceholder",
   leagueJoinCodeInput: "leagues.codePlaceholder",
+  playersSearchInput: "players.searchPlaceholder",
 };
 
 const STATIC_TITLE_MAP = {

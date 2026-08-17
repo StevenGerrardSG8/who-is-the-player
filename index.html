@@ -64,6 +64,7 @@
   <div class="home-toolbar">
     <button class="toolbar-chip" id="multiplayerBtn"><span class="toolbar-chip-icon">🎉</span><span class="toolbar-chip-label" id="multiplayerBtnLabel">Multiplayer</span></button>
     <button class="toolbar-chip" id="leaguesBtn"><span class="toolbar-chip-icon">🛡️</span><span class="toolbar-chip-label" id="leaguesBtnLabel">Leagues</span></button>
+    <button class="toolbar-chip" id="playersBtn"><span class="toolbar-chip-icon">📖</span><span class="toolbar-chip-label" id="playersBtnLabel">Players</span></button>
     <button class="toolbar-chip" id="bugReportBtn"><span class="toolbar-chip-icon">🐞</span><span class="toolbar-chip-label" id="bugReportBtnLabel">Report a bug</span></button>
     <button class="toolbar-chip" id="languageBtn"><span class="toolbar-chip-icon">🌐</span><span class="toolbar-chip-label" id="languageBtnLabel">Language</span></button>
   </div>
@@ -201,6 +202,22 @@
   </div>
 
   <button class="link-btn" id="leagueLeaveBtn">Leave league</button>
+</div>
+
+<!-- ============ PLAYER DATABASE ============ -->
+<div class="wrap" id="screenPlayers" style="display:none">
+  <div class="game-topbar">
+    <button class="back-btn" id="playersBackBtn"><span class="back-arrow">←</span> <span id="playersBackLabel">Home</span></button>
+    <div class="pack-name" id="playersCrumb">Players</div>
+  </div>
+  <h1><span id="playersTitle1">Player</span> <span id="playersTitle2">Database</span></h1>
+  <p class="subtitle" id="playersSubtitle">Every player across every pack</p>
+
+  <div class="hof-card">
+    <input type="text" id="playersSearchInput" maxlength="60">
+    <p class="hof-empty-hint" id="playersCount"></p>
+    <div id="playersList"></div>
+  </div>
 </div>
 
 <!-- ============ MULTIPLAYER MODE CHOICE ============ -->
