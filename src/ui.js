@@ -609,10 +609,16 @@ function winRound(revealed) {
   $("nextBtn").textContent = isLast ? t("win.seeResults") : t("win.nextPlayer");
 
   ctx.persist();
-  setTimeout(() => {
-    $("overlay").classList.add("show");
-    renderScoreboard();
-  }, 700);
+  // A revealed win has no "correct" tile animation to wait for (the answer
+  // is filled in instantly), so showing the modal after the same 700ms used
+  // for a genuine solve just reads as a stray white panel popping up late.
+  setTimeout(
+    () => {
+      $("overlay").classList.add("show");
+      renderScoreboard();
+    },
+    revealed ? 0 : 700
+  );
 }
 
 function nextLevel() {
