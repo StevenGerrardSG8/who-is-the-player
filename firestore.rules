@@ -18,7 +18,7 @@ service cloud.firestore {
     // is the only genuinely private collection in the app.
     match /bugReports/{reportId} {
       allow create: if request.auth != null && request.auth.uid == request.resource.data.uid;
-      allow get, list: if request.auth != null && request.auth.token.email == "amit.p@xpendmarketing.com";
+      allow get, list: if request.auth != null && request.auth.token.email == "peresamit@gmail.com";
       allow update, delete: if false;
     }
 
@@ -26,7 +26,7 @@ service cloud.firestore {
     // bump them by exactly one of the two known fields, but only the
     // developer account can read the totals back.
     match /stats/summary {
-      allow get: if request.auth != null && request.auth.token.email == "amit.p@xpendmarketing.com";
+      allow get: if request.auth != null && request.auth.token.email == "peresamit@gmail.com";
       allow create: if request.auth != null && request.resource.data.keys().hasOnly(['gamesPlayed', 'uniqueVisitors']);
       allow update: if request.auth != null && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['gamesPlayed', 'uniqueVisitors']);
       allow delete: if false;
