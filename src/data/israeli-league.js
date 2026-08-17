@@ -1,5 +1,6 @@
 import israeliLeagueExtra from "./israeli-league-extra.js";
 import israeliLeagueMore from "./israeli-league-more.js";
+import israeliLeagueBatch1 from "./israeli-league-batch1.js";
 
 export default {
   id: "israeli-league",
@@ -429,6 +430,7 @@ export default {
 {answer:"מתן בלטקסה", wiki:"Matan Baltaxa", pos:"מגן", country:"🇮🇱 ישראל",
      career:[["2013–2017","הפועל פתח תקווה"],["2017–2022","מכבי תל אביב"],["2018","הפועל עכו"],["2018–2020","בני יהודה"],["2022–2024","אוסטריה וינה"],["2024","מכבי תל אביב"],["2024–","הפועל באר שבע"]]},
 ...israeliLeagueExtra,
-...israeliLeagueMore
+...israeliLeagueMore,
+...israeliLeagueBatch1
   ]
 }

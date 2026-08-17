@@ -28,6 +28,7 @@ function showPlayers() {
 
 function matches(player, needle) {
   return (
+    player.answer.toLowerCase().includes(needle) ||
     player.wiki.toLowerCase().includes(needle) ||
     (player.pos || "").toLowerCase().includes(needle) ||
     (player.country || "").toLowerCase().includes(needle) ||
