@@ -210,7 +210,19 @@ async function resolveWikipediaSearchSrc(wiki) {
   return (hit && hit.thumbnail.source) || null;
 }
 
-async function resolveImageSrc(wiki, country) {
+// Some Israeli-league players (especially retired/lower-profile ones) only
+// ever got a Hebrew Wikipedia article, never an English one — the answer
+// text itself (already the player's Hebrew name for this pack) is the title
+// to try. Only meaningful for Hebrew answers, so callers skip this for
+// packs whose answer is already in Latin script.
+async function resolveHebrewWikipediaSrc(answer) {
+  const r = await fetch("https://he.wikipedia.org/api/rest_v1/page/summary/" + encodeURIComponent(answer));
+  if (!r.ok) throw new Error("he.wikipedia fetch failed");
+  const j = await r.json();
+  return (j.thumbnail && j.thumbnail.source) || (j.originalimage && j.originalimage.source) || null;
+}
+
+async function resolveImageSrc(wiki, country, answer) {
   if (srcCache.has(wiki)) return srcCache.get(wiki);
 
   let raw = null;
@@ -243,6 +255,20 @@ async function resolveImageSrc(wiki, country) {
     srcCache.set(wiki, src);
     resolveCredit(wiki, raw);
     return src;
+  }
+
+  if (answer && /[֐-׿]/.test(answer)) {
+    try {
+      raw = await resolveHebrewWikipediaSrc(answer);
+    } catch (e) {
+      raw = null;
+    }
+    if (raw) {
+      const src = resizeThumbnail(raw);
+      srcCache.set(wiki, src);
+      resolveCredit(wiki, raw);
+      return src;
+    }
   }
 
   let fallback = null;
@@ -313,7 +339,7 @@ export async function loadPhoto(player, container) {
 
   container.innerHTML = '<div class="fallback">?<small>' + t("game.mysteryLoading") + "</small></div>";
   try {
-    const src = await resolveImageSrc(player.wiki, player.country);
+    const src = await resolveImageSrc(player.wiki, player.country, player.answer);
     if (!src) throw new Error("no image");
     if (isStale()) return;
     const img = new Image();
@@ -336,7 +362,7 @@ export async function loadPhoto(player, container) {
 export function prefetchPhotos(players) {
   players.forEach((p) => {
     if (!p) return;
-    resolveImageSrc(p.wiki, p.country)
+    resolveImageSrc(p.wiki, p.country, p.answer)
       .then((src) => warmImage(p.wiki, src))
       .catch(() => srcCache.set(p.wiki, null));
   });

@@ -2,6 +2,7 @@ import israeliLeagueExtra from "./israeli-league-extra.js";
 import israeliLeagueMore from "./israeli-league-more.js";
 import israeliLeagueBatch1 from "./israeli-league-batch1.js";
 import israeliLeagueBatch2 from "./israeli-league-batch2.js";
+import israeliLeagueBatch3 from "./israeli-league-batch3.js";
 
 export default {
   id: "israeli-league",
@@ -431,6 +432,7 @@ export default {
 ...israeliLeagueExtra,
 ...israeliLeagueMore,
 ...israeliLeagueBatch1,
-...israeliLeagueBatch2
+...israeliLeagueBatch2,
+...israeliLeagueBatch3
   ]
 }
