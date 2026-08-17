@@ -33,6 +33,7 @@ export const EXCLUDED_PLAYER_WIKIS = new Set([
   "Duncan Ferguson",
   "Efraín Álvarez",
   "Eli Ben Rimoz",
+  "Emmanuel Boateng (footballer, born 1996)",
   "Enzo Scifo",
   "Ernst Happel",
   "Federico Mancuello",

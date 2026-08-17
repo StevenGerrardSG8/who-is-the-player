@@ -965,7 +965,6 @@ export default {
   "Shlomi Arbeitman": { answer: "ארביטמן" },
   "Yuval Ashkenazi": { answer: "אשכנזי" },
   "Ondřej Bačo": { answer: "באצ'ו" },
-  "Emmanuel Boateng (footballer, born 1996)": { answer: "בואטנג" },
   "Richmond Boakye": { answer: "בואצ׳י" },
   "Maor Buzaglo": { answer: "בוזגלו" },
   "Jelle Bataille": { answer: "בטאי" },

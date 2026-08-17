@@ -95,6 +95,22 @@ function bareName(wiki) {
   return wiki.replace(/\s*\([^)]*\)\s*$/, "").trim();
 }
 
+// A flag emoji is a pair of Regional Indicator Symbols, each offset from its
+// ASCII letter by the same amount (U+1F1E6 = 'A') — decoding them back gives
+// the ISO 3166-1 alpha-2 code, which Intl can turn into an English name.
+function countryNameFromFlag(country) {
+  const match = (country || "").match(/[\u{1F1E6}-\u{1F1FF}]{2}/u);
+  if (!match) return null;
+  const code = Array.from(match[0])
+    .map((c) => String.fromCharCode(c.codePointAt(0) - 0x1f1e6 + 65))
+    .join("");
+  try {
+    return new Intl.DisplayNames(["en"], { type: "region" }).of(code) || null;
+  } catch (e) {
+    return null;
+  }
+}
+
 // TheSportsDB's free, keyless tier (the "3" test key, intended for exactly
 // this kind of hobby lookup) as a second source for the ~40% of players
 // Wikipedia has no photo for at all — mostly lower-profile players from the
@@ -102,14 +118,34 @@ function bareName(wiki) {
 // render) is tried first since it matches the sticker-card art direction
 // better than an arbitrary action photo; `strThumb` is the fallback within
 // the fallback.
-async function resolveSportsDbSrc(wiki) {
+//
+// A bare-name search can hit a same-named player in an unrelated sport/country
+// (e.g. our Ghanaian "Emmanuel Boateng" vs. an American-based namesake) — when
+// our wiki title carries a "born YYYY" disambiguator, that's the same
+// namesake-risk signal used above, so cross-check birth year (the sharpest
+// signal SportsDB gives us) and nationality before trusting the photo. Two
+// same-named players can easily share a nationality, so birth year is checked
+// whenever both sides have one; nationality alone only gates the rarer case
+// where no birth year is available to compare.
+async function resolveSportsDbSrc(wiki, country) {
   const r = await fetch(
     "https://www.thesportsdb.com/api/v1/json/3/searchplayers.php?p=" + encodeURIComponent(bareName(wiki))
   );
   if (!r.ok) throw new Error("sportsdb fetch failed");
   const j = await r.json();
   const hit = j.player && j.player[0];
-  return (hit && (hit.strCutout || hit.strThumb)) || null;
+  if (!hit) return null;
+  const hasDisambiguator = bareName(wiki) !== wiki;
+  if (hasDisambiguator) {
+    const ourBornYear = wiki.match(/born (\d{4})/);
+    const hitBornYear = hit.dateBorn && hit.dateBorn.match(/^(\d{4})/);
+    if (ourBornYear && hitBornYear && ourBornYear[1] !== hitBornYear[1]) return null;
+    if (!ourBornYear || !hitBornYear) {
+      const expectedNationality = countryNameFromFlag(country);
+      if (expectedNationality && hit.strNationality && hit.strNationality !== expectedNationality) return null;
+    }
+  }
+  return hit.strCutout || hit.strThumb || null;
 }
 
 // Some recent Ligat Ha'Al players have an English Wikipedia article under a
@@ -121,6 +157,27 @@ async function resolveSportsDbSrc(wiki) {
 // can be an unrelated article (a cup final, a stadium, a squad list) that
 // happens to have a page image, which would silently show the wrong photo
 // instead of falling through to the TheSportsDB fallback below.
+//
+// Two more ways a hit can be the wrong person entirely, both caught before
+// the shortdesc check above ever runs:
+//  - The hit shares no name word with our player at all (a loose full-text
+//    match on unrelated terms, e.g. searching "Aziz Ouattara footballer"
+//    surfacing an unrelated match report that happens to mention the sport).
+//  - Our title carries a disambiguator ("(footballer, born 1996)") and the
+//    hit's bare name matches but its own disambiguator differs — that's
+//    Wikipedia's own signal that it's a *different* same-named person
+//    (e.g. "Emmanuel Boateng (footballer, born 1994)" is not our 1996 one).
+function isLikelySamePerson(wiki, hitTitle) {
+  const ourBare = bareName(wiki);
+  const hitBare = bareName(hitTitle);
+  const ourWords = ourBare.toLowerCase().split(/\s+/).filter(Boolean);
+  const hitWords = new Set(hitBare.toLowerCase().split(/\s+/).filter(Boolean));
+  if (!ourWords.some((w) => hitWords.has(w))) return false;
+  const ourHasDisambiguator = ourBare !== wiki;
+  if (ourHasDisambiguator && hitBare === ourBare && hitTitle !== wiki) return false;
+  return true;
+}
+
 async function resolveWikipediaSearchSrc(wiki) {
   const params = new URLSearchParams({
     action: "query",
@@ -143,12 +200,17 @@ async function resolveWikipediaSearchSrc(wiki) {
   );
   const hit = pages.find((page) => {
     const desc = (page.pageprops && page.pageprops["wikibase-shortdesc"]) || "";
-    return page.thumbnail && page.thumbnail.source && /footballer|player/i.test(desc);
+    return (
+      page.thumbnail &&
+      page.thumbnail.source &&
+      /footballer|player/i.test(desc) &&
+      isLikelySamePerson(wiki, page.title)
+    );
   });
   return (hit && hit.thumbnail.source) || null;
 }
 
-async function resolveImageSrc(wiki) {
+async function resolveImageSrc(wiki, country) {
   if (srcCache.has(wiki)) return srcCache.get(wiki);
 
   let raw = null;
@@ -186,7 +248,7 @@ async function resolveImageSrc(wiki) {
   let fallback = null;
   let fallbackFailed = false;
   try {
-    fallback = await resolveSportsDbSrc(wiki);
+    fallback = await resolveSportsDbSrc(wiki, country);
   } catch (e) {
     fallbackFailed = true;
   }
@@ -251,7 +313,7 @@ export async function loadPhoto(player, container) {
 
   container.innerHTML = '<div class="fallback">?<small>' + t("game.mysteryLoading") + "</small></div>";
   try {
-    const src = await resolveImageSrc(player.wiki);
+    const src = await resolveImageSrc(player.wiki, player.country);
     if (!src) throw new Error("no image");
     if (isStale()) return;
     const img = new Image();
@@ -274,7 +336,7 @@ export async function loadPhoto(player, container) {
 export function prefetchPhotos(players) {
   players.forEach((p) => {
     if (!p) return;
-    resolveImageSrc(p.wiki)
+    resolveImageSrc(p.wiki, p.country)
       .then((src) => warmImage(p.wiki, src))
       .catch(() => srcCache.set(p.wiki, null));
   });

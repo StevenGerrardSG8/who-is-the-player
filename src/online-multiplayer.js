@@ -42,7 +42,7 @@ const ICE_CONFIG = {
 };
 
 const MAX_TOTAL_PLAYERS = 99;
-const TURN_MS = 20000; // per-turn time limit in "turns" mode
+const TURN_MS = 10000; // per-turn time limit in "turns" mode
 
 let peer = null;
 let conn = null; // guest's single connection to the host
