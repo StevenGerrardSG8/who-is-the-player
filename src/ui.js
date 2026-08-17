@@ -310,6 +310,12 @@ function buildRound() {
   const pack = currentPack();
   resolved = resolvePlayer(p, getLang());
   locked = false;
+  // Each round's content can be shorter than the last (fewer/shorter career
+  // rows, a shorter name) — without resetting scroll, a leftover scroll
+  // offset from the previous (taller) round leaves blank space below the
+  // new, shorter page on mobile browsers (visible as the screen "shrinking"
+  // with empty space showing through beneath the content).
+  window.scrollTo({ top: 0, behavior: "auto" });
   mistakesThisRound = 0;
   clearTimeout(wrongFreeTimer);
   ps.hintsBought = ps.hintsBought || [];
