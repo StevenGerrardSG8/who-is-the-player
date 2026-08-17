@@ -1,4 +1,4 @@
-import { shuffle, buildBankLetters, checkAnswer, normalizeAnswer, renderAnswerLayout } from "./game.js";
+import { shuffle, buildBankLetters, checkAnswer, normalizeAnswer, renderAnswerLayout, applyPerLetterLockFeedback } from "./game.js";
 import { loadPhoto, prefetchPhotos } from "./photo.js";
 import { showScreen } from "./screens.js";
 import { t, getLang, showLangPicker, onLangChange } from "./i18n/index.js";
@@ -26,6 +26,7 @@ let locked = false;
 let awaitingWinner = false;
 let winnerFlashIdx = null; // briefly highlights the tapped winner's chip
 let resolved = null; // current round's player, resolved for the active UI language
+let wrongFreeTimer = null; // pending timeout that frees wrong-position letters back to the bank
 
 /* ============================================================
    SETUP SCREEN
@@ -198,7 +199,7 @@ function placeTile(tile) {
 }
 
 function removeFromSlot(slot) {
-  if (locked || slot.tileIdx === null) return;
+  if (locked || slot.confirmed || slot.tileIdx === null) return;
   const tile = tiles[slot.tileIdx];
   tile.used = false;
   tile.el.classList.remove("used");
@@ -212,10 +213,28 @@ function checkNow() {
   const guess = slots.map((s) => tiles[s.tileIdx].char).join("");
   if (checkAnswer(guess, resolved.answer)) {
     onCorrectGuess();
-  } else {
-    $("mpAnswer").classList.add("wrong");
-    setTimeout(() => $("mpAnswer").classList.remove("wrong"), 600);
+    return;
   }
+  $("mpAnswer").classList.add("wrong");
+  setTimeout(() => $("mpAnswer").classList.remove("wrong"), 600);
+
+  // Same per-letter lock feedback as single-player: correctly placed
+  // letters turn green and lock, wrong ones flash red then free back to
+  // the bank so only the wrong letters need retrying.
+  const toFree = applyPerLetterLockFeedback(slots, tiles);
+  slots.forEach((s) => s.el.classList.toggle("slot-correct", s.confirmed));
+  toFree.forEach((s) => s.el.classList.add("slot-wrong"));
+  clearTimeout(wrongFreeTimer);
+  wrongFreeTimer = setTimeout(() => {
+    toFree.forEach((s) => {
+      const tile = tiles[s.tileIdx];
+      tile.used = false;
+      tile.el.classList.remove("used");
+      s.tileIdx = null;
+      s.el.textContent = "";
+      s.el.classList.remove("filled", "slot-wrong");
+    });
+  }, 650);
 }
 
 function onCorrectGuess() {

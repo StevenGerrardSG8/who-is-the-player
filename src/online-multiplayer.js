@@ -6,7 +6,7 @@
 // out to everyone else (see broadcast/hostConns). All players race the
 // same target each round; the host is the sole authority on who answered
 // first (see reportAttempt/resolveRound).
-import { buildBankLetters, checkAnswer, renderAnswerLayout } from "./game.js";
+import { buildBankLetters, checkAnswer, renderAnswerLayout, applyPerLetterLockFeedback } from "./game.js";
 import { loadPhoto, prefetchPhotos } from "./photo.js";
 import { showScreen } from "./screens.js";
 import { t, getLang, showLangPicker, onLangChange } from "./i18n/index.js";
@@ -61,6 +61,7 @@ let skippedIdxs = new Set();
 let skippedNames = []; // names announced as skipped this round, in order
 let winnerFlashIdx = null; // briefly highlights the round's winning chip
 let resolved = null; // current round's player, resolved for the active UI language
+let wrongFreeTimer = null; // pending timeout that frees wrong-position letters back to the bank
 
 // "turns" mode only: players answer one at a time, in join order.
 let turnOrder = []; // this round's rotation, e.g. [0,1,2] — fixed join order
@@ -521,7 +522,7 @@ function placeTile(tile) {
 }
 
 function removeFromSlot(slot) {
-  if (locked || slot.tileIdx === null) return;
+  if (locked || slot.confirmed || slot.tileIdx === null) return;
   const tile = tiles[slot.tileIdx];
   tile.used = false;
   tile.el.classList.remove("used");
@@ -537,10 +538,28 @@ function checkNow() {
   if (checkAnswer(guess, resolved.answer)) {
     locked = true;
     reportAttempt(true);
-  } else {
-    $("mpoAnswer").classList.add("wrong");
-    setTimeout(() => $("mpoAnswer").classList.remove("wrong"), 600);
+    return;
   }
+  $("mpoAnswer").classList.add("wrong");
+  setTimeout(() => $("mpoAnswer").classList.remove("wrong"), 600);
+
+  // Same per-letter lock feedback as single-player: correctly placed
+  // letters turn green and lock, wrong ones flash red then free back to
+  // the bank so only the wrong letters need retrying.
+  const toFree = applyPerLetterLockFeedback(slots, tiles);
+  slots.forEach((s) => s.el.classList.toggle("slot-correct", s.confirmed));
+  toFree.forEach((s) => s.el.classList.add("slot-wrong"));
+  clearTimeout(wrongFreeTimer);
+  wrongFreeTimer = setTimeout(() => {
+    toFree.forEach((s) => {
+      const tile = tiles[s.tileIdx];
+      tile.used = false;
+      tile.el.classList.remove("used");
+      s.tileIdx = null;
+      s.el.textContent = "";
+      s.el.classList.remove("filled", "slot-wrong");
+    });
+  }, 650);
 }
 
 function skipTurn() {

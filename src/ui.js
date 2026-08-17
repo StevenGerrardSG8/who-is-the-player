@@ -1,5 +1,6 @@
 import {
   HINT_COSTS,
+  applyPerLetterLockFeedback,
   buildBankLetters,
   checkAnswer,
   computeReward,
@@ -419,18 +420,9 @@ function checkAnswerNow() {
   // Per-letter lock feedback: letters already in the right slot turn green
   // and lock (can't be removed/reused); letters in the wrong slot flash red
   // and then free back to the bank so only the wrong ones need retrying.
-  const toFree = [];
-  slots.forEach((s) => {
-    if (s.confirmed) return;
-    const tile = tiles[s.tileIdx];
-    if (tile.char === s.char) {
-      s.confirmed = true;
-      s.el.classList.add("slot-correct");
-    } else {
-      s.el.classList.add("slot-wrong");
-      toFree.push(s);
-    }
-  });
+  const toFree = applyPerLetterLockFeedback(slots, tiles);
+  slots.forEach((s) => s.el.classList.toggle("slot-correct", s.confirmed));
+  toFree.forEach((s) => s.el.classList.add("slot-wrong"));
   clearTimeout(wrongFreeTimer);
   wrongFreeTimer = setTimeout(() => {
     toFree.forEach((s) => {

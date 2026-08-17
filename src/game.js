@@ -49,6 +49,26 @@ export function checkAnswer(guess, answer) {
   return normalizeAnswer(guess) === normalizeAnswer(answer);
 }
 
+// Per-letter lock feedback for a wrong full-answer guess: any slot whose
+// placed tile matches its target letter is marked `confirmed` (caller should
+// add a "correct"/locked visual class and must never let removeFromSlot
+// clear it again) so only the actually-wrong letters need retrying. Returns
+// the slots that were wrong, for the caller to flash red and free back to
+// the tile bank after its own delay.
+export function applyPerLetterLockFeedback(slots, tiles) {
+  const wrong = [];
+  slots.forEach((s) => {
+    if (s.confirmed) return;
+    const tile = tiles[s.tileIdx];
+    if (tile.char === s.char) {
+      s.confirmed = true;
+    } else {
+      wrong.push(s);
+    }
+  });
+  return wrong;
+}
+
 // Builds the answer's letter-slot layout into `container`, splitting into
 // separate <div class="word"> groups on spaces (as before) and, within a
 // word, rendering a "-" as a static separator rather than a slot — a hyphen
