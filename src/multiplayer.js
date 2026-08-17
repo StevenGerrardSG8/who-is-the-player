@@ -1,4 +1,4 @@
-import { shuffle, buildBankLetters, checkAnswer, renderAnswerLayout } from "./game.js";
+import { shuffle, buildBankLetters, checkAnswer, normalizeAnswer, renderAnswerLayout } from "./game.js";
 import { loadPhoto, prefetchPhotos } from "./photo.js";
 import { showScreen } from "./screens.js";
 import { t, getLang, showLangPicker, onLangChange } from "./i18n/index.js";
@@ -158,7 +158,7 @@ function buildRound() {
 
   const answerEl = $("mpAnswer");
   answerEl.classList.toggle("rtl", !!resolved.rtl);
-  const letters = resolved.answer.replace(/[ -]/g, "").length;
+  const letters = normalizeAnswer(resolved.answer).length;
   if (letters >= 12) answerEl.classList.add("tiny");
   else if (letters >= 9) answerEl.classList.add("small");
 

@@ -17,6 +17,17 @@ export const ARABIC_ALPHABET = "ابتثجحخدذرزسشصضطظعغفقكلم
 export const CYRILLIC_ALPHABET = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЭЮЯ";
 export const GREEK_ALPHABET = "ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ";
 
+// Spaces and punctuation are presentation, not letters the player should
+// have to find in the tile bank. Unicode punctuation covers Hebrew geresh
+// and gershayim as well as straight/curly apostrophes and every hyphen form.
+export function isAnswerSeparator(char) {
+  return /[\p{P}\p{Z}\s]/u.test(char);
+}
+
+export function normalizeAnswer(answer) {
+  return [...answer.normalize("NFC")].filter((char) => !isAnswerSeparator(char)).join("");
+}
+
 export function shuffle(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -26,7 +37,7 @@ export function shuffle(arr) {
 }
 
 export function buildBankLetters(answer, alphabet = LATIN_ALPHABET) {
-  const answerLetters = answer.replace(/[ -]/g, "").split("");
+  const answerLetters = [...normalizeAnswer(answer)];
   const total = Math.max(12, answerLetters.length + 4);
   const bankLetters = [...answerLetters];
   while (bankLetters.length < total) {
@@ -36,7 +47,7 @@ export function buildBankLetters(answer, alphabet = LATIN_ALPHABET) {
 }
 
 export function checkAnswer(guess, answer) {
-  return guess === answer.replace(/[ -]/g, "");
+  return normalizeAnswer(guess) === normalizeAnswer(answer);
 }
 
 // Builds the answer's letter-slot layout into `container`, splitting into
@@ -52,7 +63,7 @@ export function renderAnswerLayout(answer, container, slots, onSlotClick) {
     const w = document.createElement("div");
     w.className = "word";
     word.split("").forEach((ch) => {
-      if (ch === "-") {
+      if (isAnswerSeparator(ch)) {
         const sep = document.createElement("div");
         sep.className = "slot-sep";
         sep.textContent = "-";

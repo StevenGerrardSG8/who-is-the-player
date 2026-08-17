@@ -6,6 +6,7 @@ import {
   computeStars,
   computeStreakBonus,
   computeTimeBonus,
+  normalizeAnswer,
   renderAnswerLayout,
 } from "./game.js";
 import {
@@ -309,7 +310,7 @@ function buildRound() {
   const answerEl = $("answer");
   answerEl.classList.remove("correct", "wrong", "small", "tiny", "rtl");
   answerEl.classList.toggle("rtl", !!resolved.rtl);
-  const letters = resolved.answer.replace(/[ -]/g, "").length;
+  const letters = normalizeAnswer(resolved.answer).length;
   if (letters >= 12) answerEl.classList.add("tiny");
   else if (letters >= 9) answerEl.classList.add("small");
 
@@ -530,7 +531,7 @@ function revealName() {
     s.confirmed = false;
     s.el.classList.remove("slot-correct", "slot-wrong");
   });
-  const target = resolved.answer.replace(/[ -]/g, "").split("");
+  const target = [...normalizeAnswer(resolved.answer)];
   target.forEach((ch, i) => {
     const tile = tiles.find((t) => !t.used && t.char === ch);
     if (tile) {
