@@ -133,5 +133,19 @@ export default {
   "hof.winsShort": "ניצחונות",
   "hof.modeLocal": "מקומי",
   "hof.modeOnline": "אונליין",
-  "hof.pts": "נק׳"
+  "hof.pts": "נק׳",
+  "hof.globalTitle": "טבלאות טופ גלובליות",
+  "hof.globalSub": "דירוג בין כל השחקנים והמכשירים — למי שהצטרף",
+  "hof.globalNameBtn": "הצטרף לטבלאות",
+  "hof.playingAsLabel": "משחק בתור",
+  "hof.changeName": "שנה",
+  "hof.tabDaily": "היום",
+  "hof.tabWeekly": "השבוע",
+  "hof.tabMonthly": "החודש",
+  "hof.tabDayStreak": "רצף ימים",
+  "hof.tabWinStreak": "רצף ניצחונות",
+  "hof.globalEmpty": "אין עדיין רשומות — תהיה הראשון!",
+  "hof.globalLoading": "טוען…",
+  "hof.dayStreakUnit": "ימים",
+  "hof.winStreakUnit": "ניצחונות"
 };

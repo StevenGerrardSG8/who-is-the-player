@@ -184,6 +184,16 @@ const STATIC_MAP = {
   hofStreakBestLabel: "hof.streakBestLabel",
   hofBestsTitle: "hof.bestsTitle",
   hofChampsTitle: "hof.champsTitle",
+  hofGlobalTitle: "hof.globalTitle",
+  hofGlobalSub: "hof.globalSub",
+  hofGlobalNameBtn: "hof.globalNameBtn",
+  hofPlayingAsLabel: "hof.playingAsLabel",
+  hofChangeNameBtn: "hof.changeName",
+  hofTabDaily: "hof.tabDaily",
+  hofTabWeekly: "hof.tabWeekly",
+  hofTabMonthly: "hof.tabMonthly",
+  hofTabDayStreak: "hof.tabDayStreak",
+  hofTabWinStreak: "hof.tabWinStreak",
 };
 
 // HTML `placeholder`/`title` attributes aren't plain text nodes, so the
@@ -192,6 +202,7 @@ const STATIC_MAP = {
 const STATIC_PLACEHOLDER_MAP = {
   mpOnlineNameInput: "online.yourName",
   mpJoinCodeInput: "online.roomCodePlaceholder",
+  hofGlobalNameInput: "online.yourName",
 };
 
 const STATIC_TITLE_MAP = {

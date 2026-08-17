@@ -484,12 +484,13 @@ h1 span{
 .mp-players{display:flex;flex-direction:column;gap:8px;margin-top:4px}
 .mp-panel-card .mp-players{margin-top:0}
 .mp-player-row{display:flex;gap:8px;align-items:center}
-.mp-player-row input{
-  flex:1;font-family:var(--body);font-size:14px;padding:11px 13px;border-radius:var(--radius-sm);
+.mp-player-row input,.mp-players>input,#hofNameSetup input{
+  flex:1;width:100%;font-family:var(--body);font-size:14px;padding:11px 13px;border-radius:var(--radius-sm);
   border:2px solid var(--card-edge);background:var(--card);color:var(--ink);
   transition:box-shadow .15s,border-color .15s;
 }
-.mp-player-row input:focus{outline:none;border-color:var(--foil);box-shadow:0 0 0 3px rgba(231,190,85,0.25)}
+.mp-player-row input:focus,.mp-players>input:focus,#hofNameSetup input:focus{outline:none;border-color:var(--foil);box-shadow:0 0 0 3px rgba(231,190,85,0.25)}
+.mp-player-row input::placeholder,.mp-players>input::placeholder,#hofNameSetup input::placeholder{color:var(--ink-soft)}
 .mp-player-badge{
   flex-shrink:0;width:28px;height:28px;border-radius:50%;
   background:radial-gradient(circle at 35% 30%,var(--foil-2),var(--foil-deep) 80%);color:#3B2C08;
@@ -692,6 +693,22 @@ h1 span{
 .hof-champ-row:last-child{border-bottom:0}
 .hof-champ-name{font-family:var(--score);font-weight:700;font-size:13px;color:var(--ink)}
 .hof-champ-meta{color:var(--ink-soft);font-size:10.5px;font-family:var(--body);font-weight:700;text-align:end}
+
+.hof-global-sub{margin:-4px 0 10px;font-family:var(--body);font-size:11px;color:var(--ink-soft)}
+#hofNameSetup{display:flex;gap:8px;margin-bottom:10px}
+#hofNameSetup input{flex:1}
+#hofNamePlaying{
+  display:flex;align-items:center;gap:6px;margin-bottom:10px;
+  font-family:var(--body);font-size:12.5px;color:var(--ink-soft);
+}
+#hofNamePlaying b{font-family:var(--score);font-weight:700;color:var(--ink)}
+.hof-global-tabs{display:flex;gap:5px;overflow-x:auto;margin-bottom:8px;padding-bottom:2px}
+.hof-global-tab{
+  flex-shrink:0;font-family:var(--score);font-weight:700;font-size:10.5px;
+  padding:6px 11px;border-radius:999px;border:1px solid var(--card-edge);
+  background:transparent;color:var(--ink-soft);cursor:pointer;transition:background .15s,color .15s;
+}
+.hof-global-tab.active{background:linear-gradient(135deg,var(--foil-2),var(--foil-deep));color:#3B2C08;border-color:transparent}
 
 /* ---------- direction-aware nav arrows ---------- */
 .dir-arrow{display:inline-block}

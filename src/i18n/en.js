@@ -133,5 +133,19 @@ export default {
   "hof.winsShort": "wins",
   "hof.modeLocal": "Local",
   "hof.modeOnline": "Online",
-  "hof.pts": "pts"
+  "hof.pts": "pts",
+  "hof.globalTitle": "Global Leaderboards",
+  "hof.globalSub": "Cross-device rankings — everyone who's opted in",
+  "hof.globalNameBtn": "Join the leaderboards",
+  "hof.playingAsLabel": "Playing as",
+  "hof.changeName": "Change",
+  "hof.tabDaily": "Today",
+  "hof.tabWeekly": "Week",
+  "hof.tabMonthly": "Month",
+  "hof.tabDayStreak": "Day Streak",
+  "hof.tabWinStreak": "Win Streak",
+  "hof.globalEmpty": "No entries yet — be the first!",
+  "hof.globalLoading": "Loading…",
+  "hof.dayStreakUnit": "days",
+  "hof.winStreakUnit": "wins"
 };

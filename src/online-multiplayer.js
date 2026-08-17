@@ -13,6 +13,7 @@ import { t, getLang, showLangPicker, onLangChange } from "./i18n/index.js";
 import { translatePackName } from "./i18n/content/leagues.js";
 import { resolvePlayer } from "./i18n/content/index.js";
 import { toast } from "./ui.js";
+import { recordRun, recordMatchResult } from "./backend.js";
 
 const $ = (id) => document.getElementById(id);
 const MP_POINTS = 100;
@@ -632,6 +633,12 @@ function showResults() {
       recordChampion({ name: w.name, score: w.score, packId: game.packId, mode: "online", date: Date.now() })
     );
   }
+  // A 0-0 stalemate (every round skipped by everyone) isn't a meaningful
+  // win or loss for the device-level global win-streak — skip it entirely.
+  if (topScore > 0) {
+    recordMatchResult({ won: winners.includes(game.players[myPlayerIdx]) });
+  }
+  recordRun({ score: game.players[myPlayerIdx].score, mode: "online-multiplayer", packId: game.packId });
 }
 
 function quitSilently() {

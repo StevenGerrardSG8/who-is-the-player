@@ -6,6 +6,7 @@ import * as multiplayer from "./multiplayer.js";
 import * as onlineMultiplayer from "./online-multiplayer.js";
 import { showScreen } from "./screens.js";
 import { initLang, showLangPicker, hideLangPicker, hasSavedLang, applyStaticTranslations } from "./i18n/index.js";
+import { initBackend, syncDayStreak } from "./backend.js";
 
 const $ = (id) => document.getElementById(id);
 
@@ -21,6 +22,10 @@ const $ = (id) => document.getElementById(id);
   // update the daily-streak counter accordingly (see src/state.js).
   updateDailyStreak(state);
   persist();
+
+  // Anonymous per-device identity for the optional global leaderboards
+  // (src/backend.js) — fully non-blocking, the game works offline either way.
+  initBackend().then(() => syncDayStreak(state.hallOfFame.streak));
 
   const onChampionRecorded = (entry) => {
     recordChampion(state, entry);

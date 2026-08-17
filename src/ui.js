@@ -32,6 +32,7 @@ import { showScreen } from "./screens.js";
 import { t, getLang, onLangChange } from "./i18n/index.js";
 import { resolvePlayer } from "./i18n/content/index.js";
 import { translatePackName } from "./i18n/content/leagues.js";
+import { getGlobalName, setGlobalName, recordRun, fetchLeaderboard } from "./backend.js";
 
 const $ = (id) => document.getElementById(id);
 
@@ -627,6 +628,7 @@ function showPackComplete() {
   // replay) starts a fresh run instead of inheriting this one's numbers.
   const timeMs = ps.runStartedAt ? Date.now() - ps.runStartedAt : null;
   recordPackRun(ps, { score: ps.runScore || 0, stars: packStarTotal(ps), timeMs, date: Date.now() });
+  recordRun({ score: ps.runScore || 0, mode: "solo", packId: currentPackId });
   ps.runScore = 0;
   ps.runStartedAt = null;
   ctx.persist();
@@ -745,10 +747,47 @@ function renderHallOfFame() {
   }
 }
 
+let activeGlobalPeriod = "daily";
+
+function renderGlobalNameUI() {
+  const name = getGlobalName();
+  $("hofNameSetup").style.display = name ? "none" : "";
+  $("hofNamePlaying").style.display = name ? "" : "none";
+  if (name) $("hofPlayingAsName").textContent = name;
+}
+
+async function loadGlobalLeaderboard() {
+  const period = activeGlobalPeriod;
+  const listEl = $("hofGlobalList");
+  listEl.innerHTML = '<div class="hof-empty">' + t("hof.globalLoading") + "</div>";
+  const rows = await fetchLeaderboard(period);
+  if (!onHallOfFame || period !== activeGlobalPeriod) return; // a newer tab click superseded this fetch
+  if (!rows.length) {
+    listEl.innerHTML = '<div class="hof-empty">' + t("hof.globalEmpty") + "</div>";
+    return;
+  }
+  const unit = period === "dayStreak" ? t("hof.dayStreakUnit") : period === "winStreak" ? t("hof.winStreakUnit") : t("hof.pts");
+  listEl.innerHTML = rows
+    .map(
+      (row, i) =>
+        '<div class="hof-champ-lead"><span><span class="rank">#' + (i + 1) + "</span>" + escapeHofHtml(row.name) +
+        '</span><span class="wins">' + row.value + " " + unit + "</span></div>"
+    )
+    .join("");
+}
+
+function setGlobalTab(period) {
+  activeGlobalPeriod = period;
+  $("hofGlobalTabs").querySelectorAll(".hof-global-tab").forEach((btn) => btn.classList.toggle("active", btn.dataset.period === period));
+  loadGlobalLeaderboard();
+}
+
 export function showHallOfFame() {
   onHallOfFame = true;
   showScreen("screenHallOfFame");
   renderHallOfFame();
+  renderGlobalNameUI();
+  loadGlobalLeaderboard();
 }
 
 export function showGame(packId) {
@@ -795,10 +834,27 @@ export function init(context) {
     showHome();
   });
   $("hofBackBtn").addEventListener("click", showHome);
+  $("hofGlobalNameBtn").addEventListener("click", async () => {
+    const name = $("hofGlobalNameInput").value.trim();
+    if (!name) return;
+    await setGlobalName(name);
+    renderGlobalNameUI();
+    loadGlobalLeaderboard();
+  });
+  $("hofChangeNameBtn").addEventListener("click", () => {
+    $("hofGlobalNameInput").value = getGlobalName() || "";
+    $("hofNameSetup").style.display = "";
+    $("hofNamePlaying").style.display = "none";
+  });
+  $("hofGlobalTabs").querySelectorAll(".hof-global-tab").forEach((btn) => {
+    btn.addEventListener("click", () => setGlobalTab(btn.dataset.period));
+  });
 
   onLangChange(() => {
-    if (onHallOfFame) renderHallOfFame();
-    else if (currentPackId === null) renderHome();
+    if (onHallOfFame) {
+      renderHallOfFame();
+      loadGlobalLeaderboard();
+    } else if (currentPackId === null) renderHome();
     else buildRound();
   });
 }

@@ -110,3 +110,4 @@ export const SURVIVAL_LIVES = 3;
 
 export const STORAGE_KEY = "wtp-progress-v2";
 export const LANG_STORAGE_KEY = "wtp-lang-v1";
+export const GLOBAL_NAME_STORAGE_KEY = "wtp-global-name-v1";
