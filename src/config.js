@@ -91,12 +91,12 @@ export const STARS_PER_UNLOCK = 20;
 export const FREE_PACKS = [...TOP_LEAGUE_PACKS, HOME_LEAGUE_PACK];
 
 export const START_COINS = 100;
-export const HINT_COSTS = { 1: 15, 2: 30, 3: 60 };
-// Coin payout per solve, keyed by how many paid hints (1/2) were bought —
-// scaled down per hint so buying hints is a real coin sink rather than a
-// wash (previously a flat 25 regardless of hints bought made grinding
-// hints-then-solving a net-positive coin loop).
-export const SOLVE_COINS_BY_HINTS = { 0: 20, 1: 12, 2: 6 };
+// Reveal (hint 3) costs far more than the two info hints — it's a full
+// answer giveaway, priced so it's a rare last resort rather than a routine buy.
+export const HINT_COSTS = { 1: 15, 2: 30, 3: 100 };
+// Flat coin payout per solve regardless of hints bought — hints are already
+// gated by their own cost (see HINT_COSTS), so this doesn't need to scale too.
+export const SOLVE_COINS = 5;
 export const REVEAL_COINS = 2;
 
 // Points per solve, keyed by how many paid hints (1/2) were bought — flat
