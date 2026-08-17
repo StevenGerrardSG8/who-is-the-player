@@ -206,9 +206,29 @@ function attemptHost(tries) {
     if (err.type === "unavailable-id") {
       p.destroy();
       attemptHost(tries + 1);
+    } else if (peer === p) {
+      // Room already open and shared — mpOnlineError lives on the (now
+      // hidden) pre-lobby screen, so surface this as a toast instead.
+      toast(t("online.connectionError", { err: err.type }));
     } else {
       $("mpOnlineError").textContent = t("online.connectionError", { err: err.type });
     }
+  });
+  // The host's own link to PeerJS's signaling broker (distinct from each
+  // guest's WebRTC data connection, handled separately in
+  // wireHostConnection) can drop silently — e.g. the phone's screen locks
+  // and the OS suspends the tab's network/JS, or a brief network hiccup —
+  // leaving the room's code unreachable to new joiners while the host's own
+  // screen still shows "waiting for opponent" with no hint anything's wrong.
+  // Reconnecting under the same ID keeps the code guests already have valid.
+  p.on("disconnected", () => {
+    if (p.destroyed || peer !== p) return;
+    setLobbyStatus("online.reconnecting");
+    p.reconnect();
+  });
+  p.on("close", () => {
+    if (peer !== p) return;
+    toast(t("online.hostConnectionLost"));
   });
   p.on("connection", (c) => {
     if (hostConns.length + 1 >= MAX_TOTAL_PLAYERS) {

@@ -102,6 +102,8 @@ export default {
   "online.couldntConnect": "לא ניתן היה להתחבר — בדוק את הקוד ונסה שוב ({err}).",
   "online.connectTimeout": "תם הזמן להתחברות — נסה שוב.",
   "online.connectionError": "שגיאת חיבור: {err}",
+  "online.reconnecting": "תקלת חיבור — מתחבר מחדש…",
+  "online.hostConnectionLost": "החיבור לשירות המולטיפלייר נותק — חזרו והקימו חדר חדש.",
   "online.opponentDisconnected": "{name} התנתק/ה.",
   "online.opponentLeft": "{name} עזב/ה את המשחק.",
   "online.opponentFallback": "היריב",

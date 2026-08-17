@@ -102,6 +102,8 @@ export default {
   "online.couldntConnect": "Couldn't connect — check the code and try again ({err}).",
   "online.connectTimeout": "Connection timed out — try again.",
   "online.connectionError": "Connection error: {err}",
+  "online.reconnecting": "Connection hiccup — reconnecting…",
+  "online.hostConnectionLost": "Lost the connection to PeerJS — go back and create a new room.",
   "online.opponentDisconnected": "{name} disconnected.",
   "online.opponentLeft": "{name} left the game.",
   "online.opponentFallback": "Opponent",
