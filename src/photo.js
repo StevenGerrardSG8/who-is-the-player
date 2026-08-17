@@ -112,6 +112,42 @@ async function resolveSportsDbSrc(wiki) {
   return (hit && (hit.strCutout || hit.strThumb)) || null;
 }
 
+// Some recent Ligat Ha'Al players have an English Wikipedia article under a
+// spelling variant or a disambiguated title. If the direct title lookup has no
+// image, search for the footballer and use the first photographed result.
+//
+// A search hit is only trusted if Wikidata's short description actually
+// calls it a footballer/player — otherwise the top "<name> footballer" hit
+// can be an unrelated article (a cup final, a stadium, a squad list) that
+// happens to have a page image, which would silently show the wrong photo
+// instead of falling through to the TheSportsDB fallback below.
+async function resolveWikipediaSearchSrc(wiki) {
+  const params = new URLSearchParams({
+    action: "query",
+    generator: "search",
+    gsrsearch: `"${bareName(wiki)}" footballer`,
+    gsrnamespace: "0",
+    gsrlimit: "5",
+    prop: "pageimages|pageprops",
+    piprop: "thumbnail",
+    pithumbsize: "640",
+    ppprop: "wikibase-shortdesc",
+    format: "json",
+    origin: "*",
+  });
+  const r = await fetch("https://en.wikipedia.org/w/api.php?" + params.toString());
+  if (!r.ok) throw new Error("wiki search failed");
+  const j = await r.json();
+  const pages = Object.values((j.query && j.query.pages) || {}).sort(
+    (a, b) => (a.index || 999) - (b.index || 999)
+  );
+  const hit = pages.find((page) => {
+    const desc = (page.pageprops && page.pageprops["wikibase-shortdesc"]) || "";
+    return page.thumbnail && page.thumbnail.source && /footballer|player/i.test(desc);
+  });
+  return (hit && hit.thumbnail.source) || null;
+}
+
 async function resolveImageSrc(wiki) {
   if (srcCache.has(wiki)) return srcCache.get(wiki);
 
@@ -124,6 +160,20 @@ async function resolveImageSrc(wiki) {
     raw = (j.thumbnail && j.thumbnail.source) || (j.originalimage && j.originalimage.source) || null;
   } catch (e) {
     wikiFailed = true;
+  }
+
+  if (raw) {
+    const src = resizeThumbnail(raw);
+    srcCache.set(wiki, src);
+    resolveCredit(wiki, raw);
+    return src;
+  }
+
+  let searchFailed = false;
+  try {
+    raw = await resolveWikipediaSearchSrc(wiki);
+  } catch (e) {
+    searchFailed = true;
   }
 
   if (raw) {
@@ -151,7 +201,7 @@ async function resolveImageSrc(wiki) {
   // completed — a transient failure (rate limit, flaky network) should be
   // retried next time, not written off permanently for the rest of the
   // session over what might just be a momentary hiccup.
-  if (!wikiFailed && !fallbackFailed) srcCache.set(wiki, null);
+  if (!wikiFailed && !searchFailed && !fallbackFailed) srcCache.set(wiki, null);
   return null;
 }
 
