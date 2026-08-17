@@ -1,7 +1,7 @@
 import {
   HINT_COSTS,
   POINTS_BY_HINTS,
-  SOLVE_COINS,
+  SOLVE_COINS_BY_HINTS,
   REVEAL_COINS,
   STREAK_BONUS_COINS,
   STREAK_BONUS_POINTS,
@@ -104,7 +104,7 @@ export function renderAnswerLayout(answer, container, slots, onSlotClick) {
 export function computeReward({ revealed, hintsBought }) {
   if (revealed) return { points: 0, coins: REVEAL_COINS };
   const paidHints = hintsBought.filter((n) => n === 1 || n === 2).length;
-  return { points: POINTS_BY_HINTS[paidHints], coins: SOLVE_COINS };
+  return { points: POINTS_BY_HINTS[paidHints], coins: SOLVE_COINS_BY_HINTS[paidHints] };
 }
 
 // 3 = no hints, 2 = info hint(s) but not revealed, 1 = revealed
