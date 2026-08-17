@@ -37,9 +37,10 @@ import legendaryClubSides from "./legendary-club-sides.js";
 import israelisAbroad from "./israelis-abroad.js";
 import retro90s2000s from "./retro-90s-2000s.js";
 import legendaryManagers from "./legendary-managers.js";
+import { EXCLUDED_PLAYER_WIKIS } from "./excluded-players.js";
 
 // Real, hand-curated packs, in home-screen display order.
-const CORE_PACKS = {
+const UNFILTERED_CORE_PACKS = {
   [premierLeague.id]: premierLeague,
   [laLiga.id]: laLiga,
   [serieA.id]: serieA,
@@ -80,6 +81,16 @@ const CORE_PACKS = {
   [retro90s2000s.id]: retro90s2000s,
   [legendaryManagers.id]: legendaryManagers,
 };
+
+const CORE_PACKS = Object.fromEntries(
+  Object.entries(UNFILTERED_CORE_PACKS).map(([id, pack]) => [
+    id,
+    {
+      ...pack,
+      players: pack.players.filter(({ wiki }) => !EXCLUDED_PLAYER_WIKIS.has(wiki)),
+    },
+  ]),
+);
 
 /**
  * Round-robin interleave every pack's (already easy→hard ordered) player list

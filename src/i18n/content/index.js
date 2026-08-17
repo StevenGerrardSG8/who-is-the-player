@@ -5,7 +5,7 @@
 // safe fallback to the original text.
 import { translatePosition } from "./positions.js";
 import { translateCountry } from "./country.js";
-import { LATIN_ALPHABET, HEBREW_ALPHABET, ARABIC_ALPHABET, CYRILLIC_ALPHABET, GREEK_ALPHABET } from "../../game.js";
+import { LATIN_ALPHABET, HEBREW_ALPHABET, ARABIC_ALPHABET, CYRILLIC_ALPHABET, GREEK_ALPHABET, normalizeAnswer } from "../../game.js";
 
 import clubsEn from "./clubs/en.js";
 import clubsHe from "./clubs/he.js";
@@ -18,6 +18,7 @@ import clubsZh from "./clubs/zh.js";
 
 import answersEn from "./answers/en.js";
 import answersHe from "./answers/he.js";
+import answersHeDisambiguation from "./answers/he-disambiguation.js";
 import answersAr from "./answers/ar.js";
 import answersRu from "./answers/ru.js";
 import answersEl from "./answers/el.js";
@@ -26,7 +27,16 @@ import answersKo from "./answers/ko.js";
 import answersZh from "./answers/zh.js";
 
 const CLUBS = { en: clubsEn, he: clubsHe, ar: clubsAr, ru: clubsRu, el: clubsEl, ja: clubsJa, ko: clubsKo, zh: clubsZh };
-const ANSWERS = { en: answersEn, he: answersHe, ar: answersAr, ru: answersRu, el: answersEl, ja: answersJa, ko: answersKo, zh: answersZh };
+const ANSWERS = {
+  en: answersEn,
+  he: { ...answersHe, ...answersHeDisambiguation },
+  ar: answersAr,
+  ru: answersRu,
+  el: answersEl,
+  ja: answersJa,
+  ko: answersKo,
+  zh: answersZh,
+};
 
 // Scripts with a small fixed alphabet the distractor tiles can be drawn
 // from, matched against the answer itself (see alphabetFor). Each entry is
@@ -44,7 +54,7 @@ const SCRIPTS = [
 function commonCharPool(answersDict) {
   const chars = new Set();
   Object.values(answersDict).forEach((entry) => {
-    (entry.answer || "").replace(/ /g, "").split("").forEach((ch) => chars.add(ch));
+    [...normalizeAnswer(entry.answer || "")].forEach((ch) => chars.add(ch));
   });
   return [...chars].join("") || LATIN_ALPHABET;
 }
