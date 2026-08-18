@@ -15,6 +15,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Chakra+Petch:wght@500;700&family=Nunito+Sans:wght@400;700;800&family=Heebo:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./src/styles/main.css">
 <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+<script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
 </head>
 <body>
 
@@ -64,7 +65,7 @@
   <div class="home-toolbar">
     <button class="toolbar-chip" id="multiplayerBtn"><span class="toolbar-chip-icon">🎉</span><span class="toolbar-chip-label" id="multiplayerBtnLabel">Multiplayer</span></button>
     <button class="toolbar-chip" id="leaguesBtn"><span class="toolbar-chip-icon">🛡️</span><span class="toolbar-chip-label" id="leaguesBtnLabel">Leagues</span></button>
-    <button class="toolbar-chip" id="playersBtn"><span class="toolbar-chip-icon">📖</span><span class="toolbar-chip-label" id="playersBtnLabel">Players</span></button>
+    <button class="toolbar-chip" id="playersBtn" style="display:none"><span class="toolbar-chip-icon">📖</span><span class="toolbar-chip-label" id="playersBtnLabel">Players</span></button>
     <button class="toolbar-chip" id="bugReportBtn"><span class="toolbar-chip-icon">🐞</span><span class="toolbar-chip-label" id="bugReportBtnLabel">Report a bug</span></button>
     <button class="toolbar-chip" id="languageBtn"><span class="toolbar-chip-icon">🌐</span><span class="toolbar-chip-label" id="languageBtnLabel">Language</span></button>
   </div>
@@ -215,6 +216,7 @@
 
   <div class="hof-card">
     <input type="text" id="playersSearchInput" maxlength="60">
+    <button type="button" class="btn-outline" id="playersExportBtn" style="display:none">⬇ Download Excel</button>
     <p class="hof-empty-hint" id="playersCount"></p>
     <div id="playersList"></div>
   </div>

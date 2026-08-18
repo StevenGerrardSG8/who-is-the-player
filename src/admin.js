@@ -53,6 +53,11 @@ export function initAdminScreen() {
       await loadAdminData();
       $("adminLoginForm").style.display = "none";
       $("adminStatsPanel").style.display = "";
+      // Player database browser + Excel export are spoilers for every answer
+      // in the game, so they stay hidden from the normal toolbar (see
+      // index.html) until this same admin sign-in succeeds.
+      $("playersBtn").style.display = "";
+      $("playersExportBtn").style.display = "";
     } catch (e) {
       errorEl.textContent = "Sign-in failed — wrong email/password, or Firestore rejected the read.";
     }

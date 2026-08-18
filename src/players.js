@@ -1,6 +1,7 @@
 import { showScreen } from "./screens.js";
 import { t } from "./i18n/index.js";
 import { loadPhoto } from "./photo.js";
+import { resolvePlayer } from "./i18n/content/index.js";
 
 const $ = (id) => document.getElementById(id);
 
@@ -19,6 +20,42 @@ export function init({ packs, onExit: exit }) {
   $("playersBtn").addEventListener("click", showPlayers);
   $("playersBackBtn").addEventListener("click", () => (onExit ? onExit() : showPlayers()));
   $("playersSearchInput").addEventListener("input", () => renderList($("playersSearchInput").value));
+  $("playersExportBtn").addEventListener("click", exportToExcel);
+}
+
+// Wikipedia article URL for a player, from the same title used to fetch
+// their photo (see photo.js) — no live photo fetch here (thousands of
+// players would be far too slow/rate-limited), just a link to the page.
+function wikiUrl(player) {
+  return "https://en.wikipedia.org/wiki/" + encodeURIComponent(player.wiki.replace(/ /g, "_"));
+}
+
+function formatCareer(career) {
+  return (career || []).map(([years, club]) => years + ": " + club).join("; ");
+}
+
+// Admin-only spoiler export (gated behind the same ?admin=1 sign-in that
+// reveals the "playersBtn"/"playersExportBtn" — see admin.js): every
+// player, every pack, name in Hebrew + English, position, nationality,
+// full career, and a Wikipedia link in place of the photo itself.
+function exportToExcel() {
+  const rows = allPlayers.map((player) => {
+    const he = resolvePlayer(player, "he");
+    const en = resolvePlayer(player, "en");
+    return {
+      "Name (Hebrew)": he.answer,
+      "Name (English)": en.answer,
+      "Position": en.pos,
+      "Nationality": en.country,
+      "Career": formatCareer(en.career),
+      "Wikipedia": wikiUrl(player),
+      "Pack": player.packName,
+    };
+  });
+  const sheet = XLSX.utils.json_to_sheet(rows);
+  const book = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(book, sheet, "Players");
+  XLSX.writeFile(book, "who-is-the-player-players.xlsx");
 }
 
 function showPlayers() {
