@@ -1,6 +1,6 @@
 export default {
-  "app.title.who": "Угадай",
-  "app.title.player": "Игрока?",
+  "app.title.who": "Guess The",
+  "app.title.player": "Baller",
   "home.subtitle": "Выбери набор и угадай футболистов",
   "home.coins": "Монеты",
   "home.totalStars": "Всего звёзд",
@@ -20,6 +20,15 @@ export default {
   "game.notEnoughCoins": "Недостаточно монет — угадывай игроков, чтобы заработать больше!",
   "game.mysteryLoading": "Загружаем фото…",
   "game.photoUnavailable": "Таинственный игрок — используй подсказки!",
+  "photo.creditButton": "ⓘ Photo credit",
+  "photo.creditTitle": "Photo credit & license",
+  "photo.creatorLabel": "Creator / photographer",
+  "photo.licenseLabel": "License",
+  "photo.sourceLabel": "Source",
+  "photo.modified": "Image resized or cropped for display.",
+  "photo.openSource": "Open original source",
+  "photo.openLicense": "Open license",
+  "photo.close": "Close",
 
   "hint.position": "Позиция и страна",
   "hint.career": "Клубы карьеры",
@@ -80,5 +89,6 @@ export default {
   "lang.pickTitle": "Выбери язык",
   "lang.pickSubtitle": "Позже это можно изменить в настройках",
   "lang.continue": "Продолжить",
-  "game.quit": "Выйти"
+  "game.quit": "Выйти",
+  "legal.disclaimer": "Guess The Baller is an independent football trivia game and is not affiliated with, sponsored by, or endorsed by any player, club, league, federation, competition, or governing body unless explicitly stated.",
 };

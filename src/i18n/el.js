@@ -1,7 +1,7 @@
 // Greek UI strings. Must have exactly the same keys as en.js.
 export default {
-  "app.title.who": "Ποιος Είναι Ο",
-  "app.title.player": "Παίκτης;",
+  "app.title.who": "Guess The",
+  "app.title.player": "Baller",
   "home.subtitle": "Διάλεξε πακέτο & μάντεψε τους ποδοσφαιριστές",
   "home.coins": "Νομίσματα",
   "home.totalStars": "Σύνολο Αστεριών",
@@ -21,6 +21,15 @@ export default {
   "game.notEnoughCoins": "Δεν έχεις αρκετά νομίσματα — λύσε παίκτες για να κερδίσεις περισσότερα!",
   "game.mysteryLoading": "Φόρτωση φωτογραφίας…",
   "game.photoUnavailable": "Μυστηριώδης παίκτης — χρησιμοποίησε τις βοήθειες!",
+  "photo.creditButton": "ⓘ Photo credit",
+  "photo.creditTitle": "Photo credit & license",
+  "photo.creatorLabel": "Creator / photographer",
+  "photo.licenseLabel": "License",
+  "photo.sourceLabel": "Source",
+  "photo.modified": "Image resized or cropped for display.",
+  "photo.openSource": "Open original source",
+  "photo.openLicense": "Open license",
+  "photo.close": "Close",
 
   "hint.position": "Θέση & Χώρα",
   "hint.career": "Ομάδες Καριέρας",
@@ -81,5 +90,6 @@ export default {
   "lang.pickTitle": "Διάλεξε τη γλώσσα σου",
   "lang.pickSubtitle": "Μπορείς να το αλλάξεις αργότερα στις Ρυθμίσεις",
   "lang.continue": "Συνέχεια",
-  "game.quit": "Έξοδος"
+  "game.quit": "Έξοδος",
+  "legal.disclaimer": "Guess The Baller is an independent football trivia game and is not affiliated with, sponsored by, or endorsed by any player, club, league, federation, competition, or governing body unless explicitly stated.",
 };

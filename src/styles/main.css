@@ -774,3 +774,74 @@ h1 span{
 html[dir="rtl"] .game-topbar{flex-direction:row-reverse}
 html[dir="rtl"] .sb-value.coins::before,
 html[dir="rtl"] .sb-value.stars::before{margin-right:0;margin-left:5px}
+
+/* --- IP HARDENING UI START --- */
+.licensed-photo-fallback{
+  width:100%;height:100%;min-height:210px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  color:#4C6B58;text-align:center;
+}
+.anonymous-player-silhouette{
+  position:relative;width:118px;height:142px;opacity:.9;
+}
+.anonymous-player-silhouette::before{
+  content:"";position:absolute;left:50%;top:4px;transform:translateX(-50%);
+  width:62px;height:62px;border-radius:50%;background:#2A4938;
+  box-shadow:0 0 0 5px rgba(255,255,255,.08);
+}
+.anonymous-player-silhouette::after{
+  content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);
+  width:112px;height:76px;border-radius:58px 58px 18px 18px;background:#2A4938;
+}
+.anonymous-player-question{
+  position:absolute;z-index:2;left:50%;top:18px;transform:translateX(-50%);
+  font-family:var(--display);font-size:42px;line-height:1;color:var(--foil-2);
+}
+.licensed-photo-fallback small{
+  font-family:var(--body);font-size:11px;font-weight:700;max-width:82%;
+}
+.photo-credit-btn{
+  position:absolute;left:7px;bottom:7px;z-index:4;
+  border:1px solid rgba(255,255,255,.28);border-radius:999px;
+  padding:5px 8px;background:rgba(5,17,12,.78);color:#fff;
+  font-family:var(--body);font-size:9px;font-weight:800;cursor:pointer;
+  backdrop-filter:blur(5px);
+}
+.photo-credit-btn:active{transform:scale(.97)}
+.photo-license-overlay{
+  position:fixed;inset:0;z-index:9999;padding:18px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.72);backdrop-filter:blur(4px);
+}
+.photo-license-modal{
+  width:min(420px,100%);max-height:82vh;overflow:auto;
+  border:1px solid rgba(231,190,85,.34);border-radius:18px;
+  background:#0E2A1C;color:var(--chalk);padding:18px;
+  box-shadow:var(--shadow-pop);font-family:var(--body);
+}
+.photo-license-modal h3{
+  margin:0 0 14px;font-family:var(--display);font-size:17px;color:var(--foil-2);
+}
+.photo-license-row{display:grid;gap:3px;margin:10px 0}
+.photo-license-row strong{font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:#8FB29A}
+.photo-license-row span{font-size:12px;line-height:1.45;overflow-wrap:anywhere}
+.photo-license-modified{font-size:11px;color:#A9C3B2;line-height:1.45}
+.photo-license-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.photo-license-link{
+  flex:1;min-width:135px;text-align:center;text-decoration:none;
+  padding:9px 10px;border-radius:999px;border:1px solid rgba(231,190,85,.35);
+  color:var(--foil-2);font-size:11px;font-weight:800;
+}
+.photo-license-close{
+  width:100%;margin-top:12px;padding:10px 12px;border:0;border-radius:999px;
+  background:linear-gradient(180deg,var(--foil-2),var(--foil-deep));
+  color:#3B2C08;font-family:var(--display);font-weight:900;cursor:pointer;
+}
+.legal-footer{
+  position:relative;z-index:1;width:100%;max-width:460px;
+  margin:0 auto;padding:0 18px 22px;text-align:center;
+  color:#88A596;font-family:var(--body);font-size:9px;line-height:1.45;
+}
+.legal-footer p{margin:0 0 6px}
+.legal-footer a{color:#B9D3C4;text-decoration:underline;text-underline-offset:2px}
+/* --- IP HARDENING UI END --- */

@@ -1,184 +1,85 @@
-// Shared Wikipedia photo loader. Guards against stale responses overwriting
-// a newer request when the player advances before a slow fetch resolves.
+// License-aware player-photo loader for Guess The Baller.
+// Real-player images are shown only when Wikimedia metadata can be verified
+// against the allowlist in content-license-policy.js. Unknown/unsafe media
+// fails closed to the anonymous branded fallback.
+//
+// TheSportsDB fallback is intentionally disabled: the previous implementation
+// could render a player image without reliable per-image licensing metadata.
+
 import { t } from "./i18n/index.js";
+import {
+  buildWikimediaAttribution,
+  isMarketingSafeMode,
+} from "./content-license-policy.js";
 
 const activeTokens = new WeakMap();
-const srcCache = new Map(); // wiki title -> resolved image URL (or null if none found)
-const imageCache = new Map(); // wiki title -> preloaded HTMLImageElement (browser-cached bytes)
-const creditCache = new Map(); // wiki title -> Promise<credit text|null>, shared across concurrent callers
+const recordCache = new Map(); // player key -> Promise<{src, attribution}|null>
+const imageCache = new Map(); // player key -> { img, attribution }
 
-// Wikimedia thumbnail URLs look like ".../thumb/a/ab/File.jpg/440px-File.jpg" —
-// the "440px-" segment can be swapped for a different width, but only from
-// Wikimedia's fixed set of standard thumbnail steps (20/40/60/120/250/330/
-// 500/960/1280/1920/3840) — hotlinking any other width now gets rejected
-// with a 429. The sticker card only ever displays this image at ~260px
-// wide, so 330 is the smallest standard step that still looks sharp.
 const THUMB_WIDTH = 330;
+const IMAGE_INFO_ENDPOINTS = [
+  "https://commons.wikimedia.org/w/api.php",
+  "https://en.wikipedia.org/w/api.php",
+  "https://he.wikipedia.org/w/api.php",
+];
+
 function resizeThumbnail(url) {
   if (!url) return url;
   return url.replace(/\/(\d+)px-/, `/${THUMB_WIDTH}px-`);
 }
 
-// Wikimedia image URLs end in either ".../a/ab/File.jpg" (original) or
-// ".../thumb/a/ab/File.jpg/320px-File.jpg" (thumbnail), often with a
-// "?utm_source=..." query string tacked on — pull the bare file name back
-// out so it can be looked up on the file description page.
 function fileNameFromUrl(url) {
-  const m = url.split("?")[0].match(/\/([^/]+)$/);
-  if (!m) return null;
-  return decodeURIComponent(m[1].replace(/^\d+px-/, ""));
+  if (!url) return null;
+  const match = url.split("?")[0].match(/\/([^/]+)$/);
+  if (!match) return null;
+  try {
+    return decodeURIComponent(match[1].replace(/^\d+px-/, ""));
+  } catch (_) {
+    return match[1].replace(/^\d+px-/, "");
+  }
 }
 
-// Some Commons extmetadata fields (e.g. the "Unknown author" template) embed
-// a hidden duplicate span for machine parsing — strip that out first, or a
-// naive tag strip concatenates it with the visible copy ("Unknown authorUnknown author").
-//
-// Derivative-work photos (crops/edits of someone else's upload) list BOTH
-// contributors as a bare `<ul><li>` list: "<OriginalFile.jpg>: <uploader>" then
-// "derivative work: <editor>". The original file is usually named after its
-// subject by whoever uploaded it (e.g. "Abby_Wambach_USA_vs_Can_Sep17.jpg"),
-// so a plain tag-strip leaves that filename sitting at the front of the
-// credit line — which reads as though the player were credited as their own
-// photographer, even though the real contributors follow right after. Strip
-// bare "filename.ext:" fragments so only the actual credited names remain.
-function stripHtml(html) {
-  if (!html) return "";
-  return html
-    .replace(/<span[^>]*display:\s*none[^>]*>[\s\S]*?<\/span>/gi, "")
-    .replace(/<[^>]*>/g, "")
-    .replace(/\S+\.(?:jpe?g|png|gif|svg|tiff?|webp|bmp):\s*/gi, "")
-    .replace(/\s+/g, " ")
+function playerKey(player) {
+  return (player && (player.wiki || player.answer)) || "";
+}
+
+function bareName(wiki) {
+  return String(wiki || "")
+    .replace(/\s*\([^)]*\)\s*$/, "")
     .trim();
 }
 
-function formatCredit(extmetadata) {
-  const artist = stripHtml(extmetadata.Artist && extmetadata.Artist.value);
-  const license = stripHtml(extmetadata.LicenseShortName && extmetadata.LicenseShortName.value);
-  const parts = [artist, license].filter(Boolean);
-  return parts.length ? parts.join(" · ") : "Wikipedia";
-}
-
-// Photos are pulled live from Wikimedia, whose free-license images (mostly
-// CC BY-SA) require attribution — resolve author/license from the file's
-// extmetadata. en.wikipedia's API transparently resolves File: pages that
-// actually live on Commons, so this one endpoint covers both cases. Falls
-// back to a plain "Wikipedia" credit if metadata is missing or the lookup
-// fails, so every real photo still carries a source line.
-function resolveCredit(wiki, rawUrl) {
-  if (creditCache.has(wiki)) return creditCache.get(wiki);
-  const promise = (async () => {
-    const file = fileNameFromUrl(rawUrl);
-    if (!file) return "Wikipedia";
-    try {
-      const r = await fetch(
-        "https://en.wikipedia.org/w/api.php?action=query&titles=" +
-          encodeURIComponent("File:" + file) +
-          "&prop=imageinfo&iiprop=extmetadata&format=json&origin=*"
-      );
-      if (!r.ok) throw new Error("credit fetch failed");
-      const j = await r.json();
-      const page = j.query && j.query.pages && Object.values(j.query.pages)[0];
-      const meta = page && page.imageinfo && page.imageinfo[0] && page.imageinfo[0].extmetadata;
-      return meta ? formatCredit(meta) : "Wikipedia";
-    } catch (e) {
-      return "Wikipedia";
-    }
-  })();
-  creditCache.set(wiki, promise);
-  return promise;
-}
-
-// Wiki titles disambiguate same-name players with a trailing parenthetical
-// ("Chris Allen (footballer, born 1972)") that Wikipedia needs but a plain
-// name-search API doesn't — and will find nothing for if left attached.
-function bareName(wiki) {
-  return wiki.replace(/\s*\([^)]*\)\s*$/, "").trim();
-}
-
-// A flag emoji is a pair of Regional Indicator Symbols, each offset from its
-// ASCII letter by the same amount (U+1F1E6 = 'A') — decoding them back gives
-// the ISO 3166-1 alpha-2 code, which Intl can turn into an English name.
-function countryNameFromFlag(country) {
-  const match = (country || "").match(/[\u{1F1E6}-\u{1F1FF}]{2}/u);
-  if (!match) return null;
-  const code = Array.from(match[0])
-    .map((c) => String.fromCharCode(c.codePointAt(0) - 0x1f1e6 + 65))
-    .join("");
-  try {
-    return new Intl.DisplayNames(["en"], { type: "region" }).of(code) || null;
-  } catch (e) {
-    return null;
-  }
-}
-
-// TheSportsDB's free, keyless tier (the "3" test key, intended for exactly
-// this kind of hobby lookup) as a second source for the ~40% of players
-// Wikipedia has no photo for at all — mostly lower-profile players from the
-// bigger leagues' full squads. `strCutout` (a transparent-background player
-// render) is tried first since it matches the sticker-card art direction
-// better than an arbitrary action photo; `strThumb` is the fallback within
-// the fallback.
-//
-// A bare-name search can hit a same-named player in an unrelated sport/country
-// (e.g. our Ghanaian "Emmanuel Boateng" vs. an American-based namesake) — when
-// our wiki title carries a "born YYYY" disambiguator, that's the same
-// namesake-risk signal used above, so cross-check birth year (the sharpest
-// signal SportsDB gives us) and nationality before trusting the photo. Two
-// same-named players can easily share a nationality, so birth year is checked
-// whenever both sides have one; nationality alone only gates the rarer case
-// where no birth year is available to compare.
-async function resolveSportsDbSrc(wiki, country) {
-  const r = await fetch(
-    "https://www.thesportsdb.com/api/v1/json/3/searchplayers.php?p=" + encodeURIComponent(bareName(wiki))
-  );
-  if (!r.ok) throw new Error("sportsdb fetch failed");
-  const j = await r.json();
-  const hit = j.player && j.player[0];
-  if (!hit) return null;
-  const hasDisambiguator = bareName(wiki) !== wiki;
-  if (hasDisambiguator) {
-    const ourBornYear = wiki.match(/born (\d{4})/);
-    const hitBornYear = hit.dateBorn && hit.dateBorn.match(/^(\d{4})/);
-    if (ourBornYear && hitBornYear && ourBornYear[1] !== hitBornYear[1]) return null;
-    if (!ourBornYear || !hitBornYear) {
-      const expectedNationality = countryNameFromFlag(country);
-      if (expectedNationality && hit.strNationality && hit.strNationality !== expectedNationality) return null;
-    }
-  }
-  return hit.strCutout || hit.strThumb || null;
-}
-
-// Some recent Ligat Ha'Al players have an English Wikipedia article under a
-// spelling variant or a disambiguated title. If the direct title lookup has no
-// image, search for the footballer and use the first photographed result.
-//
-// A search hit is only trusted if Wikidata's short description actually
-// calls it a footballer/player — otherwise the top "<name> footballer" hit
-// can be an unrelated article (a cup final, a stadium, a squad list) that
-// happens to have a page image, which would silently show the wrong photo
-// instead of falling through to the TheSportsDB fallback below.
-//
-// Two more ways a hit can be the wrong person entirely, both caught before
-// the shortdesc check above ever runs:
-//  - The hit shares no name word with our player at all (a loose full-text
-//    match on unrelated terms, e.g. searching "Aziz Ouattara footballer"
-//    surfacing an unrelated match report that happens to mention the sport).
-//  - Our title carries a disambiguator ("(footballer, born 1996)") and the
-//    hit's bare name matches but its own disambiguator differs — that's
-//    Wikipedia's own signal that it's a *different* same-named person
-//    (e.g. "Emmanuel Boateng (footballer, born 1994)" is not our 1996 one).
 function isLikelySamePerson(wiki, hitTitle) {
   const ourBare = bareName(wiki);
   const hitBare = bareName(hitTitle);
   const ourWords = ourBare.toLowerCase().split(/\s+/).filter(Boolean);
   const hitWords = new Set(hitBare.toLowerCase().split(/\s+/).filter(Boolean));
-  if (!ourWords.some((w) => hitWords.has(w))) return false;
+
+  if (!ourWords.some((word) => hitWords.has(word))) return false;
+
   const ourHasDisambiguator = ourBare !== wiki;
-  if (ourHasDisambiguator && hitBare === ourBare && hitTitle !== wiki) return false;
+  if (ourHasDisambiguator && hitBare === ourBare && hitTitle !== wiki) {
+    return false;
+  }
+
   return true;
 }
 
-async function resolveWikipediaSearchSrc(wiki) {
+async function fetchWikipediaSummaryImage(wiki) {
+  const response = await fetch(
+    "https://en.wikipedia.org/api/rest_v1/page/summary/" +
+      encodeURIComponent(wiki)
+  );
+  if (!response.ok) throw new Error("Wikipedia summary fetch failed");
+  const data = await response.json();
+  return (
+    (data.thumbnail && data.thumbnail.source) ||
+    (data.originalimage && data.originalimage.source) ||
+    null
+  );
+}
+
+async function fetchWikipediaSearchImage(wiki) {
   const params = new URLSearchParams({
     action: "query",
     generator: "search",
@@ -192,129 +93,286 @@ async function resolveWikipediaSearchSrc(wiki) {
     format: "json",
     origin: "*",
   });
-  const r = await fetch("https://en.wikipedia.org/w/api.php?" + params.toString());
-  if (!r.ok) throw new Error("wiki search failed");
-  const j = await r.json();
-  const pages = Object.values((j.query && j.query.pages) || {}).sort(
+
+  const response = await fetch(
+    "https://en.wikipedia.org/w/api.php?" + params.toString()
+  );
+  if (!response.ok) throw new Error("Wikipedia search failed");
+
+  const data = await response.json();
+  const pages = Object.values((data.query && data.query.pages) || {}).sort(
     (a, b) => (a.index || 999) - (b.index || 999)
   );
+
   const hit = pages.find((page) => {
-    const desc = (page.pageprops && page.pageprops["wikibase-shortdesc"]) || "";
+    const description =
+      (page.pageprops && page.pageprops["wikibase-shortdesc"]) || "";
     return (
       page.thumbnail &&
       page.thumbnail.source &&
-      /footballer|player/i.test(desc) &&
+      /footballer|player/i.test(description) &&
       isLikelySamePerson(wiki, page.title)
     );
   });
+
   return (hit && hit.thumbnail.source) || null;
 }
 
-// Some Israeli-league players (especially retired/lower-profile ones) only
-// ever got a Hebrew Wikipedia article, never an English one — the answer
-// text itself (already the player's Hebrew name for this pack) is the title
-// to try. Only meaningful for Hebrew answers, so callers skip this for
-// packs whose answer is already in Latin script.
-async function resolveHebrewWikipediaSrc(answer) {
-  const r = await fetch("https://he.wikipedia.org/api/rest_v1/page/summary/" + encodeURIComponent(answer));
-  if (!r.ok) throw new Error("he.wikipedia fetch failed");
-  const j = await r.json();
-  return (j.thumbnail && j.thumbnail.source) || (j.originalimage && j.originalimage.source) || null;
+async function fetchHebrewWikipediaImage(answer) {
+  if (!answer || !/[֐-׿]/.test(answer)) return null;
+
+  const response = await fetch(
+    "https://he.wikipedia.org/api/rest_v1/page/summary/" +
+      encodeURIComponent(answer)
+  );
+  if (!response.ok) throw new Error("Hebrew Wikipedia summary fetch failed");
+
+  const data = await response.json();
+  return (
+    (data.thumbnail && data.thumbnail.source) ||
+    (data.originalimage && data.originalimage.source) ||
+    null
+  );
 }
 
-async function resolveImageSrc(wiki, country, answer) {
-  if (srcCache.has(wiki)) return srcCache.get(wiki);
+async function fetchImageInfo(fileName) {
+  if (!fileName) return null;
 
-  let raw = null;
-  let wikiFailed = false;
-  try {
-    const r = await fetch("https://en.wikipedia.org/api/rest_v1/page/summary/" + encodeURIComponent(wiki));
-    if (!r.ok) throw new Error("wiki fetch failed");
-    const j = await r.json();
-    raw = (j.thumbnail && j.thumbnail.source) || (j.originalimage && j.originalimage.source) || null;
-  } catch (e) {
-    wikiFailed = true;
-  }
-
-  if (raw) {
-    const src = resizeThumbnail(raw);
-    srcCache.set(wiki, src);
-    resolveCredit(wiki, raw);
-    return src;
-  }
-
-  let searchFailed = false;
-  try {
-    raw = await resolveWikipediaSearchSrc(wiki);
-  } catch (e) {
-    searchFailed = true;
-  }
-
-  if (raw) {
-    const src = resizeThumbnail(raw);
-    srcCache.set(wiki, src);
-    resolveCredit(wiki, raw);
-    return src;
-  }
-
-  if (answer && /[֐-׿]/.test(answer)) {
+  for (const endpoint of IMAGE_INFO_ENDPOINTS) {
     try {
-      raw = await resolveHebrewWikipediaSrc(answer);
-    } catch (e) {
-      raw = null;
+      const params = new URLSearchParams({
+        action: "query",
+        titles: "File:" + fileName,
+        prop: "imageinfo",
+        iiprop: "extmetadata|url",
+        format: "json",
+        origin: "*",
+      });
+
+      const response = await fetch(endpoint + "?" + params.toString());
+      if (!response.ok) continue;
+
+      const data = await response.json();
+      const page =
+        data.query && data.query.pages && Object.values(data.query.pages)[0];
+      const imageInfo =
+        page && page.imageinfo && page.imageinfo.length
+          ? page.imageinfo[0]
+          : null;
+
+      if (imageInfo) return imageInfo;
+    } catch (_) {
+      // Try the next Wikimedia project. If none succeeds, the image is rejected.
     }
-    if (raw) {
-      const src = resizeThumbnail(raw);
-      srcCache.set(wiki, src);
-      resolveCredit(wiki, raw);
-      return src;
-    }
   }
 
-  let fallback = null;
-  let fallbackFailed = false;
-  try {
-    fallback = await resolveSportsDbSrc(wiki, country);
-  } catch (e) {
-    fallbackFailed = true;
-  }
-
-  if (fallback) {
-    srcCache.set(wiki, fallback);
-    creditCache.set(wiki, Promise.resolve("TheSportsDB"));
-    return fallback;
-  }
-
-  // Only remember "no photo anywhere" once both lookups have genuinely
-  // completed — a transient failure (rate limit, flaky network) should be
-  // retried next time, not written off permanently for the rest of the
-  // session over what might just be a momentary hiccup.
-  if (!wikiFailed && !searchFailed && !fallbackFailed) srcCache.set(wiki, null);
   return null;
 }
 
-// Actually start downloading the image bytes (not just resolve the URL) and
-// keep a reference so the browser can't garbage-collect the decoded image
-// before it's used — this is what makes a prefetched photo appear instantly.
-function warmImage(wiki, src) {
-  if (imageCache.has(wiki) || !src) return;
-  const img = new Image();
-  img.decoding = "async";
-  img.src = src;
-  imageCache.set(wiki, img);
+async function validateWikimediaImage(rawUrl) {
+  if (!rawUrl) return null;
+
+  const fileName = fileNameFromUrl(rawUrl);
+  if (!fileName) return null;
+
+  const imageInfo = await fetchImageInfo(fileName);
+  if (!imageInfo) return null;
+
+  const attribution = buildWikimediaAttribution({ rawUrl, imageInfo });
+  if (!attribution) return null;
+
+  return {
+    src: resizeThumbnail(rawUrl),
+    attribution,
+  };
 }
 
-function attachCredit(wiki, container, isStale) {
-  const promise = creditCache.get(wiki);
-  if (!promise) return;
-  promise.then((text) => {
-    if (isStale() || !text) return;
-    const c = document.createElement("div");
-    c.className = "photo-credit";
-    c.textContent = text;
-    c.title = text;
-    container.appendChild(c);
+async function resolveImageRecordUncached(player) {
+  if (!player || !player.wiki || isMarketingSafeMode()) return null;
+
+  const candidates = [
+    () => fetchWikipediaSummaryImage(player.wiki),
+    () => fetchWikipediaSearchImage(player.wiki),
+    () => fetchHebrewWikipediaImage(player.answer),
+  ];
+
+  for (const getCandidate of candidates) {
+    try {
+      const rawUrl = await getCandidate();
+      if (!rawUrl) continue;
+
+      const record = await validateWikimediaImage(rawUrl);
+      if (record) return record;
+      // An image with unknown/prohibited/incomplete licensing is skipped.
+    } catch (_) {
+      // Fail soft and try the next source. We never display an unverified image.
+    }
+  }
+
+  return null;
+}
+
+async function resolveImageRecord(player) {
+  if (isMarketingSafeMode()) return null;
+
+  const key = playerKey(player);
+  if (!key) return null;
+  if (recordCache.has(key)) return recordCache.get(key);
+
+  const promise = resolveImageRecordUncached(player);
+  recordCache.set(key, promise);
+
+  const record = await promise;
+  // Successful records remain cached. Null results are retried later so a
+  // temporary API/network failure does not permanently remove a legal image.
+  if (!record) recordCache.delete(key);
+  return record;
+}
+
+function renderFallback(container, loading = false) {
+  container.innerHTML = "";
+
+  const fallback = document.createElement("div");
+  fallback.className = "licensed-photo-fallback";
+
+  const silhouette = document.createElement("div");
+  silhouette.className = "anonymous-player-silhouette";
+  silhouette.setAttribute("aria-hidden", "true");
+
+  const question = document.createElement("span");
+  question.className = "anonymous-player-question";
+  question.textContent = "?";
+  silhouette.appendChild(question);
+
+  const label = document.createElement("small");
+  label.textContent = loading
+    ? t("game.mysteryLoading")
+    : t("game.photoUnavailable");
+
+  fallback.appendChild(silhouette);
+  fallback.appendChild(label);
+  container.appendChild(fallback);
+}
+
+function makeDetailRow(label, value) {
+  const row = document.createElement("div");
+  row.className = "photo-license-row";
+
+  const strong = document.createElement("strong");
+  strong.textContent = label;
+
+  const text = document.createElement("span");
+  text.textContent = value;
+
+  row.appendChild(strong);
+  row.appendChild(text);
+  return row;
+}
+
+function makeDetailLink(label, url) {
+  const link = document.createElement("a");
+  link.className = "photo-license-link";
+  link.href = url;
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+  link.textContent = label;
+  return link;
+}
+
+function showAttributionModal(attribution) {
+  const previous = document.getElementById("photoLicenseOverlay");
+  if (previous) previous.remove();
+
+  const overlay = document.createElement("div");
+  overlay.id = "photoLicenseOverlay";
+  overlay.className = "photo-license-overlay";
+  overlay.setAttribute("role", "presentation");
+
+  const modal = document.createElement("div");
+  modal.className = "photo-license-modal";
+  modal.setAttribute("role", "dialog");
+  modal.setAttribute("aria-modal", "true");
+  modal.setAttribute("aria-label", t("photo.creditTitle"));
+
+  const title = document.createElement("h3");
+  title.textContent = t("photo.creditTitle");
+
+  modal.appendChild(title);
+  modal.appendChild(
+    makeDetailRow(t("photo.creatorLabel"), attribution.creator)
+  );
+  modal.appendChild(
+    makeDetailRow(t("photo.licenseLabel"), attribution.license)
+  );
+  modal.appendChild(
+    makeDetailRow(t("photo.sourceLabel"), attribution.source)
+  );
+
+  if (attribution.modified) {
+    const modified = document.createElement("p");
+    modified.className = "photo-license-modified";
+    modified.textContent = t("photo.modified");
+    modal.appendChild(modified);
+  }
+
+  const links = document.createElement("div");
+  links.className = "photo-license-links";
+  links.appendChild(
+    makeDetailLink(t("photo.openSource"), attribution.sourcePageUrl)
+  );
+  links.appendChild(
+    makeDetailLink(t("photo.openLicense"), attribution.licenseUrl)
+  );
+  modal.appendChild(links);
+
+  const close = document.createElement("button");
+  close.type = "button";
+  close.className = "photo-license-close";
+  close.textContent = t("photo.close");
+
+  const closeModal = () => {
+    document.removeEventListener("keydown", onKeyDown);
+    overlay.remove();
+  };
+  const onKeyDown = (event) => {
+    if (event.key === "Escape") closeModal();
+  };
+
+  close.addEventListener("click", closeModal);
+  overlay.addEventListener("click", (event) => {
+    if (event.target === overlay) closeModal();
   });
+  document.addEventListener("keydown", onKeyDown);
+
+  modal.appendChild(close);
+  overlay.appendChild(modal);
+  document.body.appendChild(overlay);
+  close.focus();
+}
+
+function attachAttributionButton(container, attribution) {
+  if (!attribution) return;
+
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "photo-credit-btn";
+  button.textContent = t("photo.creditButton");
+  button.title = `${attribution.creator} · ${attribution.license}`;
+  button.addEventListener("click", (event) => {
+    event.stopPropagation();
+    showAttributionModal(attribution);
+  });
+
+  container.appendChild(button);
+}
+
+function warmImage(key, record) {
+  if (!key || !record || imageCache.has(key)) return;
+
+  const img = new Image();
+  img.decoding = "async";
+  img.src = record.src;
+  imageCache.set(key, { img, attribution: record.attribution });
 }
 
 export async function loadPhoto(player, container) {
@@ -322,48 +380,74 @@ export async function loadPhoto(player, container) {
   activeTokens.set(container, token);
 
   const isStale = () => activeTokens.get(container) !== token;
-  const showSilhouette = () => {
-    if (isStale()) return;
-    container.innerHTML = '<div class="fallback">🖼️<small>' + t("game.photoUnavailable") + "</small></div>";
+  const showFallback = () => {
+    if (!isStale()) renderFallback(container, false);
   };
 
-  // If this photo was already prefetched, the bytes are (likely) already in
-  // the browser cache — render immediately instead of showing a spinner first.
-  const cachedImg = imageCache.get(player.wiki);
-  if (cachedImg && cachedImg.complete && cachedImg.naturalWidth > 0) {
-    container.innerHTML = "";
-    container.appendChild(cachedImg.cloneNode());
-    attachCredit(player.wiki, container, isStale);
+  if (isMarketingSafeMode()) {
+    showFallback();
     return;
   }
 
-  container.innerHTML = '<div class="fallback">?<small>' + t("game.mysteryLoading") + "</small></div>";
+  const key = playerKey(player);
+  const cached = key && imageCache.get(key);
+
+  if (
+    cached &&
+    cached.img &&
+    cached.img.complete &&
+    cached.img.naturalWidth > 0 &&
+    cached.attribution
+  ) {
+    container.innerHTML = "";
+    container.appendChild(cached.img.cloneNode());
+    attachAttributionButton(container, cached.attribution);
+    return;
+  }
+
+  renderFallback(container, true);
+
   try {
-    const src = await resolveImageSrc(player.wiki, player.country, player.answer);
-    if (!src) throw new Error("no image");
-    if (isStale()) return;
+    const record = await resolveImageRecord(player);
+    if (!record || isStale()) {
+      showFallback();
+      return;
+    }
+
     const img = new Image();
     img.decoding = "async";
+
     img.onload = () => {
       if (isStale()) return;
       container.innerHTML = "";
       container.appendChild(img);
-      attachCredit(player.wiki, container, isStale);
+      attachAttributionButton(container, record.attribution);
+      imageCache.set(key, {
+        img: img.cloneNode(),
+        attribution: record.attribution,
+      });
     };
-    img.onerror = showSilhouette;
-    img.src = src;
-  } catch (e) {
-    showSilhouette();
+
+    img.onerror = showFallback;
+    img.src = record.src;
+  } catch (_) {
+    showFallback();
   }
 }
 
-// Warm the cache for upcoming players without blocking the UI — call this
-// with the next few players in a round so their photos are ready instantly.
 export function prefetchPhotos(players) {
-  players.forEach((p) => {
-    if (!p) return;
-    resolveImageSrc(p.wiki, p.country, p.answer)
-      .then((src) => warmImage(p.wiki, src))
-      .catch(() => srcCache.set(p.wiki, null));
+  if (isMarketingSafeMode()) return;
+
+  players.forEach((player) => {
+    if (!player) return;
+
+    const key = playerKey(player);
+    resolveImageRecord(player)
+      .then((record) => {
+        if (record) warmImage(key, record);
+      })
+      .catch(() => {
+        // Prefetch is a performance optimization only.
+      });
   });
 }

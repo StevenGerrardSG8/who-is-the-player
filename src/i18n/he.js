@@ -2,8 +2,8 @@
 // folder must have exactly these keys. {placeholders} are substituted at
 // render time — keep them verbatim (don't translate the word inside {}).
 export default {
-  "app.title.who": "מי זה",
-  "app.title.player": "השחקן?",
+  "app.title.who": "Guess The",
+  "app.title.player": "Baller",
   "home.subtitle": "בחר חבילה ונחש את השחקנים",
   "home.coins": "מטבעות",
   "home.totalStars": "סה״כ כוכבים",
@@ -22,6 +22,7 @@ export default {
   "home.streak": "רצף",
   "home.hofTeaserBest": "השיא שלך: {pack} · {score} נק׳",
   "home.hofTeaserEmpty": "שחק חבילה כדי להתחיל את היכל התהילה שלך!",
+  "legal.disclaimer": "Guess The Baller הוא משחק טריוויה עצמאי ואינו קשור, ממומן או מאושר על ידי שחקן, מועדון, ליגה, התאחדות, תחרות או גוף מנהל כלשהו, אלא אם צוין במפורש אחרת.",
 
   "game.back": "← חבילות",
   "game.level": "שלב",
@@ -34,6 +35,15 @@ export default {
   "game.notEnoughCoins": "אין מספיק מטבעות — נחש שחקנים כדי להרוויח עוד!",
   "game.mysteryLoading": "טוען תמונה…",
   "game.photoUnavailable": "התמונה אינה זמינה",
+  "photo.creditButton": "ⓘ קרדיט לתמונה",
+  "photo.creditTitle": "קרדיט ורישיון לתמונה",
+  "photo.creatorLabel": "יוצר/צלם",
+  "photo.licenseLabel": "רישיון",
+  "photo.sourceLabel": "מקור",
+  "photo.modified": "התמונה הוקטנה או נחתכה לצורך התצוגה.",
+  "photo.openSource": "פתיחת עמוד המקור",
+  "photo.openLicense": "פתיחת הרישיון",
+  "photo.close": "סגור",
   "game.pts": "נק׳",
   "game.coinsShort": "מטבעות",
   "game.streakBonus": "🔥 רצף של {n}: +{c} מטבעות",

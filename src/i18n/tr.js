@@ -1,6 +1,6 @@
 export default {
-  "app.title.who": "Bu Oyuncu",
-  "app.title.player": "Kim?",
+  "app.title.who": "Guess The",
+  "app.title.player": "Baller",
   "home.subtitle": "Bir paket seç ve futbolcuları bil",
   "home.coins": "Jeton",
   "home.totalStars": "Toplam Yıldız",
@@ -20,6 +20,15 @@ export default {
   "game.notEnoughCoins": "Yeterli jeton yok — daha fazla kazanmak için oyuncuları bil!",
   "game.mysteryLoading": "Fotoğraf yükleniyor…",
   "game.photoUnavailable": "Gizemli oyuncu — ipuçlarını kullan!",
+  "photo.creditButton": "ⓘ Photo credit",
+  "photo.creditTitle": "Photo credit & license",
+  "photo.creatorLabel": "Creator / photographer",
+  "photo.licenseLabel": "License",
+  "photo.sourceLabel": "Source",
+  "photo.modified": "Image resized or cropped for display.",
+  "photo.openSource": "Open original source",
+  "photo.openLicense": "Open license",
+  "photo.close": "Close",
 
   "hint.position": "Mevki & Ülke",
   "hint.career": "Kariyer Kulüpleri",
@@ -80,5 +89,6 @@ export default {
   "lang.pickTitle": "Dilini seç",
   "lang.pickSubtitle": "Bunu daha sonra Ayarlar'dan değiştirebilirsin",
   "lang.continue": "Devam Et",
-  "game.quit": "Çık"
+  "game.quit": "Çık",
+  "legal.disclaimer": "Guess The Baller is an independent football trivia game and is not affiliated with, sponsored by, or endorsed by any player, club, league, federation, competition, or governing body unless explicitly stated.",
 };

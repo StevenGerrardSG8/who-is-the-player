@@ -2,8 +2,8 @@
 // folder must have exactly these keys. {placeholders} are substituted at
 // render time — keep them verbatim (don't translate the word inside {}).
 export default {
-  "app.title.who": "Qui Est",
-  "app.title.player": "Ce Joueur ?",
+  "app.title.who": "Guess The",
+  "app.title.player": "Baller",
   "home.subtitle": "Choisis un pack & devine les footballeurs",
   "home.coins": "Pièces",
   "home.totalStars": "Total Étoiles",
@@ -23,6 +23,15 @@ export default {
   "game.notEnoughCoins": "Pas assez de pièces — trouve des joueurs pour en gagner plus !",
   "game.mysteryLoading": "Chargement de la photo…",
   "game.photoUnavailable": "Joueur mystère — utilise les indices !",
+  "photo.creditButton": "ⓘ Photo credit",
+  "photo.creditTitle": "Photo credit & license",
+  "photo.creatorLabel": "Creator / photographer",
+  "photo.licenseLabel": "License",
+  "photo.sourceLabel": "Source",
+  "photo.modified": "Image resized or cropped for display.",
+  "photo.openSource": "Open original source",
+  "photo.openLicense": "Open license",
+  "photo.close": "Close",
 
   "hint.position": "Poste & Pays",
   "hint.career": "Clubs en carrière",
@@ -83,5 +92,6 @@ export default {
   "lang.pickTitle": "Choisis ta langue",
   "lang.pickSubtitle": "Tu pourras changer ça plus tard dans les Réglages",
   "lang.continue": "Continuer",
-  "game.quit": "Quitter"
+  "game.quit": "Quitter",
+  "legal.disclaimer": "Guess The Baller is an independent football trivia game and is not affiliated with, sponsored by, or endorsed by any player, club, league, federation, competition, or governing body unless explicitly stated.",
 };

@@ -1,7 +1,7 @@
 // Japanese UI strings. Must have exactly the same keys as en.js.
 export default {
-  "app.title.who": "この選手は",
-  "app.title.player": "誰？",
+  "app.title.who": "Guess The",
+  "app.title.player": "Baller",
   "home.subtitle": "パックを選んで選手を当てよう",
   "home.coins": "コイン",
   "home.totalStars": "獲得スター合計",
@@ -21,6 +21,15 @@ export default {
   "game.notEnoughCoins": "コインが足りません — 選手を当ててコインを稼ごう！",
   "game.mysteryLoading": "写真を読み込み中…",
   "game.photoUnavailable": "謎の選手 — ヒントを使おう！",
+  "photo.creditButton": "ⓘ Photo credit",
+  "photo.creditTitle": "Photo credit & license",
+  "photo.creatorLabel": "Creator / photographer",
+  "photo.licenseLabel": "License",
+  "photo.sourceLabel": "Source",
+  "photo.modified": "Image resized or cropped for display.",
+  "photo.openSource": "Open original source",
+  "photo.openLicense": "Open license",
+  "photo.close": "Close",
 
   "hint.position": "ポジション＆国籍",
   "hint.career": "所属クラブ歴",
@@ -81,5 +90,6 @@ export default {
   "lang.pickTitle": "言語を選んでください",
   "lang.pickSubtitle": "後で設定から変更できます",
   "lang.continue": "続ける",
-  "game.quit": "終了"
+  "game.quit": "終了",
+  "legal.disclaimer": "Guess The Baller is an independent football trivia game and is not affiliated with, sponsored by, or endorsed by any player, club, league, federation, competition, or governing body unless explicitly stated.",
 };
