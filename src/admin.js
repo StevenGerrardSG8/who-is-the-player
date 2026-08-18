@@ -37,6 +37,7 @@ function escapeHtml(s) {
 
 export function initAdminScreen() {
   $("adminOverlay").classList.add("show");
+  $("adminCloseBtn").addEventListener("click", () => $("adminOverlay").classList.remove("show"));
 
   $("adminLoginBtn").addEventListener("click", async () => {
     const email = $("adminEmailInput").value.trim();
