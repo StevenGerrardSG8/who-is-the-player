@@ -2,8 +2,8 @@
 // folder must have exactly these keys. {placeholders} are substituted at
 // render time — keep them verbatim (don't translate the word inside {}).
 export default {
-  "app.title.who": "Who's The",
-  "app.title.player": "Player?",
+  "app.title.who": "Guess The",
+  "app.title.player": "Baller",
   "home.subtitle": "Pick a pack & name the footballers",
   "home.coins": "Coins",
   "home.totalStars": "Total Stars",
@@ -22,6 +22,7 @@ export default {
   "home.streak": "Streak",
   "home.hofTeaserBest": "Best: {pack} · {score} pts",
   "home.hofTeaserEmpty": "Play a pack to start your Hall of Fame!",
+  "legal.disclaimer": "Guess The Baller is an independent football trivia game and is not affiliated with, sponsored by, or endorsed by any player, club, league, federation, competition, or governing body unless explicitly stated.",
 
   "game.back": "← Packs",
   "game.level": "Level",
@@ -34,6 +35,15 @@ export default {
   "game.notEnoughCoins": "Not enough coins — solve players to earn more!",
   "game.mysteryLoading": "Loading photo…",
   "game.photoUnavailable": "Photo unavailable",
+  "photo.creditButton": "ⓘ Photo credit",
+  "photo.creditTitle": "Photo credit & license",
+  "photo.creatorLabel": "Creator / photographer",
+  "photo.licenseLabel": "License",
+  "photo.sourceLabel": "Source",
+  "photo.modified": "Image resized or cropped for display.",
+  "photo.openSource": "Open original source",
+  "photo.openLicense": "Open license",
+  "photo.close": "Close",
   "game.pts": "pts",
   "game.coinsShort": "coins",
   "game.streakBonus": "🔥 {n} in a row: +{c} coins",

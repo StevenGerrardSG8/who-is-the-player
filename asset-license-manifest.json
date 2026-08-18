@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "note": "Review status means the file is allowed to remain for development but its creation/source should be documented before commercial launch.",
+  "assets": [
+    {
+      "path": "public/apple-touch-icon.png",
+      "origin": "Project branding derivative",
+      "license": "Project-owned or commissioned - verify source file/history",
+      "status": "review"
+    },
+    {
+      "path": "public/favicon-32.png",
+      "origin": "Project branding derivative",
+      "license": "Project-owned or commissioned - verify source file/history",
+      "status": "review"
+    },
+    {
+      "path": "public/favicon.svg",
+      "origin": "Project branding derivative",
+      "license": "Project-owned or commissioned - verify source file/history",
+      "status": "review"
+    },
+    {
+      "path": "public/icon-192.png",
+      "origin": "Project branding derivative",
+      "license": "Project-owned or commissioned - verify source file/history",
+      "status": "review"
+    },
+    {
+      "path": "public/icon-512.png",
+      "origin": "Project branding derivative",
+      "license": "Project-owned or commissioned - verify source file/history",
+      "status": "review"
+    },
+    {
+      "path": "src/assets/logo-badge.svg",
+      "origin": "Project branding",
+      "license": "Project-owned or commissioned - verify source file/history",
+      "status": "review"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 // Korean UI strings. Must have exactly the same keys as en.js.
 export default {
-  "app.title.who": "이 선수는",
-  "app.title.player": "누구일까요?",
+  "app.title.who": "Guess The",
+  "app.title.player": "Baller",
   "home.subtitle": "팩을 선택하고 축구 선수를 맞혀보세요",
   "home.coins": "코인",
   "home.totalStars": "총 별점",
@@ -21,6 +21,15 @@ export default {
   "game.notEnoughCoins": "코인이 부족합니다 — 선수를 맞혀서 코인을 모으세요!",
   "game.mysteryLoading": "사진 불러오는 중…",
   "game.photoUnavailable": "미스터리 선수 — 힌트를 사용해보세요!",
+  "photo.creditButton": "ⓘ Photo credit",
+  "photo.creditTitle": "Photo credit & license",
+  "photo.creatorLabel": "Creator / photographer",
+  "photo.licenseLabel": "License",
+  "photo.sourceLabel": "Source",
+  "photo.modified": "Image resized or cropped for display.",
+  "photo.openSource": "Open original source",
+  "photo.openLicense": "Open license",
+  "photo.close": "Close",
 
   "hint.position": "포지션 & 국적",
   "hint.career": "소속 클럽 이력",
@@ -81,5 +90,6 @@ export default {
   "lang.pickTitle": "언어를 선택하세요",
   "lang.pickSubtitle": "나중에 설정에서 변경할 수 있습니다",
   "lang.continue": "계속",
-  "game.quit": "나가기"
+  "game.quit": "나가기",
+  "legal.disclaimer": "Guess The Baller is an independent football trivia game and is not affiliated with, sponsored by, or endorsed by any player, club, league, federation, competition, or governing body unless explicitly stated.",
 };

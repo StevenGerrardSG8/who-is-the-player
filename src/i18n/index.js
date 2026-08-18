@@ -230,6 +230,7 @@ const STATIC_MAP = {
   playersTitle1: "players.title1",
   playersTitle2: "players.title2",
   playersSubtitle: "players.subtitle",
+  legalDisclaimer: "legal.disclaimer",
 };
 
 // HTML `placeholder`/`title` attributes aren't plain text nodes, so the

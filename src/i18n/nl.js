@@ -1,7 +1,7 @@
 // Dutch UI strings. Must have exactly the same keys as en.js.
 export default {
-  "app.title.who": "Wie Is De",
-  "app.title.player": "Speler?",
+  "app.title.who": "Guess The",
+  "app.title.player": "Baller",
   "home.subtitle": "Kies een pakket & benoem de voetballers",
   "home.coins": "Munten",
   "home.totalStars": "Totaal Sterren",
@@ -21,6 +21,15 @@ export default {
   "game.notEnoughCoins": "Niet genoeg munten — los spelers op om er meer te verdienen!",
   "game.mysteryLoading": "Foto laden…",
   "game.photoUnavailable": "Mysterieuze speler — gebruik de hints!",
+  "photo.creditButton": "ⓘ Photo credit",
+  "photo.creditTitle": "Photo credit & license",
+  "photo.creatorLabel": "Creator / photographer",
+  "photo.licenseLabel": "License",
+  "photo.sourceLabel": "Source",
+  "photo.modified": "Image resized or cropped for display.",
+  "photo.openSource": "Open original source",
+  "photo.openLicense": "Open license",
+  "photo.close": "Close",
 
   "hint.position": "Positie & Land",
   "hint.career": "Carrièreclubs",
@@ -81,5 +90,6 @@ export default {
   "lang.pickTitle": "Kies je taal",
   "lang.pickSubtitle": "Je kunt dit later wijzigen in Instellingen",
   "lang.continue": "Doorgaan",
-  "game.quit": "Stoppen"
+  "game.quit": "Stoppen",
+  "legal.disclaimer": "Guess The Baller is an independent football trivia game and is not affiliated with, sponsored by, or endorsed by any player, club, league, federation, competition, or governing body unless explicitly stated.",
 };

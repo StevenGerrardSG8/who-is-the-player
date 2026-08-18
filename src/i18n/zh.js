@@ -1,7 +1,7 @@
 // Simplified Chinese UI strings. Must have exactly the same keys as en.js.
 export default {
-  "app.title.who": "猜猜他是",
-  "app.title.player": "谁？",
+  "app.title.who": "Guess The",
+  "app.title.player": "Baller",
   "home.subtitle": "选择卡包，猜出足球运动员",
   "home.coins": "金币",
   "home.totalStars": "星星总数",
@@ -21,6 +21,15 @@ export default {
   "game.notEnoughCoins": "金币不足——猜对球员即可获得更多金币！",
   "game.mysteryLoading": "正在加载照片…",
   "game.photoUnavailable": "神秘球员——使用提示吧！",
+  "photo.creditButton": "ⓘ Photo credit",
+  "photo.creditTitle": "Photo credit & license",
+  "photo.creatorLabel": "Creator / photographer",
+  "photo.licenseLabel": "License",
+  "photo.sourceLabel": "Source",
+  "photo.modified": "Image resized or cropped for display.",
+  "photo.openSource": "Open original source",
+  "photo.openLicense": "Open license",
+  "photo.close": "Close",
 
   "hint.position": "位置与国籍",
   "hint.career": "职业生涯球会",
@@ -81,5 +90,6 @@ export default {
   "lang.pickTitle": "选择你的语言",
   "lang.pickSubtitle": "之后可以在设置中更改",
   "lang.continue": "继续",
-  "game.quit": "退出"
+  "game.quit": "退出",
+  "legal.disclaimer": "Guess The Baller is an independent football trivia game and is not affiliated with, sponsored by, or endorsed by any player, club, league, federation, competition, or governing body unless explicitly stated.",
 };

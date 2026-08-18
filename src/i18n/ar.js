@@ -2,8 +2,8 @@
 // folder must have exactly these keys. {placeholders} are substituted at
 // render time — keep them verbatim (don't translate the word inside {}).
 export default {
-  "app.title.who": "من هو",
-  "app.title.player": "اللاعب؟",
+  "app.title.who": "Guess The",
+  "app.title.player": "Baller",
   "home.subtitle": "اختر حزمة وخمّن أسماء اللاعبين",
   "home.coins": "العملات",
   "home.totalStars": "إجمالي النجوم",
@@ -23,6 +23,15 @@ export default {
   "game.notEnoughCoins": "العملات غير كافية — خمّن اللاعبين لتكسب المزيد!",
   "game.mysteryLoading": "جارٍ تحميل الصورة…",
   "game.photoUnavailable": "لاعب غامض — استخدم التلميحات!",
+  "photo.creditButton": "ⓘ Photo credit",
+  "photo.creditTitle": "Photo credit & license",
+  "photo.creatorLabel": "Creator / photographer",
+  "photo.licenseLabel": "License",
+  "photo.sourceLabel": "Source",
+  "photo.modified": "Image resized or cropped for display.",
+  "photo.openSource": "Open original source",
+  "photo.openLicense": "Open license",
+  "photo.close": "Close",
 
   "hint.position": "المركز والجنسية",
   "hint.career": "أندية المسيرة",
@@ -83,5 +92,6 @@ export default {
   "lang.pickTitle": "اختر لغتك",
   "lang.pickSubtitle": "يمكنك تغيير هذا لاحقًا من الإعدادات",
   "lang.continue": "متابعة",
-  "game.quit": "خروج"
+  "game.quit": "خروج",
+  "legal.disclaimer": "Guess The Baller is an independent football trivia game and is not affiliated with, sponsored by, or endorsed by any player, club, league, federation, competition, or governing body unless explicitly stated.",
 };

@@ -38,6 +38,7 @@ import israelisAbroad from "./israelis-abroad.js";
 import retro90s2000s from "./retro-90s-2000s.js";
 import legendaryManagers from "./legendary-managers.js";
 import { EXCLUDED_PLAYER_WIKIS } from "./excluded-players.js";
+import { getPublicPackName } from "../brand-policy.js";
 
 // Real, hand-curated packs, in home-screen display order.
 const UNFILTERED_CORE_PACKS = {
@@ -87,6 +88,7 @@ const CORE_PACKS = Object.fromEntries(
     id,
     {
       ...pack,
+      name: getPublicPackName(pack),
       players: pack.players.filter(({ wiki }) => !EXCLUDED_PLAYER_WIKIS.has(wiki)),
     },
   ]),
