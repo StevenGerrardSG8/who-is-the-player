@@ -63,11 +63,15 @@ let winnerFlashIdx = null; // briefly highlights the round's winning chip
 let resolved = null; // current round's player, resolved for the active UI language
 let wrongFreeTimer = null; // pending timeout that frees wrong-position letters back to the bank
 
-// "turns" mode only: players answer one at a time, in join order.
-let turnOrder = []; // this round's rotation, e.g. [0,1,2] — fixed join order
-let activeIdx = null; // idx whose turn it currently is, or null before it's assigned
+// "turns" mode only: each ROUND belongs to exactly one player, rotating in
+// join order (round 0 → player 0, round 1 → player 1, ...) regardless of
+// whether the previous round's owner answered right, wrong, or timed out —
+// activeIdx is derived from game.roundIndex, so every device computes the
+// same value locally with no network message needed for "whose turn is it".
+let activeIdx = null; // idx whose turn it currently is, or null outside turns mode
 let turnDeadline = null; // ms epoch when the active player's turn expires
-let hostTurnTimeoutHandle = null; // host-only: fallback that force-passes a stalled turn
+let hostTurnTimeoutHandle = null; // host-only: fallback that resolves the round if nobody acts in time
+let myTurnTimeoutHandle = null; // active-player-only: auto-gives-up this client's own turn at the deadline
 let turnCountdownHandle = null; // UI tick for the progress bar, runs on every client
 let lastPackChoiceId = null; // guest-only: last pack the host broadcast, for re-render on lang change
 
@@ -349,8 +353,6 @@ function handleGuestMessage(msg) {
     applyRoundResult(msg.winnerIdx);
   } else if (msg.type === "skipAnnounce") {
     announceSkip(msg.idx);
-  } else if (msg.type === "turnStart") {
-    applyTurnStart(msg.idx, msg.deadline);
   } else if (msg.type === "quit") {
     toast(t("online.opponentLeft", { name: peerName || t("online.opponentFallback") }));
     quitToHome();
@@ -382,14 +384,18 @@ function handleGuestDisconnect(idx) {
   const ri = lobbyRoster.findIndex((e) => e.idx === idx);
   if (ri !== -1) lobbyRoster.splice(ri, 1);
   if (game) {
-    // Treat a departed player as having skipped, so a live round doesn't
-    // hang forever waiting on someone who's gone.
-    if (!skippedIdxs.has(idx)) {
+    if (game.mode === "turns") {
+      // If it was this player's round, nobody else can act on their behalf —
+      // resolve it as unanswered right away instead of waiting out the full
+      // per-turn timeout.
+      if (activeIdx === idx && !roundDecided) resolveRound(null);
+    } else if (!skippedIdxs.has(idx)) {
+      // Treat a departed player as having skipped, so a live round doesn't
+      // hang forever waiting on someone who's gone.
       skippedIdxs.add(idx);
       broadcast({ type: "skipAnnounce", idx });
       announceSkip(idx);
-      if (game.mode === "turns") hostAdvanceTurnAfterSkip(idx);
-      else checkAllSkipped();
+      checkAllSkipped();
     }
   } else {
     renderRoster();
@@ -425,8 +431,8 @@ function handleHostMessage(msg, idx) {
     setLobbyStatus("online.playersJoined", { count: lobbyRoster.length });
   } else if (msg.type === "attempt") {
     handlePeerAttempt(idx, msg.correct);
-  } else if (msg.type === "passTurn") {
-    if (activeIdx === idx) hostHandleTurnSkip(idx);
+  } else if (msg.type === "turnGiveUp") {
+    if (activeIdx === idx && !roundDecided) resolveRound(null);
   }
 }
 
@@ -486,10 +492,10 @@ function buildRound() {
   skippedNames = [];
   winnerFlashIdx = null;
   clearHostTurnTimeout();
+  clearMyTurnTimeout();
   clearTurnCountdown();
-  turnOrder = game.players.map((_, i) => i);
-  activeIdx = null;
-  turnDeadline = null;
+  activeIdx = game.mode === "turns" ? game.roundIndex % game.players.length : null;
+  turnDeadline = game.mode === "turns" ? Date.now() + TURN_MS : null;
   const p = game.deck[game.roundIndex];
   resolved = resolvePlayer(p, getLang());
   $("mpoSticker").classList.remove("win");
@@ -522,7 +528,7 @@ function buildRound() {
   loadPhoto(p, $("mpoPhoto"));
   prefetchPhotos(game.deck.slice(game.roundIndex + 1, game.roundIndex + 3));
   renderScoreboard();
-  if (game.mode === "turns" && myPlayerIdx === 0) startTurn(turnOrder[0]);
+  if (game.mode === "turns") armTurnTimers();
 }
 
 function isMyTurn() {
@@ -585,9 +591,7 @@ function checkNow() {
 function skipTurn() {
   if (locked || !isMyTurn()) return;
   if (game.mode === "turns") {
-    locked = true;
-    if (myPlayerIdx === 0) hostHandleTurnSkip(0);
-    else if (conn) conn.send({ type: "passTurn" });
+    giveUpTurn();
     return;
   }
   locked = true;
@@ -595,16 +599,25 @@ function skipTurn() {
 }
 
 /* ------------------------------------------------------------
-   "turns" mode: players answer one at a time, in a fixed order.
-   The host is the sole authority on whose turn it is (mirrors how
-   it's the sole authority on round winners) — it broadcasts every
-   turn change, and runs a fallback timer per turn so a stalled or
-   backgrounded device can't hang the whole round.
+   "turns" mode: each round belongs to exactly one player (activeIdx,
+   derived from roundIndex — see buildRound). Whether that player answers
+   right, wrong, gives up, or times out, the round ends and the NEXT round
+   hands the turn to the NEXT player — nobody else gets a crack at the same
+   question. The host still runs a fallback timer every round (covering a
+   stalled/backgrounded active player, host included) so a round can never
+   hang forever.
 ------------------------------------------------------------- */
 function clearHostTurnTimeout() {
   if (hostTurnTimeoutHandle) {
     clearTimeout(hostTurnTimeoutHandle);
     hostTurnTimeoutHandle = null;
+  }
+}
+
+function clearMyTurnTimeout() {
+  if (myTurnTimeoutHandle) {
+    clearTimeout(myTurnTimeoutHandle);
+    myTurnTimeoutHandle = null;
   }
 }
 
@@ -615,30 +628,38 @@ function clearTurnCountdown() {
   }
 }
 
-// Host-only: assigns the turn to `idx`, broadcasts it, and arms the
-// fallback timeout that force-passes the turn if nobody acts in time.
-function startTurn(idx) {
-  turnDeadline = Date.now() + TURN_MS;
-  broadcast({ type: "turnStart", idx, deadline: turnDeadline });
-  applyTurnStart(idx, turnDeadline);
-}
-
-// Runs on every client (host included) when a turn starts or changes.
-function applyTurnStart(idx, deadline) {
-  activeIdx = idx;
-  turnDeadline = deadline;
-  locked = false;
-  renderTurnBanner();
+// Called once per round (turns mode only) right after activeIdx/turnDeadline
+// are set in buildRound — starts the visible countdown everywhere, the
+// active player's own auto-give-up at the deadline, and the host's backstop.
+function armTurnTimers() {
   clearTurnCountdown();
   tickTurnCountdown();
   turnCountdownHandle = setInterval(tickTurnCountdown, 200);
+
+  clearMyTurnTimeout();
+  if (activeIdx === myPlayerIdx) {
+    myTurnTimeoutHandle = setTimeout(() => {
+      if (!roundDecided) giveUpTurn();
+    }, TURN_MS);
+  }
+
+  clearHostTurnTimeout();
   if (myPlayerIdx === 0) {
-    clearHostTurnTimeout();
-    const ms = Math.max(0, deadline - Date.now()) + 1000; // grace for network latency
     hostTurnTimeoutHandle = setTimeout(() => {
-      if (roundDecided || activeIdx !== idx) return;
-      hostHandleTurnSkip(idx);
-    }, ms);
+      if (!roundDecided) resolveRound(null);
+    }, TURN_MS + 1500); // grace beyond the active player's own deadline
+  }
+}
+
+// The active player's turn ends without a correct answer — a deliberate
+// pass, or their own countdown running out.
+function giveUpTurn() {
+  if (locked) return;
+  locked = true;
+  if (myPlayerIdx === 0) {
+    resolveRound(null);
+  } else if (conn) {
+    conn.send({ type: "turnGiveUp" });
   }
 }
 
@@ -659,29 +680,6 @@ function tickTurnCountdown() {
   fill.style.width = pct + "%";
   fill.classList.toggle("urgent", remainingMs < TURN_MS * 0.25);
   renderTurnBanner();
-}
-
-// Host-only: idx passed (explicitly, or via the fallback timeout) — mark
-// it skipped and either resolve the round (everyone's had a turn) or hand
-// the turn to the next player in the fixed order who hasn't gone yet.
-function hostHandleTurnSkip(idx) {
-  if (roundDecided || skippedIdxs.has(idx)) return;
-  skippedIdxs.add(idx);
-  broadcast({ type: "skipAnnounce", idx });
-  announceSkip(idx);
-  hostAdvanceTurnAfterSkip(idx);
-}
-
-function hostAdvanceTurnAfterSkip(idx) {
-  if (roundDecided) return;
-  if (skippedIdxs.size >= turnOrder.length) {
-    resolveRound(null);
-    return;
-  }
-  if (activeIdx === idx) {
-    const next = turnOrder.find((i) => !skippedIdxs.has(i));
-    if (next !== undefined) startTurn(next);
-  }
 }
 
 // Host is the single authority that decides who won a round — its own
@@ -746,6 +744,7 @@ function applyRoundResult(winnerIdx) {
 function showRoundOutcome(winnerIdx) {
   locked = true;
   clearHostTurnTimeout();
+  clearMyTurnTimeout();
   clearTurnCountdown();
   $("screenMpoGame").classList.remove("spectating");
   $("mpoTurnProgress").style.display = "none";
@@ -812,6 +811,7 @@ function showResults() {
 
 function quitSilently() {
   clearHostTurnTimeout();
+  clearMyTurnTimeout();
   clearTurnCountdown();
   if (conn) {
     try {
