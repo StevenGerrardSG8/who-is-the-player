@@ -74,19 +74,16 @@ export async function initBackend() {
 }
 
 // Counts this device once, ever, toward the private admin "unique visitors"
-// total — gated on the players/{uid} doc not existing yet, so a returning
-// device (same browser/uid) never re-counts even if the local flag below is
-// somehow cleared.
+// total — gated purely on the local flag below (device-level), since the
+// players/{uid} doc it used to check for existence gets created moments
+// earlier by setGlobalName() (see initBackend) for every brand-new device,
+// which made the old "does this doc already exist" check always true and
+// unique visitors never actually incremented.
 const VISITOR_COUNTED_KEY = "wtp_visitor_counted";
 async function countVisitorOnce() {
   if (!uid || (await storage.get(VISITOR_COUNTED_KEY))) return;
   try {
-    const ref = doc(db, "players", uid);
-    const snap = await getDoc(ref);
-    if (!snap.exists()) {
-      await setDoc(ref, { firstSeenAt: serverTimestamp() }, { merge: true });
-      await setDoc(doc(db, "stats", "summary"), { uniqueVisitors: increment(1) }, { merge: true });
-    }
+    await setDoc(doc(db, "stats", "summary"), { uniqueVisitors: increment(1) }, { merge: true });
     await storage.set(VISITOR_COUNTED_KEY, true);
   } catch (e) {}
 }
