@@ -91,7 +91,7 @@ export default {
      career:[["2008–2025","Bayern Munich"],["2025–","Vancouver Whitecaps"]]},
 {answer:"GERD MULLER", wiki:"Gerd Müller", pos:"Striker", country:"🇩🇪 Germany",
      career:[["1964–1979","Bayern Munich"],["1979–1981","Fort Lauderdale Strikers"]]},
-{answer:"SAMI KHEDIRA", wiki:"Sami Khedira", pos:"Midfielder", country:"🇩🇪 Germany",
+{answer:"סמי חדירה", wiki:"SAMI KHEDIRA", pos:"Midfielder", country:"🇩🇪 Germany",
      career:[["2006–2010","VfB Stuttgart"],["2010–2015","Real Madrid"],["2015–2021","Juventus"],["2021","Hertha BSC"]]},
 {answer:"BREITNER", wiki:"Paul Breitner", pos:"Defender", country:"🇩🇪 Germany",
      career:[["1970–1974","Bayern Munich"],["1974–1977","Real Madrid"],["1977–1978","Eintracht Braunschweig"],["1978–1983","Bayern Munich"]]},
@@ -244,6 +244,6 @@ export default {
 {answer:"KOSTIC", wiki:"Filip Kostić", pos:"Midfielder", country:"🇷🇸 Serbia",
      career:[["2010–2012","Radnički Kragujevac"],["2012–2014","FC Groningen"],["2014–2016","VfB Stuttgart"],["2016–2018","Hamburger SV"],["2018–2022","Eintracht Frankfurt"],["2022–2024","Juventus"],["2024–2025","Fenerbahçe"],["2025–2026","Juventus"],["2026–","PSV Eindhoven"]]},
 {answer:"SON", wiki:"Son Heung-min", pos:"Forward", country:"🇰🇷 South Korea",
-     career:[["2010–2013","Hamburger SV"],["2013–2015","Bayer Leverkusen"],["2015–2025","Tottenham Hotspur"],["2025–","Los Angeles FC"]]}
+     career:[["2010–2013","Hamburger SV"],["2013–2015","Bayer Leverkusen"],["2015–2025","Tottenham Hotspur"],["2025–","Los Angeles FC"]]},
   ]
 }

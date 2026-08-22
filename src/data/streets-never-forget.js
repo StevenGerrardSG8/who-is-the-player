@@ -3,838 +3,243 @@ export default {
   name: "The Streets Never Forget",
   icon: "🕹️",
   players: [
-{
-      answer: "KANTE",
-      wiki: "N'Golo Kanté",
-      pos: "Midfielder",
-      country: "🇫🇷 France",
-      career: [["2012–2013","Boulogne"],["2013–2015","Caen"],["2015–2016","Leicester City"],["2016–2023","Chelsea"],["2023–2026","Al-Ittihad"],["2026–","Fenerbahçe"]]
-    },
-{
-      answer: "HAZARD",
-      wiki: "Eden Hazard",
-      pos: "Forward",
-      country: "🇧🇪 Belgium",
-      career: [["2007–2012","Lille"],["2012–2019","Chelsea"],["2019–2023","Real Madrid"]]
-    },
-{
-      answer: "MANE",
-      wiki: "Sadio Mané",
-      pos: "Forward",
-      country: "🇸🇳 Senegal",
-      career: [["2011–2012","Metz"],["2012–2014","Red Bull Salzburg"],["2014–2016","Southampton"],["2016–2022","Liverpool"],["2022–2023","Bayern Munich"],["2023–","Al-Nassr"]]
-    },
-{
-      answer: "COUTINHO",
-      wiki: "Philippe Coutinho",
-      pos: "Midfielder",
-      country: "🇧🇷 Brazil",
-      career: [["2008–2013","Inter Milan"],["2013–2018","Liverpool"],["2018–2022","Barcelona"],["2022–2025","Aston Villa"],["2025–2026","Vasco da Gama"]]
-    },
-{
-      answer: "LUKAKU",
-      wiki: "Romelu Lukaku",
-      pos: "Forward",
-      country: "🇧🇪 Belgium",
-      career: [["2009–2011","Anderlecht"],["2011–2014","Chelsea"],["2014–2017","Everton"],["2017–2019","Manchester United"],["2019–2021","Inter Milan"],["2021–2024","Chelsea"],["2024–2026","Napoli"],["2026–","Fenerbahçe"]]
-    },
-{
-      answer: "CASEMIRO",
-      wiki: "Casemiro",
-      pos: "Midfielder",
-      country: "🇧🇷 Brazil",
-      career: [["2010–2013","São Paulo"],["2013–2022","Real Madrid"],["2022–2026","Manchester United"],["2026–","Inter Miami"]]
-    },
-{
-      answer: "MARCELO",
-      wiki: "Marcelo (footballer, born 1988)",
-      pos: "Defender",
-      country: "🇧🇷 Brazil",
-      career: [["2005–2007","Fluminense"],["2007–2022","Real Madrid"],["2022–2023","Olympiacos"],["2023–2024","Fluminense"]]
-    },
-{
-      answer: "DAVID LUIZ",
-      wiki: "David Luiz",
-      pos: "Defender",
-      country: "🇧🇷 Brazil",
-      career: [["2006–2007","Vitória"],["2007–2011","Benfica"],["2011–2014","Chelsea"],["2014–2016","Paris Saint-Germain"],["2016–2019","Chelsea"],["2019–2021","Arsenal"],["2021–2024","Flamengo"],["2025","Fortaleza"],["2025–","Pafos"]]
-    },
-{
-      answer: "MAHREZ",
-      wiki: "Riyad Mahrez",
-      pos: "Forward",
-      country: "🇩🇿 Algeria",
-      career: [["2011–2014","Le Havre"],["2014–2018","Leicester City"],["2018–2023","Manchester City"],["2023–2026","Al-Ahli"]]
-    },
-{
-      answer: "ALEXIS SANCHEZ",
-      wiki: "Alexis Sánchez",
-      pos: "Forward",
-      country: "🇨🇱 Chile",
-      career: [["2006–2011","Udinese"],["2011–2014","Barcelona"],["2014–2018","Arsenal"],["2018–2020","Manchester United"],["2020–2022","Inter Milan"],["2022–2023","Marseille"],["2023–2024","Inter Milan"],["2024–2025","Udinese"],["2025–2026","Sevilla"],["2026–","CF Montréal"]]
-    },
-{
-      answer: "VINICIUS JUNIOR",
-      wiki: "Vinícius Júnior",
-      pos: "Forward",
-      country: "🇧🇷 Brazil",
-      career: [["2017–2018","Flamengo"],["2018–","Real Madrid"]]
-    },
-{
-      answer: "TRENT ALEXANDER ARNOLD",
-      wiki: "Trent Alexander-Arnold",
-      pos: "Defender",
-      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
-      career: [["2016–2025","Liverpool"],["2025–","Real Madrid"]]
-    },
-{
-      answer: "RODRI",
-      wiki: "Rodri",
-      pos: "Midfielder",
-      country: "🇪🇸 Spain",
-      career: [["2015–2018","Villarreal"],["2018–2019","Atlético Madrid"],["2019–","Manchester City"]]
-    },
-{
-      answer: "KIMMICH",
-      wiki: "Joshua Kimmich",
-      pos: "Midfielder",
-      country: "🇩🇪 Germany",
-      career: [["2013–2015","RB Leipzig"],["2015–","Bayern Munich"]]
-    },
-{
-      answer: "CANCELO",
-      wiki: "João Cancelo",
-      pos: "Defender",
-      country: "🇵🇹 Portugal",
-      career: [["2014–2015","Benfica"],["2015–2018","Valencia"],["2018–2019","Juventus"],["2019–2024","Manchester City"],["2024–","Al Hilal"]]
-    },
-{
-      answer: "ZAHA",
-      wiki: "Wilfried Zaha",
-      pos: "Forward",
-      country: "🇨🇮 Ivory Coast",
-      career: [["2010–2013","Crystal Palace"],["2013–2015","Manchester United"],["2015–2023","Crystal Palace"],["2023–","Galatasaray"]]
-    },
-{
-      answer: "DOUGLAS COSTA",
-      wiki: "Douglas Costa",
-      pos: "Forward",
-      country: "🇧🇷 Brazil",
-      career: [["2008–2010","Grêmio"],["2010–2015","Shakhtar Donetsk"],["2015–2018","Bayern Munich"],["2018–2022","Juventus"],["2022–2023","LA Galaxy"],["2024","Fluminense"],["2024–2025","Sydney FC"],["2026","ChievoVerona"],["2026–","Al-Ittifaq"]]
-    },
-{
-      answer: "ADAMA TRAORE",
-      wiki: "Adama Traoré (footballer, born 1996)",
-      pos: "Forward",
-      country: "🇪🇸 Spain",
-      career: [["2013–2015","Barcelona"],["2015–2016","Aston Villa"],["2016–2018","Middlesbrough"],["2018–2023","Wolverhampton Wanderers"],["2023–2026","Fulham"],["2026","West Ham United"]]
-    },
-{
-      answer: "MEMPHIS DEPAY",
-      wiki: "Memphis Depay",
-      pos: "Forward",
-      country: "🇳🇱 Netherlands",
-      career: [["2011–2015","PSV Eindhoven"],["2015–2017","Manchester United"],["2017–2021","Lyon"],["2021–2023","Barcelona"],["2023–2024","Atlético Madrid"],["2024–","Corinthians"]]
-    },
-{
-      answer: "ISCO",
-      wiki: "Isco",
-      pos: "Midfielder",
-      country: "🇪🇸 Spain",
-      career: [["2011–2013","Málaga"],["2013–2022","Real Madrid"],["2022","Sevilla"],["2023–","Real Betis"]]
-    },
-{
-      answer: "THIAGO ALCANTARA",
-      wiki: "Thiago Alcântara",
-      pos: "Midfielder",
-      country: "🇪🇸 Spain",
-      career: [["2009–2013","Barcelona"],["2013–2020","Bayern Munich"],["2020–2024","Liverpool"]]
-    },
-{
-      answer: "VERRATTI",
-      wiki: "Marco Verratti",
-      pos: "Midfielder",
-      country: "🇮🇹 Italy",
-      career: [["2008–2012","Pescara"],["2012–2023","Paris Saint-Germain"],["2023–2025","Al-Arabi"],["2025–","Al Duhail"]]
-    },
-{
-      answer: "DECLAN RICE",
-      wiki: "Declan Rice",
-      pos: "Midfielder",
-      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
-      career: [["2015–2023","West Ham United"],["2023–","Arsenal"]]
-    },
-{
-      answer: "XHAKA",
-      wiki: "Granit Xhaka",
-      pos: "Midfielder",
-      country: "🇨🇭 Switzerland",
-      career: [["2010–2012","Basel"],["2012–2016","Borussia Mönchengladbach"],["2016–2023","Arsenal"],["2023–2025","Bayer Leverkusen"],["2025–","Sunderland"]]
-    },
-{
-      answer: "WERNER",
-      wiki: "Timo Werner",
-      pos: "Forward",
-      country: "🇩🇪 Germany",
-      career: [["2013–2016","VfB Stuttgart"],["2016–2020","RB Leipzig"],["2020–2022","Chelsea"],["2022–2026","RB Leipzig"],["2026–","San Jose Earthquakes"]]
-    },
-{
-      answer: "LAPORTE",
-      wiki: "Aymeric Laporte",
-      pos: "Defender",
-      country: "🇪🇸 Spain",
-      career: [["2012–2018","Athletic Bilbao"],["2018–2023","Manchester City"],["2023–2025","Al-Nassr"],["2025–","Athletic Bilbao"]]
-    },
-{
-      answer: "FABINHO",
-      wiki: "Fabinho (footballer, born 1993)",
-      pos: "Midfielder",
-      country: "🇧🇷 Brazil",
-      career: [["2012–2015","Rio Ave"],["2015–2018","Monaco"],["2018–2023","Liverpool"],["2023–2026","Al-Ittihad"]]
-    },
-{
-      answer: "OTAMENDI",
-      wiki: "Nicolás Otamendi",
-      pos: "Defender",
-      country: "🇦🇷 Argentina",
-      career: [["2010–2014","Porto"],["2014–2015","Valencia"],["2015–2020","Manchester City"],["2020–2026","Benfica"],["2026–","River Plate"]]
-    },
-{
-      answer: "PJANIC",
-      wiki: "Miralem Pjanić",
-      pos: "Midfielder",
-      country: "🇧🇦 Bosnia and Herzegovina",
-      career: [["2008–2011","Lyon"],["2011–2016","Roma"],["2016–2020","Juventus"],["2020–2022","Barcelona"],["2022–2024","Sharjah"],["2024–2025","CSKA Moscow"]]
-    },
-{
-      answer: "NAINGGOLAN",
-      wiki: "Radja Nainggolan",
-      pos: "Midfielder",
-      country: "🇧🇪 Belgium",
-      career: [["2006–2010","Piacenza"],["2010–2014","Cagliari"],["2014–2018","Roma"],["2018–2021","Inter Milan"],["2021–2022","Royal Antwerp"],["2023","SPAL"],["2023–2024","Bhayangkara"],["2024–2025","Lokeren-Temse"],["2025–","Patro Eisden"]]
-    },
-{
-      answer: "HAMSIK",
-      wiki: "Marek Hamšík",
-      pos: "Midfielder",
-      country: "🇸🇰 Slovakia",
-      career: [["2004–2007","Brescia"],["2007–2019","Napoli"],["2019–2021","Dalian Professional"],["2021","IFK Göteborg"],["2021–2023","Trabzonspor"]]
-    },
-{
-      answer: "MERTENS",
-      wiki: "Dries Mertens",
-      pos: "Forward",
-      country: "🇧🇪 Belgium",
-      career: [["2009–2011","Utrecht"],["2011–2013","PSV Eindhoven"],["2013–2022","Napoli"],["2022–2025","Galatasaray"]]
-    },
-{
-      answer: "ORIGI",
-      wiki: "Divock Origi",
-      pos: "Forward",
-      country: "🇧🇪 Belgium",
-      career: [["2012–2014","Lille"],["2014–2022","Liverpool"],["2022–2025","AC Milan"]]
-    },
-{
-      answer: "ASHLEY YOUNG",
-      wiki: "Ashley Young",
-      pos: "Defender",
-      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
-      career: [["2003–2007","Watford"],["2007–2011","Aston Villa"],["2011–2020","Manchester United"],["2020–2021","Inter Milan"],["2021–2023","Aston Villa"],["2023–2025","Everton"],["2025–2026","Ipswich Town"]]
-    },
-{
-      answer: "VALENCIA",
-      wiki: "Antonio Valencia",
-      pos: "Defender",
-      country: "🇪🇨 Ecuador",
-      career: [["2003–2005","El Nacional"],["2006–2009","Wigan Athletic"],["2009–2019","Manchester United"],["2019–2020","LDU Quito"],["2020–2021","Querétaro"]]
-    },
-{
-      answer: "RONALDINHO",
-      wiki: "Ronaldinho",
-      pos: "Forward",
-      country: "🇧🇷 Brazil",
-      career: [["1998–2001","Grêmio"],["2001–2003","Paris Saint-Germain"],["2003–2008","Barcelona"],["2008–2011","AC Milan"],["2011–2012","Flamengo"],["2012–2014","Atlético Mineiro"],["2015","Fluminense"]]
-    },
-{
-      answer: "GANSO",
-      wiki: "Paulo Henrique Ganso",
-      pos: "Midfielder",
-      country: "🇧🇷 Brazil",
-      career: [["2008–2012","Santos"],["2012–2016","São Paulo"],["2016–2019","Sevilla"],["2019–","Fluminense"]]
-    },
-{
-      answer: "WILLIAN",
-      wiki: "Willian (footballer, born 1988)",
-      pos: "Forward",
-      country: "🇧🇷 Brazil",
-      career: [["2006–2007","Corinthians"],["2007–2013","Shakhtar Donetsk"],["2013–2020","Chelsea"],["2020–2021","Arsenal"],["2021–2022","Corinthians"],["2022–2024","Fulham"],["2024","Olympiacos"],["2025–2026","Grêmio"]]
-    },
-{
-      answer: "DRAXLER",
-      wiki: "Julian Draxler",
-      pos: "Midfielder",
-      country: "🇩🇪 Germany",
-      career: [["2011–2015","Schalke 04"],["2015–2017","VfL Wolfsburg"],["2017–2022","Paris Saint-Germain"],["2022–2023","Benfica"],["2023–","Al-Ahli"]]
-    },
-{
-      answer: "CARRASCO",
-      wiki: "Yannick Carrasco",
-      pos: "Forward",
-      country: "🇧🇪 Belgium",
-      career: [["2012–2015","Monaco"],["2015–2018","Atlético Madrid"],["2018–2020","Dalian Yifang"],["2020–2023","Atlético Madrid"],["2023–","Al-Shabab"]]
-    },
-{
-      answer: "KAGAWA",
-      wiki: "Shinji Kagawa",
-      pos: "Midfielder",
-      country: "🇯🇵 Japan",
-      career: [["2007–2010","Cerezo Osaka"],["2010–2012","Borussia Dortmund"],["2012–2014","Manchester United"],["2014–2019","Borussia Dortmund"],["2019–2020","Real Zaragoza"],["2021","PAOK"],["2022–2023","Sint-Truiden"],["2023–","Cerezo Osaka"]]
-    },
-{
-      answer: "NAKATA",
-      wiki: "Hidetoshi Nakata",
-      pos: "Midfielder",
-      country: "🇯🇵 Japan",
-      career: [["1995–1998","Bellmare Hiratsuka"],["1998–2000","Perugia"],["2000–2001","Roma"],["2001–2004","Parma"],["2004–2005","Fiorentina"],["2005–2006","Bolton Wanderers"]]
-    },
-{
-      answer: "FELLAINI",
-      wiki: "Marouane Fellaini",
-      pos: "Midfielder",
-      country: "🇧🇪 Belgium",
-      career: [["2006–2008","Standard Liège"],["2008–2013","Everton"],["2013–2019","Manchester United"],["2019–2023","Shandong Taishan"]]
-    },
-{
-      answer: "RASHFORD",
-      wiki: "Marcus Rashford",
-      pos: "Forward",
-      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
-      career: [["2015–2025","Manchester United"],["2025","Aston Villa"],["2025–","Barcelona"]]
-    },
-{
-      answer: "SANCHO",
-      wiki: "Jadon Sancho",
-      pos: "Forward",
-      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
-      career: [["2017–2021","Borussia Dortmund"],["2021–2024","Manchester United"],["2024–2025","Chelsea"],["2025–2026","Aston Villa"]]
-    },
-{
-      answer: "JAMES RODRIGUEZ",
-      wiki: "James Rodríguez",
-      pos: "Midfielder",
-      country: "🇨🇴 Colombia",
-      career: [["2010–2013","Porto"],["2013–2014","Monaco"],["2014–2017","Real Madrid"],["2017–2019","Bayern Munich"],["2019–2020","Real Madrid"],["2020–2021","Everton"],["2021–2022","Al-Rayyan"],["2022–2023","Olympiacos"],["2023–2024","São Paulo"],["2024–2025","Rayo Vallecano"],["2025","León"]]
-    },
-{
-      answer: "FORLAN",
-      wiki: "Diego Forlán",
-      pos: "Forward",
-      country: "🇺🇾 Uruguay",
-      career: [["1997–2002","Independiente"],["2002–2004","Manchester United"],["2004–2007","Villarreal"],["2007–2011","Atlético Madrid"],["2011–2012","Inter Milan"],["2012–2014","Internacional"],["2014–2015","Cerezo Osaka"],["2015–2016","Peñarol"],["2016","Mumbai City"],["2018","Kitchee"]]
-    },
-{
-      answer: "ROBERTO CARLOS",
-      wiki: "Roberto Carlos",
-      pos: "Defender",
-      country: "🇧🇷 Brazil",
-      career: [["1993–1995","Palmeiras"],["1995–1996","Inter Milan"],["1996–2007","Real Madrid"],["2007–2009","Fenerbahçe"],["2010–2011","Corinthians"],["2011–2012","Anzhi Makhachkala"]]
-    },
-{
-      answer: "RONALDO NAZARIO",
-      wiki: "Ronaldo (Brazilian footballer)",
-      pos: "Forward",
-      country: "🇧🇷 Brazil",
-      career: [["1993–1994","Cruzeiro"],["1994–1996","PSV Eindhoven"],["1996–1997","Barcelona"],["1997–2002","Inter Milan"],["2002–2007","Real Madrid"],["2007–2008","AC Milan"],["2009–2011","Corinthians"]]
-    },
-{
-      answer: "RIVALDO",
-      wiki: "Rivaldo",
-      pos: "Forward",
-      country: "🇧🇷 Brazil",
-      career: [["1988–1992","Santa Cruz"],["1992–1994","Mogi Mirim"],["1994–1996","Palmeiras"],["1996–1997","Deportivo La Coruña"],["1997–2002","Barcelona"],["2002–2003","AC Milan"],["2004","Cruzeiro"],["2004–2007","Olympiacos"],["2007–2008","AEK Athens"],["2008–2011","Bunyodkor"]]
-    },
-{
-      answer: "DECO",
-      wiki: "Deco",
-      pos: "Midfielder",
-      country: "🇵🇹 Portugal",
-      career: [["1997–1998","Benfica"],["1998–1999","Salgueiros"],["1999–2004","Porto"],["2004–2008","Barcelona"],["2008–2010","Chelsea"],["2010–2013","Fluminense"]]
-    },
-{
-      answer: "BALLACK",
-      wiki: "Michael Ballack",
-      pos: "Midfielder",
-      country: "🇩🇪 Germany",
-      career: [["1997–1999","1. FC Kaiserslautern"],["1999–2002","Bayer Leverkusen"],["2002–2006","Bayern Munich"],["2006–2010","Chelsea"],["2010–2012","Bayer Leverkusen"]]
-    },
-{
-      answer: "SHEVCHENKO",
-      wiki: "Andriy Shevchenko",
-      pos: "Forward",
-      country: "🇺🇦 Ukraine",
-      career: [["1994–1999","Dynamo Kyiv"],["1999–2006","AC Milan"],["2006–2009","Chelsea"],["2008–2009","AC Milan"],["2009–2012","Dynamo Kyiv"]]
-    },
-{
-      answer: "DAVIDS",
-      wiki: "Edgar Davids",
-      pos: "Midfielder",
-      country: "🇳🇱 Netherlands",
-      career: [["1991–1996","Ajax"],["1996–1997","AC Milan"],["1997–2004","Juventus"],["2004–2005","Inter Milan"],["2005–2007","Tottenham Hotspur"],["2007–2009","Ajax"],["2010","Crystal Palace"],["2012–2014","Barnet"]]
-    },
-{
-      answer: "SEEDORF",
-      wiki: "Clarence Seedorf",
-      pos: "Midfielder",
-      country: "🇳🇱 Netherlands",
-      career: [["1992–1995","Ajax"],["1995–1996","Sampdoria"],["1996–2000","Real Madrid"],["2000–2002","Inter Milan"],["2002–2012","AC Milan"],["2012–2014","Botafogo"]]
-    },
-{
-      answer: "KLUIVERT",
-      wiki: "Patrick Kluivert",
-      pos: "Forward",
-      country: "🇳🇱 Netherlands",
-      career: [["1994–1997","Ajax"],["1997–1998","AC Milan"],["1998–2004","Barcelona"],["2004–2005","Newcastle United"],["2005–2006","Valencia"],["2006–2007","PSV Eindhoven"],["2007–2008","Lille"]]
-    },
-{
-      answer: "BERGKAMP",
-      wiki: "Dennis Bergkamp",
-      pos: "Forward",
-      country: "🇳🇱 Netherlands",
-      career: [["1986–1993","Ajax"],["1993–1995","Inter Milan"],["1995–2006","Arsenal"]]
-    },
-{
-      answer: "KANU",
-      wiki: "Nwankwo Kanu",
-      pos: "Forward",
-      country: "🇳🇬 Nigeria",
-      career: [["1992–1993","Iwuanyanwu Nationale"],["1993–1996","Ajax"],["1996–1999","Inter Milan"],["1999–2004","Arsenal"],["2004–2006","West Bromwich Albion"],["2006–2012","Portsmouth"]]
-    },
-{
-      answer: "PROSINECKI",
-      wiki: "Robert Prosinečki",
-      pos: "Midfielder",
-      country: "🇭🇷 Croatia",
-      career: [["1986–1987","Dinamo Zagreb"],["1987–1991","Red Star Belgrade"],["1991–1995","Real Madrid"],["1995–1996","Barcelona"],["1996–1997","Sevilla"],["1997–2000","Croatia Zagreb"],["2000–2001","Standard Liège"],["2001–2002","Portsmouth"]]
-    },
-{
-      answer: "RIQUELME",
-      wiki: "Juan Román Riquelme",
-      pos: "Midfielder",
-      country: "🇦🇷 Argentina",
-      career: [["1996–2002","Boca Juniors"],["2002–2003","Barcelona"],["2003–2007","Villarreal"],["2007–2014","Boca Juniors"],["2014–2015","Argentinos Juniors"]]
-    },
-{
-      answer: "AIMAR",
-      wiki: "Pablo Aimar",
-      pos: "Midfielder",
-      country: "🇦🇷 Argentina",
-      career: [["1996–2000","River Plate"],["2001–2006","Valencia"],["2006–2008","Zaragoza"],["2008–2013","Benfica"],["2013–2014","Johor Darul Ta'zim"],["2015","River Plate"]]
-    },
-{
-      answer: "ORTEGA",
-      wiki: "Ariel Ortega",
-      pos: "Midfielder",
-      country: "🇦🇷 Argentina",
-      career: [["1991–1996","River Plate"],["1997–1998","Valencia"],["1998–1999","Sampdoria"],["1999–2000","Parma"],["2000–2002","River Plate"],["2002–2003","Fenerbahçe"],["2004–2006","Newell's Old Boys"],["2006–2012","River Plate"]]
-    },
-{
-      answer: "HIGUAIN",
-      wiki: "Gonzalo Higuaín",
-      pos: "Forward",
-      country: "🇦🇷 Argentina",
-      career: [["2005–2007","River Plate"],["2007–2013","Real Madrid"],["2013–2016","Napoli"],["2016–2020","Juventus"],["2019","Chelsea"],["2020–2022","Inter Miami"]]
-    },
-{
-      answer: "INIESTA",
-      wiki: "Andrés Iniesta",
-      pos: "Midfielder",
-      country: "🇪🇸 Spain",
-      career: [["2002–2018","Barcelona"],["2018–2023","Vissel Kobe"],["2023–2024","Emirates Club"]]
-    },
-{
-      answer: "XAVI",
-      wiki: "Xavi Hernández",
-      pos: "Midfielder",
-      country: "🇪🇸 Spain",
-      career: [["1998–2015","Barcelona"],["2015–2019","Al Sadd"]]
-    },
-{
-      answer: "DAVID VILLA",
-      wiki: "David Villa",
-      pos: "Forward",
-      country: "🇪🇸 Spain",
-      career: [["2001–2003","Sporting Gijón"],["2003–2005","Real Zaragoza"],["2005–2010","Valencia"],["2010–2013","Barcelona"],["2013–2014","Atlético Madrid"],["2014–2018","New York City FC"],["2019–2020","Vissel Kobe"]]
-    },
-{
-      answer: "ROBBIE KEANE",
-      wiki: "Robbie Keane",
-      pos: "Forward",
-      country: "🇮🇪 Ireland",
-      career: [["1997–1999","Wolverhampton Wanderers"],["1999–2000","Coventry City"],["2000–2001","Inter Milan"],["2001–2002","Leeds United"],["2002–2008","Tottenham Hotspur"],["2008–2009","Liverpool"],["2009–2011","Tottenham Hotspur"],["2011–2016","LA Galaxy"],["2017–2018","ATK"]]
-    },
-{
-      answer: "FIGO",
-      wiki: "Luís Figo",
-      pos: "Midfielder",
-      country: "🇵🇹 Portugal",
-      career: [["1989–1995","Sporting CP"],["1995–2000","Barcelona"],["2000–2005","Real Madrid"],["2005–2009","Inter Milan"]]
-    },
-{
-      answer: "RUI COSTA",
-      wiki: "Rui Costa",
-      pos: "Midfielder",
-      country: "🇵🇹 Portugal",
-      career: [["1990–1994","Benfica"],["1994–2001","Fiorentina"],["2001–2006","AC Milan"],["2006–2008","Benfica"]]
-    },
-{
-      answer: "NEDVED",
-      wiki: "Pavel Nedvěd",
-      pos: "Midfielder",
-      country: "🇨🇿 Czech Republic",
-      career: [["1992–1996","Sparta Prague"],["1996–2001","Lazio"],["2001–2009","Juventus"]]
-    },
-{
-      answer: "BAGGIO",
-      wiki: "Roberto Baggio",
-      pos: "Forward",
-      country: "🇮🇹 Italy",
-      career: [["1982–1985","Vicenza"],["1985–1990","Fiorentina"],["1990–1995","Juventus"],["1995–1997","AC Milan"],["1997–1998","Bologna"],["1998–2000","Inter Milan"],["2000–2004","Brescia"]]
-    },
-{
-      answer: "HAGI",
-      wiki: "Gheorghe Hagi",
-      pos: "Midfielder",
-      country: "🇷🇴 Romania",
-      career: [["1982–1983","FC Constanța"],["1983–1986","Sportul Studențesc"],["1986–1990","Steaua București"],["1990–1992","Real Madrid"],["1992–1994","Brescia"],["1994–1996","Barcelona"],["1996–2001","Galatasaray"]]
-    },
-{
-      answer: "STOICHKOV",
-      wiki: "Hristo Stoichkov",
-      pos: "Forward",
-      country: "🇧🇬 Bulgaria",
-      career: [["1984–1990","CSKA Sofia"],["1990–1995","Barcelona"],["1995–1996","Parma"],["1996–1998","Barcelona"],["1998","Al-Nassr"],["1998–1999","Kashiwa Reysol"],["2000–2002","Chicago Fire"],["2003","D.C. United"]]
-    },
-{
-      answer: "SUKER",
-      wiki: "Davor Šuker",
-      pos: "Forward",
-      country: "🇭🇷 Croatia",
-      career: [["1984–1989","NK Osijek"],["1989–1991","Dinamo Zagreb"],["1991–1996","Sevilla"],["1996–1999","Real Madrid"],["1999–2000","Arsenal"],["2000–2001","West Ham United"],["2001–2003","1860 Munich"]]
-    },
-{
-      answer: "HULK",
-      wiki: "Hulk (footballer)",
-      pos: "Forward",
-      country: "🇧🇷 Brazil",
-      career: [["2004–2006","Vitória"],["2007–2008","Tokyo Verdy"],["2008–2012","Porto"],["2012–2016","Zenit Saint Petersburg"],["2016–2020","Shanghai Port"],["2021–","Atlético Mineiro"]]
-    },
-{
-      answer: "YAYA TOURE",
-      wiki: "Yaya Touré",
-      pos: "Midfielder",
-      country: "🇨🇮 Ivory Coast",
-      career: [["2001–2003","Beveren"],["2003–2005","Metalurh Donetsk"],["2005–2006","Olympiacos"],["2006–2007","Monaco"],["2007–2010","Barcelona"],["2010–2018","Manchester City"],["2018","Olympiacos"],["2019","Qingdao Huanghai"]]
-    },
-{
-      answer: "ADEBAYOR",
-      wiki: "Emmanuel Adebayor",
-      pos: "Forward",
-      country: "🇹🇬 Togo",
-      career: [["2001–2003","Metz"],["2003–2006","Monaco"],["2006–2009","Arsenal"],["2009–2012","Manchester City"],["2012–2015","Tottenham Hotspur"],["2016","Crystal Palace"],["2017–2019","İstanbul Başakşehir"],["2019","Kayserispor"]]
-    },
-{
-      answer: "SNEIJDER",
-      wiki: "Wesley Sneijder",
-      pos: "Midfielder",
-      country: "🇳🇱 Netherlands",
-      career: [["2002–2007","Ajax"],["2007–2009","Real Madrid"],["2009–2013","Inter Milan"],["2013–2017","Galatasaray"],["2017–2018","Nice"],["2018–2019","Al-Gharafa"]]
-    },
-{
-      answer: "OKOCHA",
-      wiki: "Jay-Jay Okocha",
-      pos: "Midfielder",
-      country: "🇳🇬 Nigeria",
-      career: [["1992–1996","Eintracht Frankfurt"],["1996–1998","Fenerbahçe"],["1998–2002","Paris Saint-Germain"],["2002–2006","Bolton Wanderers"],["2006–2007","Qatar SC"],["2007–2008","Hull City"]]
-    },
-{
-      answer: "REUS",
-      wiki: "Marco Reus",
-      pos: "Forward",
-      country: "🇩🇪 Germany",
-      career: [["2009–2012","Borussia Mönchengladbach"],["2012–2024","Borussia Dortmund"],["2024–","LA Galaxy"]]
-    },
-{
-      answer: "ANELKA",
-      wiki: "Nicolas Anelka",
-      pos: "Forward",
-      country: "🇫🇷 France",
-      career: [["1996–1997","Paris Saint-Germain"],["1997–1999","Arsenal"],["1999–2000","Real Madrid"],["2000–2002","Paris Saint-Germain"],["2002–2005","Manchester City"],["2005–2006","Fenerbahçe"],["2006–2008","Bolton Wanderers"],["2008–2012","Chelsea"],["2012–2013","Shanghai Shenhua"],["2013–2014","West Bromwich Albion"],["2014–2015","Mumbai City"]]
-    },
-{
-      answer: "PIRES",
-      wiki: "Robert Pirès",
-      pos: "Midfielder",
-      country: "🇫🇷 France",
-      career: [["1993–1998","Metz"],["1998–2000","Marseille"],["2000–2006","Arsenal"],["2006–2010","Villarreal"],["2010–2011","Aston Villa"],["2014–2015","FC Goa"]]
-    },
-{
-      answer: "RIBERY",
-      wiki: "Franck Ribéry",
-      pos: "Midfielder",
-      country: "🇫🇷 France",
-      career: [["2003–2004","Brest"],["2004–2005","Metz"],["2005","Galatasaray"],["2005–2007","Marseille"],["2007–2019","Bayern Munich"],["2019–2021","Fiorentina"],["2021–2022","Salernitana"]]
-    },
-{
-      answer: "NASRI",
-      wiki: "Samir Nasri",
-      pos: "Midfielder",
-      country: "🇫🇷 France",
-      career: [["2004–2008","Marseille"],["2008–2011","Arsenal"],["2011–2017","Manchester City"],["2017–2018","Antalyaspor"],["2019","West Ham United"],["2019–2020","Anderlecht"]]
-    },
-{
-      answer: "GOTZE",
-      wiki: "Mario Götze",
-      pos: "Midfielder",
-      country: "🇩🇪 Germany",
-      career: [["2009–2013","Borussia Dortmund"],["2013–2016","Bayern Munich"],["2016–2020","Borussia Dortmund"],["2020–2022","PSV Eindhoven"],["2022–","Eintracht Frankfurt"]]
-    },
-{
-      answer: "OZIL",
-      wiki: "Mesut Özil",
-      pos: "Midfielder",
-      country: "🇩🇪 Germany",
-      career: [["2006–2008","Schalke 04"],["2008–2010","Werder Bremen"],["2010–2013","Real Madrid"],["2013–2021","Arsenal"],["2021–2022","Fenerbahçe"],["2022–2023","İstanbul Başakşehir"]]
-    },
-{
-      answer: "ROBBEN",
-      wiki: "Arjen Robben",
-      pos: "Forward",
-      country: "🇳🇱 Netherlands",
-      career: [["2000–2002","FC Groningen"],["2002–2004","PSV Eindhoven"],["2004–2007","Chelsea"],["2007–2009","Real Madrid"],["2009–2019","Bayern Munich"],["2020–2021","FC Groningen"]]
-    },
-{
-      answer: "VAN PERSIE",
-      wiki: "Robin van Persie",
-      pos: "Forward",
-      country: "🇳🇱 Netherlands",
-      career: [["2001–2004","Feyenoord"],["2004–2012","Arsenal"],["2012–2015","Manchester United"],["2015–2018","Fenerbahçe"],["2018–2019","Feyenoord"]]
-    },
-{
-      answer: "TORRES",
-      wiki: "Fernando Torres",
-      pos: "Forward",
-      country: "🇪🇸 Spain",
-      career: [["2001–2007","Atlético Madrid"],["2007–2011","Liverpool"],["2011–2015","Chelsea"],["2014–2015","AC Milan"],["2015–2018","Atlético Madrid"],["2018–2019","Sagan Tosu"]]
-    },
-{
-      answer: "DYBALA",
-      wiki: "Paulo Dybala",
-      pos: "Forward",
-      country: "🇦🇷 Argentina",
-      career: [["2012–2015","Palermo"],["2015–2022","Juventus"],["2022–","Roma"]]
-    },
-{
-      answer: "BANEGA",
-      wiki: "Éver Banega",
-      pos: "Midfielder",
-      country: "🇦🇷 Argentina",
-      career: [["2008–2014","Valencia"],["2014–2016","Sevilla"],["2016–2017","Inter Milan"],["2017–2020","Sevilla"],["2020–2024","Al Shabab"],["2024–2025","Newell's Old Boys"]]
-    },
-{
-      answer: "DI MARIA",
-      wiki: "Ángel Di María",
-      pos: "Forward",
-      country: "🇦🇷 Argentina",
-      career: [["2005–2007","Rosario Central"],["2007–2010","Benfica"],["2010–2014","Real Madrid"],["2014–2015","Manchester United"],["2015–2022","Paris Saint-Germain"],["2022–2023","Juventus"],["2023–2025","Benfica"],["2025–","Rosario Central"]]
-    },
-{
-      answer: "FALCAO",
-      wiki: "Radamel Falcao",
-      pos: "Forward",
-      country: "🇨🇴 Colombia",
-      career: [["2009–2011","Porto"],["2011–2013","Atlético Madrid"],["2013–2014","Monaco"],["2014–2015","Manchester United"],["2015–2016","Chelsea"],["2016–2019","Monaco"],["2019–2021","Galatasaray"],["2021–2024","Rayo Vallecano"],["2024–","Millonarios"]]
-    },
-{
-      answer: "IBRAHIMOVIC",
-      wiki: "Zlatan Ibrahimović",
-      pos: "Forward",
-      country: "🇸🇪 Sweden",
-      career: [["1999–2001","Malmö FF"],["2001–2004","Ajax"],["2004–2006","Juventus"],["2006–2009","Inter Milan"],["2009–2011","Barcelona"],["2011–2012","AC Milan"],["2012–2016","Paris Saint-Germain"],["2016–2018","Manchester United"],["2018–2019","LA Galaxy"],["2019–2023","AC Milan"]]
-    },
-{
-      answer: "BALE",
-      wiki: "Gareth Bale",
-      pos: "Forward",
-      country: "🏴󠁧󠁢󠁷󠁬󠁳󠁿 Wales",
-      career: [["2006–2007","Southampton"],["2007–2013","Tottenham Hotspur"],["2013–2022","Real Madrid"],["2022–2023","Los Angeles FC"]]
-    },
-{
-      answer: "NEYMAR",
-      wiki: "Neymar",
-      pos: "Forward",
-      country: "🇧🇷 Brazil",
-      career: [["2009–2013","Santos"],["2013–2017","Barcelona"],["2017–2023","Paris Saint-Germain"],["2023–2025","Al-Hilal"],["2025–","Santos"]]
-    },
-{
-      answer: "KAKA",
-      wiki: "Kaká",
-      pos: "Midfielder",
-      country: "🇧🇷 Brazil",
-      career: [["2000–2003","São Paulo"],["2003–2009","AC Milan"],["2009–2013","Real Madrid"],["2013–2014","AC Milan"],["2014–2017","Orlando City"]]
-    },
-{
-      answer: "ETOO",
-      wiki: "Samuel Eto'o",
-      pos: "Forward",
-      country: "🇨🇲 Cameroon",
-      career: [["1997–2000","Real Madrid"],["2000–2004","Mallorca"],["2004–2009","Barcelona"],["2009–2011","Inter Milan"],["2011–2013","Anzhi Makhachkala"],["2013–2014","Chelsea"],["2014–2015","Everton"],["2015–2018","Antalyaspor"],["2018–2019","Qatar SC"]]
-    },
-{
-      answer: "DROGBA",
-      wiki: "Didier Drogba",
-      pos: "Forward",
-      country: "🇨🇮 Ivory Coast",
-      career: [["1998–2002","Le Mans"],["2002–2003","Guingamp"],["2003–2004","Marseille"],["2004–2012","Chelsea"],["2012–2013","Shanghai Shenhua"],["2013–2014","Galatasaray"],["2014–2015","Chelsea"],["2015–2016","Montreal Impact"],["2017–2018","Phoenix Rising"]]
-    },
-{
-      answer: "ESSIEN",
-      wiki: "Michael Essien",
-      pos: "Midfielder",
-      country: "🇬🇭 Ghana",
-      career: [["2000–2003","Bastia"],["2003–2005","Lyon"],["2005–2014","Chelsea"],["2012–2013","Real Madrid"],["2014–2015","AC Milan"],["2015–2016","Panathinaikos"],["2017–2018","Persib Bandung"],["2019–2020","Sabail"]]
-    },
-{
-      answer: "AGUERO",
-      wiki: "Sergio Agüero",
-      pos: "Forward",
-      country: "🇦🇷 Argentina",
-      career: [["2003–2006","Independiente"],["2006–2011","Atlético Madrid"],["2011–2021","Manchester City"],["2021","Barcelona"]]
-    },
-{
-      answer: "WILSHERE",
-      wiki: "Jack Wilshere",
-      pos: "Midfielder",
-      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
-      career: [["2008–2018","Arsenal"],["2018–2020","West Ham United"],["2021","AFC Bournemouth"],["2022","AGF"]]
-    },
-{
-      answer: "CROUCH",
-      wiki: "Peter Crouch",
-      pos: "Forward",
-      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
-      career: [["2000–2001","Queens Park Rangers"],["2001–2002","Portsmouth"],["2002–2004","Aston Villa"],["2004–2005","Southampton"],["2005–2008","Liverpool"],["2008–2009","Portsmouth"],["2009–2011","Tottenham Hotspur"],["2011–2019","Stoke City"],["2019","Burnley"]]
-    },
-{
-      answer: "HESKEY",
-      wiki: "Emile Heskey",
-      pos: "Forward",
-      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
-      career: [["1994–2000","Leicester City"],["2000–2004","Liverpool"],["2004–2006","Birmingham City"],["2006–2009","Wigan Athletic"],["2009–2012","Aston Villa"],["2012–2014","Newcastle Jets"],["2014–2016","Bolton Wanderers"]]
-    },
-{
-      answer: "LE TISSIER",
-      wiki: "Matt Le Tissier",
-      pos: "Midfielder",
-      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
-      career: [["1986–2002","Southampton"]]
-    },
-{
-      answer: "DEFOE",
-      wiki: "Jermain Defoe",
-      pos: "Forward",
-      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
-      career: [["1999–2004","West Ham United"],["2004–2008","Tottenham Hotspur"],["2008–2009","Portsmouth"],["2009–2014","Tottenham Hotspur"],["2014–2015","Toronto FC"],["2015–2017","Sunderland"],["2017–2019","AFC Bournemouth"],["2019–2022","Rangers"],["2022","Sunderland"]]
-    },
-{
-      answer: "ROONEY",
-      wiki: "Wayne Rooney",
-      pos: "Forward",
-      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
-      career: [["2002–2004","Everton"],["2004–2017","Manchester United"],["2017–2018","Everton"],["2018–2019","D.C. United"],["2020–2021","Derby County"]]
-    },
-{
-      answer: "OWEN",
-      wiki: "Michael Owen",
-      pos: "Forward",
-      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
-      career: [["1996–2004","Liverpool"],["2004–2005","Real Madrid"],["2005–2009","Newcastle United"],["2009–2012","Manchester United"],["2012–2013","Stoke City"]]
-    },
-{
-      answer: "FOWLER",
-      wiki: "Robbie Fowler",
-      pos: "Forward",
-      country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
-      career: [["1993–2001","Liverpool"],["2001–2003","Leeds United"],["2003–2006","Manchester City"],["2006–2007","Liverpool"],["2007–2008","Cardiff City"],["2008","Blackburn Rovers"],["2009–2010","North Queensland Fury"],["2010–2011","Perth Glory"],["2011–2012","Muangthong United"]]
-    },
-{
-      answer: "TOTTI",
-      wiki: "Francesco Totti",
-      pos: "Forward",
-      country: "🇮🇹 Italy",
-      career: [["1993–2017","Roma"]]
-    },
-{
-      answer: "DEL PIERO",
-      wiki: "Alessandro Del Piero",
-      pos: "Forward",
-      country: "🇮🇹 Italy",
-      career: [["1991–1993","Padova"],["1993–2012","Juventus"],["2012–2014","Sydney FC"],["2014","Delhi Dynamos"]]
-    },
-{
-      answer: "NESTA",
-      wiki: "Alessandro Nesta",
-      pos: "Defender",
-      country: "🇮🇹 Italy",
-      career: [["1993–2002","Lazio"],["2002–2012","AC Milan"],["2012–2014","Montreal Impact"]]
-    },
-{
-      answer: "LITMANEN",
-      wiki: "Jari Litmanen",
-      pos: "Forward",
-      country: "🇫🇮 Finland",
-      career: [["1990–1992","MyPa"],["1992–1999","Ajax"],["1999–2001","Barcelona"],["2001–2002","Liverpool"],["2002–2004","Ajax"],["2005","Hansa Rostock"],["2005–2007","Malmö FF"],["2008","Fulham"],["2008–2010","Lahti"]]
-    },
-{
-      answer: "GUARIN",
-      wiki: "Fredy Guarín",
-      pos: "Midfielder",
-      country: "🇨🇴 Colombia",
-      career: [["2003–2007","Envigado"],["2007–2008","Saint-Étienne"],["2008–2012","Porto"],["2012–2016","Inter Milan"],["2016–2019","Shanghai Shenhua"],["2019–2020","Vasco da Gama"],["2021","Millonarios"]]
-    },
-{
-      answer: "ERIKSEN",
-      wiki: "Christian Eriksen",
-      pos: "Midfielder",
-      country: "🇩🇰 Denmark",
-      career: [["2010–2013","Ajax"],["2013–2020","Tottenham Hotspur"],["2020–2021","Inter Milan"],["2022","Brentford"],["2022–2025","Manchester United"],["2025–","VfL Wolfsburg"]]
-    },
-{
-      answer: "MKHITARYAN",
-      wiki: "Henrikh Mkhitaryan",
-      pos: "Midfielder",
-      country: "🇦🇲 Armenia",
-      career: [["2010–2013","Shakhtar Donetsk"],["2013–2016","Borussia Dortmund"],["2016–2018","Manchester United"],["2018–2020","Arsenal"],["2019–2022","Roma"],["2022–","Inter Milan"]]
-    },
-{
-      answer: "KEVIN PRINCE BOATENG",
-      wiki: "Kevin-Prince Boateng",
-      pos: "Midfielder",
-      country: "🇬🇭 Ghana",
-      career: [["2005–2007","Hertha BSC"],["2007–2009","Tottenham Hotspur"],["2009–2010","Portsmouth"],["2010–2011","Genoa"],["2011–2013","AC Milan"],["2013–2015","Schalke 04"],["2016–2017","Las Palmas"],["2017–2018","Eintracht Frankfurt"],["2018–2019","Sassuolo"],["2019–2020","Fiorentina"],["2020–2021","Monza"],["2021–2023","Hertha BSC"]]
-    },
-{
-      answer: "LUCAS MOURA",
-      wiki: "Lucas Moura",
-      pos: "Forward",
-      country: "🇧🇷 Brazil",
-      career: [["2010–2012","São Paulo"],["2013–2018","Paris Saint-Germain"],["2018–2023","Tottenham Hotspur"],["2023–","São Paulo"]]
-    },
-{
-      answer: "DIEGO COSTA",
-      wiki: "Diego Costa",
-      pos: "Forward",
-      country: "🇪🇸 Spain",
-      career: [["2010–2014","Atlético Madrid"],["2014–2017","Chelsea"],["2017–2020","Atlético Madrid"],["2021–2022","Atlético Mineiro"],["2022–2023","Wolverhampton Wanderers"],["2023","Botafogo"],["2024","Grêmio"]]
-    }
+{answer:"KANTE", wiki:"N'Golo Kanté", pos:"Midfielder", country:"🇫🇷 France",
+     career:[["2012–2013","Boulogne"],["2013–2015","Caen"],["2015–2016","Leicester City"],["2016–2023","Chelsea"],["2023–2026","Al-Ittihad"],["2026–","Fenerbahçe"]]},
+{answer:"HAZARD", wiki:"Eden Hazard", pos:"Forward", country:"🇧🇪 Belgium",
+     career:[["2007–2012","Lille"],["2012–2019","Chelsea"],["2019–2023","Real Madrid"]]},
+{answer:"MANE", wiki:"Sadio Mané", pos:"Forward", country:"🇸🇳 Senegal",
+     career:[["2011–2012","Metz"],["2012–2014","Red Bull Salzburg"],["2014–2016","Southampton"],["2016–2022","Liverpool"],["2022–2023","Bayern Munich"],["2023–","Al-Nassr"]]},
+{answer:"COUTINHO", wiki:"Philippe Coutinho", pos:"Midfielder", country:"🇧🇷 Brazil",
+     career:[["2008–2013","Inter Milan"],["2013–2018","Liverpool"],["2018–2022","Barcelona"],["2022–2025","Aston Villa"],["2025–2026","Vasco da Gama"]]},
+{answer:"LUKAKU", wiki:"Romelu Lukaku", pos:"Forward", country:"🇧🇪 Belgium",
+     career:[["2009–2011","Anderlecht"],["2011–2014","Chelsea"],["2014–2017","Everton"],["2017–2019","Manchester United"],["2019–2021","Inter Milan"],["2021–2024","Chelsea"],["2024–2026","Napoli"],["2026–","Fenerbahçe"]]},
+{answer:"קאסמירו", wiki:"CASEMIRO", pos:"Midfielder", country:"🇧🇷 Brazil",
+     career:[["2010–2013","São Paulo"],["2013–2022","Real Madrid"],["2022–2026","Manchester United"],["2026–","Inter Miami"]]},
+{answer:"MARCELO", wiki:"Marcelo (footballer, born 1988)", pos:"Defender", country:"🇧🇷 Brazil",
+     career:[["2005–2007","Fluminense"],["2007–2022","Real Madrid"],["2022–2023","Olympiacos"],["2023–2024","Fluminense"]]},
+{answer:"דויד לואיז", wiki:"DAVID LUIZ", pos:"Defender", country:"🇧🇷 Brazil",
+     career:[["2006–2007","Vitória"],["2007–2011","Benfica"],["2011–2014","Chelsea"],["2014–2016","Paris Saint-Germain"],["2016–2019","Chelsea"],["2019–2021","Arsenal"],["2021–2024","Flamengo"],["2025","Fortaleza"],["2025–","Pafos"]]},
+{answer:"MAHREZ", wiki:"Riyad Mahrez", pos:"Forward", country:"🇩🇿 Algeria",
+     career:[["2011–2014","Le Havre"],["2014–2018","Leicester City"],["2018–2023","Manchester City"],["2023–2026","Al-Ahli"]]},
+{answer:"ALEXIS SANCHEZ", wiki:"Alexis Sánchez", pos:"Forward", country:"🇨🇱 Chile",
+     career:[["2006–2011","Udinese"],["2011–2014","Barcelona"],["2014–2018","Arsenal"],["2018–2020","Manchester United"],["2020–2022","Inter Milan"],["2022–2023","Marseille"],["2023–2024","Inter Milan"],["2024–2025","Udinese"],["2025–2026","Sevilla"],["2026–","CF Montréal"]]},
+{answer:"VINICIUS JUNIOR", wiki:"Vinícius Júnior", pos:"Forward", country:"🇧🇷 Brazil",
+     career:[["2017–2018","Flamengo"],["2018–","Real Madrid"]]},
+{answer:"TRENT ALEXANDER ARNOLD", wiki:"Trent Alexander-Arnold", pos:"Defender", country:"🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+     career:[["2016–2025","Liverpool"],["2025–","Real Madrid"]]},
+{answer:"רודרי", wiki:"RODRI", pos:"Midfielder", country:"🇪🇸 Spain",
+     career:[["2015–2018","Villarreal"],["2018–2019","Atlético Madrid"],["2019–","Manchester City"]]},
+{answer:"KIMMICH", wiki:"Joshua Kimmich", pos:"Midfielder", country:"🇩🇪 Germany",
+     career:[["2013–2015","RB Leipzig"],["2015–","Bayern Munich"]]},
+{answer:"CANCELO", wiki:"João Cancelo", pos:"Defender", country:"🇵🇹 Portugal",
+     career:[["2014–2015","Benfica"],["2015–2018","Valencia"],["2018–2019","Juventus"],["2019–2024","Manchester City"],["2024–","Al Hilal"]]},
+{answer:"ZAHA", wiki:"Wilfried Zaha", pos:"Forward", country:"🇨🇮 Ivory Coast",
+     career:[["2010–2013","Crystal Palace"],["2013–2015","Manchester United"],["2015–2023","Crystal Palace"],["2023–","Galatasaray"]]},
+{answer:"דאגלס קוסטה", wiki:"DOUGLAS COSTA", pos:"Forward", country:"🇧🇷 Brazil",
+     career:[["2008–2010","Grêmio"],["2010–2015","Shakhtar Donetsk"],["2015–2018","Bayern Munich"],["2018–2022","Juventus"],["2022–2023","LA Galaxy"],["2024","Fluminense"],["2024–2025","Sydney FC"],["2026","ChievoVerona"],["2026–","Al-Ittifaq"]]},
+{answer:"ADAMA TRAORE", wiki:"Adama Traoré (footballer, born 1996)", pos:"Forward", country:"🇪🇸 Spain",
+     career:[["2013–2015","Barcelona"],["2015–2016","Aston Villa"],["2016–2018","Middlesbrough"],["2018–2023","Wolverhampton Wanderers"],["2023–2026","Fulham"],["2026","West Ham United"]]},
+{answer:"דפאי", wiki:"MEMPHIS DEPAY", pos:"Forward", country:"🇳🇱 Netherlands",
+     career:[["2011–2015","PSV Eindhoven"],["2015–2017","Manchester United"],["2017–2021","Lyon"],["2021–2023","Barcelona"],["2023–2024","Atlético Madrid"],["2024–","Corinthians"]]},
+{answer:"איסקו", wiki:"ISCO", pos:"Midfielder", country:"🇪🇸 Spain",
+     career:[["2011–2013","Málaga"],["2013–2022","Real Madrid"],["2022","Sevilla"],["2023–","Real Betis"]]},
+{answer:"THIAGO ALCANTARA", wiki:"Thiago Alcântara", pos:"Midfielder", country:"🇪🇸 Spain",
+     career:[["2009–2013","Barcelona"],["2013–2020","Bayern Munich"],["2020–2024","Liverpool"]]},
+{answer:"VERRATTI", wiki:"Marco Verratti", pos:"Midfielder", country:"🇮🇹 Italy",
+     career:[["2008–2012","Pescara"],["2012–2023","Paris Saint-Germain"],["2023–2025","Al-Arabi"],["2025–","Al Duhail"]]},
+{answer:"רייס", wiki:"DECLAN RICE", pos:"Midfielder", country:"🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+     career:[["2015–2023","West Ham United"],["2023–","Arsenal"]]},
+{answer:"XHAKA", wiki:"Granit Xhaka", pos:"Midfielder", country:"🇨🇭 Switzerland",
+     career:[["2010–2012","Basel"],["2012–2016","Borussia Mönchengladbach"],["2016–2023","Arsenal"],["2023–2025","Bayer Leverkusen"],["2025–","Sunderland"]]},
+{answer:"WERNER", wiki:"Timo Werner", pos:"Forward", country:"🇩🇪 Germany",
+     career:[["2013–2016","VfB Stuttgart"],["2016–2020","RB Leipzig"],["2020–2022","Chelsea"],["2022–2026","RB Leipzig"],["2026–","San Jose Earthquakes"]]},
+{answer:"LAPORTE", wiki:"Aymeric Laporte", pos:"Defender", country:"🇪🇸 Spain",
+     career:[["2012–2018","Athletic Bilbao"],["2018–2023","Manchester City"],["2023–2025","Al-Nassr"],["2025–","Athletic Bilbao"]]},
+{answer:"FABINHO", wiki:"Fabinho (footballer, born 1993)", pos:"Midfielder", country:"🇧🇷 Brazil",
+     career:[["2012–2015","Rio Ave"],["2015–2018","Monaco"],["2018–2023","Liverpool"],["2023–2026","Al-Ittihad"]]},
+{answer:"OTAMENDI", wiki:"Nicolás Otamendi", pos:"Defender", country:"🇦🇷 Argentina",
+     career:[["2010–2014","Porto"],["2014–2015","Valencia"],["2015–2020","Manchester City"],["2020–2026","Benfica"],["2026–","River Plate"]]},
+{answer:"PJANIC", wiki:"Miralem Pjanić", pos:"Midfielder", country:"🇧🇦 Bosnia and Herzegovina",
+     career:[["2008–2011","Lyon"],["2011–2016","Roma"],["2016–2020","Juventus"],["2020–2022","Barcelona"],["2022–2024","Sharjah"],["2024–2025","CSKA Moscow"]]},
+{answer:"NAINGGOLAN", wiki:"Radja Nainggolan", pos:"Midfielder", country:"🇧🇪 Belgium",
+     career:[["2006–2010","Piacenza"],["2010–2014","Cagliari"],["2014–2018","Roma"],["2018–2021","Inter Milan"],["2021–2022","Royal Antwerp"],["2023","SPAL"],["2023–2024","Bhayangkara"],["2024–2025","Lokeren-Temse"],["2025–","Patro Eisden"]]},
+{answer:"HAMSIK", wiki:"Marek Hamšík", pos:"Midfielder", country:"🇸🇰 Slovakia",
+     career:[["2004–2007","Brescia"],["2007–2019","Napoli"],["2019–2021","Dalian Professional"],["2021","IFK Göteborg"],["2021–2023","Trabzonspor"]]},
+{answer:"MERTENS", wiki:"Dries Mertens", pos:"Forward", country:"🇧🇪 Belgium",
+     career:[["2009–2011","Utrecht"],["2011–2013","PSV Eindhoven"],["2013–2022","Napoli"],["2022–2025","Galatasaray"]]},
+{answer:"ORIGI", wiki:"Divock Origi", pos:"Forward", country:"🇧🇪 Belgium",
+     career:[["2012–2014","Lille"],["2014–2022","Liverpool"],["2022–2025","AC Milan"]]},
+{answer:"אשלי יאנג", wiki:"ASHLEY YOUNG", pos:"Defender", country:"🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+     career:[["2003–2007","Watford"],["2007–2011","Aston Villa"],["2011–2020","Manchester United"],["2020–2021","Inter Milan"],["2021–2023","Aston Villa"],["2023–2025","Everton"],["2025–2026","Ipswich Town"]]},
+{answer:"VALENCIA", wiki:"Antonio Valencia", pos:"Defender", country:"🇪🇨 Ecuador",
+     career:[["2003–2005","El Nacional"],["2006–2009","Wigan Athletic"],["2009–2019","Manchester United"],["2019–2020","LDU Quito"],["2020–2021","Querétaro"]]},
+{answer:"רונאלדיניו", wiki:"RONALDINHO", pos:"Forward", country:"🇧🇷 Brazil",
+     career:[["1998–2001","Grêmio"],["2001–2003","Paris Saint-Germain"],["2003–2008","Barcelona"],["2008–2011","AC Milan"],["2011–2012","Flamengo"],["2012–2014","Atlético Mineiro"],["2015","Fluminense"]]},
+{answer:"GANSO", wiki:"Paulo Henrique Ganso", pos:"Midfielder", country:"🇧🇷 Brazil",
+     career:[["2008–2012","Santos"],["2012–2016","São Paulo"],["2016–2019","Sevilla"],["2019–","Fluminense"]]},
+{answer:"WILLIAN", wiki:"Willian (footballer, born 1988)", pos:"Forward", country:"🇧🇷 Brazil",
+     career:[["2006–2007","Corinthians"],["2007–2013","Shakhtar Donetsk"],["2013–2020","Chelsea"],["2020–2021","Arsenal"],["2021–2022","Corinthians"],["2022–2024","Fulham"],["2024","Olympiacos"],["2025–2026","Grêmio"]]},
+{answer:"DRAXLER", wiki:"Julian Draxler", pos:"Midfielder", country:"🇩🇪 Germany",
+     career:[["2011–2015","Schalke 04"],["2015–2017","VfL Wolfsburg"],["2017–2022","Paris Saint-Germain"],["2022–2023","Benfica"],["2023–","Al-Ahli"]]},
+{answer:"CARRASCO", wiki:"Yannick Carrasco", pos:"Forward", country:"🇧🇪 Belgium",
+     career:[["2012–2015","Monaco"],["2015–2018","Atlético Madrid"],["2018–2020","Dalian Yifang"],["2020–2023","Atlético Madrid"],["2023–","Al-Shabab"]]},
+{answer:"KAGAWA", wiki:"Shinji Kagawa", pos:"Midfielder", country:"🇯🇵 Japan",
+     career:[["2007–2010","Cerezo Osaka"],["2010–2012","Borussia Dortmund"],["2012–2014","Manchester United"],["2014–2019","Borussia Dortmund"],["2019–2020","Real Zaragoza"],["2021","PAOK"],["2022–2023","Sint-Truiden"],["2023–","Cerezo Osaka"]]},
+{answer:"NAKATA", wiki:"Hidetoshi Nakata", pos:"Midfielder", country:"🇯🇵 Japan",
+     career:[["1995–1998","Bellmare Hiratsuka"],["1998–2000","Perugia"],["2000–2001","Roma"],["2001–2004","Parma"],["2004–2005","Fiorentina"],["2005–2006","Bolton Wanderers"]]},
+{answer:"FELLAINI", wiki:"Marouane Fellaini", pos:"Midfielder", country:"🇧🇪 Belgium",
+     career:[["2006–2008","Standard Liège"],["2008–2013","Everton"],["2013–2019","Manchester United"],["2019–2023","Shandong Taishan"]]},
+{answer:"RASHFORD", wiki:"Marcus Rashford", pos:"Forward", country:"🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+     career:[["2015–2025","Manchester United"],["2025","Aston Villa"],["2025–","Barcelona"]]},
+{answer:"SANCHO", wiki:"Jadon Sancho", pos:"Forward", country:"🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+     career:[["2017–2021","Borussia Dortmund"],["2021–2024","Manchester United"],["2024–2025","Chelsea"],["2025–2026","Aston Villa"]]},
+{answer:"JAMES RODRIGUEZ", wiki:"James Rodríguez", pos:"Midfielder", country:"🇨🇴 Colombia",
+     career:[["2010–2013","Porto"],["2013–2014","Monaco"],["2014–2017","Real Madrid"],["2017–2019","Bayern Munich"],["2019–2020","Real Madrid"],["2020–2021","Everton"],["2021–2022","Al-Rayyan"],["2022–2023","Olympiacos"],["2023–2024","São Paulo"],["2024–2025","Rayo Vallecano"],["2025","León"]]},
+{answer:"FORLAN", wiki:"Diego Forlán", pos:"Forward", country:"🇺🇾 Uruguay",
+     career:[["1997–2002","Independiente"],["2002–2004","Manchester United"],["2004–2007","Villarreal"],["2007–2011","Atlético Madrid"],["2011–2012","Inter Milan"],["2012–2014","Internacional"],["2014–2015","Cerezo Osaka"],["2015–2016","Peñarol"],["2016","Mumbai City"],["2018","Kitchee"]]},
+{answer:"רוברטו קרלוס", wiki:"ROBERTO CARLOS", pos:"Defender", country:"🇧🇷 Brazil",
+     career:[["1993–1995","Palmeiras"],["1995–1996","Inter Milan"],["1996–2007","Real Madrid"],["2007–2009","Fenerbahçe"],["2010–2011","Corinthians"],["2011–2012","Anzhi Makhachkala"]]},
+{answer:"RONALDO NAZARIO", wiki:"Ronaldo (Brazilian footballer)", pos:"Forward", country:"🇧🇷 Brazil",
+     career:[["1993–1994","Cruzeiro"],["1994–1996","PSV Eindhoven"],["1996–1997","Barcelona"],["1997–2002","Inter Milan"],["2002–2007","Real Madrid"],["2007–2008","AC Milan"],["2009–2011","Corinthians"]]},
+{answer:"ריבלדו", wiki:"RIVALDO", pos:"Forward", country:"🇧🇷 Brazil",
+     career:[["1988–1992","Santa Cruz"],["1992–1994","Mogi Mirim"],["1994–1996","Palmeiras"],["1996–1997","Deportivo La Coruña"],["1997–2002","Barcelona"],["2002–2003","AC Milan"],["2004","Cruzeiro"],["2004–2007","Olympiacos"],["2007–2008","AEK Athens"],["2008–2011","Bunyodkor"]]},
+{answer:"דקו", wiki:"DECO", pos:"Midfielder", country:"🇵🇹 Portugal",
+     career:[["1997–1998","Benfica"],["1998–1999","Salgueiros"],["1999–2004","Porto"],["2004–2008","Barcelona"],["2008–2010","Chelsea"],["2010–2013","Fluminense"]]},
+{answer:"BALLACK", wiki:"Michael Ballack", pos:"Midfielder", country:"🇩🇪 Germany",
+     career:[["1997–1999","1. FC Kaiserslautern"],["1999–2002","Bayer Leverkusen"],["2002–2006","Bayern Munich"],["2006–2010","Chelsea"],["2010–2012","Bayer Leverkusen"]]},
+{answer:"SHEVCHENKO", wiki:"Andriy Shevchenko", pos:"Forward", country:"🇺🇦 Ukraine",
+     career:[["1994–1999","Dynamo Kyiv"],["1999–2006","AC Milan"],["2006–2009","Chelsea"],["2008–2009","AC Milan"],["2009–2012","Dynamo Kyiv"]]},
+{answer:"DAVIDS", wiki:"Edgar Davids", pos:"Midfielder", country:"🇳🇱 Netherlands",
+     career:[["1991–1996","Ajax"],["1996–1997","AC Milan"],["1997–2004","Juventus"],["2004–2005","Inter Milan"],["2005–2007","Tottenham Hotspur"],["2007–2009","Ajax"],["2010","Crystal Palace"],["2012–2014","Barnet"]]},
+{answer:"SEEDORF", wiki:"Clarence Seedorf", pos:"Midfielder", country:"🇳🇱 Netherlands",
+     career:[["1992–1995","Ajax"],["1995–1996","Sampdoria"],["1996–2000","Real Madrid"],["2000–2002","Inter Milan"],["2002–2012","AC Milan"],["2012–2014","Botafogo"]]},
+{answer:"KLUIVERT", wiki:"Patrick Kluivert", pos:"Forward", country:"🇳🇱 Netherlands",
+     career:[["1994–1997","Ajax"],["1997–1998","AC Milan"],["1998–2004","Barcelona"],["2004–2005","Newcastle United"],["2005–2006","Valencia"],["2006–2007","PSV Eindhoven"],["2007–2008","Lille"]]},
+{answer:"BERGKAMP", wiki:"Dennis Bergkamp", pos:"Forward", country:"🇳🇱 Netherlands",
+     career:[["1986–1993","Ajax"],["1993–1995","Inter Milan"],["1995–2006","Arsenal"]]},
+{answer:"KANU", wiki:"Nwankwo Kanu", pos:"Forward", country:"🇳🇬 Nigeria",
+     career:[["1992–1993","Iwuanyanwu Nationale"],["1993–1996","Ajax"],["1996–1999","Inter Milan"],["1999–2004","Arsenal"],["2004–2006","West Bromwich Albion"],["2006–2012","Portsmouth"]]},
+{answer:"PROSINECKI", wiki:"Robert Prosinečki", pos:"Midfielder", country:"🇭🇷 Croatia",
+     career:[["1986–1987","Dinamo Zagreb"],["1987–1991","Red Star Belgrade"],["1991–1995","Real Madrid"],["1995–1996","Barcelona"],["1996–1997","Sevilla"],["1997–2000","Croatia Zagreb"],["2000–2001","Standard Liège"],["2001–2002","Portsmouth"]]},
+{answer:"RIQUELME", wiki:"Juan Román Riquelme", pos:"Midfielder", country:"🇦🇷 Argentina",
+     career:[["1996–2002","Boca Juniors"],["2002–2003","Barcelona"],["2003–2007","Villarreal"],["2007–2014","Boca Juniors"],["2014–2015","Argentinos Juniors"]]},
+{answer:"AIMAR", wiki:"Pablo Aimar", pos:"Midfielder", country:"🇦🇷 Argentina",
+     career:[["1996–2000","River Plate"],["2001–2006","Valencia"],["2006–2008","Zaragoza"],["2008–2013","Benfica"],["2013–2014","Johor Darul Ta'zim"],["2015","River Plate"]]},
+{answer:"ORTEGA", wiki:"Ariel Ortega", pos:"Midfielder", country:"🇦🇷 Argentina",
+     career:[["1991–1996","River Plate"],["1997–1998","Valencia"],["1998–1999","Sampdoria"],["1999–2000","Parma"],["2000–2002","River Plate"],["2002–2003","Fenerbahçe"],["2004–2006","Newell's Old Boys"],["2006–2012","River Plate"]]},
+{answer:"HIGUAIN", wiki:"Gonzalo Higuaín", pos:"Forward", country:"🇦🇷 Argentina",
+     career:[["2005–2007","River Plate"],["2007–2013","Real Madrid"],["2013–2016","Napoli"],["2016–2020","Juventus"],["2019","Chelsea"],["2020–2022","Inter Miami"]]},
+{answer:"INIESTA", wiki:"Andrés Iniesta", pos:"Midfielder", country:"🇪🇸 Spain",
+     career:[["2002–2018","Barcelona"],["2018–2023","Vissel Kobe"],["2023–2024","Emirates Club"]]},
+{answer:"XAVI", wiki:"Xavi Hernández", pos:"Midfielder", country:"🇪🇸 Spain",
+     career:[["1998–2015","Barcelona"],["2015–2019","Al Sadd"]]},
+{answer:"וייה", wiki:"DAVID VILLA", pos:"Forward", country:"🇪🇸 Spain",
+     career:[["2001–2003","Sporting Gijón"],["2003–2005","Real Zaragoza"],["2005–2010","Valencia"],["2010–2013","Barcelona"],["2013–2014","Atlético Madrid"],["2014–2018","New York City FC"],["2019–2020","Vissel Kobe"]]},
+{answer:"רובי קין", wiki:"ROBBIE KEANE", pos:"Forward", country:"🇮🇪 Ireland",
+     career:[["1997–1999","Wolverhampton Wanderers"],["1999–2000","Coventry City"],["2000–2001","Inter Milan"],["2001–2002","Leeds United"],["2002–2008","Tottenham Hotspur"],["2008–2009","Liverpool"],["2009–2011","Tottenham Hotspur"],["2011–2016","LA Galaxy"],["2017–2018","ATK"]]},
+{answer:"FIGO", wiki:"Luís Figo", pos:"Midfielder", country:"🇵🇹 Portugal",
+     career:[["1989–1995","Sporting CP"],["1995–2000","Barcelona"],["2000–2005","Real Madrid"],["2005–2009","Inter Milan"]]},
+{answer:"רוי קוסטה", wiki:"RUI COSTA", pos:"Midfielder", country:"🇵🇹 Portugal",
+     career:[["1990–1994","Benfica"],["1994–2001","Fiorentina"],["2001–2006","AC Milan"],["2006–2008","Benfica"]]},
+{answer:"NEDVED", wiki:"Pavel Nedvěd", pos:"Midfielder", country:"🇨🇿 Czech Republic",
+     career:[["1992–1996","Sparta Prague"],["1996–2001","Lazio"],["2001–2009","Juventus"]]},
+{answer:"BAGGIO", wiki:"Roberto Baggio", pos:"Forward", country:"🇮🇹 Italy",
+     career:[["1982–1985","Vicenza"],["1985–1990","Fiorentina"],["1990–1995","Juventus"],["1995–1997","AC Milan"],["1997–1998","Bologna"],["1998–2000","Inter Milan"],["2000–2004","Brescia"]]},
+{answer:"HAGI", wiki:"Gheorghe Hagi", pos:"Midfielder", country:"🇷🇴 Romania",
+     career:[["1982–1983","FC Constanța"],["1983–1986","Sportul Studențesc"],["1986–1990","Steaua București"],["1990–1992","Real Madrid"],["1992–1994","Brescia"],["1994–1996","Barcelona"],["1996–2001","Galatasaray"]]},
+{answer:"STOICHKOV", wiki:"Hristo Stoichkov", pos:"Forward", country:"🇧🇬 Bulgaria",
+     career:[["1984–1990","CSKA Sofia"],["1990–1995","Barcelona"],["1995–1996","Parma"],["1996–1998","Barcelona"],["1998","Al-Nassr"],["1998–1999","Kashiwa Reysol"],["2000–2002","Chicago Fire"],["2003","D.C. United"]]},
+{answer:"SUKER", wiki:"Davor Šuker", pos:"Forward", country:"🇭🇷 Croatia",
+     career:[["1984–1989","NK Osijek"],["1989–1991","Dinamo Zagreb"],["1991–1996","Sevilla"],["1996–1999","Real Madrid"],["1999–2000","Arsenal"],["2000–2001","West Ham United"],["2001–2003","1860 Munich"]]},
+{answer:"HULK", wiki:"Hulk (footballer)", pos:"Forward", country:"🇧🇷 Brazil",
+     career:[["2004–2006","Vitória"],["2007–2008","Tokyo Verdy"],["2008–2012","Porto"],["2012–2016","Zenit Saint Petersburg"],["2016–2020","Shanghai Port"],["2021–","Atlético Mineiro"]]},
+{answer:"YAYA TOURE", wiki:"Yaya Touré", pos:"Midfielder", country:"🇨🇮 Ivory Coast",
+     career:[["2001–2003","Beveren"],["2003–2005","Metalurh Donetsk"],["2005–2006","Olympiacos"],["2006–2007","Monaco"],["2007–2010","Barcelona"],["2010–2018","Manchester City"],["2018","Olympiacos"],["2019","Qingdao Huanghai"]]},
+{answer:"ADEBAYOR", wiki:"Emmanuel Adebayor", pos:"Forward", country:"🇹🇬 Togo",
+     career:[["2001–2003","Metz"],["2003–2006","Monaco"],["2006–2009","Arsenal"],["2009–2012","Manchester City"],["2012–2015","Tottenham Hotspur"],["2016","Crystal Palace"],["2017–2019","İstanbul Başakşehir"],["2019","Kayserispor"]]},
+{answer:"SNEIJDER", wiki:"Wesley Sneijder", pos:"Midfielder", country:"🇳🇱 Netherlands",
+     career:[["2002–2007","Ajax"],["2007–2009","Real Madrid"],["2009–2013","Inter Milan"],["2013–2017","Galatasaray"],["2017–2018","Nice"],["2018–2019","Al-Gharafa"]]},
+{answer:"OKOCHA", wiki:"Jay-Jay Okocha", pos:"Midfielder", country:"🇳🇬 Nigeria",
+     career:[["1992–1996","Eintracht Frankfurt"],["1996–1998","Fenerbahçe"],["1998–2002","Paris Saint-Germain"],["2002–2006","Bolton Wanderers"],["2006–2007","Qatar SC"],["2007–2008","Hull City"]]},
+{answer:"REUS", wiki:"Marco Reus", pos:"Forward", country:"🇩🇪 Germany",
+     career:[["2009–2012","Borussia Mönchengladbach"],["2012–2024","Borussia Dortmund"],["2024–","LA Galaxy"]]},
+{answer:"ANELKA", wiki:"Nicolas Anelka", pos:"Forward", country:"🇫🇷 France",
+     career:[["1996–1997","Paris Saint-Germain"],["1997–1999","Arsenal"],["1999–2000","Real Madrid"],["2000–2002","Paris Saint-Germain"],["2002–2005","Manchester City"],["2005–2006","Fenerbahçe"],["2006–2008","Bolton Wanderers"],["2008–2012","Chelsea"],["2012–2013","Shanghai Shenhua"],["2013–2014","West Bromwich Albion"],["2014–2015","Mumbai City"]]},
+{answer:"PIRES", wiki:"Robert Pirès", pos:"Midfielder", country:"🇫🇷 France",
+     career:[["1993–1998","Metz"],["1998–2000","Marseille"],["2000–2006","Arsenal"],["2006–2010","Villarreal"],["2010–2011","Aston Villa"],["2014–2015","FC Goa"]]},
+{answer:"RIBERY", wiki:"Franck Ribéry", pos:"Midfielder", country:"🇫🇷 France",
+     career:[["2003–2004","Brest"],["2004–2005","Metz"],["2005","Galatasaray"],["2005–2007","Marseille"],["2007–2019","Bayern Munich"],["2019–2021","Fiorentina"],["2021–2022","Salernitana"]]},
+{answer:"NASRI", wiki:"Samir Nasri", pos:"Midfielder", country:"🇫🇷 France",
+     career:[["2004–2008","Marseille"],["2008–2011","Arsenal"],["2011–2017","Manchester City"],["2017–2018","Antalyaspor"],["2019","West Ham United"],["2019–2020","Anderlecht"]]},
+{answer:"GOTZE", wiki:"Mario Götze", pos:"Midfielder", country:"🇩🇪 Germany",
+     career:[["2009–2013","Borussia Dortmund"],["2013–2016","Bayern Munich"],["2016–2020","Borussia Dortmund"],["2020–2022","PSV Eindhoven"],["2022–","Eintracht Frankfurt"]]},
+{answer:"OZIL", wiki:"Mesut Özil", pos:"Midfielder", country:"🇩🇪 Germany",
+     career:[["2006–2008","Schalke 04"],["2008–2010","Werder Bremen"],["2010–2013","Real Madrid"],["2013–2021","Arsenal"],["2021–2022","Fenerbahçe"],["2022–2023","İstanbul Başakşehir"]]},
+{answer:"ROBBEN", wiki:"Arjen Robben", pos:"Forward", country:"🇳🇱 Netherlands",
+     career:[["2000–2002","FC Groningen"],["2002–2004","PSV Eindhoven"],["2004–2007","Chelsea"],["2007–2009","Real Madrid"],["2009–2019","Bayern Munich"],["2020–2021","FC Groningen"]]},
+{answer:"VAN PERSIE", wiki:"Robin van Persie", pos:"Forward", country:"🇳🇱 Netherlands",
+     career:[["2001–2004","Feyenoord"],["2004–2012","Arsenal"],["2012–2015","Manchester United"],["2015–2018","Fenerbahçe"],["2018–2019","Feyenoord"]]},
+{answer:"TORRES", wiki:"Fernando Torres", pos:"Forward", country:"🇪🇸 Spain",
+     career:[["2001–2007","Atlético Madrid"],["2007–2011","Liverpool"],["2011–2015","Chelsea"],["2014–2015","AC Milan"],["2015–2018","Atlético Madrid"],["2018–2019","Sagan Tosu"]]},
+{answer:"DYBALA", wiki:"Paulo Dybala", pos:"Forward", country:"🇦🇷 Argentina",
+     career:[["2012–2015","Palermo"],["2015–2022","Juventus"],["2022–","Roma"]]},
+{answer:"BANEGA", wiki:"Éver Banega", pos:"Midfielder", country:"🇦🇷 Argentina",
+     career:[["2008–2014","Valencia"],["2014–2016","Sevilla"],["2016–2017","Inter Milan"],["2017–2020","Sevilla"],["2020–2024","Al Shabab"],["2024–2025","Newell's Old Boys"]]},
+{answer:"DI MARIA", wiki:"Ángel Di María", pos:"Forward", country:"🇦🇷 Argentina",
+     career:[["2005–2007","Rosario Central"],["2007–2010","Benfica"],["2010–2014","Real Madrid"],["2014–2015","Manchester United"],["2015–2022","Paris Saint-Germain"],["2022–2023","Juventus"],["2023–2025","Benfica"],["2025–","Rosario Central"]]},
+{answer:"FALCAO", wiki:"Radamel Falcao", pos:"Forward", country:"🇨🇴 Colombia",
+     career:[["2009–2011","Porto"],["2011–2013","Atlético Madrid"],["2013–2014","Monaco"],["2014–2015","Manchester United"],["2015–2016","Chelsea"],["2016–2019","Monaco"],["2019–2021","Galatasaray"],["2021–2024","Rayo Vallecano"],["2024–","Millonarios"]]},
+{answer:"IBRAHIMOVIC", wiki:"Zlatan Ibrahimović", pos:"Forward", country:"🇸🇪 Sweden",
+     career:[["1999–2001","Malmö FF"],["2001–2004","Ajax"],["2004–2006","Juventus"],["2006–2009","Inter Milan"],["2009–2011","Barcelona"],["2011–2012","AC Milan"],["2012–2016","Paris Saint-Germain"],["2016–2018","Manchester United"],["2018–2019","LA Galaxy"],["2019–2023","AC Milan"]]},
+{answer:"BALE", wiki:"Gareth Bale", pos:"Forward", country:"🏴󠁧󠁢󠁷󠁬󠁳󠁿 Wales",
+     career:[["2006–2007","Southampton"],["2007–2013","Tottenham Hotspur"],["2013–2022","Real Madrid"],["2022–2023","Los Angeles FC"]]},
+{answer:"ניימאר", wiki:"NEYMAR", pos:"Forward", country:"🇧🇷 Brazil",
+     career:[["2009–2013","Santos"],["2013–2017","Barcelona"],["2017–2023","Paris Saint-Germain"],["2023–2025","Al-Hilal"],["2025–","Santos"]]},
+{answer:"KAKA", wiki:"Kaká", pos:"Midfielder", country:"🇧🇷 Brazil",
+     career:[["2000–2003","São Paulo"],["2003–2009","AC Milan"],["2009–2013","Real Madrid"],["2013–2014","AC Milan"],["2014–2017","Orlando City"]]},
+{answer:"ETOO", wiki:"Samuel Eto'o", pos:"Forward", country:"🇨🇲 Cameroon",
+     career:[["1997–2000","Real Madrid"],["2000–2004","Mallorca"],["2004–2009","Barcelona"],["2009–2011","Inter Milan"],["2011–2013","Anzhi Makhachkala"],["2013–2014","Chelsea"],["2014–2015","Everton"],["2015–2018","Antalyaspor"],["2018–2019","Qatar SC"]]},
+{answer:"DROGBA", wiki:"Didier Drogba", pos:"Forward", country:"🇨🇮 Ivory Coast",
+     career:[["1998–2002","Le Mans"],["2002–2003","Guingamp"],["2003–2004","Marseille"],["2004–2012","Chelsea"],["2012–2013","Shanghai Shenhua"],["2013–2014","Galatasaray"],["2014–2015","Chelsea"],["2015–2016","Montreal Impact"],["2017–2018","Phoenix Rising"]]},
+{answer:"ESSIEN", wiki:"Michael Essien", pos:"Midfielder", country:"🇬🇭 Ghana",
+     career:[["2000–2003","Bastia"],["2003–2005","Lyon"],["2005–2014","Chelsea"],["2012–2013","Real Madrid"],["2014–2015","AC Milan"],["2015–2016","Panathinaikos"],["2017–2018","Persib Bandung"],["2019–2020","Sabail"]]},
+{answer:"AGUERO", wiki:"Sergio Agüero", pos:"Forward", country:"🇦🇷 Argentina",
+     career:[["2003–2006","Independiente"],["2006–2011","Atlético Madrid"],["2011–2021","Manchester City"],["2021","Barcelona"]]},
+{answer:"WILSHERE", wiki:"Jack Wilshere", pos:"Midfielder", country:"🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+     career:[["2008–2018","Arsenal"],["2018–2020","West Ham United"],["2021","AFC Bournemouth"],["2022","AGF"]]},
+{answer:"CROUCH", wiki:"Peter Crouch", pos:"Forward", country:"🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+     career:[["2000–2001","Queens Park Rangers"],["2001–2002","Portsmouth"],["2002–2004","Aston Villa"],["2004–2005","Southampton"],["2005–2008","Liverpool"],["2008–2009","Portsmouth"],["2009–2011","Tottenham Hotspur"],["2011–2019","Stoke City"],["2019","Burnley"]]},
+{answer:"HESKEY", wiki:"Emile Heskey", pos:"Forward", country:"🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+     career:[["1994–2000","Leicester City"],["2000–2004","Liverpool"],["2004–2006","Birmingham City"],["2006–2009","Wigan Athletic"],["2009–2012","Aston Villa"],["2012–2014","Newcastle Jets"],["2014–2016","Bolton Wanderers"]]},
+{answer:"LE TISSIER", wiki:"Matt Le Tissier", pos:"Midfielder", country:"🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+     career:[["1986–2002","Southampton"]]},
+{answer:"DEFOE", wiki:"Jermain Defoe", pos:"Forward", country:"🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+     career:[["1999–2004","West Ham United"],["2004–2008","Tottenham Hotspur"],["2008–2009","Portsmouth"],["2009–2014","Tottenham Hotspur"],["2014–2015","Toronto FC"],["2015–2017","Sunderland"],["2017–2019","AFC Bournemouth"],["2019–2022","Rangers"],["2022","Sunderland"]]},
+{answer:"ROONEY", wiki:"Wayne Rooney", pos:"Forward", country:"🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+     career:[["2002–2004","Everton"],["2004–2017","Manchester United"],["2017–2018","Everton"],["2018–2019","D.C. United"],["2020–2021","Derby County"]]},
+{answer:"OWEN", wiki:"Michael Owen", pos:"Forward", country:"🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+     career:[["1996–2004","Liverpool"],["2004–2005","Real Madrid"],["2005–2009","Newcastle United"],["2009–2012","Manchester United"],["2012–2013","Stoke City"]]},
+{answer:"FOWLER", wiki:"Robbie Fowler", pos:"Forward", country:"🏴󠁧󠁢󠁥󠁮󠁧󠁿 England",
+     career:[["1993–2001","Liverpool"],["2001–2003","Leeds United"],["2003–2006","Manchester City"],["2006–2007","Liverpool"],["2007–2008","Cardiff City"],["2008","Blackburn Rovers"],["2009–2010","North Queensland Fury"],["2010–2011","Perth Glory"],["2011–2012","Muangthong United"]]},
+{answer:"TOTTI", wiki:"Francesco Totti", pos:"Forward", country:"🇮🇹 Italy",
+     career:[["1993–2017","Roma"]]},
+{answer:"DEL PIERO", wiki:"Alessandro Del Piero", pos:"Forward", country:"🇮🇹 Italy",
+     career:[["1991–1993","Padova"],["1993–2012","Juventus"],["2012–2014","Sydney FC"],["2014","Delhi Dynamos"]]},
+{answer:"NESTA", wiki:"Alessandro Nesta", pos:"Defender", country:"🇮🇹 Italy",
+     career:[["1993–2002","Lazio"],["2002–2012","AC Milan"],["2012–2014","Montreal Impact"]]},
+{answer:"LITMANEN", wiki:"Jari Litmanen", pos:"Forward", country:"🇫🇮 Finland",
+     career:[["1990–1992","MyPa"],["1992–1999","Ajax"],["1999–2001","Barcelona"],["2001–2002","Liverpool"],["2002–2004","Ajax"],["2005","Hansa Rostock"],["2005–2007","Malmö FF"],["2008","Fulham"],["2008–2010","Lahti"]]},
+{answer:"GUARIN", wiki:"Fredy Guarín", pos:"Midfielder", country:"🇨🇴 Colombia",
+     career:[["2003–2007","Envigado"],["2007–2008","Saint-Étienne"],["2008–2012","Porto"],["2012–2016","Inter Milan"],["2016–2019","Shanghai Shenhua"],["2019–2020","Vasco da Gama"],["2021","Millonarios"]]},
+{answer:"ERIKSEN", wiki:"Christian Eriksen", pos:"Midfielder", country:"🇩🇰 Denmark",
+     career:[["2010–2013","Ajax"],["2013–2020","Tottenham Hotspur"],["2020–2021","Inter Milan"],["2022","Brentford"],["2022–2025","Manchester United"],["2025–","VfL Wolfsburg"]]},
+{answer:"MKHITARYAN", wiki:"Henrikh Mkhitaryan", pos:"Midfielder", country:"🇦🇲 Armenia",
+     career:[["2010–2013","Shakhtar Donetsk"],["2013–2016","Borussia Dortmund"],["2016–2018","Manchester United"],["2018–2020","Arsenal"],["2019–2022","Roma"],["2022–","Inter Milan"]]},
+{answer:"KEVIN PRINCE BOATENG", wiki:"Kevin-Prince Boateng", pos:"Midfielder", country:"🇬🇭 Ghana",
+     career:[["2005–2007","Hertha BSC"],["2007–2009","Tottenham Hotspur"],["2009–2010","Portsmouth"],["2010–2011","Genoa"],["2011–2013","AC Milan"],["2013–2015","Schalke 04"],["2016–2017","Las Palmas"],["2017–2018","Eintracht Frankfurt"],["2018–2019","Sassuolo"],["2019–2020","Fiorentina"],["2020–2021","Monza"],["2021–2023","Hertha BSC"]]},
+{answer:"לוקאס מורה", wiki:"LUCAS MOURA", pos:"Forward", country:"🇧🇷 Brazil",
+     career:[["2010–2012","São Paulo"],["2013–2018","Paris Saint-Germain"],["2018–2023","Tottenham Hotspur"],["2023–","São Paulo"]]},
+{answer:"דייגו קוסטה", wiki:"DIEGO COSTA", pos:"Forward", country:"🇪🇸 Spain",
+     career:[["2010–2014","Atlético Madrid"],["2014–2017","Chelsea"],["2017–2020","Atlético Madrid"],["2021–2022","Atlético Mineiro"],["2022–2023","Wolverhampton Wanderers"],["2023","Botafogo"],["2024","Grêmio"]]},
   ]
 }

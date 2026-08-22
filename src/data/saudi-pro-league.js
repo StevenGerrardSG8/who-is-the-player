@@ -47,7 +47,7 @@ export default {
      career:[["2012–2015","Monaco"],["2015–2018","Atlético Madrid"],["2018–2020","Dalian Yifang"],["2020–2023","Atlético Madrid"],["2023–","Al Shabab"]]},
 {answer:"WEIGL", wiki:"Julian Weigl", pos:"Midfielder", country:"🇩🇪 Germany",
      career:[["2015–2020","Borussia Dortmund"],["2020–2023","Benfica"],["2023–2025","Borussia Mönchengladbach"],["2025–","Al Qadsiah"]]},
-{answer:"NEYMAR", wiki:"Neymar", pos:"Forward", country:"🇧🇷 Brazil",
+{answer:"ניימאר", wiki:"NEYMAR", pos:"Forward", country:"🇧🇷 Brazil",
      career:[["2009–2013","Santos"],["2013–2017","Barcelona"],["2017–2023","Paris Saint-Germain"],["2023–2025","Al Hilal"],["2025–","Santos"]]},
 {answer:"MITROVIC", wiki:"Aleksandar Mitrović", pos:"Striker", country:"🇷🇸 Serbia",
      career:[["2012–2013","Partizan"],["2013–2015","Anderlecht"],["2015–2018","Newcastle United"],["2018–2023","Fulham"],["2023–2025","Al Hilal"],["2025–","Al Rayyan"]]},
@@ -55,7 +55,7 @@ export default {
      career:[["2008–2014","Udinese"],["2014–2017","Watford"],["2017–2019","Changchun Yatai"],["2019–2021","Shanghai Shenhua"],["2021–2022","Al Shabab"],["2022–2023","Al Hilal"],["2023–2025","Al Wehda"]]},
 {answer:"LAPORTE", wiki:"Aymeric Laporte", pos:"Centre-back", country:"🇪🇸 Spain",
      career:[["2012–2018","Athletic Bilbao"],["2018–2023","Manchester City"],["2023–2025","Al Nassr"],["2025–","Athletic Bilbao"]]},
-{answer:"TALISCA", wiki:"Talisca", pos:"Forward", country:"🇧🇷 Brazil",
+{answer:"טאליסקה", wiki:"TALISCA", pos:"Forward", country:"🇧🇷 Brazil",
      career:[["2013–2014","Bahia"],["2014–2018","Benfica"],["2016–2018","Beşiktaş (loan)"],["2018–2021","Guangzhou Evergrande"],["2021–2025","Al Nassr"],["2025–","Fenerbahçe"]]},
 {answer:"TELLES", wiki:"Alex Telles", pos:"Left-back", country:"🇧🇷 Brazil",
      career:[["2013–2014","Grêmio"],["2014–2016","Galatasaray"],["2016–2020","Porto"],["2020–2023","Manchester United"],["2023–2024","Al Nassr"],["2024–","Botafogo"]]},
@@ -70,6 +70,6 @@ export default {
 {answer:"BANEGA", wiki:"Éver Banega", pos:"Midfielder", country:"🇦🇷 Argentina",
      career:[["2008–2014","Valencia"],["2014–2016","Sevilla"],["2016–2017","Inter Milan"],["2017–2020","Sevilla"],["2020–2024","Al Shabab"]]},
 {answer:"DURAN", wiki:"Jhon Durán", pos:"Striker", country:"🇨🇴 Colombia",
-     career:[["2019–2021","Envigado"],["2022–2023","Chicago Fire"],["2023–2025","Aston Villa"],["2025–","Al Nassr"]]}
+     career:[["2019–2021","Envigado"],["2022–2023","Chicago Fire"],["2023–2025","Aston Villa"],["2025–","Al Nassr"]]},
   ]
 }

@@ -17,7 +17,7 @@ export default {
      career:[["2005","Deportivo Cali"],["2006–2007","Monterrey"],["2007–2009","Necaxa"],["2009–2012","Wigan Athletic"],["2012–2015","Fulham"],["2015–2017","Akhisarspor"],["2017–2019","Trabzonspor"],["2019–2021","Denizlispor"],["2021–2022","Bahia"],["2023–","Independiente Santa Fe"]]},
 {answer:"GUTIERREZ", wiki:"Teófilo Gutiérrez", pos:"Forward", country:"🇨🇴 Colombia",
      career:[["2007–2009","Atlético Junior"],["2010–2011","Trabzonspor"],["2011–2012","Racing Club"],["2012–2013","Cruz Azul"],["2013–2015","River Plate"],["2015–2017","Sporting CP"],["2017–2021","Atlético Junior"],["2021–2022","Deportivo Cali"],["2024","Real Cartagena"],["2025–","Atlético Junior"]]},
-{answer:"MARLOS MORENO", wiki:"Marlos Moreno", pos:"Winger", country:"🇨🇴 Colombia",
+{answer:"מורנו", wiki:"MARLOS MORENO", pos:"Winger", country:"🇨🇴 Colombia",
      career:[["2014–2016","Atlético Nacional"],["2016–2022","Manchester City"],["2022–2023","Troyes"],["2023–2024","Konyaspor"],["2024–2025","Tenerife"],["2025–","Atlético Nacional"]]},
 {answer:"JAMES", wiki:"James Rodríguez", pos:"Midfielder", country:"🇨🇴 Colombia",
      career:[["2006–2008","Envigado"],["2008–2010","Banfield"],["2010–2013","Porto"],["2013–2014","Monaco"],["2014–2020","Real Madrid"],["2017–2019","Bayern Munich"],["2020–2021","Everton"],["2021–2022","Al-Rayyan"],["2022–2023","Olympiacos"],["2023–2024","São Paulo"],["2024–2025","Rayo Vallecano"],["2025","León"],["2026–","Minnesota United"]]},
@@ -33,11 +33,11 @@ export default {
      career:[["2004–2008","Deportes Quindío"],["2009","América de Cali"],["2010–2011","Deportes Tolima"],["2011–","Portland Timbers"]]},
 {answer:"JHON CORDOBA", wiki:"Jhon Córdoba", pos:"Forward", country:"🇨🇴 Colombia",
      career:[["2010–2012","Envigado"],["2012–2013","Chiapas"],["2013–2014","Querétaro"],["2013","Dorados"],["2013–2014","Espanyol"],["2014–2015","Granada"],["2015–2016","Mainz 05"],["2016–2017","Mainz 05"],["2017–2020","1. FC Köln"],["2020–2021","Hertha BSC"],["2021–","Krasnodar"]]},
-{answer:"GARRINCHA", wiki:"Garrincha", pos:"Winger", country:"🇧🇷 Brazil",
+{answer:"גארינצה", wiki:"GARRINCHA", pos:"Winger", country:"🇧🇷 Brazil",
      career:[["1951","Serrano"],["1953–1965","Botafogo"],["1966","Corinthians"],["1968","Atlético Junior"],["1968–1969","Flamengo"],["1970–1971","Sacrofano"],["1971–1972","Olaria"]]},
 {answer:"PENARANDA", wiki:"Adalberto Peñaranda", pos:"Striker", country:"🇻🇪 Venezuela",
      career:[["2013–2015","Deportivo La Guaira"],["2015–2016","Udinese"],["2015–2016","Granada"],["2016–2022","Watford"],["2016","Granada"],["2016","Udinese"],["2017–2018","Málaga"],["2019–2020","Eupen"],["2020–2021","CSKA Sofia"],["2021–2022","Las Palmas"],["2022–2023","Boavista"],["2023–2025","Sarajevo"],["2024–2025","Atlético Bucaramanga"],["2025–","Deportivo Táchira"]]},
 {answer:"SEBASTIAN VILLA", wiki:"Sebastián Villa (footballer)", pos:"Winger", country:"🇨🇴 Colombia",
-     career:[["2016–2018","Deportes Tolima"],["2018–2023","Boca Juniors"],["2023–2024","Beroe Stara Zagora"],["2024–2026","Independiente Rivadavia"]]}
+     career:[["2016–2018","Deportes Tolima"],["2018–2023","Boca Juniors"],["2023–2024","Beroe Stara Zagora"],["2024–2026","Independiente Rivadavia"]]},
   ]
 }

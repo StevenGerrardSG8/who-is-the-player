@@ -41,13 +41,13 @@ export default {
      career:[["2013–2017","River Plate"],["2017–2021","Zenit Saint Petersburg"],["2021–2025","Austin FC"],["2025–","River Plate"]]},
 {answer:"ETOO", wiki:"Samuel Eto'o", pos:"Striker", country:"🇨🇲 Cameroon",
      career:[["2000–2004","Mallorca"],["2004–2009","Barcelona"],["2009–2011","Inter Milan"],["2011–2013","Anzhi Makhachkala"],["2013–2014","Chelsea"]]},
-{answer:"ROBERTO CARLOS", wiki:"Roberto Carlos", pos:"Left-back", country:"🇧🇷 Brazil",
+{answer:"רוברטו קרלוס", wiki:"ROBERTO CARLOS", pos:"Defender", country:"🇧🇷 Brazil",
      career:[["1993–1995","Palmeiras"],["1995–1996","Inter Milan"],["1996–2007","Real Madrid"],["2007–2009","Fenerbahçe"],["2010–2011","Corinthians"],["2011–2012","Anzhi Makhachkala"]]},
 {answer:"IVANOVIC", wiki:"Branislav Ivanović", pos:"Right-back", country:"🇷🇸 Serbia",
      career:[["2006–2008","Lokomotiv Moscow"],["2008–2017","Chelsea"],["2017–2020","Zenit Saint Petersburg"],["2020–2021","West Bromwich Albion"]]},
 {answer:"WILLIAN", wiki:"Willian (footballer, born 1988)", pos:"Forward", country:"🇧🇷 Brazil",
      career:[["2007–2013","Shakhtar Donetsk"],["2013","Anzhi Makhachkala"],["2013–2020","Chelsea"],["2020–2021","Arsenal"]]},
 {answer:"LIVAJA", wiki:"Marko Livaja", pos:"Forward", country:"🇭🇷 Croatia",
-     career:[["2012–2014","Atalanta"],["2014–2016","Rubin Kazan"],["2016–2018","Las Palmas"],["2018–2021","AEK Athens"],["2021–","Hajduk Split"]]}
+     career:[["2012–2014","Atalanta"],["2014–2016","Rubin Kazan"],["2016–2018","Las Palmas"],["2018–2021","AEK Athens"],["2021–","Hajduk Split"]]},
   ]
 }

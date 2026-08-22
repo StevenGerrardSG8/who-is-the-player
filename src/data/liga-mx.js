@@ -51,9 +51,9 @@ export default {
      career:[["2011–2013","Pachuca"],["2013–2019","Porto"],["2019–2022","Atlético Madrid"],["2022–2024","Houston Dynamo"],["2025","Toluca"],["2026–","Houston Dynamo"]]},
 {answer:"MENA", wiki:"Ángel Mena", pos:"Winger", country:"🇪🇨 Ecuador",
      career:[["2007–2016","Emelec"],["2017–2018","Cruz Azul"],["2019–2024","León"],["2024","Pachuca"],["2025–","Orense"]]},
-{answer:"RONALDINHO", wiki:"Ronaldinho", pos:"Forward", country:"🇧🇷 Brazil",
+{answer:"רונאלדיניו", wiki:"RONALDINHO", pos:"Forward", country:"🇧🇷 Brazil",
      career:[["2001–2003","Paris Saint-Germain"],["2003–2008","Barcelona"],["2008–2011","AC Milan"],["2011–2012","Flamengo"],["2012–2014","Atlético Mineiro"],["2014–2015","Querétaro"],["2015","Fluminense"]]},
 {answer:"RONDON", wiki:"Salomón Rondón", pos:"Striker", country:"🇻🇪 Venezuela",
-     career:[["2006–2008","Aragua"],["2008–2010","Las Palmas"],["2014–2015","Zenit Saint Petersburg"],["2015–2019","West Bromwich Albion"],["2021–2022","Everton"],["2024–","Pachuca"]]}
+     career:[["2006–2008","Aragua"],["2008–2010","Las Palmas"],["2014–2015","Zenit Saint Petersburg"],["2015–2019","West Bromwich Albion"],["2021–2022","Everton"],["2024–","Pachuca"]]},
   ]
 }

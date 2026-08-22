@@ -27,13 +27,13 @@ export default {
      career:[["2017–2022","Arminia Bielefeld"],["2022–2026","Manchester City"],["2026–","Olympiacos"]]},
 {answer:"PELLISTRI", wiki:"Facundo Pellistri", pos:"Winger", country:"🇺🇾 Uruguay",
      career:[["2020–2024","Manchester United"],["2024","Granada (loan)"],["2024–","Panathinaikos"]]},
-{answer:"RIVALDO", wiki:"Rivaldo", pos:"Forward", country:"🇧🇷 Brazil",
+{answer:"ריבלדו", wiki:"RIVALDO", pos:"Forward", country:"🇧🇷 Brazil",
      career:[["1996–1997","Deportivo La Coruña"],["1997–2002","Barcelona"],["2002–2003","AC Milan"],["2004–2007","Olympiacos"],["2007–2008","AEK Athens"]]},
 {answer:"CAMBIASSO", wiki:"Esteban Cambiasso", pos:"Midfielder", country:"🇦🇷 Argentina",
      career:[["2002–2004","Real Madrid"],["2004–2014","Inter Milan"],["2014–2015","Leicester City"],["2015–2017","Olympiacos"]]},
 {answer:"LIVAJA", wiki:"Marko Livaja", pos:"Forward", country:"🇭🇷 Croatia",
      career:[["2011–2013","Inter Milan"],["2013–2014","Atalanta"],["2014–2016","Rubin Kazan"],["2016–2018","Las Palmas"],["2018–2021","AEK Athens"]]},
 {answer:"PINEDA", wiki:"Orbelín Pineda", pos:"Midfielder", country:"🇲🇽 Mexico",
-     career:[["2016–2018","Guadalajara"],["2019–2022","Cruz Azul"],["2022–2023","Celta Vigo"],["2023–2026","AEK Athens"]]}
+     career:[["2016–2018","Guadalajara"],["2019–2022","Cruz Azul"],["2022–2023","Celta Vigo"],["2023–2026","AEK Athens"]]},
   ]
 }

@@ -39,11 +39,11 @@ export default {
      career:[["2005–2006","Kawasaki Frontale"],["2006–2007","Consadole Sapporo"],["2006–2008","Tokyo Verdy"],["2008–2012","Porto"],["2012–2016","Zenit Saint Petersburg"],["2016–2020","Shanghai Port"],["2021–2026","Atlético Mineiro"],["2026–","Fluminense"]]},
 {answer:"INIESTA", wiki:"Andrés Iniesta", pos:"Midfielder", country:"🇪🇸 Spain",
      career:[["2002–2018","Barcelona"],["2018–2023","Vissel Kobe"],["2023–2024","Emirates Club"]]},
-{answer:"DAVID VILLA", wiki:"David Villa", pos:"Forward", country:"🇪🇸 Spain",
+{answer:"וייה", wiki:"DAVID VILLA", pos:"Forward", country:"🇪🇸 Spain",
      career:[["2001–2003","Sporting Gijón"],["2003–2005","Real Zaragoza"],["2005–2010","Valencia"],["2010–2013","Barcelona"],["2013–2014","Atlético Madrid"],["2014–2018","New York City FC"],["2019–2020","Vissel Kobe"]]},
 {answer:"MITOMA", wiki:"Kaoru Mitoma", pos:"Winger", country:"🇯🇵 Japan",
      career:[["2018–2021","Kawasaki Frontale"],["2021–2022","Union SG"],["2021–","Brighton & Hove Albion"]]},
-{answer:"AYASE UEDA", wiki:"Ayase Ueda", pos:"Striker", country:"🇯🇵 Japan",
+{answer:"אואדה", wiki:"AYASE UEDA", pos:"Forward", country:"🇯🇵 Japan",
      career:[["2019–2022","Kashima Antlers"],["2022–2023","Cercle Brugge"],["2023–","Feyenoord"]]},
 {answer:"KUBO", wiki:"Takefusa Kubo", pos:"Winger", country:"🇯🇵 Japan",
      career:[["2016–2019","FC Tokyo"],["2018","Yokohama F. Marinos"],["2019–2022","Real Madrid"],["2019–2020","Mallorca"],["2020–2021","Villarreal"],["2021","Getafe"],["2021–2022","Mallorca"],["2022–","Real Sociedad"]]},
@@ -54,6 +54,6 @@ export default {
 {answer:"ITAKURA", wiki:"Kō Itakura", pos:"Defender", country:"🇯🇵 Japan",
      career:[["2015–2018","Kawasaki Frontale"],["2018","Vegalta Sendai"],["2019–2022","Manchester City"],["2019–2021","Groningen"],["2021–2022","Schalke 04"],["2022–2025","Borussia Mönchengladbach"],["2025–","Ajax"]]},
 {answer:"HATATE", wiki:"Reo Hatate", pos:"Midfielder", country:"🇯🇵 Japan",
-     career:[["2019–2021","Kawasaki Frontale"],["2022–","Celtic"]]}
+     career:[["2019–2021","Kawasaki Frontale"],["2022–","Celtic"]]},
   ]
 }

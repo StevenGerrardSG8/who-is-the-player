@@ -23,7 +23,7 @@ export default {
      career:[["2011–2013","Pachuca"],["2013–2019","Porto"],["2019–2022","Atlético Madrid"],["2022–2024","Houston Dynamo"],["2025","Toluca"],["2026–","Houston Dynamo"]]},
 {answer:"LOZANO", wiki:"Hirving Lozano", pos:"Winger", country:"🇲🇽 Mexico",
      career:[["2014–2017","Pachuca"],["2017–2019","PSV Eindhoven"],["2019–2023","Napoli"],["2023–2025","PSV Eindhoven"],["2025–2026","San Diego FC"],["2026–","LA Galaxy"]]},
-{answer:"RIQUI PUIG", wiki:"Riqui Puig", pos:"Midfielder", country:"🇪🇸 Spain",
+{answer:"ריקי פוץ", wiki:"RIQUI PUIG", pos:"Midfielder", country:"🇪🇸 Spain",
      career:[["2018–2022","Barcelona"],["2022–","LA Galaxy"]]},
 {answer:"REUS", wiki:"Marco Reus", pos:"Forward", country:"🇩🇪 Germany",
      career:[["2009–2012","Borussia Mönchengladbach"],["2012–2024","Borussia Dortmund"],["2024–","LA Galaxy"]]},
@@ -114,6 +114,6 @@ export default {
 {answer:"STOICHKOV", wiki:"Hristo Stoichkov", pos:"Forward", country:"🇧🇬 Bulgaria",
      career:[["1990–1995","Barcelona"],["1995–1996","Parma"],["1996–1998","Barcelona"],["2000–2002","Chicago Fire"],["2003","D.C. United"]]},
 {answer:"ZAHA", wiki:"Wilfried Zaha", pos:"Winger", country:"🇨🇮 Ivory Coast",
-     career:[["2013–2023","Crystal Palace"],["2023–2025","Galatasaray"],["2025–","Charlotte FC"]]}
+     career:[["2013–2023","Crystal Palace"],["2023–2025","Galatasaray"],["2025–","Charlotte FC"]]},
   ]
 }
