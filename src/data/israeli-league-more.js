@@ -1,7 +1,7 @@
 // Additional Ligat Ha'Al players with verified identity, photo, position, and club history.
 export default [
   {
-    "answer": "דובב גבאי",
+    "answer": "DOVEV GABAY",
     "wiki": "Dovev Gabay",
     "pos": "חלוץ",
     "country": "🇮🇱 ישראל",
@@ -13,7 +13,7 @@ export default [
     ]
   },
   {
-    "answer": "נריוס ואלסקיס",
+    "answer": "NERIJUS VALSKIS",
     "wiki": "Nerijus Valskis",
     "pos": "חלוץ",
     "country": "🇱🇹 ליטא",
@@ -25,7 +25,7 @@ export default [
     ]
   },
   {
-    "answer": "אזקיאל הנטי",
+    "answer": "EZEKIEL HENTY",
     "wiki": "Ezekiel Henty",
     "pos": "חלוץ",
     "country": "🇳🇬 ניגריה",
@@ -41,7 +41,7 @@ export default [
     ]
   },
   {
-    "answer": "מרקוס דיניז",
+    "answer": "MARCUS DINIZ",
     "wiki": "Marcus Diniz",
     "pos": "מגן",
     "country": "🇧🇷 ברזיל",
@@ -69,7 +69,7 @@ export default [
     ]
   },
   {
-    "answer": "עדן קארצב",
+    "answer": "EDEN KARTSEV",
     "wiki": "Eden Kartsev",
     "pos": "קשר",
     "country": "🇮🇱 ישראל",
@@ -81,7 +81,7 @@ export default [
     ]
   },
   {
-    "answer": "תומר סויסה",
+    "answer": "TOMER SWISA",
     "wiki": "Tomer Swisa",
     "pos": "חלוץ",
     "country": "🇮🇱 ישראל",
@@ -97,7 +97,7 @@ export default [
     ]
   },
   {
-    "answer": "אורי מגבו",
+    "answer": "URI MAGBO",
     "wiki": "Uri Magbo",
     "pos": "מגן",
     "country": "🇮🇱 ישראל",
@@ -109,7 +109,7 @@ export default [
     ]
   },
   {
-    "answer": "וילסון האריס",
+    "answer": "WILSON HARRIS",
     "wiki": "Wilson Harris (soccer)",
     "pos": "חלוץ",
     "country": "🇺🇸 ארצות הברית",
@@ -125,7 +125,7 @@ export default [
     ]
   },
   {
-    "answer": "פורצ'ן באסי",
+    "answer": "FORTUNE BASSEY",
     "wiki": "Fortune Bassey",
     "pos": "חלוץ",
     "country": "🇳🇬 ניגריה",
@@ -137,7 +137,7 @@ export default [
     ]
   },
   {
-    "answer": "ג'ניה ברקמן",
+    "answer": "JENIA BERKMAN",
     "wiki": "Jenia Berkman",
     "pos": "מגן",
     "country": "🇮🇱 ישראל",
@@ -149,7 +149,7 @@ export default [
     ]
   },
   {
-    "answer": "סטיפה פריצה",
+    "answer": "STIPE PERICA",
     "wiki": "Stipe Perica",
     "pos": "חלוץ",
     "country": "🇭🇷 קרואטיה",
@@ -161,7 +161,7 @@ export default [
     ]
   },
   {
-    "answer": "מהראן ראדי",
+    "answer": "MAHARAN RADI",
     "wiki": "Maharan Radi",
     "pos": "קשר",
     "country": "🇮🇱 ישראל",
@@ -173,7 +173,7 @@ export default [
     ]
   },
   {
-    "answer": "סמי בוראר",
+    "answer": "SAMY BOURARD",
     "wiki": "Samy Bourard",
     "pos": "קשר",
     "country": "🇧🇪 בלגיה",
@@ -185,7 +185,7 @@ export default [
     ]
   },
   {
-    "answer": "ג'ורג' מינאטו פאולינו",
+    "answer": "GEORGINHO",
     "wiki": "Georginho (footballer, born 1991)",
     "pos": "קשר",
     "country": "🇧🇷 ברזיל",
@@ -197,7 +197,7 @@ export default [
     ]
   },
   {
-    "answer": "בובקאר טראורה",
+    "answer": "BOUBACAR TRAORE",
     "wiki": "Boubacar Traorè (footballer, born 1997)",
     "pos": "כנף",
     "country": "🇸🇳 סנגל",
@@ -209,7 +209,7 @@ export default [
     ]
   },
   {
-    "answer": "חסוס רואדה",
+    "answer": "JESUS RUEDA",
     "wiki": "Jesús Rueda (footballer)",
     "pos": "מגן",
     "country": "🇪🇸 ספרד",
@@ -221,7 +221,7 @@ export default [
     ]
   },
   {
-    "answer": "מרווין פירסמן",
+    "answer": "MARVIN PEERSMAN",
     "wiki": "Marvin Peersman",
     "pos": "מגן",
     "country": "🇧🇪 בלגיה",
@@ -233,7 +233,7 @@ export default [
     ]
   },
   {
-    "answer": "תומאש סיבוק",
+    "answer": "TOMAS SIVOK",
     "wiki": "Tomáš Sivok",
     "pos": "מגן",
     "country": "🇨🇿 צ'כיה",
@@ -245,7 +245,7 @@ export default [
     ]
   },
   {
-    "answer": "דראמן סאלו",
+    "answer": "DRAMANE SALOU",
     "wiki": "Dramane Salou",
     "pos": "קשר",
     "country": "🇧🇫 בורקינה פאסו",
@@ -257,7 +257,7 @@ export default [
     ]
   },
   {
-    "answer": "בלסינג אלקה",
+    "answer": "BLESSING ELEKE",
     "wiki": "Blessing Eleke",
     "pos": "חלוץ",
     "country": "🇳🇬 ניגריה",
@@ -269,7 +269,7 @@ export default [
     ]
   },
   {
-    "answer": "לבאן קוטליה",
+    "answer": "LEVAN KUTALIA",
     "wiki": "Levan Kutalia",
     "pos": "חלוץ",
     "country": "🇬🇪 גאורגיה",
@@ -281,7 +281,7 @@ export default [
     ]
   },
   {
-    "answer": "שניר שוקר",
+    "answer": "SNIR SHOKER",
     "wiki": "Snir Shoker",
     "pos": "קשר",
     "country": "🇮🇱 ישראל",
@@ -297,7 +297,7 @@ export default [
     ]
   },
   {
-    "answer": "ארתור מיראניאן",
+    "answer": "ARTUR MIRANYAN",
     "wiki": "Artur Miranyan",
     "pos": "חלוץ",
     "country": "🇦🇲 ארמניה",
@@ -309,7 +309,7 @@ export default [
     ]
   },
   {
-    "answer": "עידן טוקלומטי-ג'ורנו",
+    "answer": "IDAN TOKLOMATI",
     "wiki": "Idan Toklomati",
     "pos": "חלוץ",
     "country": "🇮🇱 ישראל",
@@ -321,7 +321,7 @@ export default [
     ]
   },
   {
-    "answer": "פרד פריידיי",
+    "answer": "FRED FRIDAY",
     "wiki": "Fred Friday",
     "pos": "חלוץ",
     "country": "🇳🇬 ניגריה",
@@ -333,7 +333,7 @@ export default [
     ]
   },
   {
-    "answer": "עופרי ארד",
+    "answer": "OFRI ARAD",
     "wiki": "Ofri Arad",
     "pos": "קשר",
     "country": "🇮🇱 ישראל",
@@ -345,7 +345,7 @@ export default [
     ]
   },
   {
-    "answer": "ז'ורז' מנדז'ק",
+    "answer": "GEORGES MANDJECK",
     "wiki": "Georges Mandjeck",
     "pos": "קשר",
     "country": "🇨🇲 קמרון",
@@ -357,7 +357,7 @@ export default [
     ]
   },
   {
-    "answer": "רומאריו פירס",
+    "answer": "ROMARIO PIRES",
     "wiki": "Romário Pires",
     "pos": "קשר",
     "country": "🇧🇷 ברזיל",
@@ -369,7 +369,7 @@ export default [
     ]
   },
   {
-    "answer": "קרלו ברוצ'יץ'",
+    "answer": "KARLO BRUCIC",
     "wiki": "Karlo Bručić",
     "pos": "מגן",
     "country": "🇭🇷 קרואטיה",
@@ -381,7 +381,7 @@ export default [
     ]
   },
   {
-    "answer": "בוגדן פלאניץ'",
+    "answer": "BOGDAN PLANIC",
     "wiki": "Bogdan Planić",
     "pos": "מגן",
     "country": "🇷🇸 סרביה",
@@ -393,7 +393,7 @@ export default [
     ]
   },
   {
-    "answer": "מילאן סמיליאניץ'",
+    "answer": "MILAN SMILJANIC",
     "wiki": "Milan Smiljanić",
     "pos": "קשר",
     "country": "🇷🇸 סרביה",
@@ -405,7 +405,7 @@ export default [
     ]
   },
   {
-    "answer": "וסלי פטאצ'י",
+    "answer": "WESLLEY PATATI",
     "wiki": "Weslley Patati",
     "pos": "כנף",
     "country": "🇧🇷 ברזיל",
@@ -417,7 +417,7 @@ export default [
     ]
   },
   {
-    "answer": "תאי בריבו",
+    "answer": "TAI BARIBO",
     "wiki": "Tai Baribo",
     "pos": "חלוץ",
     "country": "🇮🇱 ישראל",
@@ -429,7 +429,7 @@ export default [
     ]
   },
   {
-    "answer": "ארון שוינפלד",
+    "answer": "AARON SCHOENFELD",
     "wiki": "Aaron Schoenfeld",
     "pos": "חלוץ",
     "country": "🇺🇸 ארצות הברית",
@@ -441,7 +441,7 @@ export default [
     ]
   },
   {
-    "answer": "רז כהן",
+    "answer": "RAZ COHEN",
     "wiki": "Raz Cohen",
     "pos": "קשר",
     "country": "🇮🇱 ישראל",
@@ -453,7 +453,7 @@ export default [
     ]
   },
   {
-    "answer": "סיראז' נסאר",
+    "answer": "SIRAJ NASSAR",
     "wiki": "Siraj Nassar",
     "pos": "קשר",
     "country": "🇮🇱 ישראל",
@@ -465,7 +465,7 @@ export default [
     ]
   },
   {
-    "answer": "גבריאל תאמאש",
+    "answer": "GABRIEL TAMAS",
     "wiki": "Gabriel Tamaș",
     "pos": "מגן",
     "country": "🇷🇴 רומניה",
@@ -477,7 +477,7 @@ export default [
     ]
   },
   {
-    "answer": "כריסטיאן באטוקיו",
+    "answer": "CRISTIAN BATTOCCHIO",
     "wiki": "Cristian Battocchio",
     "pos": "קשר",
     "country": "🇮🇹 איטליה",
@@ -489,7 +489,7 @@ export default [
     ]
   },
   {
-    "answer": "עומר דנינו",
+    "answer": "OMER DANINO",
     "wiki": "Omer Danino",
     "pos": "מגן",
     "country": "🇮🇱 ישראל",
@@ -501,7 +501,7 @@ export default [
     ]
   },
   {
-    "answer": "סביין לילאיי",
+    "answer": "SABIEN LILAJ",
     "wiki": "Sabien Lilaj",
     "pos": "קשר",
     "country": "🇦🇱 אלבניה",
@@ -513,7 +513,7 @@ export default [
     ]
   },
   {
-    "answer": "אסמאעיל ריאן",
+    "answer": "ISMAEEL RYAN",
     "wiki": "Ismaeel Ryan",
     "pos": "כנף",
     "country": "🇮🇱 ישראל",
@@ -525,7 +525,7 @@ export default [
     ]
   },
   {
-    "answer": "ליוואי גארסיה",
+    "answer": "LEVI GARCIA",
     "wiki": "Levi García",
     "pos": "חלוץ",
     "country": "🇹🇹 טרינידד וטובגו",
@@ -537,7 +537,7 @@ export default [
     ]
   },
   {
-    "answer": "ואלה מוסא עלי",
+    "answer": "WALE MUSA ALLI",
     "wiki": "Wale Musa Alli",
     "pos": "כנף",
     "country": "🇳🇬 ניגריה",
@@ -549,7 +549,7 @@ export default [
     ]
   },
   {
-    "answer": "תומאש פקהארט",
+    "answer": "TOMAS PEKHART",
     "wiki": "Tomáš Pekhart",
     "pos": "חלוץ",
     "country": "🇨🇿 צ'כיה",
@@ -561,7 +561,7 @@ export default [
     ]
   },
   {
-    "answer": "אלפרדו סטיבנס",
+    "answer": "ALFREDO STEPHENS",
     "wiki": "Alfredo Stephens",
     "pos": "חלוץ",
     "country": "🇵🇦 פנמה",
@@ -573,7 +573,7 @@ export default [
     ]
   },
   {
-    "answer": "מורגן פרייר",
+    "answer": "MORGAN FERRIER",
     "wiki": "Morgan Ferrier",
     "pos": "חלוץ",
     "country": "🇬🇾 גיאנה",
@@ -585,7 +585,7 @@ export default [
     ]
   },
   {
-    "answer": "אנטואן קונט",
+    "answer": "ANTOINE CONTE",
     "wiki": "Antoine Conte",
     "pos": "מגן",
     "country": "🇬🇳 גינאה",
@@ -601,7 +601,7 @@ export default [
     ]
   },
   {
-    "answer": "יוריס ואן אובריים",
+    "answer": "JORIS VAN OVEREEM",
     "wiki": "Joris van Overeem",
     "pos": "קשר",
     "country": "🇳🇱 הולנד",
@@ -613,7 +613,7 @@ export default [
     ]
   },
   {
-    "answer": "סנין סבאי",
+    "answer": "SENIN SEBAI",
     "wiki": "Senin Sebai",
     "pos": "חלוץ",
     "country": "🇨🇮 חוף השנהב",
@@ -625,7 +625,7 @@ export default [
     ]
   },
   {
-    "answer": "חן עזריאל",
+    "answer": "HEN AZRIEL",
     "wiki": "Hen Azriel",
     "pos": "חלוץ",
     "country": "🇮🇱 ישראל",
@@ -637,7 +637,7 @@ export default [
     ]
   },
   {
-    "answer": "עדי נמני",
+    "answer": "ADI NIMNI",
     "wiki": "Adi Nimni",
     "pos": "מגן",
     "country": "🇮🇱 ישראל",
@@ -649,7 +649,7 @@ export default [
     ]
   },
   {
-    "answer": "רן בנימין",
+    "answer": "RAN BINYAMIN",
     "wiki": "Ran Binyamin",
     "pos": "קשר",
     "country": "🇮🇱 ישראל",
@@ -661,7 +661,7 @@ export default [
     ]
   },
   {
-    "answer": "טרנט סיינסבורי",
+    "answer": "TRENT SAINSBURY",
     "wiki": "Trent Sainsbury",
     "pos": "מגן",
     "country": "🇦🇺 אוסטרליה",
@@ -673,7 +673,7 @@ export default [
     ]
   },
   {
-    "answer": "ערן לוי",
+    "answer": "ERAN LEVI",
     "wiki": "Eran Levi",
     "pos": "קשר",
     "country": "🇮🇱 ישראל",
@@ -685,7 +685,7 @@ export default [
     ]
   },
   {
-    "answer": "ברנדלי קוואס",
+    "answer": "BRANDLEY KUWAS",
     "wiki": "Brandley Kuwas",
     "pos": "כנף",
     "country": "🇨🇼 קוראסאו",
@@ -697,7 +697,7 @@ export default [
     ]
   },
   {
-    "answer": "מוסה מאזו",
+    "answer": "MOUSSA MAAZOU",
     "wiki": "Moussa Maâzou",
     "pos": "חלוץ",
     "country": "🇳🇪 ניז'ר",
@@ -709,7 +709,7 @@ export default [
     ]
   },
   {
-    "answer": "סטיבן אלפרד",
+    "answer": "STEVEN ALFRED",
     "wiki": "Steven Alfred",
     "pos": "חלוץ",
     "country": "🇳🇬 ניגריה",
@@ -721,7 +721,7 @@ export default [
     ]
   },
   {
-    "answer": "מרקו יובאנוביץ'",
+    "answer": "MARKO JOVANOVIC",
     "wiki": "Marko Jovanović (footballer, born 1988)",
     "pos": "מגן",
     "country": "🇷🇸 סרביה",
@@ -733,7 +733,7 @@ export default [
     ]
   },
   {
-    "answer": "קיליאן שרידאן",
+    "answer": "CILLIAN SHERIDAN",
     "wiki": "Cillian Sheridan",
     "pos": "חלוץ",
     "country": "🇮🇪 אירלנד",
@@ -745,7 +745,7 @@ export default [
     ]
   },
   {
-    "answer": "ח'אלד ח'לאילה",
+    "answer": "KHALED KHALAILA",
     "wiki": "Khaled Khalaila",
     "pos": "קשר",
     "country": "🇮🇱 ישראל",
@@ -757,7 +757,7 @@ export default [
     ]
   },
   {
-    "answer": "עוז ראלי",
+    "answer": "OZ RALY",
     "wiki": "Oz Raly",
     "pos": "מגן",
     "country": "🇮🇱 ישראל",
@@ -769,7 +769,7 @@ export default [
     ]
   },
   {
-    "answer": "אלכסנדר פשיץ'",
+    "answer": "ALEKSANDAR PESIC",
     "wiki": "Aleksandar Pešić",
     "pos": "חלוץ",
     "country": "🇷🇸 סרביה",
@@ -781,7 +781,7 @@ export default [
     ]
   },
   {
-    "answer": "רוי קורין",
+    "answer": "ROY KORINE",
     "wiki": "Roy Korine",
     "pos": "כנף",
     "country": "🇮🇱 ישראל",
@@ -793,7 +793,7 @@ export default [
     ]
   },
   {
-    "answer": "האריס מדוניאנין",
+    "answer": "HARIS MEDUNJANIN",
     "wiki": "Haris Medunjanin",
     "pos": "קשר",
     "country": "🇧🇦 בוסניה והרצגובינה",
@@ -805,7 +805,7 @@ export default [
     ]
   },
   {
-    "answer": "זה טורבו",
+    "answer": "ZE TURBO",
     "wiki": "Zé Turbo",
     "pos": "חלוץ",
     "country": "🇬🇼 גינאה ביסאו",
@@ -817,7 +817,7 @@ export default [
     ]
   },
   {
-    "answer": "פביאן ספורקסלדה",
+    "answer": "FABIAN SPORKSLEDE",
     "wiki": "Fabian Sporkslede",
     "pos": "קשר",
     "country": "🇸🇷 סורינאם",
@@ -829,7 +829,7 @@ export default [
     ]
   },
   {
-    "answer": "סתיו פיניש",
+    "answer": "STAV FINISH",
     "wiki": "Stav Finish",
     "pos": "קשר",
     "country": "🇮🇱 ישראל",
@@ -841,7 +841,7 @@ export default [
     ]
   },
   {
-    "answer": "רנה מיחליץ'",
+    "answer": "RENE MIHELIC",
     "wiki": "Rene Mihelič",
     "pos": "קשר",
     "country": "🇸🇮 סלובניה",
@@ -853,7 +853,7 @@ export default [
     ]
   },
   {
-    "answer": "ברניסלאב יובאנוביץ'",
+    "answer": "BRANISLAV JOVANOVIC",
     "wiki": "Branislav Jovanović",
     "pos": "קשר",
     "country": "🇷🇸 סרביה",
@@ -865,7 +865,7 @@ export default [
     ]
   },
   {
-    "answer": "דילן בטוביניסקה",
+    "answer": "DYLAN BATUBINSIKA",
     "wiki": "Dylan Batubinsika",
     "pos": "מגן",
     "country": "🇨🇩 קונגו הדמוקרטית",
@@ -877,7 +877,7 @@ export default [
     ]
   },
   {
-    "answer": "גיל יצחק",
+    "answer": "GIL ITZHAK",
     "wiki": "Gil Itzhak",
     "pos": "חלוץ",
     "country": "🇮🇱 ישראל",
@@ -889,7 +889,7 @@ export default [
     ]
   },
   {
-    "answer": "נמניה ניקוליץ'",
+    "answer": "NEMANJA NIKOLIC",
     "wiki": "Nemanja Nikolić (footballer, born 1988)",
     "pos": "קשר",
     "country": "🇲🇪 מונטנגרו",
@@ -901,7 +901,7 @@ export default [
     ]
   },
   {
-    "answer": "נוסא איגיבור",
+    "answer": "NOSA IGIEBOR",
     "wiki": "Nosa Igiebor",
     "pos": "קשר",
     "country": "🇳🇬 ניגריה",
@@ -913,7 +913,7 @@ export default [
     ]
   },
   {
-    "answer": "סטפן אומאונגה",
+    "answer": "STEPHANE OMEONGA",
     "wiki": "Stéphane Oméonga",
     "pos": "קשר",
     "country": "🇧🇪 בלגיה",
@@ -925,7 +925,7 @@ export default [
     ]
   },
   {
-    "answer": "פייסל מוליץ'",
+    "answer": "FEJSAL MULIC",
     "wiki": "Fejsal Mulić",
     "pos": "חלוץ",
     "country": "🇷🇸 סרביה",
@@ -937,7 +937,7 @@ export default [
     ]
   },
   {
-    "answer": "אוסקר סקאריונה",
+    "answer": "OSCAR SCARIONE",
     "wiki": "Oscar Scarione",
     "pos": "קשר",
     "country": "🇦🇷 ארגנטינה",
@@ -949,7 +949,7 @@ export default [
     ]
   },
   {
-    "answer": "רודי חדד",
+    "answer": "RUDY HADDAD",
     "wiki": "Rudy Haddad",
     "pos": "קשר",
     "country": "🇫🇷 צרפת",
@@ -961,7 +961,7 @@ export default [
     ]
   },
   {
-    "answer": "ננאד אדמוביץ'",
+    "answer": "NENAD ADAMOVIC",
     "wiki": "Nenad Adamović",
     "pos": "קשר",
     "country": "🇷🇸 סרביה",
@@ -973,7 +973,7 @@ export default [
     ]
   },
   {
-    "answer": "סמבה דיאלו",
+    "answer": "SAMBA DIALLO",
     "wiki": "Samba Diallo",
     "pos": "כנף",
     "country": "🇸🇳 סנגל",
@@ -985,7 +985,7 @@ export default [
     ]
   },
   {
-    "answer": "טים הויבך",
+    "answer": "TIM HEUBACH",
     "wiki": "Tim Heubach",
     "pos": "מגן",
     "country": "🇩🇪 גרמניה",
@@ -997,7 +997,7 @@ export default [
     ]
   },
   {
-    "answer": "גליינור פלט",
+    "answer": "GLYNOR PLET",
     "wiki": "Glynor Plet",
     "pos": "חלוץ",
     "country": "🇳🇱 הולנד",
@@ -1009,7 +1009,7 @@ export default [
     ]
   },
   {
-    "answer": "ג'וד נוורו",
+    "answer": "JUDE NWORUH",
     "wiki": "Jude Nworuh",
     "pos": "חלוץ",
     "country": "🇳🇬 ניגריה",
@@ -1021,7 +1021,7 @@ export default [
     ]
   },
   {
-    "answer": "סבסטיאן ולאסקס",
+    "answer": "SEBASTIAN VELASQUEZ",
     "wiki": "Sebastián Velásquez",
     "pos": "קשר",
     "country": "🇨🇴 קולומביה",
@@ -1033,7 +1033,7 @@ export default [
     ]
   },
   {
-    "answer": "אופיר מזרחי",
+    "answer": "OFIR MIZRAHI",
     "wiki": "Ofir Mizrahi",
     "pos": "קשר",
     "country": "🇮🇱 ישראל",
@@ -1045,7 +1045,7 @@ export default [
     ]
   },
   {
-    "answer": "אולכסנדר סירוטה",
+    "answer": "OLEKSANDR SYROTA",
     "wiki": "Oleksandr Syrota",
     "pos": "מגן",
     "country": "🇺🇦 אוקראינה",
@@ -1057,7 +1057,7 @@ export default [
     ]
   },
   {
-    "answer": "פרנאן גורה",
+    "answer": "FERNAND GOURE",
     "wiki": "Fernand Gouré",
     "pos": "חלוץ",
     "country": "🇨🇮 חוף השנהב",
@@ -1069,7 +1069,7 @@ export default [
     ]
   },
   {
-    "answer": "אסטריט סלמני",
+    "answer": "ASTRIT SELMANI",
     "wiki": "Astrit Selmani",
     "pos": "חלוץ",
     "country": "🇽🇰 קוסובו",
@@ -1081,7 +1081,7 @@ export default [
     ]
   },
   {
-    "answer": "ויטאל אנסימבה",
+    "answer": "VITAL NSIMBA",
     "wiki": "Vital Nsimba",
     "pos": "מגן",
     "country": "🇨🇩 קונגו הדמוקרטית",
@@ -1093,7 +1093,7 @@ export default [
     ]
   },
   {
-    "answer": "רומן גולובארט",
+    "answer": "ROMAN GOLOBART",
     "wiki": "Román Golobart",
     "pos": "מגן",
     "country": "🇪🇸 ספרד",
@@ -1105,7 +1105,7 @@ export default [
     ]
   },
   {
-    "answer": "ג'ורג' פוצ'יבה",
+    "answer": "GEORGE FOCHIVE",
     "wiki": "George Fochive",
     "pos": "קשר",
     "country": "🇺🇸 ארצות הברית",
@@ -1117,7 +1117,7 @@ export default [
     ]
   },
   {
-    "answer": "עילאי אלמקייס",
+    "answer": "ILAY ELMKIES",
     "wiki": "Ilay Elmkies",
     "pos": "קשר",
     "country": "🇮🇱 ישראל",

@@ -3,7 +3,7 @@ export default {
   name: "Primeira Liga",
   icon: "🇵🇹",
   players: [
-{answer:"COSTA", wiki:"Diogo Costa", pos:"Goalkeeper", country:"🇵🇹 Portugal",
+{answer:"DIEGO COSTA", wiki:"Diogo Costa", pos:"Goalkeeper", country:"🇵🇹 Portugal",
      career:[["2017–2021","Porto B"],["2019–","Porto"]]},
 {answer:"MOUTINHO", wiki:"João Moutinho", pos:"Midfielder", country:"🇵🇹 Portugal",
      career:[["2004–2010","Sporting CP"],["2010–2013","Porto"],["2013–2018","Monaco"],["2018–2023","Wolverhampton Wanderers"],["2023–","Braga"]]},

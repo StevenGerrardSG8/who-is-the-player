@@ -11,7 +11,7 @@ export default {
      career:[["2008–2012","Porto"],["2012–2016","Zenit Saint Petersburg"],["2016–2021","Shanghai SIPG"],["2021–2026","Atlético Mineiro"],["2026–","Fluminense"]]},
 {answer:"DEPAY", wiki:"Memphis Depay", pos:"Forward", country:"🇳🇱 Netherlands",
      career:[["2011–2015","PSV Eindhoven"],["2015–2017","Manchester United"],["2017–2021","Lyon"],["2021–2023","Barcelona"],["2023–2024","Atlético Madrid"],["2024–","Corinthians"]]},
-{answer:"SILVA", wiki:"Thiago Silva", pos:"Defender", country:"🇧🇷 Brazil",
+{answer:"DAVID SILVA", wiki:"Thiago Silva", pos:"Defender", country:"🇧🇷 Brazil",
      career:[["2009–2012","AC Milan"],["2012–2020","Paris Saint-Germain"],["2020–2024","Chelsea"],["2024–2025","Fluminense"],["2025–2026","Porto"],["2026–","Fluminense"]]},
 {answer:"COUTINHO", wiki:"Philippe Coutinho", pos:"Midfielder", country:"🇧🇷 Brazil",
      career:[["2008–2013","Inter Milan"],["2013–2018","Liverpool"],["2018–2022","Barcelona"],["2022–2025","Aston Villa"],["2024–","Vasco da Gama"]]},

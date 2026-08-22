@@ -19,7 +19,7 @@ export default {
      career:[["2007–2009","Atlético Junior"],["2010–2011","Trabzonspor"],["2011–2012","Racing Club"],["2012–2013","Cruz Azul"],["2013–2015","River Plate"],["2015–2017","Sporting CP"],["2017–2021","Atlético Junior"],["2021–2022","Deportivo Cali"],["2024","Real Cartagena"],["2025–","Atlético Junior"]]},
 {answer:"MARLOS MORENO", wiki:"Marlos Moreno", pos:"Winger", country:"🇨🇴 Colombia",
      career:[["2014–2016","Atlético Nacional"],["2016–2022","Manchester City"],["2022–2023","Troyes"],["2023–2024","Konyaspor"],["2024–2025","Tenerife"],["2025–","Atlético Nacional"]]},
-{answer:"JAMES", wiki:"James Rodríguez", pos:"Midfielder", country:"🇨🇴 Colombia",
+{answer:"JAMES RODRIGUEZ", wiki:"James Rodríguez", pos:"Midfielder", country:"🇨🇴 Colombia",
      career:[["2006–2008","Envigado"],["2008–2010","Banfield"],["2010–2013","Porto"],["2013–2014","Monaco"],["2014–2020","Real Madrid"],["2017–2019","Bayern Munich"],["2020–2021","Everton"],["2021–2022","Al-Rayyan"],["2022–2023","Olympiacos"],["2023–2024","São Paulo"],["2024–2025","Rayo Vallecano"],["2025","León"],["2026–","Minnesota United"]]},
 {answer:"GUARIN", wiki:"Fredy Guarín", pos:"Midfielder", country:"🇨🇴 Colombia",
      career:[["2002","Atlético Huila"],["2003–2007","Envigado"],["2007–2008","Saint-Étienne"],["2008–2012","Porto"],["2012–2016","Inter Milan"],["2016–2019","Shanghai Shenhua"],["2019–2020","Vasco da Gama"],["2021","Millonarios"]]},

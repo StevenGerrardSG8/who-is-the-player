@@ -611,7 +611,7 @@ export default {
      career:[]},
 {answer:"NKOUDOU", wiki:"Georges-Kevin Nkoudou", pos:"Winger", country:"🇨🇲 Cameroon",
      career:[]},
-{answer:"SILVA", wiki:"Lucas Silva", pos:"Midfielder", country:"🇧🇷 Brazil",
+{answer:"DAVID SILVA", wiki:"Lucas Silva", pos:"Midfielder", country:"🇧🇷 Brazil",
      career:[]},
 {answer:"ISLA", wiki:"Mauricio Isla", pos:"Right-back", country:"🇨🇱 Chile",
      career:[]},

@@ -16,7 +16,7 @@ export default [
      career:[["2009–2013","Brøndby"],["2013–2014","Nordsjælland"],["2014–2017","Austria Vienna"],["2017–2022","Udinese"],["2022–2024","Trabzonspor"],["2024–","Malmö FF"]]},
   {answer:"ITURBE", wiki:"Juan Iturbe", pos:"Winger", country:"🇵🇾 Paraguay",
      career:[["2009–2011","Cerro Porteño"],["2011–2013","Porto"],["2013–2014","Verona"],["2014–2016","Roma"],["2017","Torino"],["2017–2018","Club Tijuana"],["2018–2021","Pumas UNAM"],["2021–2023","Aris"],["2023","Grêmio"],["2024–","Cerro Porteño"]]},
-  {answer:"BECÃO", wiki:"Rodrigo Becão", pos:"Defender", country:"🇧🇷 Brazil",
+  {answer:"BECAO", wiki:"Rodrigo Becão", pos:"Defender", country:"🇧🇷 Brazil",
      career:[["2015–2019","Bahia"],["2019–2023","Udinese"],["2023–","Fenerbahçe"]]},
   {answer:"FRATTESI", wiki:"Davide Frattesi", pos:"Midfielder", country:"🇮🇹 Italy",
      career:[["2017–2018","Sassuolo"],["2018–2020","Empoli"],["2020–2023","Sassuolo"],["2023–","Inter Milan"]]},
