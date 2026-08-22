@@ -43,7 +43,7 @@
   main { flex: 1; overflow-y: auto; padding: 20px 28px; }
   h2 { margin-top: 0; }
   .toolbar { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
-  input[type="text"], input[type="search"] {
+  input[type="text"], input[type="search"], input[type="password"] {
     background: var(--panel); border: 1px solid var(--border); color: var(--text);
     padding: 8px 12px; border-radius: 8px; font-size: 14px;
   }
@@ -76,6 +76,13 @@
   .status.ok { color: #4caf50; }
   .status.err { color: var(--danger); }
   .empty { color: var(--muted); padding: 40px; text-align: center; }
+  .auth-panel {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
+    padding: 16px; margin-bottom: 20px;
+  }
+  .auth-panel h3 { margin-top: 0; font-size: 14px; }
+  .auth-panel p { font-size: 12px; color: var(--muted); margin: 8px 0; }
+  .auth-info { font-size: 12px; color: var(--muted); margin-top: 12px; padding: 10px; background: #0f1115; border-radius: 6px; }
 </style>
 </head>
 <body>
@@ -88,7 +95,12 @@
   </main>
 
 <script>
-const state = { packs: [], current: null, players: [] };
+const state = { packs: [], current: null, players: [], useGitHub: false, gitHubToken: null };
+
+const isDeployed = !location.hostname.includes('localhost') && !location.hostname.includes('127.0.0.1');
+
+const GITHUB_REPO = 'StevenGerrardSG8/who-is-the-player';
+const GITHUB_BRANCH = 'main';
 
 async function fetchJSON(url, opts) {
   const r = await fetch(url, opts);
@@ -97,13 +109,111 @@ async function fetchJSON(url, opts) {
   return j;
 }
 
-async function loadPacks() {
+function initAuthPanel() {
+  if (!isDeployed) return;
+  const content = document.getElementById('content');
+  const authHtml = `
+    <div class="auth-panel">
+      <h3>🔐 GitHub Authentication</h3>
+      <p>Enter your GitHub personal access token to edit players. <a href="https://github.com/settings/tokens" target="_blank" style="color:var(--accent)">Create token</a></p>
+      <div style="display:flex; gap:10px; margin:10px 0;">
+        <input type="password" id="ghToken" placeholder="github_pat_..." style="flex:1" />
+        <button onclick="setGitHubToken()">Login</button>
+        <button class="secondary" id="logoutBtn" style="display:none" onclick="logoutGitHub()">Logout</button>
+      </div>
+      <div class="auth-info" id="authInfo" style="display:none"></div>
+    </div>
+  `;
+  if (content.innerHTML === '<div class="empty">בחר חבילה מהתפריט מימין</div>') {
+    content.innerHTML = authHtml + content.innerHTML;
+    document.getElementById('ghToken').focus();
+  }
+}
+
+async function setGitHubToken() {
+  const token = document.getElementById('ghToken').value.trim();
+  if (!token) { alert('Please enter a token'); return; }
+
+  try {
+    const r = await fetch('https://api.github.com/user', { headers: { 'Authorization': `token ${token}` } });
+    if (!r.ok) throw new Error('Invalid token');
+    const user = await r.json();
+    state.gitHubToken = token;
+    state.useGitHub = true;
+    localStorage.setItem('github_token', token);
+
+    document.getElementById('ghToken').style.display = 'none';
+    document.getElementById('logoutBtn').style.display = 'block';
+    document.getElementById('authInfo').style.display = 'block';
+    document.getElementById('authInfo').textContent = `✓ Authenticated as ${user.login}`;
+
+    await loadPacks();
+  } catch (err) {
+    alert('Authentication failed: ' + err.message);
+  }
+}
+
+function logoutGitHub() {
+  state.gitHubToken = null;
+  state.useGitHub = false;
+  localStorage.removeItem('github_token');
+  document.getElementById('ghToken').style.display = 'block';
+  document.getElementById('ghToken').value = '';
+  document.getElementById('logoutBtn').style.display = 'none';
+  document.getElementById('authInfo').style.display = 'none';
+  state.packs = [];
+  state.current = null;
+  state.players = [];
+  renderPackList();
+  document.getElementById('content').innerHTML = '<div class="empty">בחר חבילה מהתפריט מימין</div>';
+}
+
+async function loadPacksLocal() {
   state.packs = await fetchJSON("/api/packs");
+}
+
+async function loadPacksGitHub() {
+  try {
+    const r = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/src/data?ref=${GITHUB_BRANCH}`, {
+      headers: { 'Authorization': `token ${state.gitHubToken}` }
+    });
+    if (!r.ok) throw new Error('Failed to fetch packs');
+    const files = await r.json();
+
+    state.packs = [];
+    for (const file of files) {
+      if (!file.name.endsWith('.js') || file.name === 'packs.js') continue;
+      try {
+        const fr = await fetch(file.download_url);
+        const content = await fr.text();
+        const match = content.match(/^\s*export\s+default\s*\{([^}]*?name:\s*['"]([^'"]+)['"]/);
+        const name = match ? match[2] : file.name;
+        const iconMatch = content.match(/^\s*export\s+default\s*\{([^}]*?icon:\s*['"]([^'"]+)['"]/);
+        const icon = iconMatch ? iconMatch[2] : '';
+        const countMatch = content.match(/players:\s*\[([^\]]*)\]/);
+        const count = countMatch ? (countMatch[1].match(/\{answer:/g) || []).length : 0;
+
+        state.packs.push({ file: file.name, name, icon, count });
+      } catch (e) { }
+    }
+    state.packs.sort((a, b) => a.name.localeCompare(b.name));
+  } catch (err) {
+    alert('Failed to load packs: ' + err.message);
+  }
+}
+
+async function loadPacks() {
+  if (state.useGitHub) await loadPacksGitHub();
+  else await loadPacksLocal();
   renderPackList();
 }
 
 function renderPackList() {
   const el = document.getElementById("packList");
+  if (isDeployed && !state.useGitHub) {
+    el.innerHTML = '<div style="font-size:12px; color:var(--muted); padding:10px; text-align:center;">Login with GitHub to start</div>';
+    return;
+  }
   el.innerHTML = "";
   for (const p of state.packs) {
     const div = document.createElement("div");
@@ -117,8 +227,26 @@ function renderPackList() {
 async function selectPack(file) {
   state.current = file;
   renderPackList();
-  state.players = await fetchJSON(`/api/packs/${encodeURIComponent(file)}/players`);
+  if (state.useGitHub) state.players = await loadPlayersGitHub(file);
+  else state.players = await fetchJSON(`/api/packs/${encodeURIComponent(file)}/players`);
   renderContent();
+}
+
+async function loadPlayersGitHub(file) {
+  try {
+    const r = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/src/data/${encodeURIComponent(file)}?ref=${GITHUB_BRANCH}`, {
+      headers: { 'Authorization': `token ${state.gitHubToken}` }
+    });
+    if (!r.ok) throw new Error('File not found');
+    const data = await r.json();
+    const content = atob(data.content);
+    const mod = { default: {} };
+    eval(content.replace('export default', 'mod.default ='));
+    return mod.default.players || [];
+  } catch (err) {
+    alert('Failed to load players: ' + err.message);
+    return [];
+  }
 }
 
 function renderContent() {
@@ -134,17 +262,11 @@ function renderContent() {
       <div><label>עמדה</label><input type="text" name="pos" /></div>
       <div><label>לאום (עם דגל)</label><input type="text" name="country" placeholder="🇮🇱 ישראל" /></div>
       <div class="full">
-        <label>קבוצות — פורמט: שנים|קבוצה; שנים|קבוצה (למשל: 2018–2021|מכבי תל אביב; 2021–|הפועל חיפה)</label>
+        <label>קבוצות — פורמט: שנים|קבוצה; שנים|קבוצה</label>
         <input type="text" name="career" style="width:100%" />
       </div>
       <div><button type="submit">הוסף שחקן</button></div>
     </form>
-
-    <div class="upload-box">
-      <input type="file" id="xlsxFile" accept=".xlsx,.xls,.csv" />
-      <button id="uploadBtn" class="secondary">ייבוא מאקסל</button>
-      <span class="status" id="uploadStatus"></span>
-    </div>
 
     <div class="toolbar">
       <input type="search" id="search" placeholder="חיפוש שחקן..." />
@@ -157,7 +279,6 @@ function renderContent() {
   `;
 
   document.getElementById("addForm").onsubmit = onAddPlayer;
-  document.getElementById("uploadBtn").onclick = onUpload;
   document.getElementById("search").oninput = (e) => renderRows(e.target.value);
   renderRows("");
 }
@@ -192,11 +313,15 @@ async function onAddPlayer(e) {
   const fd = new FormData(e.target);
   const body = Object.fromEntries(fd.entries());
   try {
-    await fetchJSON(`/api/packs/${encodeURIComponent(state.current)}/players`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    });
+    if (state.useGitHub) {
+      await addPlayerGitHub(body);
+    } else {
+      await fetchJSON(`/api/packs/${encodeURIComponent(state.current)}/players`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+    }
     e.target.reset();
     await refreshCurrentPack();
   } catch (err) {
@@ -204,40 +329,88 @@ async function onAddPlayer(e) {
   }
 }
 
+async function addPlayerGitHub(playerData) {
+  const players = await loadPlayersGitHub(state.current);
+  players.push({
+    answer: playerData.answer,
+    wiki: playerData.wiki,
+    pos: playerData.pos,
+    country: playerData.country,
+    career: playerData.career ? playerData.career.split(';').map(s => {
+      const [y, c] = s.split('|').map(x => x.trim());
+      return [y || '', c || ''];
+    }).filter(x => x[0] || x[1]) : []
+  });
+  await savePackGitHub(players);
+}
+
 async function onDelete(idx) {
   const p = state.players[idx];
   if (!confirm(`למחוק את ${p.answer}?`)) return;
   try {
-    await fetchJSON(`/api/packs/${encodeURIComponent(state.current)}/players/${idx}`, { method: "DELETE" });
+    if (state.useGitHub) {
+      await deletePlayerGitHub(idx);
+    } else {
+      await fetchJSON(`/api/packs/${encodeURIComponent(state.current)}/players/${idx}`, { method: "DELETE" });
+    }
     await refreshCurrentPack();
   } catch (err) {
     alert("שגיאה במחיקה: " + err.message);
   }
 }
 
-async function onUpload() {
-  const input = document.getElementById("xlsxFile");
-  const statusEl = document.getElementById("uploadStatus");
-  if (!input.files[0]) { statusEl.textContent = "בחר קובץ קודם"; return; }
-  const fd = new FormData();
-  fd.append("file", input.files[0]);
-  statusEl.className = "status";
-  statusEl.textContent = "מעלה...";
-  try {
-    const res = await fetchJSON(`/api/packs/${encodeURIComponent(state.current)}/import`, { method: "POST", body: fd });
-    statusEl.className = "status ok";
-    statusEl.textContent = `נוספו ${res.added} שחקנים, דולגו ${res.skipped}`;
-    await refreshCurrentPack();
-  } catch (err) {
-    statusEl.className = "status err";
-    statusEl.textContent = "שגיאה: " + err.message;
+async function deletePlayerGitHub(idx) {
+  const players = await loadPlayersGitHub(state.current);
+  players.splice(idx, 1);
+  await savePackGitHub(players);
+}
+
+async function savePackGitHub(players) {
+  const packData = state.packs.find(p => p.file === state.current);
+  const lines = ['export default {'];
+  for (const [key, value] of Object.entries(packData)) {
+    if (key === 'file' || key === 'players') continue;
+    lines.push(`  ${key}: ${JSON.stringify(value)},`);
   }
+  lines.push('  players: [');
+  for (const p of players) {
+    const career = JSON.stringify(p.career || []);
+    lines.push(`{answer:${JSON.stringify(p.answer || '')}, wiki:${JSON.stringify(p.wiki || '')}, ` +
+      `pos:${JSON.stringify(p.pos || '')}, country:${JSON.stringify(p.country || '')},\n` +
+      `     career:${career}},`);
+  }
+  lines.push('  ]');
+  lines.push('}');
+  const content = lines.join('\n') + '\n';
+
+  const r = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/src/data/${encodeURIComponent(state.current)}`, {
+    method: 'PUT',
+    headers: { 'Authorization': `token ${state.gitHubToken}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      message: `Update ${packData.name}`,
+      content: btoa(content),
+      branch: GITHUB_BRANCH
+    })
+  });
+  if (!r.ok) throw new Error('Failed to save pack');
 }
 
 async function refreshCurrentPack() {
   await loadPacks();
-  state.players = await fetchJSON(`/api/packs/${encodeURIComponent(state.current)}/players`);
-  renderContent();
+  if (state.current) {
+    if (state.useGitHub) state.players = await loadPlayersGitHub(state.current);
+    else state.players = await fetchJSON(`/api/packs/${encodeURIComponent(state.current)}/players`);
+    renderContent();
+  }
+}
+
+if (isDeployed) {
+  const token = localStorage.getItem('github_token');
+  if (token) {
+    state.gitHubToken = token;
+    state.useGitHub = true;
+  }
+  initAuthPanel();
 }
 
 loadPacks();
