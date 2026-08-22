@@ -2,9 +2,10 @@
 // folder must have exactly these keys. {placeholders} are substituted at
 // render time — keep them verbatim (don't translate the word inside {}).
 export default {
-  "app.title.who": "Who's The",
-  "app.title.player": "Player?",
+  "app.title.who": "Guess The",
+  "app.title.player": "Baller",
   "home.subtitle": "Pick a pack & name the footballers",
+  "home.disclaimer": "Guess The Baller is an unofficial fan game. Player and club names are used solely for identification purposes. This game has no sponsorship, affiliation, or official connection with any football organization, league, or club.",
   "home.coins": "Coins",
   "home.totalStars": "Total Stars",
   "home.multiplayer": "Multiplayer",

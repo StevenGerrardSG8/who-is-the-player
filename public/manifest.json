@@ -1,6 +1,6 @@
 {
-  "name": "Who's The Player?",
-  "short_name": "Who's The Player?",
+  "name": "Guess The Baller",
+  "short_name": "Guess The Baller",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#12402C",

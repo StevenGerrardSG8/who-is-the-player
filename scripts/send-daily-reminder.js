@@ -32,7 +32,7 @@ async function main() {
     const response = await messaging.sendEachForMulticast({
       tokens,
       notification: {
-        title: "Who's The Player? ⚽",
+        title: "Guess The Baller ⚽",
         body: "You haven't played today — come guess a few players!",
       },
     });

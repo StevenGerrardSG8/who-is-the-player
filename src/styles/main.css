@@ -121,6 +121,7 @@ h1 span{
   filter:drop-shadow(0 1px 0 rgba(0,0,0,0.25));
 }
 .subtitle{text-align:center;font-size:12px;font-weight:600;color:#A9C3B2;margin:-6px 0 0;letter-spacing:.2px}
+.disclaimer{text-align:center;font-size:11px;font-weight:600;color:#A9C3B2;opacity:.85;margin:18px 0 4px;padding:10px 14px;border-top:1px solid rgba(255,255,255,.08);line-height:1.4}
 
 /* ---------- home: pack tabs & sections ---------- */
 .pack-tabs{display:flex;gap:8px;margin-top:2px}

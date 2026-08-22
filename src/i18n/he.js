@@ -2,9 +2,10 @@
 // folder must have exactly these keys. {placeholders} are substituted at
 // render time — keep them verbatim (don't translate the word inside {}).
 export default {
-  "app.title.who": "מי זה",
-  "app.title.player": "השחקן?",
+  "app.title.who": "נחש את",
+  "app.title.player": "השחקן",
   "home.subtitle": "בחר חבילה ונחש את השחקנים",
+  "home.disclaimer": "נחש את השחקן הוא משחק אוהדים עצמאי ולא רשמי. שמות השחקנים והקבוצות מוצגים למטרות זיהוי בלבד, ואין למשחק כל חסות, שיוך או קשר רשמי לארגוני כדורגל, ליגות או מועדונים כלשהם.",
   "home.coins": "מטבעות",
   "home.totalStars": "סה״כ כוכבים",
   "home.multiplayer": "מולטיפלייר",
@@ -59,8 +60,8 @@ export default {
   "packComplete.title": "החבילה הושלמה! 🏆",
   "packComplete.backToPacks": "חזרה לחבילות",
 
-  "mpMode.title.party": "מסיבה",
-  "mpMode.title.mode": "מצב",
+  "mpMode.title.party": "מולטי",
+  "mpMode.title.mode": "פלייר",
   "mpMode.subtitle": "בחר איך תרצה לשחק",
   "mpMode.local.title": "מקומי",
   "mpMode.local.desc": "העבירו מכשיר אחד בין השחקנים",

@@ -102,6 +102,7 @@ const $ = (id) => document.getElementById(id);
 // rewards text, etc.) are translated inline where they're generated.
 const STATIC_MAP = {
   homeSubtitle: "home.subtitle",
+  homeDisclaimer: "home.disclaimer",
   homeCoinsLabel: "home.coins",
   homeStarsLabel: "home.totalStars",
   homeStreakLabel: "home.streak",
