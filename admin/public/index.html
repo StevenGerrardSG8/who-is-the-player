@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<title>ניהול מאגר שחקנים — Who Is The Player</title>
+<style>
+  :root {
+    --bg: #0f1115;
+    --panel: #171a21;
+    --border: #2a2f3a;
+    --text: #e8eaed;
+    --muted: #9aa3b2;
+    --accent: #4f8cff;
+    --danger: #e5484d;
+    --danger-hover: #ff6166;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    height: 100vh;
+  }
+  aside {
+    width: 260px;
+    background: var(--panel);
+    border-left: 1px solid var(--border);
+    overflow-y: auto;
+    padding: 12px;
+    flex-shrink: 0;
+  }
+  aside h1 { font-size: 15px; margin: 4px 8px 12px; color: var(--muted); }
+  .pack-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 10px; border-radius: 8px; cursor: pointer; margin-bottom: 2px;
+  }
+  .pack-item:hover { background: #1f232c; }
+  .pack-item.active { background: var(--accent); color: white; }
+  .pack-item .count { font-size: 12px; color: var(--muted); }
+  .pack-item.active .count { color: #dbe6ff; }
+  main { flex: 1; overflow-y: auto; padding: 20px 28px; }
+  h2 { margin-top: 0; }
+  .toolbar { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
+  input[type="text"], input[type="search"] {
+    background: var(--panel); border: 1px solid var(--border); color: var(--text);
+    padding: 8px 12px; border-radius: 8px; font-size: 14px;
+  }
+  input[type="search"] { flex: 1; min-width: 200px; }
+  button {
+    background: var(--accent); color: white; border: none; padding: 8px 14px;
+    border-radius: 8px; cursor: pointer; font-size: 14px;
+  }
+  button.secondary { background: #2a2f3a; }
+  button.danger { background: var(--danger); }
+  button.danger:hover { background: var(--danger-hover); }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+  th { color: var(--muted); font-weight: 600; position: sticky; top: 0; background: var(--bg); }
+  tr:hover { background: #171a21; }
+  .career-cell { color: var(--muted); font-size: 12px; max-width: 340px; }
+  form.add-player {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px; margin-bottom: 18px; display: grid; gap: 8px;
+    grid-template-columns: repeat(4, 1fr); align-items: end;
+  }
+  form.add-player .full { grid-column: 1 / -1; }
+  label { font-size: 12px; color: var(--muted); display: block; margin-bottom: 4px; }
+  .upload-box {
+    border: 1px dashed var(--border); border-radius: 10px; padding: 12px 14px;
+    display: flex; align-items: center; gap: 10px; margin-bottom: 18px; background: var(--panel);
+  }
+  .status { font-size: 13px; color: var(--muted); margin-inline-start: auto; }
+  .status.ok { color: #4caf50; }
+  .status.err { color: var(--danger); }
+  .empty { color: var(--muted); padding: 40px; text-align: center; }
+</style>
+</head>
+<body>
+  <aside>
+    <h1>חבילות (Packs)</h1>
+    <div id="packList"></div>
+  </aside>
+  <main>
+    <div id="content" class="empty">בחר חבילה מהתפריט מימין</div>
+  </main>
+
+<script>
+const state = { packs: [], current: null, players: [] };
+
+async function fetchJSON(url, opts) {
+  const r = await fetch(url, opts);
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(j.error || r.statusText);
+  return j;
+}
+
+async function loadPacks() {
+  state.packs = await fetchJSON("/api/packs");
+  renderPackList();
+}
+
+function renderPackList() {
+  const el = document.getElementById("packList");
+  el.innerHTML = "";
+  for (const p of state.packs) {
+    const div = document.createElement("div");
+    div.className = "pack-item" + (state.current === p.file ? " active" : "");
+    div.innerHTML = `<span>${p.icon || ""} ${p.name}</span><span class="count">${p.count}</span>`;
+    div.onclick = () => selectPack(p.file);
+    el.appendChild(div);
+  }
+}
+
+async function selectPack(file) {
+  state.current = file;
+  renderPackList();
+  state.players = await fetchJSON(`/api/packs/${encodeURIComponent(file)}/players`);
+  renderContent();
+}
+
+function renderContent() {
+  const pack = state.packs.find((p) => p.file === state.current);
+  const main = document.getElementById("content");
+  main.className = "";
+  main.innerHTML = `
+    <h2>${pack.icon || ""} ${pack.name} <span style="color:var(--muted);font-size:14px">(${state.players.length} שחקנים)</span></h2>
+
+    <form class="add-player" id="addForm">
+      <div><label>שם (answer)</label><input type="text" name="answer" required /></div>
+      <div><label>Wiki (שם באנגלית)</label><input type="text" name="wiki" required /></div>
+      <div><label>עמדה</label><input type="text" name="pos" /></div>
+      <div><label>לאום (עם דגל)</label><input type="text" name="country" placeholder="🇮🇱 ישראל" /></div>
+      <div class="full">
+        <label>קבוצות — פורמט: שנים|קבוצה; שנים|קבוצה (למשל: 2018–2021|מכבי תל אביב; 2021–|הפועל חיפה)</label>
+        <input type="text" name="career" style="width:100%" />
+      </div>
+      <div><button type="submit">הוסף שחקן</button></div>
+    </form>
+
+    <div class="upload-box">
+      <input type="file" id="xlsxFile" accept=".xlsx,.xls,.csv" />
+      <button id="uploadBtn" class="secondary">ייבוא מאקסל</button>
+      <span class="status" id="uploadStatus"></span>
+    </div>
+
+    <div class="toolbar">
+      <input type="search" id="search" placeholder="חיפוש שחקן..." />
+    </div>
+
+    <table>
+      <thead><tr><th>שם</th><th>Wiki</th><th>עמדה</th><th>לאום</th><th>קבוצות</th><th></th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  `;
+
+  document.getElementById("addForm").onsubmit = onAddPlayer;
+  document.getElementById("uploadBtn").onclick = onUpload;
+  document.getElementById("search").oninput = (e) => renderRows(e.target.value);
+  renderRows("");
+}
+
+function renderRows(filter) {
+  const tbody = document.getElementById("rows");
+  tbody.innerHTML = "";
+  const f = (filter || "").trim();
+  state.players.forEach((p, idx) => {
+    if (f && !(p.answer.includes(f) || (p.wiki || "").toLowerCase().includes(f.toLowerCase()))) return;
+    const careerText = (p.career || []).map(([y, c]) => `${y} ${c}`).join(" · ");
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${escapeHtml(p.answer)}</td>
+      <td>${escapeHtml(p.wiki)}</td>
+      <td>${escapeHtml(p.pos || "")}</td>
+      <td>${escapeHtml(p.country || "")}</td>
+      <td class="career-cell">${escapeHtml(careerText)}</td>
+      <td><button class="danger" data-idx="${idx}">מחק</button></td>
+    `;
+    tr.querySelector("button").onclick = () => onDelete(idx);
+    tbody.appendChild(tr);
+  });
+}
+
+function escapeHtml(s) {
+  return String(s || "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+async function onAddPlayer(e) {
+  e.preventDefault();
+  const fd = new FormData(e.target);
+  const body = Object.fromEntries(fd.entries());
+  try {
+    await fetchJSON(`/api/packs/${encodeURIComponent(state.current)}/players`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    e.target.reset();
+    await refreshCurrentPack();
+  } catch (err) {
+    alert("שגיאה בהוספה: " + err.message);
+  }
+}
+
+async function onDelete(idx) {
+  const p = state.players[idx];
+  if (!confirm(`למחוק את ${p.answer}?`)) return;
+  try {
+    await fetchJSON(`/api/packs/${encodeURIComponent(state.current)}/players/${idx}`, { method: "DELETE" });
+    await refreshCurrentPack();
+  } catch (err) {
+    alert("שגיאה במחיקה: " + err.message);
+  }
+}
+
+async function onUpload() {
+  const input = document.getElementById("xlsxFile");
+  const statusEl = document.getElementById("uploadStatus");
+  if (!input.files[0]) { statusEl.textContent = "בחר קובץ קודם"; return; }
+  const fd = new FormData();
+  fd.append("file", input.files[0]);
+  statusEl.className = "status";
+  statusEl.textContent = "מעלה...";
+  try {
+    const res = await fetchJSON(`/api/packs/${encodeURIComponent(state.current)}/import`, { method: "POST", body: fd });
+    statusEl.className = "status ok";
+    statusEl.textContent = `נוספו ${res.added} שחקנים, דולגו ${res.skipped}`;
+    await refreshCurrentPack();
+  } catch (err) {
+    statusEl.className = "status err";
+    statusEl.textContent = "שגיאה: " + err.message;
+  }
+}
+
+async function refreshCurrentPack() {
+  await loadPacks();
+  state.players = await fetchJSON(`/api/packs/${encodeURIComponent(state.current)}/players`);
+  renderContent();
+}
+
+loadPacks();
+</script>
+</body>
+</html>
