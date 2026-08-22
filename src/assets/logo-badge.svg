@@ -1,5 +1,5 @@
 <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Who's The Player badge">
-  <rect x="6" y="6" width="188" height="188" rx="44" ry="44" fill="#12402C" stroke="#D8A93C" stroke-width="7" />
+  <rect x="6" y="6" width="188" height="188" rx="44" ry="44" fill="#123A72" stroke="#D8A93C" stroke-width="7" />
   <text x="101" y="118" text-anchor="middle" dominant-baseline="middle"
         font-family="'Archivo Black', Impact, 'Arial Black', sans-serif"
         font-size="140" fill="#F4F6EF">?</text>
